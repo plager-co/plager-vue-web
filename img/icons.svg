@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="181" height="50" viewBox="0 0 181 50">
+    <defs>
+        <path id="a" d="M.064 49.977l19.075-.354 44.797-23.865L19.139 1.752.064 0z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(1 -1)">
+        <text fill="#FFF" font-family=".SFNSDisplay, .SF NS Display" font-size="24" letter-spacing="3.1">
+            <tspan x="77" y="34">PLAGE</tspan> <tspan x="165.59" y="34">R</tspan>
+        </text>
+        <path fill="#00526C" d="M.273 37.53l2.32 4.307 45.658-24.485-5.177-2.774z"/>
+        <path fill="#009E9B" d="M5.794 40.133l2.32 4.306 45.325-24.306-5.177-2.775z"/>
+        <path fill="#00BD7E" d="M11.31 42.728l2.32 4.306L58.62 22.908l-5.177-2.774z"/>
+        <path fill="#8DDC59" d="M16.825 45.321l2.317 4.3 2.194-1.168 42.46-22.77-5.177-2.775z"/>
+        <path fill="#00526C" d="M16.825 6.048L58.74 28.526l5.192-2.767-9.885-5.3L19.14 1.751z"/>
+        <path fill="#009E9B" d="M11.305 8.65l42.232 22.648 5.192-2.766L13.625 4.344z"/>
+        <path fill="#00BD7E" d="M5.788 11.245l42.554 22.82 5.192-2.766L8.109 6.94z"/>
+        <path fill="#8DDC59" d="M.273 13.838L43.15 36.831l5.192-2.766L2.594 9.532z"/>
+        <mask id="b" fill="#fff">
+            <use xlink:href="#a"/>
+        </mask>
+        <path fill="#000" fill-opacity=".2" d="M43.062 36.802l-31.883-5.12 11.2-6.008z" mask="url(#b)"/>
+    </g>
+</svg>

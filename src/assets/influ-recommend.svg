@@ -1,0 +1,17 @@
+
+<svg width="198px" height="198px" viewBox="0 0 198 198" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="8.99884076%" cy="109.654992%" fx="8.99884076%" fy="109.654992%" r="149.42152%" id="radialGradient-1">
+            <stop stop-color="#FFD944" offset="0%"></stop>
+            <stop stop-color="#FF5C44" offset="55.6832551%"></stop>
+            <stop stop-color="#852EF6" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="final" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="sponsor_list" transform="translate(-861.000000, -772.000000)" stroke="url(#radialGradient-1)" stroke-width="4">
+            <circle id="Oval-4" cx="960" cy="871" r="97"></circle>
+        </g>
+    </g>
+</svg>

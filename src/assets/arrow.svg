@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="53px" viewBox="0 0 41 53" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Arrow Left</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="final" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons" transform="translate(-851.000000, -445.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="Arrow-Left" transform="translate(871.500000, 471.500000) rotate(-90.000000) translate(-871.500000, -471.500000) translate(845.000000, 451.000000)">
+                <path d="M23.5160493,36.1778727 C24.6762087,37.2848424 24.6938761,39.0653651 23.5366612,40.1723348 C22.3853355,41.270519 20.5361473,41.2851615 19.3583205,40.1606208 L0.898829118,22.5516027 C-0.299609706,21.4065626 -0.299609706,19.585041 0.898829118,18.4400009 L19.3583205,0.8339112 C20.5125908,-0.270130019 22.3765018,-0.281843984 23.5337167,0.822197235 C24.6850424,1.92038147 24.687987,3.6950472 23.5131047,4.81665936 L10.0240427,17.6873786 L50.0465992,17.6873786 C51.6778894,17.6873786 53,18.9349159 53,20.4958018 C53,22.0479022 51.6661111,23.3071534 50.0465992,23.3071534 L10.0240427,23.3071534 L23.5160493,36.1778727 Z" id="path-1_30_"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,79 @@
+
+<svg width="1189px" height="627px" viewBox="0 0 1189 627" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M4,0 L1175,0 C1177.20914,-4.05812251e-16 1179,1.790861 1179,4 L1179,613 C1179,615.209139 1177.20914,617 1175,617 L4,617 C1.790861,617 2.705415e-16,615.209139 0,613 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="path-1"></path>
+        <filter x="-0.6%" y="-1.2%" width="101.3%" height="102.4%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.03 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="web_0917" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home_white_main1" transform="translate(-363.000000, -1546.000000)">
+            <g id="Group-30" transform="translate(368.000000, 1551.000000)">
+                <g id="Base">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <text id="10분-후" font-family=".AppleSystemUIFont" font-size="12" font-weight="normal" fill="#AEAEAE">
+                    <tspan x="173.464852" y="576">10</tspan>
+                    <tspan x="186.619148" y="576" font-family="AppleSDGothicNeo-Bold, Apple SD Gothic Neo" font-weight="bold">분 후</tspan>
+                </text>
+                <text id="1일" font-family=".AppleSystemUIFont" font-size="12" font-weight="normal" fill="#AEAEAE">
+                    <tspan x="328.012148" y="576">1</tspan>
+                    <tspan x="333.607852" y="576" font-family="AppleSDGothicNeo-Bold, Apple SD Gothic Neo" font-weight="bold">일</tspan>
+                </text>
+                <text id="1주일" font-family=".AppleSystemUIFont" font-size="12" font-weight="normal" fill="#AEAEAE">
+                    <tspan x="494.822148" y="576">1</tspan>
+                    <tspan x="500.417852" y="576" font-family="AppleSDGothicNeo-Bold, Apple SD Gothic Neo" font-weight="bold">주일</tspan>
+                </text>
+                <text id="1달" font-family=".AppleSystemUIFont" font-size="12" font-weight="normal" fill="#AEAEAE">
+                    <tspan x="716.012148" y="576">1</tspan>
+                    <tspan x="721.607852" y="576" font-family="AppleSDGothicNeo-Bold, Apple SD Gothic Neo" font-weight="bold">달</tspan>
+                </text>
+                <text id="시간의-경과" font-family="AppleSDGothicNeo-Bold, Apple SD Gothic Neo" font-size="12" font-weight="bold" fill="#AEAEAE">
+                    <tspan x="1060.85664" y="583">시간의</tspan>
+                    <tspan x="1091.99664" y="583" font-family=".AppleSystemUIFont" font-weight="normal"> </tspan>
+                    <tspan x="1095.38336" y="583">경과</tspan>
+                </text>
+                <text id="기억유지" font-family="AppleSDGothicNeo-Bold, Apple SD Gothic Neo" font-size="12" font-weight="bold" fill="#000000">
+                    <tspan x="1097.48" y="70">기억유지</tspan>
+                </text>
+                <text id="20" font-family=".AppleSystemUIFont" font-size="12" font-weight="normal" fill="#AEAEAE">
+                    <tspan x="48.1933594" y="479">20</tspan>
+                </text>
+                <text id="40" font-family=".AppleSystemUIFont" font-size="12" font-weight="normal" fill="#AEAEAE">
+                    <tspan x="47.71875" y="390">40</tspan>
+                </text>
+                <text id="60" font-family=".AppleSystemUIFont" font-size="12" font-weight="normal" fill="#AEAEAE">
+                    <tspan x="47.7949219" y="299">60</tspan>
+                </text>
+                <text id="80" font-family=".AppleSystemUIFont" font-size="12" font-weight="normal" fill="#AEAEAE">
+                    <tspan x="47.7773437" y="207">80</tspan>
+                </text>
+                <text id="100" font-family=".AppleSystemUIFont" font-size="12" font-weight="normal" fill="#AEAEAE">
+                    <tspan x="42.2871094" y="114">100</tspan>
+                </text>
+                <rect id="Line-segment" fill="#F0F0F0" x="37" y="457" width="1106" height="1.53061224"></rect>
+                <rect id="Line-segment" fill="#F0F0F0" x="37" y="364" width="1106" height="1.53061224"></rect>
+                <rect id="Line-segment" fill="#F0F0F0" x="37" y="271" width="1106" height="1.53061224"></rect>
+                <rect id="Line-segment" fill="#F0F0F0" x="37" y="177" width="1106" height="1.53061224"></rect>
+                <rect id="Line-segment-Copy" fill="#F0F0F0" x="37" y="84" width="1106" height="1.53061224"></rect>
+                <rect id="Line-segment" fill="#F0F0F0" x="37" y="550" width="1106" height="1.53061224"></rect>
+                <g id="Header" transform="translate(37.000000, 36.000000)" fill="#4C6072" font-family=".AppleSystemUIFont" font-size="18" font-weight="normal">
+                    <text id="Forgetting-curve">
+                        <tspan x="0" y="17">Forgetting curve</tspan>
+                    </text>
+                </g>
+                <path d="M100,551.5 C114,244.5 148.166667,91 202.5,91 C284,91 226.5,299 307,385 C387.5,471 454.5,473 747,473 C942,473 1072.33333,473 1138,473" id="Path-2" stroke="#00526C" stroke-width="2" stroke-linecap="round"></path>
+                <path d="M256,217 C279.333333,131.666667 309,89 345,89 C399,89 391,232.5 414.5,316 C464,432.5 552.5,426.5 622.5,426.5 C669.166667,426.5 841.166667,426.5 1138.5,426.5" id="Path-3" stroke="#00526C" stroke-width="2" stroke-linecap="round"></path>
+                <path d="M389,163.149068 C443,119.915232 492,96.5818982 536,93.1490681 C602,87.9998229 559,217.517267 621,285.649068 C689.5,349.017267 755,378.149068 922.5,378.149068 C1034.16667,378.149068 1106.16667,378.149068 1138.5,378.149068" id="Path-4" stroke="#00526C" stroke-width="2" stroke-linecap="round"></path>
+                <path d="M575,129.755392 C725.099217,86.7981271 806.599217,76.9861613 819.5,100.319495 C838.851175,135.319495 816,262.319495 904.5,294.319495 C963.5,315.652828 1041.5,325.964794 1138.5,325.255392" id="Path-5" stroke="#00526C" stroke-width="2" stroke-linecap="round"></path>
+                <path d="M100,550 C116.333333,489 142.5,419 178.5,340 C232.5,221.5 259.5,194 384.5,165 C509.5,136 788.5,87 1139.5,87" id="Path-7" stroke="#8DDC59" stroke-width="4" stroke-linecap="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>

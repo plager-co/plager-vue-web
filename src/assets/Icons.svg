@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="50px" viewBox="0 0 64 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.0642570281 49.9766667 19.1390843 49.6229487 63.935743 25.7575641 19.1390843 1.75192308 0.0642570281 0"></polygon>
+    </defs>
+    <g id="final" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons" transform="translate(-374.000000, -42.000000)">
+            <g id="Group" transform="translate(374.000000, 41.000000)">
+                <polygon id="Fill-2" fill="#00526C" points="0.273272289 37.5309359 2.59372209 41.8370897 48.2509108 17.3523462 43.0739791 14.5781154"></polygon>
+                <polygon id="Fill-3" fill="#009E9B" points="5.79350361 40.1332051 8.11395341 44.4392308 53.4391904 20.1326923 48.2622586 17.3584615"></polygon>
+                <polygon id="Fill-4" fill="#00BD7E" points="11.3099181 42.7282051 13.6302394 47.034359 58.618898 22.9083333 53.4418378 20.1341026"></polygon>
+                <polygon id="Fill-5" fill="#8DDC59" points="16.8250602 45.3211282 19.1421687 49.6212564 21.3360321 48.4525385 63.7959197 25.6825385 58.6188594 22.9083077"></polygon>
+                <polygon id="Fill-6" fill="#00526C" points="16.8250602 6.04778205 58.7399197 28.5256026 63.9321446 25.7594487 54.0469719 20.4582949 19.1397269 1.75214103"></polygon>
+                <polygon id="Fill-7" fill="#009E9B" points="11.3048289 8.65005128 53.536604 31.2977436 58.7287004 28.5315897 13.6252787 4.34389744"></polygon>
+                <polygon id="Fill-8" fill="#00BD7E" points="5.78841446 11.2451667 48.3417317 34.0652949 53.5338281 31.299141 8.10886426 6.93901282"></polygon>
+                <polygon id="Fill-9" fill="#8DDC59" points="0.273272289 13.8379744 43.1495454 36.8313077 48.3417703 34.0652821 2.59372209 9.53194872"></polygon>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-11"></g>
+                <polygon id="Fill-10" fill-opacity="0.2" fill="#000000" mask="url(#mask-2)" points="43.0618988 36.8015128 11.1788466 31.6825385 22.3794892 25.6744615"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

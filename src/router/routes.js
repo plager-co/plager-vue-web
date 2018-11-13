@@ -26,6 +26,11 @@ import SponsorNoAd from '@/components/SponsorNoAd'
 import Temp from '@/components/Temp'
 import All from '@/components/common/All'
 
+import Survey from '@/components/Survey'
+import NewSurvey from '@/components/NewSurvey'
+import { store } from '../store'
+
+
 export const routes = [
     // for publishing
     {
@@ -118,7 +123,14 @@ export const routes = [
     },
     {
       path: '/mypage',
-      component: MyPage
+      component: MyPage,
+        beforeEnter (to, from, next) {
+        if (!store.getters.isAuthenticated) {
+          next('/login')
+        } else {
+          next('/')
+        }
+      }
     },
 
     // error
@@ -129,5 +141,20 @@ export const routes = [
     {
       path: '/404',
       component: Temp
-    }
+    }, {
+      path: '/surveys/:id',
+      name: 'Survey',
+      component: Survey
+    }, {
+      path: '/surveys',
+      name: 'NewSurvey',
+      component: NewSurvey,
+      beforeEnter (to, from, next) {
+        if (!store.getters.isAuthenticated) {
+          next('/login')
+        } else {
+          next()
+        }
+      }
+    },
   ]

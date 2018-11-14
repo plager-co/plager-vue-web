@@ -131,6 +131,7 @@ p {
   box-sizing: border-box;
 }
 .input-set input[type="text"],
+.input-set input[type="email"],
 .input-set input[type="password"] {
   border: 1px solid #d9dee8;
   border-radius: 4px;
@@ -143,6 +144,7 @@ p {
 }
 
 .input-set.btn input[type="text"],
+.input-set.btn input[type="email"],
 .input-set.btn input[type="password"] {
   width: 80%;
 }
@@ -222,6 +224,7 @@ label {
     .input-set .label { font-size: 1.2rem; line-height: 1; }
 
     .input-set input[type=text], 
+    .input-set input[type=email],
     .input-set input[type=password] { height: 3.5rem; font-size: 1rem; padding: 0 1.5rem; width: 100%;}
     .input-set.btn button {height: 3.5rem; width: 8.1rem; font-size: 1.2rem;}
     .desc { font-size: 1.2rem; line: 1.5; letter-spacing: -.03rem;}

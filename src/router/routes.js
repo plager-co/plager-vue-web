@@ -128,14 +128,14 @@ export const routes = [
     },
     {
       path: '/mypage',
-      component: MyPage,
-        beforeEnter (to, from, next) {
-        if (!store.getters.isAuthenticated) {
-          next('/login')
-        } else {
-          next('/')
-        }
-      }
+      component: MyPage
+        // beforeEnter (to, from, next) {
+        // if (!store.getters.isAuthenticated) {
+        //   next('/login')
+        // } else {
+        //   next('/')
+        // }
+      // }
     },
 
     // error

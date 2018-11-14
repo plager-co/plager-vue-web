@@ -1,7 +1,7 @@
 <template>
     <form
          id="join-popup"
-      @submit.prevent  v-if='$store.state.isJoinPopup'
+      @submit.prevent v-if='$store.state.isJoinPopup'
       novalidate="true"
     >
       >
@@ -26,30 +26,33 @@
             <div class="input-set">
                 <div class='label'>비밀번호</div>
                 <div class="input-wrap btn">
-                    <input type="password" placeholder="**********">
+                    <input type="password" placeholder="**********" v-model="password">
                 </div>
             </div>
             <div class="input-set">
                 <div class='label'>비밀번호 확인</div>
                 <div class="input-wrap btn">
-                    <input type="password" placeholder="**********">
+                    <input type="password" placeholder="**********" v-model="password2">
                 </div>
             </div>
             <div class="input-set btn">
                 <div class='label'>사업자등록번호</div>
                 <div class="input-wrap btn">
-                    <input type="text" placeholder="000-00-00000">
-                    <button>조회</button>
+                    <input type="text" placeholder="000-00-00000" v-model="company_number">
+                    <button @click='checkCompanyNumber();'>조회</button>
                 </div>
             </div>
             <div class="info">
-                <input type="checkbox" name="keep" id="keep">
-                <label for="keep">
+                <input type="checkbox" name="keep" id="keep-register" v-model="keep_register">
+                <label for="keep-register">
                     <span class='checkbox'></span>
                     이용약관과 개인정보처리방침에 동의합니다.
                 </label>
             </div>
             <div class="desc">광고주로 등록하시면 플래거의 SIM 서비스 소개서를 바로 확인할 수 있습니다.</div>
+            <p v-if="errors.length">
+                  <span v-for="error in errors">{{ error }}<br></span>
+              </p>
             <div class="btn-wrap">
                  <button class='next' @click="completeJoin()" type="submit">상세정보등록</button>
                 <button class='prev' @click='$store.commit("closeJoinPopup")'>취소</button>
@@ -64,18 +67,79 @@ export default {
     data() {
       return {  errors: [],
         email: null,
+        keep_register: null,
+        company_number: null,
         password: null,
+        password2: null,
         movie: null }
     },
     methods: {
         completeJoin(){
-            this.$store.commit('closeJoinPopup')
-            this.$store.commit('openCompletePopup', '광고주')
+            console.log("keep_register");
+            console.log(this.keep_register);
+              this.errors = [];
+
+          if (!this.email) {
+            this.errors.push('이메일 주소를 입력해주세요.');
+          } else if (!this.validEmail(this.email)) {
+            this.errors.push('유효한 이메일 주소를 입력해주세요.');
+          } else if (!this.$store.getters.email){
+              this.errors.push('이메일 중복 체크를 해주세요.');
+          }
+
+
+          if (!this.company_number) {
+            this.errors.push('사업자 번호를 입력해주세요.');
+          } else if (!this.validCompanyNumber(this.company_number)) {
+            this.errors.push('유효한 사업자 번호를 입력해주세요.');
+          } else if (!this.$store.getters.company_number){
+              this.errors.push('사업자 번호 체크를 해주세요.');
+          }
+
+          if (!this.password) {
+            this.errors.push('비밀번호를 입력해주세요.');
+          }
+
+          if (!this.password2) {
+            this.errors.push('일치 확인용 비밀번호를 입력해주세요.');
+          }
+
+          if (this.password !== this.password2) {
+            this.errors.push('비밀번호를 일치하게 작성해주세요.');
+          }
+
+          if (!this.keep_register) {
+            this.errors.push('약관 확인후 동의시 동의 버튼을 눌러주세요.');
+          }
+
+          if (!this.errors.length) {
+              this.register();
+          }
+
+        },
+        register () {
+          this.$store.dispatch('register', {
+              email: this.email,
+              password: this.password,
+              company_number: this.company_number,
+          })
         },
         checkEmail () {
-            this.$store.commit('closeJoinPopup')
+            this.$store.commit('hasEmail', this.email)
           this.$store.dispatch('checkEmail', this.email)
         },
+        checkCompanyNumber () {
+            this.$store.commit('hasCompanyNumber', this.company_number)
+          this.$store.dispatch('checkCompanyNumber', this.company_number)
+        },
+        validEmail: function (email) {
+          var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return re.test(email);
+        },
+        validCompanyNumber: function (company_number) {
+          var re = /^(?!0+$)[\-0-9]{10,12}$/;
+          return re.test(company_number);
+        }
     }
 };
 </script>

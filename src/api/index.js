@@ -34,18 +34,22 @@ export function postNewSurvey (survey, jwt) {
   let auth_header = extend({}, basic_header, auth_dict);
     return axios.post(`${API_URL}/surveys/`, survey, { headers: auth_header })
   }
-  
+
+  export function register (userData) {
+    return axios.post(`${API_URL}/register/`, userData, { headers: basic_header } )
+  }
   export function authenticate (userData) {
   return axios.post(`${API_URL}/login/`, userData, { headers: basic_header })
   }
 
+    export function checkDuplicateCompanyNumber (userData) {
+    return axios.get(`${API_URL}/check_company_number/` + userData + '/')
+    }
+
   export function checkDuplicateEmail (userData) {
     return axios.get(`${API_URL}/users/filters/0/` + userData + '/')
     }
-  
-  export function register (userData) {
-    return axios.post(`${API_URL}/register/`, userData, { headers: basic_header } )
-  }
+
 
   const actions = {  
     // asynchronous operations

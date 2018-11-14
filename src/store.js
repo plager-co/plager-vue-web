@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // imports of AJAX functions will go here
-import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey, authenticate, register, checkDuplicateEmail } from '@/api'  
+import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey, authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber } from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -20,6 +20,8 @@ export const store = new Vuex.Store({
         isScoreCompletePopup: false,
         isScoreImpossiblePopup: false,
         isScoreCompleteMsg: '',
+        email:'',
+        company_number:'',
         navMenuList: [
             {
             title: "인플루언서 등록",
@@ -42,17 +44,42 @@ export const store = new Vuex.Store({
             return fetchSurveys()
               .then((response) => context.commit('setSurveys', { surveys: response }))
           },
+        register (context, userData) {
+            context.commit('setUserData', { userData })
+            return register(userData)
+              .then(
+                  function (response) {
+                      console.log(response);
+                      console.log(response.data.id);
+                      if(response.data.id){
+                        context.commit('closeJoinPopup');
+                        context.commit('openCompletePopup', '광고주');
+                          context.dispatch('login', userData)
+                      }
+                      else{
+                          context.commit('errorRegisterPopup');
+                      }
+
+                  }).catch(e => {
+              context.commit('errorRegisterPopup');
+            });
+          },
 
         login (context, userData) {
             context.commit('setUserData', { userData });
             const result = authenticate(userData)
               .then(
                   function (response) {
-                            context.commit('setJwtToken', { jwt: response.data.token });
-                            Router.push('/mypage');
+                      console.log(response);
+                            if(response.data.token){
+                                context.commit('setJwtToken', { jwt: response.data.token });
+                                Router.push('/mypage');
+                            } else {
+                                    context.commit('errorLoginPopup')
                             }
+                        }
             ).catch(e => {
-              console.log(e);
+              context.commit('errorLoginPopup');
             });
             return result
 
@@ -70,14 +97,28 @@ export const store = new Vuex.Store({
             return checkDuplicateEmail(userData)
             .then( 
                 function (response) {
-                    context.commit('isDuplicateEmail', response)}
+                    return context.commit('isDuplicateEmail', response)}
                     )
           },
-            register (context, userData) {
-            context.commit('setUserData', { userData })
-            return register(userData)
-              .then(context.dispatch('login', userData))
+            checkCompanyNumber(context, userData){
+            if (!userData){
+                return context.commit('isEmptyCompanyNumber')
+            }
+
+            var re = /^(?!0+$)[\-0-9]{10,12}$/;
+
+            if (!re.test(userData))
+                return context.commit('isAbnormalCompanyNumber')
+
+            return checkDuplicateCompanyNumber(userData)
+            .then(
+                function (response) {
+                    return context.commit('isValidCompanyNumber', response)}
+                    ).catch(e => {
+              context.commit('errorCompanyNumberPopup');
+            })
           },
+
             submitNewSurvey (context, survey) {
             return postNewSurvey(survey, context.state.jwt.token)
           }
@@ -105,14 +146,33 @@ export const store = new Vuex.Store({
         closeJoinPopup(state){
             state.isJoinPopup = false;
         },
+        errorRegisterPopup(state){
+            state.isAlertPopup = true;
+            state.email = '';
+            state.alertMsg = '올바른 정보를 ';
+            state.alertMobileMsg = '입력해주세요.';
+        },
+        errorLoginPopup(state){
+            state.isAlertPopup = true;
+            state.email = '';
+            state.alertMsg = '아이디 또는 비밀번호가';
+            state.alertMobileMsg = '일치하지 않습니다.';
+        },
+        errorCompanyNumberPopup(state){
+            state.isAlertPopup = true;
+            state.email = '';
+            state.alertMsg = '10초 후 다시 시도 ';
+            state.alertMobileMsg = '부탁드립니다.';
+        },
         isAbnormalEmail(state, payload){
             state.isAlertPopup = true;
-
+            state.email = '';
             state.alertMsg = '올바른 이메일을 ';
             state.alertMobileMsg = '입력해주세요.';
         },
         isEmptyEmail(state, payload){
             state.isAlertPopup = true;
+            state.email = '';
 
             state.alertMsg = '이메일을 ';
             state.alertMobileMsg = '입력해주세요.';
@@ -123,9 +183,40 @@ export const store = new Vuex.Store({
             if (payload.data.result != null){
                 state.alertMsg = '중복된 ';
                 state.alertMobileMsg = '이메일입니다.';
+                state.email = '';
             } else {
                 state.alertMsg = '사용가능한 ';
                 state.alertMobileMsg = '이메일입니다.';
+            }
+        },
+        hasEmail(state, payload){
+            state.email = payload;
+        },
+        hasCompanyNumber(state, payload){
+            state.company_number = payload;
+        },
+        isAbnormalCompanyNumber(state, payload){
+            state.isAlertPopup = true;
+            state.company_number = '';
+            state.alertMsg = '올바른 사업자 번호를 ';
+            state.alertMobileMsg = '입력해주세요.';
+        },
+        isEmptyCompanyNumber(state, payload){
+            state.isAlertPopup = true;
+            state.company_number = '';
+            state.alertMsg = '사업자 번호를 ';
+            state.alertMobileMsg = '입력해주세요.';
+        },
+        isValidCompanyNumber(state, payload){
+            state.isAlertPopup = true;
+
+            if (payload.data != null){
+                state.alertMsg = '유효 ';
+                state.alertMobileMsg = '사업자 번호입니다.';
+            } else {
+                state.alertMsg = '사용되지 않는 ';
+                state.alertMobileMsg = '사업자 번호입니다.';
+                state.company_number = '';
             }
         },
         openAlertPopup(state, payload){
@@ -135,7 +226,6 @@ export const store = new Vuex.Store({
         },
         closeAlertPopup(state){
             state.isAlertPopup = false;
-            state.isJoinPopup = true;
             state.alertMsg = '';
             state.alertMobileMsg = '';
         },
@@ -167,6 +257,12 @@ export const store = new Vuex.Store({
         }
     },
     getters: {
+        email(state){
+            return state.email
+        },
+        company_number(state){
+            return state.company_number
+        },
         getTestPopup(state){
             return state.isTestPopup
         },

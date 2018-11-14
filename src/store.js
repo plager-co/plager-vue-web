@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // imports of AJAX functions will go here
-import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey, authenticate, register } from '@/api'  
+import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey, authenticate, register, checkDuplicateEmail } from '@/api'  
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -14,6 +14,9 @@ export const store = new Vuex.Store({
         isJoinPopup: false,
         isCompletePopup: false,
         completeMsg: '',
+        isAlertPopup: false,
+        alertMsg: '',
+        alertMobileMsg: '',
         isScoreCompletePopup: false,
         isScoreImpossiblePopup: false,
         isScoreCompleteMsg: '',
@@ -54,12 +57,28 @@ export const store = new Vuex.Store({
             return result
 
           },
-      register (context, userData) {
+          checkEmail(context, userData){
+            if (!userData){
+                return context.commit('isEmptyEmail')
+            }
+
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            if (!re.test(String(userData).toLowerCase()))
+                return context.commit('isAbnormalEmail')
+
+            return checkDuplicateEmail(userData)
+            .then( 
+                function (response) {
+                    context.commit('isDuplicateEmail', response)}
+                    )
+          },
+            register (context, userData) {
             context.commit('setUserData', { userData })
             return register(userData)
               .then(context.dispatch('login', userData))
           },
-      submitNewSurvey (context, survey) {
+            submitNewSurvey (context, survey) {
             return postNewSurvey(survey, context.state.jwt.token)
           }
     },
@@ -85,6 +104,40 @@ export const store = new Vuex.Store({
         },
         closeJoinPopup(state){
             state.isJoinPopup = false;
+        },
+        isAbnormalEmail(state, payload){
+            state.isAlertPopup = true;
+
+            state.alertMsg = '올바른 이메일을 ';
+            state.alertMobileMsg = '입력해주세요.';
+        },
+        isEmptyEmail(state, payload){
+            state.isAlertPopup = true;
+
+            state.alertMsg = '이메일을 ';
+            state.alertMobileMsg = '입력해주세요.';
+        },
+        isDuplicateEmail(state, payload){
+            state.isAlertPopup = true;
+
+            if (payload.data.result != null){
+                state.alertMsg = '중복된 ';
+                state.alertMobileMsg = '이메일입니다.';
+            } else {
+                state.alertMsg = '사용가능한 ';
+                state.alertMobileMsg = '이메일입니다.';
+            }
+        },
+        openAlertPopup(state, payload){
+            state.isAlertPopup = true;
+            state.alertMsg = '';
+            state.alertMobileMsg = '';
+        },
+        closeAlertPopup(state){
+            state.isAlertPopup = false;
+            state.isJoinPopup = true;
+            state.alertMsg = '';
+            state.alertMobileMsg = '';
         },
         openCompletePopup(state, payload){
             state.isCompletePopup = true;

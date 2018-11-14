@@ -1,6 +1,7 @@
 <template>
     <div class='viewer'>
         <join-popup></join-popup>
+        <alert-base></alert-base>
         <div class="section gray">
             <div class="container">
                 <div class="card-wrap">
@@ -23,10 +24,11 @@
 
 <script>
 import JoinPopup from './JoinPopup'
+import AlertBase from './AlertBase'
 import LoginForm from './auth/LoginForm'
 
 export default {
-    components: {JoinPopup, LoginForm},
+    components: {JoinPopup, AlertBase, LoginForm},
     methods: {
         influLogin(){
             this.$store.commit("userLogin", 'Influ')

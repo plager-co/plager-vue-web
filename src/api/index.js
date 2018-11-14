@@ -38,6 +38,10 @@ export function postNewSurvey (survey, jwt) {
   export function authenticate (userData) {
   return axios.post(`${API_URL}/login/`, userData, { headers: basic_header })
   }
+
+  export function checkDuplicateEmail (userData) {
+    return axios.get(`${API_URL}/users/filters/0/` + userData + '/')
+    }
   
   export function register (userData) {
     return axios.post(`${API_URL}/register/`, userData, { headers: basic_header } )

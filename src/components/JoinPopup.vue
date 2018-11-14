@@ -1,5 +1,11 @@
 <template>
-    <div class="dim" v-if='$store.state.isJoinPopup' @click='$store.commit("closeJoinPopup")'>
+    <form
+         id="join-popup"
+      @submit.prevent  v-if='$store.state.isJoinPopup'
+      novalidate="true"
+    >
+      >
+    <div class="dim">
         <div class="join-popup">
             <h1>광고주 가입</h1>
             <p class='for-web'>
@@ -13,8 +19,8 @@
             <div class="input-set btn">
                 <div class='label'>이메일</div>
                 <div class="input-wrap btn">
-                    <input type="text" placeholder='email@email.com'>
-                    <button>중복확인</button>
+                    <input type="email" placeholder='email@email.com'  v-model="email">
+                    <button @click='checkEmail();'>중복확인</button>
                 </div>
             </div>
             <div class="input-set">
@@ -45,20 +51,31 @@
             </div>
             <div class="desc">광고주로 등록하시면 플래거의 SIM 서비스 소개서를 바로 확인할 수 있습니다.</div>
             <div class="btn-wrap">
-                <button class='next' @click='$router.push("/mypage")'>상세정보등록</button>
+                 <button class='next' @click="completeJoin()" type="submit">상세정보등록</button>
                 <button class='prev' @click='$store.commit("closeJoinPopup")'>취소</button>
             </div>
         </div>
     </div>
+     </form>
 </template>
 
 <script>
 export default {
+    data() {
+      return {  errors: [],
+        email: null,
+        password: null,
+        movie: null }
+    },
     methods: {
         completeJoin(){
             this.$store.commit('closeJoinPopup')
             this.$store.commit('openCompletePopup', '광고주')
-        }
+        },
+        checkEmail () {
+            this.$store.commit('closeJoinPopup')
+          this.$store.dispatch('checkEmail', this.email)
+        },
     }
 };
 </script>

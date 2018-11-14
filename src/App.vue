@@ -13,9 +13,10 @@
 import GlovalNav from './components/common/GlovalNav'
 import FooterBlack from './components/common/FooterBlack'
 import CompletePopup from './components/common/CompletePopup'
+import AlertBase from './components/AlertBase'
 
 export default {
-  components: {GlovalNav, FooterBlack, CompletePopup},
+  components: {GlovalNav, FooterBlack, CompletePopup, AlertBase},
   name: 'App'
 }
 </script>

@@ -25,18 +25,59 @@ export const store = new Vuex.Store({
         navMenuList: [
             {
             title: "인플루언서 등록",
-            url: "/influencer-join"
+            url: "/influencer-join",
+            auth: '',
             },
             {
             username: "",
             title: "로그인",
-            url: "/login"
+            url: "/login",
+            auth: '',
+            },
+            {
+            username: "",
+            title: "광고 신청",
+            url: "/influencer-score",
+            auth: 'influencer',
+            },
+            {
+            username: "",
+            title: "마이 페이지",
+            url: "/influencer-my-page",
+            auth: 'influencer',
+            },
+            {
+            username: "",
+            title: "광고 신청",
+            url: "/sponsor-filter",
+            auth: 'sponser',
+            },
+            {
+            username: "",
+            title: "마이 페이지",
+            url: "/mypage",
+            auth: 'sponser',
+            },
+            {
+            username: "",
+            title: "로그아웃",
+            url: "/logout",
+            auth: 'influencer',
+            },
+            {
+            username: "",
+            title: "로그아웃",
+            url: "/logout",
+            auth: 'sponser',
             }
+
         ],
         surveys: [],
         currentSurvey: {},
         user: {},
-        jwt: ''
+        jwt: '',
+        isInfluencer: false,
+        isSponser: false
     },
     actions: {
 
@@ -73,6 +114,7 @@ export const store = new Vuex.Store({
                       console.log(response);
                             if(response.data.token){
                                 context.commit('setJwtToken', { jwt: response.data.token });
+                                context.commit('setSponser', true);
                                 Router.push('/mypage');
                             } else {
                                     context.commit('errorLoginPopup')
@@ -136,9 +178,20 @@ export const store = new Vuex.Store({
         localStorage.token = payload.jwt.token
         state.jwt = payload.jwt
       },
+        setSponser (state, payload) {
+        state.isSponser = true
+      },
+         setInfluencer (state, payload) {
+        state.influencer = true
+      },
         userLogin(state, payload){
             state.navMenuList[1].username = '홍길동'
             state.userType = payload
+        },
+        userLogout(state, payload){
+            state.jwt = '';
+            state.isSponser = false;
+            state.influencer = false;
         },
         openJoinPopup(state){
             state.isJoinPopup = true;
@@ -275,6 +328,12 @@ export const store = new Vuex.Store({
         // reusable data accessors
         isAuthenticated (state) {
         return isValidJwt(state.jwt)
+        },
+        isSponserAccount (state) {
+        return state.isSponser
+        },
+        isInfluencerAccount (state) {
+        return state.isInfluencer
         }
     }
 })

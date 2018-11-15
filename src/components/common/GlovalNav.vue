@@ -7,10 +7,10 @@
         <div class="top">
           <div class="login" @click='$router.push("/login")'>로그인</div>
           <button @click='$router.push("/influencer-my-score")'>내 영향력 테스트</button>
-          <div class="menu" @click='sponsorJoinCall'>광고주 등록</div>
-          <router-link to='/influencer-join'>
-            <div class="menu">인플루언서 등록</div>
-          </router-link>
+          <div class="menu" @click='sponsorJoinCall' v-if="($store.getters.isAuthenticated === false)">광고주 등록</div>
+          <div class="menu" @click='menu.url' v-for='(menu, i) in $store.getters.GetNavMenuList' :key='i'  v-if="($store.getters.isAuthenticated === false & menu.auth === '') | ($store.getters.isSponserAccount === true & menu.auth === 'sponser')  | ($store.getters.isInfluencerAccount === true & menu.auth === 'influencer')">
+            {{menu.title}}
+          </div>
         </div>
         <div class="bottom" v-if='$store.getters.GetNavMenuList[1].username'>
           <div class="username">홍길동 님</div>
@@ -30,9 +30,10 @@
         <div class="hamburger-menu" :class='{open: isSideBarOpen}' @click='isSideBarOpen=!isSideBarOpen'></div>
         <div class="menu-wrapper">
           <ul>
-            <li><a @click='sponsorJoinCall'>광고주 등록</a></li>
-            <li v-for='(menu, i) in $store.getters.GetNavMenuList' :key='i'>
-              <a class="user-data" 
+            <li v-if="($store.getters.isAuthenticated === false)"><a @click='sponsorJoinCall'>광고주 등록</a></li>
+            <li v-for='(menu, i) in $store.getters.GetNavMenuList' :key='i'  v-if="($store.getters.isAuthenticated === false & menu.auth === '') | ($store.getters.isSponserAccount === true & menu.auth === 'sponser')  | ($store.getters.isInfluencerAccount === true & menu.auth === 'influencer')">
+
+                <a class="user-data"
                 v-if="menu.username"
                 @click='isPopupOpen = !isPopupOpen'
                 :class='{open: isPopupOpen}'
@@ -76,6 +77,10 @@ export default {
       this.$store.commit('openJoinPopup')
     }
   },
+    mounted() {
+       console.log(this.$store.getters.isAuthenticated);
+      console.log(menu.auth);
+    },
   computed: {
     menuList(){
       if(this.$store.getters.userType === 'Influ') {

@@ -162,4 +162,15 @@ export const routes = [
         }
       }
     },
+    {
+      path: '/logout',
+      name: 'Logout',
+      component: Login,
+      beforeEnter (to, from, next) {
+          if (store.getters.isAuthenticated) {
+              store.commit('userLogout')
+              next('/login')
+          }
+      }
+    },
   ]

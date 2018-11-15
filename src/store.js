@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // imports of AJAX functions will go here
-import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey, authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber, sponserUpdate, createAd, fetchInfluencers } from '@/api'
+import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey, authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber, sponserUpdate, createAd, fetchInfluencers, registerAdInfluencers } from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -149,6 +149,20 @@ export const store = new Vuex.Store({
                                 context.commit('setInfluencers', response.data.result.influencers);
                             } else {
                                     context.commit('errorLoginPopup')
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
+        registerAdInfluencers (context, userData) {
+            const result = registerAdInfluencers(userData, context.getters.getJwt)
+              .then(
+                  function (response) {
+                            if(response.data.result){
+                                Router.push("/influencer-complete")
                             }
                         }
             ).catch(e => {
@@ -466,6 +480,9 @@ export const store = new Vuex.Store({
         },
         influencers (state) {
         return state.influencers
+        },
+        ad_id (state) {
+        return state.currentAd.id
         }
     }
 })

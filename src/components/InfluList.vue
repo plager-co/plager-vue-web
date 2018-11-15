@@ -10,7 +10,7 @@
                     전체 평균 영향력지수는 <b>4.52%</b> 입니다.
                 </div>
                 <div class="checkbox-wrap">
-                    <input type="checkbox" name="keep" id="keep">
+                    <input type="checkbox" name="keep" id="keep" @click="allSelected()">
                     <label for="keep">
                         <span class='checkbox'></span>
                         <b>전체 선택</b>
@@ -57,9 +57,9 @@
                             </table>
                             <div class="price">1회 예상 광고비 {{item.influencer_cost}}원</div>
                             <div class="input-wrap">
-                                <input type="text"> 개월
+                                <input type="text" v-bind:id="'input' + item.id"> 개월
                             </div>
-                            <button>{{item.isSelected ? "선택 됨": "선택하기"}}</button>
+                            <button class="choose" v-bind:id="'button' + item.id" @click="toggleSeen(item)">{{item.isSelected ? "선택 됨": "선택하기"}}</button>
                         </div>
                     </div>
                     </div>
@@ -119,15 +119,15 @@
                             </table>
                             <div class="price">1회 예상 광고비 {{item.influencer_cost}}원</div>
                             <div class="input-wrap">
-                                <input type="text"> 개월
+                                <input type="text" v-bind:id="'mobile_input' + item.id"> 개월
                             </div>
-                            <button>{{item.isSelected ? "선택 됨": "선택하기"}}</button>
+                            <button class="choose" v-bind:id="'mobile_button' + item.id" @click="toggleSeen(item)">{{item.isSelected ? "선택 됨": "선택하기"}}</button>
                         </div>
                     </div>
                     </slide>
                 </carousel>
                 </div>
-                <button class='red' @click='$router.push("/influencer-complete")'>SIM 서비스 요청하기</button>
+                <button class='red' @click='registerAdInfluencers()'>SIM 서비스 요청하기</button>
             </div>
         </div>
 </template>
@@ -153,7 +153,60 @@ export default {
         completeJoin(){
             this.$store.commit('openCompletePopup', '인플루언서 가입이 완료되었습니다.')
         },
-        followerClick(){}
+        followerClick(){},
+        toggleSeen(item){
+            if(!item.selected){
+                item.selected = true;
+                document.getElementById("button"+item.id).innerText= "선택됨";
+                document.getElementById("button"+item.id).style.borderColor = 'red';
+                document.getElementById("button"+item.id).style.color = 'red';
+                document.getElementById("mobile_button"+item.id).innerText= "선택됨";
+                document.getElementById("mobile_button"+item.id).style.borderColor = 'red';
+                document.getElementById("mobile_button"+item.id).style.color = 'red';
+            } else {
+                item.selected = false;
+                document.getElementById("button"+item.id).innerText= "선택하기";
+                document.getElementById("button"+item.id).style.borderColor = '#092056';
+                document.getElementById("button"+item.id).style.color = '#092056';
+                document.getElementById("mobile_button"+item.id).innerText= "선택하기";
+                document.getElementById("mobile_button"+item.id).style.borderColor = '#092056';
+                document.getElementById("mobile_button"+item.id).style.color = '#092056';
+            }
+
+        },
+        allSelected(){
+            console.log("all selected");
+            this.influList.map(x => x['selected'] = true);
+            var x = document.getElementsByClassName('choose');
+            var i;
+            for (i = 0; i < x.length; i++)
+            {
+               x[i].innerText= "선택됨";
+               x[i].style.borderColor = 'red';// WITH space added
+               x[i].style.color = 'red';// WITH space added
+            }
+
+        },
+        registerAdInfluencers(){
+            var selectedInfluList = this.influList.filter(x => x.selected === true);
+            var updatingInfluList = [];
+            var ad_id = this.$store.getters.ad_id;
+            selectedInfluList.forEach(function(value){
+                updatingInfluList.push(
+                    {
+                        'ad_id': ad_id,
+                        'influencer_id': value.id,
+                        'period': document.getElementById("input"+value.id).value,
+                        'status': '0',
+                        'status_text': 'recommended'
+                    }
+                )
+            });
+            console.log(this.influList);
+            console.log(selectedInfluList);
+            console.log(updatingInfluList);
+            this.$store.dispatch('registerAdInfluencers', updatingInfluList);
+        }
     }
 };
 </script>

@@ -78,8 +78,6 @@ export default {
     }
   },
     mounted() {
-       console.log(this.$store.getters.isAuthenticated);
-      console.log(menu.auth);
     },
   computed: {
     menuList(){

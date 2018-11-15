@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // imports of AJAX functions will go here
-import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey, authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber } from '@/api'
+import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey, authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber, sponserUpdate } from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -77,7 +77,17 @@ export const store = new Vuex.Store({
         user: {},
         jwt: '',
         isInfluencer: false,
-        isSponser: false
+        isSponser: false,
+        company_name: '',
+        company_category: '',
+        officer_name: '',
+        tax_email: '',
+        contact: '',
+        company_website: '',
+        company_registration_link: '',
+        instagram: '',
+        facebook: '',
+        social: '',
     },
     actions: {
 
@@ -113,6 +123,8 @@ export const store = new Vuex.Store({
                   function (response) {
                       console.log(response);
                             if(response.data.token){
+                                console.log(response.data);
+                                context.commit('setUserData', response.data);
                                 context.commit('setJwtToken', { jwt: response.data.token });
                                 context.commit('setSponser', true);
                                 Router.push('/mypage');
@@ -161,20 +173,46 @@ export const store = new Vuex.Store({
             })
           },
 
-            submitNewSurvey (context, survey) {
-            return postNewSurvey(survey, context.state.jwt.token)
-          }
+          sponserUpdate (context, userData) {
+            context.commit('setUserData', { userData })
+            return sponserUpdate(userData, context.getters.getJwt)
+              .then(
+                  function (response) {
+                      console.log('updated');
+                      console.log(response);
+                      console.log(response.data.result.id);
+                      if(response.data.result.id){
+                        console.log('updated');
+                        context.commit('openUpdatePopup');
+                      }
+                      else{
+                          context.commit('errorUpdatePopup');
+                      }
+
+                  }).catch(e => {
+              context.commit('errorUpdatePopup');
+            });
+          },
     },
     mutations: {
         setSurveys(state, payload) {
             state.surveys = payload.surveys
           },
         setUserData (state, payload) {
-        console.log('setUserData payload = ', payload)
-        state.userData = payload.userData
+        state.company_name = payload.company_name;
+        state.company_category = payload.company_category;
+        state.officer_name = payload.officer_name;
+        state.tax_email = payload.tax_email;
+        state.contact = payload.contact;
+        state.company_website = payload.company_website;
+        state.company_registration_link = payload.company_registration_link;
+        state.instagram = payload.instagram;
+        state.facebook = payload.facebook;
+        state.social = payload.social;
+        state.email = payload.email;
+        state.company_number = payload.company_number;
       },
       setJwtToken (state, payload) {
-        console.log('setJwtToken payload = ', payload)
         localStorage.token = payload.jwt.token
         state.jwt = payload.jwt
       },
@@ -200,6 +238,17 @@ export const store = new Vuex.Store({
             state.isJoinPopup = false;
         },
         errorRegisterPopup(state){
+            state.isAlertPopup = true;
+            state.email = '';
+            state.alertMsg = '올바른 정보를 ';
+            state.alertMobileMsg = '입력해주세요.';
+        },
+        openUpdatePopup(state){
+            state.isAlertPopup = true;
+            state.alertMsg = '업데이트 ';
+            state.alertMobileMsg = '완료 되었습니다.';
+        },
+        errorUpdatePopup(state){
             state.isAlertPopup = true;
             state.email = '';
             state.alertMsg = '올바른 정보를 ';
@@ -316,6 +365,36 @@ export const store = new Vuex.Store({
         company_number(state){
             return state.company_number
         },
+        company_name(state){
+            return state.company_name
+        },
+        company_category(state){
+            return state.company_category
+        },
+        officer_name(state){
+            return state.officer_name
+        },
+        tax_email(state){
+            return state.tax_email
+        },
+        contact(state){
+            return state.contact
+        },
+        company_website(state){
+            return state.company_website
+        },
+        company_registration_link(state){
+            return state.company_registration_link
+        },
+        instagram(state){
+            return state.instagram
+        },
+        facebook(state){
+            return state.facebook
+        },
+        social(state){
+            return state.social
+        },
         getTestPopup(state){
             return state.isTestPopup
         },
@@ -324,6 +403,9 @@ export const store = new Vuex.Store({
         },
         GetNavMenuList(state) {
             return state.navMenuList
+        },
+        getJwt (state) {
+        return state.jwt
         },
         // reusable data accessors
         isAuthenticated (state) {

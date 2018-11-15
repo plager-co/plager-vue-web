@@ -1,5 +1,7 @@
 <template>
   <div class="viewer">
+      <alert-base></alert-base>
+
       <div class="section start gray">
           <div class="container">
             <div class="card">
@@ -36,43 +38,43 @@
                         <div class="input-set">
                             <div class='label'>*법인(개인)사업자명</div>
                             <div class="input-wrap">
-                                <input type="text">
+                                <input type="text" v-model="company_name">
                             </div>
                         </div>
                         <div class="input-set">
                             <div class='label'>*사업자번호</div>
                             <div class="input-wrap">
-                                <input type="text">
+                                <input type="text" v-model="company_number">
                             </div>
                         </div>
                         <div class="input-set">
                             <div class='label'>*사업종목</div>
                             <div class="input-wrap">
-                                <input type="text">
+                                <input type="text" v-model="company_category">
                             </div>
                         </div>
                         <div class="input-set">
                             <div class='label'>*담당자명</div>
                             <div class="input-wrap">
-                                <input type="text">
+                                <input type="text" v-model="officer_name">
                             </div>
                         </div>
                         <div class="input-set">
                             <div class='label'>*세금계산서 발행 이메일</div>
                             <div class="input-wrap">
-                                <input type="text">
+                                <input type="text" v-model="tax_email">
                             </div>
                         </div>
                         <div class="input-set">
                             <div class='label'>*담당자 연락처</div>
                             <div class="input-wrap">
-                                <input type="text">
+                                <input type="text" v-model="contact">
                             </div>
                         </div>
                         <div class="input-set">
                             <div class='label'>자사 홈페이지 URL</div>
                             <div class="input-wrap">
-                                <input type="text">
+                                <input type="text" v-model="company_website">
                             </div>
                         </div>
                     </div>
@@ -80,42 +82,52 @@
                         <div class="input-set">
                             <div class='label'>이메일</div>
                             <div class="input-wrap">
-                                <input type="text">
+                                <input type="text" v-model="email" disabled>
                             </div>
                         </div>
                         <div class="input-set">
-                            <div class='label'>*비밀번호</div>
+                            <div class='label'>비밀번호</div>
                             <div class="input-wrap">
-                                <input type="password">
+                                <input type="password" v-model="password">
                             </div>
                         </div>
                         <div class="input-set">
-                            <div class='label'>연락처</div>
+                            <div class='label'>비밀번호 확인</div>
                             <div class="input-wrap">
-                                <input type="text">
+                                <input type="text" v-model="password2">
                             </div>
                         </div>
                         <div class="input-set">
-                            <div class='label'>*사업자등록증</div>
+                            <div class='label'>*사업자등록증 link</div>
                             <div class="input-wrap btn">
-                                <input type="text">
+                                <input type="text" v-model="company_registration_link">
                                 <button></button>
                             </div>
                         </div>
                         <div class="input-set">
                             <div class='label'>SNS 계정 ID</div>
                             <div class="input-wrap sns instagram" >
-                                <input type="text" placeholder='인스타그램 계정'>
+                                <input type="text" placeholder='인스타그램 계정' v-model="instagram">
                             </div>
                             <div class="input-wrap sns facebook" >
-                                <input type="text" placeholder='페이스북 계정'>
+                                <input type="text" placeholder='페이스북 계정' v-model="facebook">
                             </div>
                             <div class="input-wrap sns etc" >
-                                <input type="text" placeholder='기타 sns 계정'>
+                                <input type="text" placeholder='기타 sns 계정' v-model="social">
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="card user" v-if="errors.length">
+                    <div class="cols">
+                        <div class="half">
+                            <div class="input-set">
+                              <div style="color:red;" class="label" v-for="error in errors">{{ error }}<br></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <button class="edit-button" @click='completeJoin' style="margin-left: 30px; margin-right: 30px;">입력확인</button>
 		<button class="delete-button" style="padding-left: 6px; margin-top: 30px;">탈퇴</button>
             </div>
@@ -125,8 +137,124 @@
 </template>
 
 <script>
+import AlertBase from './AlertBase'
 export default {
 
+    components: {AlertBase},
+    data() {
+      return {  errors: [],
+        company_name: null,
+        company_category: null,
+        officer_name: null,
+        tax_email: null,
+        contact: null,
+        company_website: null,
+        company_registration_link: null,
+        instagram: null,
+        facebook: null,
+        social: null,
+        email: null,
+        company_number: null,
+        password: null,
+        password2: null,
+        movie: null }
+    },
+    created() {
+        this.company_name = this.$store.getters.company_name;
+        this.company_category = this.$store.getters.company_category;
+        this.officer_name = this.$store.getters.officer_name;
+        this.tax_email = this.$store.getters.tax_email;
+        this.contact = this.$store.getters.contact;
+        this.company_website = this.$store.getters.company_website;
+        this.company_registration_link = this.$store.getters.company_registration_link;
+        this.instagram = this.$store.getters.instagram;
+        this.facebook = this.$store.getters.facebook;
+        this.social = this.$store.getters.social;
+        this.email = this.$store.getters.email;
+        this.company_number = this.$store.getters.company_number;
+        },
+    methods: {
+        completeJoin(){
+            console.log("completeJoin");
+              this.errors = [];
+
+              var has_password_change = false;
+
+
+          // if (this.password !== this.password2) {
+          //   this.errors.push('비밀번호를 일치하게 작성해주세요.');
+          // }
+          //
+          // if (this.password && this.password === this.password2) {
+          //   has_password_change = true;
+          // }
+          //
+          // if (!this.company_name) {
+          //   this.errors.push('사업자명을 입력해주세요.');
+          // }
+          //
+          // if (!this.company_category) {
+          //   this.errors.push('사업 종목을 입력해주세요.');
+          // }
+          //
+          // if (!this.officer_name) {
+          //   this.errors.push('담당자명을 입력해주세요.');
+          // }
+          //
+          // if (!this.tax_email) {
+          //   this.errors.push('세금계산서 발행 이메일을 입력해주세요.');
+          // }
+          //
+          // if (!this.contact) {
+          //   this.errors.push('담당자 연락처를 입력해주세요.');
+          // }
+          //
+          // if (!this.company_registration_link) {
+          //   this.errors.push('사업자 등록증을 업로드한 뒤 링크로 첨부해주세요.');
+          // }
+
+          if (!this.errors.length) {
+              this.register(has_password_change);
+          }
+
+        },
+        register (has_password_change) {
+
+           var userData =  {
+              company_name: this.company_name,
+              company_category: this.company_category,
+              officer_name: this.officer_name,
+              tax_email: this.tax_email,
+              contact: this.contact,
+              company_website: this.company_website,
+              company_registration_link: this.company_registration_link,
+              instagram: this.instagram,
+              facebook: this.facebook,
+              social: this.social,
+              company_number: this.company_number,
+          }
+            if(has_password_change){
+                userData['password'] = this.password;
+            }
+          this.$store.dispatch('sponserUpdate', userData)
+        },
+        checkEmail () {
+            this.$store.commit('hasEmail', this.email)
+          this.$store.dispatch('checkEmail', this.email)
+        },
+        checkCompanyNumber () {
+            this.$store.commit('hasCompanyNumber', this.company_number)
+          this.$store.dispatch('checkCompanyNumber', this.company_number)
+        },
+        validEmail: function (email) {
+          var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return re.test(email);
+        },
+        validCompanyNumber: function (company_number) {
+          var re = /^(?!0+$)[\-0-9]{10,12}$/;
+          return re.test(company_number);
+        }
+    }
 }
 </script>
 

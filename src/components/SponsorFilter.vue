@@ -354,7 +354,7 @@
                             </table>
                         </div>
                     </div>
-                <button class='navy' @click='$router.push("/influencer-list")'>접수 완료</button>
+                <button class='navy' @click='createAd()'>접수 완료</button>
                 </div>
             </div>
         </div>
@@ -446,7 +446,30 @@ export default {
     },
     isAllAge(){
       return this.s4Value[0] === "10세" && this.s4Value[1] === "60세 이상"
-    }
+    },
+      createAd(){
+        var categoryList = []
+
+        var selectedCategory = this.categoryList.filter(x => x.isSelected == true)
+
+        selectedCategory.forEach( function(val, index, arr) {
+              categoryList.push(val.value);
+          });
+
+        var userData =  {
+              sponser_id: this.$store.getters.user_id,
+              required_influencer_follower: this.s2Value[0] + 'K ~ '+ this.s2Value[1] + 'K',
+              target_category: categoryList.join(),
+              target_age: this.s4Value[0] + ' ~ '+ this.s4Value[1],
+              target_sex: this.currentGenderBtn,
+              period: this.currentRangeBtn,
+              budget: this.s6Value[0] + '만원 ~ '+ this.s6Value[1] + '만원',
+              status: 0,
+              status_text: 'registered',
+          }
+
+          this.$store.dispatch('createAd', userData)
+      }
   },
   methods: {
     handleResize() {

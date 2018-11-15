@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // imports of AJAX functions will go here
-import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey, authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber, sponserUpdate } from '@/api'
+import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey, authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber, sponserUpdate, createAd } from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -75,7 +75,9 @@ export const store = new Vuex.Store({
         surveys: [],
         currentSurvey: {},
         user: {},
+        currentAd: {},
         jwt: '',
+        user_id: '',
         isInfluencer: false,
         isSponser: false,
         company_name: '',
@@ -178,11 +180,7 @@ export const store = new Vuex.Store({
             return sponserUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {
-                      console.log('updated');
-                      console.log(response);
-                      console.log(response.data.result.id);
                       if(response.data.result.id){
-                        console.log('updated');
                         context.commit('openUpdatePopup');
                       }
                       else{
@@ -191,6 +189,22 @@ export const store = new Vuex.Store({
 
                   }).catch(e => {
               context.commit('errorUpdatePopup');
+            });
+          },
+        createAd (context, userData) {
+            return createAd(userData, context.getters.getJwt)
+              .then(
+                  function (response) {
+                      if(response.data.result.id){
+                        context.commit('setAdData', response.data.result);
+                        Router.push('/influencer-list');
+                      }
+                      else{
+                          context.commit('errorCreateAdPopup');
+                      }
+
+                  }).catch(e => {
+              context.commit('errorCreateAdPopup');
             });
           },
     },
@@ -204,6 +218,7 @@ export const store = new Vuex.Store({
         state.officer_name = payload.officer_name;
         state.tax_email = payload.tax_email;
         state.contact = payload.contact;
+        state.user_id = payload.id;
         state.company_website = payload.company_website;
         state.company_registration_link = payload.company_registration_link;
         state.instagram = payload.instagram;
@@ -221,6 +236,9 @@ export const store = new Vuex.Store({
       },
          setInfluencer (state, payload) {
         state.influencer = true
+      },
+        setAdData (state, payload) {
+        state.currentAd = payload
       },
         userLogin(state, payload){
             state.navMenuList[1].username = '홍길동'
@@ -259,6 +277,12 @@ export const store = new Vuex.Store({
             state.email = '';
             state.alertMsg = '아이디 또는 비밀번호가';
             state.alertMobileMsg = '일치하지 않습니다.';
+        },
+        errorCreateAdPopup(state){
+            state.isAlertPopup = true;
+            state.email = '';
+            state.alertMsg = '10초 후 다시 시도 ';
+            state.alertMobileMsg = '부탁드립니다.';
         },
         errorCompanyNumberPopup(state){
             state.isAlertPopup = true;
@@ -359,6 +383,9 @@ export const store = new Vuex.Store({
         }
     },
     getters: {
+        user_id(state){
+            return state.user_id
+        },
         email(state){
             return state.email
         },

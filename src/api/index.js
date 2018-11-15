@@ -63,6 +63,11 @@ export function postNewSurvey (survey, jwt) {
     return axios.get(`${API_URL}/users/filters/0/` + userData + '/')
     }
 
+  export function fetchInfluencers() {
+    return axios.get(`${API_URL}/users/filters/1/`)
+  }
+
+
 
   const actions = {  
     // asynchronous operations

@@ -19,41 +19,43 @@
                 <div class="influ-list web">
                     <div class="card-wrap">
                         <div class="card influ" v-for='(item, i) in influList' :key='i'>
-                        <div class="profile-wrap" :class='{recommend: item.recommend}'>
-                            <div class="profile-img"></div>
+                        <div class="profile-wrap" :class='{recommend: (item.is_recommended === 1) }'>
+                            <div class="profile-img" >
+                                <img class="profile-img" v-bind:src="item.picture_link" v-bind:alt="item.instgram">
+                            </div>
                         </div>
 			<div class="impact-val_1">최근 3개월</div>
-                        <div class="impact-val">영향력지수 {{item.impactValue}}%</div>
+                        <div class="impact-val">영향력지수 {{item.influencer_effect_rate}}%</div>
                         <div class="sns-data">
                             <table>
                                 <tbody>
                                     <tr>
                                         <td>팔로워</td>
-                                        <td>2k</td>
+                                        <td>{{item.total_follower_count}}</td>
                                     </tr>
                                     <tr>
                                         <td>게시물 수</td>
-                                        <td>300</td>
+                                        <td>{{item.total_post_count}}</td>
                                     </tr>
                                     <tr>
                                         <td>좋아요 수</td>
-                                        <td>600</td>
+                                        <td>{{item.total_like_count}}</td>
                                     </tr>
                                     <tr>
                                         <td>댓글 수</td>
-                                        <td>40</td>
+                                        <td>{{item.total_comment_count}}</td>
                                     </tr>
 				    <tr>
                                         <td>동영상 수</td>
-                                        <td>40</td>
+                                        <td>{{item.total_movie_count}}</td>
                                     </tr>
 				    <tr>
                                         <td>동영상 재생 수</td>
-                                        <td>40</td>
+                                        <td>{{item.total_play_count}}</td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="price">1회 예상 광고비 150,000,000원</div>
+                            <div class="price">1회 예상 광고비 {{item.influencer_cost}}원</div>
                             <div class="input-wrap">
                                 <input type="text"> 개월
                             </div>
@@ -79,41 +81,43 @@
                 >
                     <slide v-for='(item, i) in influList' :key='i'>
                     <div class="card influ">
-                        <div class="profile-wrap" :class='{recommend: item.recommend}'>
-                            <div class="profile-img"></div>
+                        <div class="profile-wrap" :class='{recommend: (item.is_recommended === 1) }'>
+                            <div class="profile-img" >
+                                <img class="profile-img" v-bind:src="item.picture_link" v-bind:alt="item.instgram">
+                            </div>
                         </div>
                         <div class="impact-val">최근 3개월</div>
-			<div class="impact-val">영향력지수 {{item.impactValue}}%</div>
+			<div class="impact-val">영향력지수 {{item.influencer_effect_rate}}%</div>
                         <div class="sns-data">
                             <table>
                                 <tbody>
                                     <tr>
                                         <td>팔로워</td>
-                                        <td>2k</td>
+                                        <td>{{item.total_follower_count}}</td>
                                     </tr>
                                     <tr>
                                         <td>게시물 수</td>
-                                        <td>300</td>
+                                        <td>{{item.total_post_count}}</td>
                                     </tr>
                                     <tr>
                                         <td>좋아요 수</td>
-                                        <td>600</td>
+                                        <td>{{item.total_like_count}}</td>
                                     </tr>
                                     <tr>
                                         <td>댓글 수</td>
-                                        <td>40</td>
+                                        <td>{{item.total_comment_count}}</td>
                                     </tr>
 				     <tr>
                                         <td>동영상 수</td>
-                                        <td>40</td>
+                                        <td>{{item.total_movie_count}}</td>
                                     </tr>
 				     <tr>
                                         <td>동영상 재생 수</td>
-                                        <td>40,000,000</td>
+                                        <td>{{item.total_play_count}}</td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="price">1회 예상 광고비 150,000,000원</div>
+                            <div class="price">1회 예상 광고비 {{item.influencer_cost}}원</div>
                             <div class="input-wrap">
                                 <input type="text"> 개월
                             </div>
@@ -126,7 +130,6 @@
                 <button class='red' @click='$router.push("/influencer-complete")'>SIM 서비스 요청하기</button>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
@@ -134,81 +137,14 @@ export default {
     data(){
         return {
             carouselNum: 2,
-            influList: [
-                {
-                    img: '/',
-                    impactValue: 4.67,
-                    follower: '2k',
-                    write: 300,
-                    likeEver: 600,
-                    replyEver: 40,
-                    price: 150000,
-                    defaultMonth: 3,
-                    recommend: false,
-                    isSelected: true
-                },
-                {
-                    img: '/',
-                    impactValue: 4.67,
-                    follower: '2k',
-                    write: 300,
-                    likeEver: 600,
-                    replyEver: 40,
-                    price: 150000,
-                    defaultMonth: 3,
-                    recommend: true,
-                    isSelected: false
-                },
-                {
-                    img: '/',
-                    impactValue: 4.67,
-                    follower: '2k',
-                    write: 300,
-                    likeEver: 600,
-                    replyEver: 40,
-                    price: 150000,
-                    defaultMonth: 3,
-                    recommend: true,
-                    isSelected: true
-                },
-                {
-                    img: '/',
-                    impactValue: 4.67,
-                    follower: '2k',
-                    write: 300,
-                    likeEver: 600,
-                    replyEver: 40,
-                    price: 150000,
-                    defaultMonth: 3,
-                    recommend: false,
-                    isSelected: true
-                },
-                {
-                    img: '/',
-                    impactValue: 4.67,
-                    follower: '2k',
-                    write: 300,
-                    likeEver: 600,
-                    replyEver: 40,
-                    price: 150000,
-                    defaultMonth: 3,
-                    recommend: false,
-                    isSelected: false
-                },
-                {
-                    img: '/',
-                    impactValue: 4.67,
-                    follower: '2k',
-                    write: 300,
-                    likeEver: 600,
-                    replyEver: 40,
-                    price: 150000,
-                    defaultMonth: 3,
-                    recommend: true,
-                    isSelected: true
-                },
-            ]
+            influList: []
         }
+    },
+    created: async function(){
+        await this.$store.dispatch('fetchInfluencers');
+        this.influList = this.$store.getters.influencers;
+        console.log("this.$store.getters.influencers");
+        console.log(this.$store.getters.influencers);
     },
     methods: {
         carouselBtnClick(e){

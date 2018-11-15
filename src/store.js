@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // imports of AJAX functions will go here
-import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey, authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber, sponserUpdate, createAd } from '@/api'
+import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey, authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber, sponserUpdate, createAd, fetchInfluencers } from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -90,6 +90,7 @@ export const store = new Vuex.Store({
         instagram: '',
         facebook: '',
         social: '',
+        influencers: []
     },
     actions: {
 
@@ -130,6 +131,22 @@ export const store = new Vuex.Store({
                                 context.commit('setJwtToken', { jwt: response.data.token });
                                 context.commit('setSponser', true);
                                 Router.push('/mypage');
+                            } else {
+                                    context.commit('errorLoginPopup')
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
+            fetchInfluencers (context) {
+            const result = fetchInfluencers()
+              .then(
+                  function (response) {
+                            if(response.data.result.influencers){
+                                context.commit('setInfluencers', response.data.result.influencers);
                             } else {
                                     context.commit('errorLoginPopup')
                             }
@@ -380,6 +397,9 @@ export const store = new Vuex.Store({
         },
         closeTestPopup(state) {
             state.isTestPopup = false;
+        },
+        setInfluencers(state, payload) {
+            state.influencers = payload;
         }
     },
     getters: {
@@ -443,6 +463,9 @@ export const store = new Vuex.Store({
         },
         isInfluencerAccount (state) {
         return state.isInfluencer
+        },
+        influencers (state) {
+        return state.influencers
         }
     }
 })

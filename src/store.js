@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // imports of AJAX functions will go here
-import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey, authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber, sponserUpdate, createAd, fetchInfluencers, registerAdInfluencers } from '@/api'
+import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey, authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber, sponserUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAds } from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -90,7 +90,9 @@ export const store = new Vuex.Store({
         instagram: '',
         facebook: '',
         social: '',
-        influencers: []
+        influencers: [],
+        filterAds: '',
+        ads: []
     },
     actions: {
 
@@ -163,6 +165,21 @@ export const store = new Vuex.Store({
                   function (response) {
                             if(response.data.result){
                                 Router.push("/influencer-complete")
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
+        fetchAds (context, userData) {
+            const result = fetchAds(userData)
+              .then(
+                  function (response) {
+                            console.log(response.data.result);
+                            if(response.data.result){
+                                context.commit('setAds', response.data.result);
                             }
                         }
             ).catch(e => {
@@ -376,6 +393,12 @@ export const store = new Vuex.Store({
                 state.company_number = '';
             }
         },
+        filterAdList(state, payload){
+            state.filterAds = payload;
+        },
+        setAds(state, payload){
+            state.ads = payload;
+        },
         openAlertPopup(state, payload){
             state.isAlertPopup = true;
             state.alertMsg = '';
@@ -483,6 +506,12 @@ export const store = new Vuex.Store({
         },
         ad_id (state) {
         return state.currentAd.id
+        },
+        filterAds(state) {
+            return state.filterAds
+        },
+        ads(state) {
+            return state.ads
         }
     }
 })

@@ -55,6 +55,11 @@ export function postNewSurvey (survey, jwt) {
     return axios.post(`${API_URL}/ads/`, userData, { headers: auth_header } )
   }
 
+  export function fetchAds(surveyId) {
+    return axios.get(`${API_URL}/ads/`)
+  }
+
+
   export function registerAdInfluencers (userData, jwt) {
 
   let auth_dict = { Authorization: `Bearer: ${jwt}` };

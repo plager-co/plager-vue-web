@@ -5,125 +5,40 @@
             <h1>광고 리스트</h1>
             <div class="date">계약중</div>
 
+            <div class="cards" v-for='(ad, i) in ads'>
+                <div class="card">
+                    <div class="data for-web">
+                        <div class="top">
+                            <div class="col" v-for='(data, i) in ad.top' :key='i'>
+                                <div class="data-name">{{data.dataName}}</div>
+                                <div class="data-val">{{data.dataVal}}</div>
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <div class="col" v-for='(data, i) in ad.bottom' :key='i'>
+                                <div class="data-name">{{data.dataName}}</div>
+                                <div class="data-val">{{data.dataVal}}</div>
+                            </div>
+
+                             <span class="col status-wrap">
+                                 <div class="data-name">상태</div>
+                                <div class="data-val"><button @click=''>검토 대기중</button></div>
+
+                            </span>
+
+                        </div>
+                    </div>
+                    <table class='for-mobile'>
+                        <tbody v-for='(data, i) in ad.top' :key='i'>
+                            <tr>
+                                <td class='bold'>{{data.dataName}}</td>
+                                <td>{{data.dataVal}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
                 <!-- web -->
-            <div class="card">
-                <div class="data for-web">
-                    <div class="top">
-                        <div class="col" v-for='(data, i) in paymentData.top' :key='i'>
-                            <div class="data-name">{{data.dataName}}</div>
-                            <div class="data-val">{{data.dataVal}}</div>
-                        </div>
-                    </div>
-                    <div class="bottom">
-                        <div class="col" v-for='(data, i) in paymentData.bottom' :key='i'>
-                            <div class="data-name">{{data.dataName}}</div>
-                            <div class="data-val">{{data.dataVal}}</div>
-                        </div>
-
-                         <span class="col status-wrap">
-                             <div class="data-name">상태</div>
-                            <div class="data-val"><button @click=''>검토 대기중</button></div>
-
-                        </span>
-
-                    </div>
-                </div>
-                <table class='for-mobile'>
-                    <tbody v-for='(data, i) in paymentData.top' :key='i'>
-                        <tr>
-                            <td class='bold'>{{data.dataName}}</td>
-                            <td>{{data.dataVal}}</td>
-                        </tr>
-                        <tr>
-                            <td class='bold'>카테고리</td>
-                            <td>컴퓨터,자동차,유아</td>
-                        </tr>
-                        <tr>
-                            <td class='bold'>성별</td>
-                            <td>모두</td>
-                        </tr>
-                        <tr>
-                            <td class='bold'>연령</td>
-                            <td>10~30대</td>
-                        </tr>
-                        <tr>
-                            <td class='bold'>타겟 팔로워수</td>
-                            <td>10000~150000</td>
-                        </tr>
-                        <tr>
-                            <td class='bold'>기간</td>
-                            <td>3달</td>
-                        </tr>
-                        <tr>
-                            <td class='bold'>예산</td>
-                            <td>10,000,000원</td>
-                        </tr>
-                        <tr>
-                            <td class='bold'>등록 날짜</td>
-                            <td>2018 / 03 / 09</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="card">
-                <div class="data for-web">
-                    <div class="top">
-                        <div class="col" v-for='(data, i) in paymentData.top' :key='i'>
-                            <div class="data-name">{{data.dataName}}</div>
-                            <div class="data-val">{{data.dataVal}}</div>
-                        </div>
-                    </div>
-                    <div class="bottom">
-                        <div class="col" v-for='(data, i) in paymentData.bottom' :key='i'>
-                            <div class="data-name">{{data.dataName}}</div>
-                            <div class="data-val">{{data.dataVal}}</div>
-                        </div>
-
-                         <span class="col status-wrap">
-                             <div class="data-name">상태</div>
-                            <div class="data-val"><button @click=''>검토 대기중</button></div>
-
-                        </span>
-
-                    </div>
-                </div>
-                <table class='for-mobile'>
-                    <tbody v-for='(data, i) in paymentData.top' :key='i'>
-                        <tr>
-                            <td class='bold'>{{data.dataName}}</td>
-                            <td>{{data.dataVal}}</td>
-                        </tr>
-                        <tr>
-                            <td class='bold'>카테고리</td>
-                            <td>컴퓨터,자동차,유아</td>
-                        </tr>
-                        <tr>
-                            <td class='bold'>성별</td>
-                            <td>모두</td>
-                        </tr>
-                        <tr>
-                            <td class='bold'>연령</td>
-                            <td>10~30대</td>
-                        </tr>
-                        <tr>
-                            <td class='bold'>타겟 팔로워수</td>
-                            <td>10000~150000</td>
-                        </tr>
-                        <tr>
-                            <td class='bold'>기간</td>
-                            <td>3달</td>
-                        </tr>
-                        <tr>
-                            <td class='bold'>예산</td>
-                            <td>10,000,000원</td>
-                        </tr>
-                        <tr>
-                            <td class='bold'>등록 날짜</td>
-                            <td>2018 / 03 / 09</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
 </div>
@@ -134,19 +49,48 @@ export default {
   data() {
     return {
         currBtnName: '1',
-      paymentData: {
-        top: [
-          { dataName: "광고 ID", dataVal: "#113584" },
-          { dataName: "카테고리", dataVal: "컴퓨터,자동차,유아" },
-          { dataName: "기간", dataVal: "3달" },
-        ],
-        bottom: [
+        ads: [
+            {
+                top: [
+                  { dataName: "광고 ID", dataVal: "#113584" },
+                  { dataName: "카테고리", dataVal: "컴퓨터,자동차,유아" },
+                  { dataName: "기간", dataVal: "3달" },
+                ],
+                bottom: [
 
-          { dataName: "예산", dataVal: "10,000,000원" },
-          { dataName: "등록 날짜", dataVal: "2018 / 03 / 09" },
+                  { dataName: "예산", dataVal: "10,000,000원" },
+                  { dataName: "등록 날짜", dataVal: "2018 / 03 / 09" },
+                ]
+              }
         ]
-      }
+
     };
+  },
+  created: async function(){
+      await this.$store.dispatch('fetchAds');
+      var filterAds = this.$store.getters.filterAds;
+      var adsRaw = this.$store.getters.ads;
+      var ads = [];
+          adsRaw.forEach(function (val){
+          if (val.status_text === filterAds){
+              ads.push(
+                  {
+                    top: [
+                      { dataName: "광고 ID", dataVal: val.id },
+                      { dataName: "카테고리", dataVal: val.target_category },
+                      { dataName: "기간", dataVal: val.period },
+                    ],
+                    bottom: [
+
+                      { dataName: "예산", dataVal: val.budget },
+                      { dataName: "등록 날짜", dataVal: val.created_at },
+                    ]
+                  }
+              )
+          }
+
+        });
+      this.ads = ads;
   }
 };
 </script>

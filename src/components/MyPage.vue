@@ -13,7 +13,7 @@
                         <div class="count-name">서비스중</div>
                     </div>
                     <div class="col">
-                        <button class="circle" disabled>
+                        <button class="circle" @click="ShowRegisteredAd()">
                             3
                         </button>
                         <div class="count-name">계약중</div>
@@ -241,6 +241,10 @@ export default {
         checkEmail () {
             this.$store.commit('hasEmail', this.email)
           this.$store.dispatch('checkEmail', this.email)
+        },
+        ShowRegisteredAd(){
+            this.$store.commit('filterAdList','registered');
+            this.$router.push('/ad-list');
         },
         checkCompanyNumber () {
             this.$store.commit('hasCompanyNumber', this.company_number)

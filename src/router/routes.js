@@ -1,6 +1,8 @@
 import Main from '@/components/Main'
 import Login from '@/components/Login'
 
+import AdList from '@/components/AdList'
+
 import SponsorFilter from '@/components/SponsorFilter'
 import SponsorPayment from '@/components/SponsorPayment'
 import SponsorPayment2 from '@/components/SponsorPayment2'
@@ -45,6 +47,10 @@ export const routes = [
     {
       path: '/login',
       component: Login
+    },
+    {
+      path: '/ad-list',
+      component: AdList
     },
     {
       path: '/sponsor-result',

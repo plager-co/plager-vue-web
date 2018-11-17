@@ -67,6 +67,16 @@ export function postNewSurvey (survey, jwt) {
     return axios.post(`${API_URL}/ad_influcners/filter/0/`, {'influencers': userData}, { headers: auth_header } )
   }
 
+  export function updateAdInfluencer (userData, jwt) {
+
+  let auth_dict = { Authorization: `Bearer: ${jwt}` };
+  let auth_header = extend({}, basic_header, auth_dict);
+    return axios.put(`${API_URL}/ad_influencers/`, userData, { headers: auth_header } )
+  }
+  export function fetchAdInfluencersByAdId(adId) {
+    return axios.get(`${API_URL}/ad_influencers/filter/1/` + adId + '/')
+  }
+
     export function checkDuplicateCompanyNumber (userData) {
     return axios.get(`${API_URL}/check_company_number/` + userData + '/')
     }

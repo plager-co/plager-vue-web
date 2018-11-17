@@ -30,35 +30,35 @@
                     <tbody>
                         <tr>
                             <td class='bold'>노출</td>
-                            <td>총 8회</td>
+                            <td>총 {{paymentData.data.target_impression_count}}회</td>
                         </tr>
                         <tr>
                             <td class='bold'>도달</td>
-                            <td>총 10회</td>
+                            <td>총 {{paymentData.data.target_reach_count}}회</td>
                         </tr>
                         <tr>
                             <td class='bold'>좋아요</td>
-                            <td>430개</td>
+                            <td>{{paymentData.data.target_like_count}}개</td>
                         </tr>
                         <tr>
                             <td class='bold'>댓글</td>
-                            <td>230개</td>
+                            <td>{{paymentData.data.target_comment_count}}개</td>
                         </tr>
                         <tr>
                             <td class='bold'>저장</td>
-                            <td>120개</td>
+                            <td>{{paymentData.data.target_save_count}}개</td>
                         </tr>
                         <tr>
                             <td class='bold'>동영상</td>
-                            <td>300개/<br>3499재생</td>
+                            <td>{{paymentData.data.target_movie_count}}개/<br>{{paymentData.data.target_play_count}}재생</td>
                         </tr>
                         <tr>
                             <td class='bold'>영향력지수</td>
-                            <td>8.04%</td>
+                            <td>{{paymentData.data.influencer_effect_rate}}%</td>
                         </tr>
                         <tr>
                             <td class='bold'>총 광고비</td>
-                            <td>10,000,000원</td>
+                            <td>{{paymentData.data.price}}원</td>
                         </tr>
                     </tbody>
                 </table>
@@ -68,7 +68,7 @@
                 <button :class='{selected: currBtnName === "1"}' @click='currBtnName = "1"'>무통장입금</button>
                 <button :class='{selected: currBtnName === "2"}' @click='currBtnName = "2"'>신용카드</button>
             </div>
-            <button class="payment-button" @click='$router.push("/sponsor-payment2")'>결제하기</button>
+            <button class="payment-button" @click='pay(paymentData.data)'>결제하기</button>
         </div>
     </div>
 </div>
@@ -92,10 +92,41 @@ export default {
           { dataName: "동영상재생", dataVal: "3499회" },
           { dataName: "영향력지수", dataVal: "8.44%" },
           { dataName: "총광고비", dataVal: "10,000,000원" }
-        ]
+        ],
+      data: {}
       }
     };
-  }
+  },
+    created: function(){
+      var currentAdInfluencer = this.$store.getters.currentAdInfluencer;
+      this.paymentData = {
+        top: [
+          { dataName: "노출", dataVal: currentAdInfluencer.target_impression_count + "회" },
+          { dataName: "도달", dataVal: currentAdInfluencer.target_reach_count + "회" },
+          { dataName: "좋아요", dataVal: currentAdInfluencer.target_like_count + "개" },
+          { dataName: "댓글", dataVal: currentAdInfluencer.target_comment_count + "개" },
+          { dataName: "저장", dataVal: currentAdInfluencer.target_save_count + "회" }
+        ],
+        bottom: [
+          { dataName: "동영상", dataVal: currentAdInfluencer.target_movie_count + "0개" },
+          { dataName: "동영상재생", dataVal: currentAdInfluencer.target_play_count + "회" },
+          { dataName: "영향력지수", dataVal: currentAdInfluencer.influencer_effect_rate + "%" },
+          { dataName: "총광고비", dataVal: currentAdInfluencer.price + "원" }
+        ],
+      data: currentAdInfluencer
+      };
+
+  },
+     methods: {
+
+        async pay(adInfluencer){
+            var adInfluencerUpdate = {
+                id: adInfluencer.id,
+                is_deposit_requested: 1
+            };
+            await this.$store.dispatch('updateAdInfluencer', adInfluencerUpdate);
+        }
+    }
 };
 </script>
 

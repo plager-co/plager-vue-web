@@ -2,7 +2,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // imports of AJAX functions will go here
-import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey, authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber, sponserUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAds } from '@/api'
+import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
+    authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
+    sponserUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAds,
+    fetchAdInfluencersByAdId, updateAdInfluencer} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -92,7 +95,9 @@ export const store = new Vuex.Store({
         social: '',
         influencers: [],
         filterAds: '',
-        ads: []
+        ads: [],
+        adInfluencers: [],
+        currentAdInfluencer: {}
     },
     actions: {
 
@@ -147,8 +152,8 @@ export const store = new Vuex.Store({
             const result = fetchInfluencers()
               .then(
                   function (response) {
-                            if(response.data.result.influencers){
-                                context.commit('setInfluencers', response.data.result.influencers);
+                            if(response.data.result){
+                                context.commit('setInfluencers', response.data.result);
                             } else {
                                     context.commit('errorLoginPopup')
                             }
@@ -180,6 +185,20 @@ export const store = new Vuex.Store({
                             console.log(response.data.result);
                             if(response.data.result){
                                 context.commit('setAds', response.data.result);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
+        fetchAdInfluencersByAdId (context, userData) {
+            const result = fetchAdInfluencersByAdId(userData)
+              .then(
+                  function (response) {
+                            if(response.data.result){
+                                context.commit('setAdInfluencers', response.data.result);
                             }
                         }
             ).catch(e => {
@@ -254,6 +273,22 @@ export const store = new Vuex.Store({
                   }).catch(e => {
               context.commit('errorCreateAdPopup');
             });
+          },
+        payAd (context, userData) {
+            context.commit('setAdData', userData);
+            return Router.push('/sponsor-sim');
+          },
+        updateAdInfluencer (context, userData) {
+            return updateAdInfluencer(userData, context.getters.getJwt)
+              .then(
+                  function (response) {
+                      Router.push("/sponsor-payment2");
+
+                  }).catch(e => {
+              context.commit('errorUpdatePopup');
+            });
+
+
           },
     },
     mutations: {
@@ -363,6 +398,9 @@ export const store = new Vuex.Store({
                 state.alertMobileMsg = '이메일입니다.';
             }
         },
+        setCurrentAdInfluencer(state, payload){
+            state.currentAdInfluencer = payload;
+        },
         hasEmail(state, payload){
             state.email = payload;
         },
@@ -398,6 +436,9 @@ export const store = new Vuex.Store({
         },
         setAds(state, payload){
             state.ads = payload;
+        },
+        setAdInfluencers(state, payload){
+            state.adInfluencers = payload;
         },
         openAlertPopup(state, payload){
             state.isAlertPopup = true;
@@ -504,6 +545,9 @@ export const store = new Vuex.Store({
         influencers (state) {
         return state.influencers
         },
+        currentAd (state) {
+        return state.currentAd
+        },
         ad_id (state) {
         return state.currentAd.id
         },
@@ -512,6 +556,12 @@ export const store = new Vuex.Store({
         },
         ads(state) {
             return state.ads
+        },
+        adInfluencers(state) {
+            return state.adInfluencers
+        },
+        currentAdInfluencer(state){
+            return state.currentAdInfluencer
         }
     }
 })

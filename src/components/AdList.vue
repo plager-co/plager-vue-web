@@ -7,9 +7,9 @@
 
             <div class="cards" v-for='(ad, i) in ads'>
                 <div class="card">
-                    <div class="data for-web">
+                    <div class="data for-web" v-for='(data, i) in ad.top' :key='i'>
                         <div class="top">
-                            <div class="col" v-for='(data, i) in ad.top' :key='i'>
+                            <div class="col">
                                 <div class="data-name">{{data.dataName}}</div>
                                 <div class="data-val">{{data.dataVal}}</div>
                             </div>
@@ -22,8 +22,8 @@
 
                              <span class="col status-wrap">
                                  <div class="data-name">상태</div>
-                                <div class="data-val"><button @click=''>검토 대기중</button></div>
-
+                                <div class="data-val"><button @click=''>{{ad.status}}</button></div>
+                                <div class="data-val" v-if="ad.status_payable"><button @click='payAd(ad.data)'>결재하기</button></div>
                             </span>
 
                         </div>
@@ -35,6 +35,12 @@
                                 <td>{{data.dataVal}}</td>
                             </tr>
                         </tbody>
+                         <span class="col status-wrap">
+                                 <div class="data-name">상태</div>
+                                <div class="data-val"><button @click=''>{{ad.status}}</button></div>
+                                <div class="data-val" v-if="ad.status_payable"><button style="border-color: #FF8000; color: #FF8000;"  @click='payAd(ad.data)'>결재하기</button></div>
+                            </span>
+
                     </table>
                 </div>
             </div>
@@ -69,10 +75,31 @@ export default {
   created: async function(){
       await this.$store.dispatch('fetchAds');
       var filterAds = this.$store.getters.filterAds;
+      function getStatus(statusAds){
+          if (filterAds === 'registered'){
+          statusAds = '검토 대기중';
+          } else if (filterAds === 'reviewed'){
+              statusAds = '결재하기';
+          } else if (filterAds === 'paid'){
+              statusAds = '광고 준비중';
+          } else if (filterAds === 'started'){
+              statusAds = '광고 진행중';
+          } else if (filterAds === 'completed'){
+            statusAds = '광고 완료';
+          }
+          return statusAds;
+      }
+      function getStatusPayable(statusAds){
+          if (statusAds === 'reviewed'){
+             return true
+          }
+          return false;
+      }
       var adsRaw = this.$store.getters.ads;
       var ads = [];
           adsRaw.forEach(function (val){
-          if (val.status_text === filterAds){
+          if (filterAds === 'registered'){
+              if (val.status_text === filterAds || val.status_text === 'reviewed'){
               ads.push(
                   {
                     top: [
@@ -84,14 +111,41 @@ export default {
 
                       { dataName: "예산", dataVal: val.budget },
                       { dataName: "등록 날짜", dataVal: val.created_at },
-                    ]
+                    ],
+                      status: getStatus(val.status_text),
+                      status_payable: getStatusPayable(val.status_text),
+                      data: val,
+                  }
+              )
+          }
+              }
+          else if (val.status_text === filterAds){
+              ads.push(
+                  {
+                    top: [
+                      { dataName: "광고 ID", dataVal: val.id },
+                      { dataName: "카테고리", dataVal: val.target_category },
+                      { dataName: "기간", dataVal: val.period },
+                    ],
+                    bottom: [
+
+                      { dataName: "예산", dataVal: val.budget },
+                      { dataName: "등록 날짜", dataVal: val.created_at },
+                    ],
+                      status: getStatus(val.status_text),
+                      status_payable: getStatusPayable(val.status_text),
                   }
               )
           }
 
         });
       this.ads = ads;
-  }
+  },
+    methods: {
+        payAd(ad) {
+            this.$store.dispatch('payAd', ad);
+        }
+    }
 };
 </script>
 
@@ -243,6 +297,7 @@ h2 {
   font-size: 16px;
   color: #092056;
   text-align: center;
+    margin: 0.5rem;
   border: 1px solid #092056;
 }
 .status-wrap button.selected {

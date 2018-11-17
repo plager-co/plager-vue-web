@@ -11,9 +11,11 @@
                     <div class="card-wrap" v-for='(item, i) in influList' :key='i'>
                         <div class="card influ" :class='{selected: item.isSelected}'>
                             <div class="profile-wrap" >
-                                <div class="profile-img"></div>
+                                <div class="profile-img">
+                                    <img class="profile-img" v-bind:src="item.picture_link" v-bind:alt="item.instgram">
+                                </div>
                             </div>
-                            <div class="_id">@abcde</div>
+                            <div class="_id">@{{item.instagram}}</div>
                             <div class="term-val">{{item.termValue}}</div>
                             <div class="state-msg"
                                 :class="{
@@ -26,43 +28,43 @@
                             <div class="sns-data">
                                 <table>
                                     <tbody>
-                                        <tr>
-                                            <td class='bold'>노출</td>
-                                            <td>총 8회</td>
-                                        </tr>
-                                        <tr>
-                                            <td class='bold'>도달</td>
-                                            <td>총 10회</td>
-                                        </tr>
-                                        <tr>
-                                            <td class='bold'>좋아요</td>
-                                            <td>430개</td>
-                                        </tr>
-                                        <tr>
-                                            <td class='bold'>댓글</td>
-                                            <td>230개</td>
-                                        </tr>
-                                        <tr>
-                                            <td class='bold'>저장</td>
-                                            <td>120개</td>
-                                        </tr>
-                                        <tr>
-                                            <td class='bold'>동영상</td>
-                                            <td>300개</td>
-                                        </tr>
-					 <tr>
-                                            <td class='bold'>동영상 재생</td>
-                                            <td>100,000,000,000회</td>
-                                        </tr>
-                                        <tr>
-                                            <td class='bold'>광고주계정 인바운드</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <td class='bold'>중복팔로워</td>
-                                            <td>230명</td>
-                                        </tr>
-                                    </tbody>
+                                            <tr>
+                                                <td class='bold'>노출</td>
+                                                <td>총 {{item.target_impression_count}}회</td>
+                                            </tr>
+                                            <tr>
+                                                <td class='bold'>도달</td>
+                                                <td>총 {{item.target_reach_count}}회</td>
+                                            </tr>
+                                            <tr>
+                                                <td class='bold'>좋아요</td>
+                                                <td>{{item.target_like_count}}개</td>
+                                            </tr>
+                                            <tr>
+                                                <td class='bold'>댓글</td>
+                                                <td>{{item.target_comment_count}}개</td>
+                                            </tr>
+                                            <tr>
+                                                <td class='bold'>저장</td>
+                                                <td>{{item.target_save_count}}개</td>
+                                            </tr>
+                                            <tr>
+                                                <td class='bold'>동영상</td>
+                                                <td>{{item.target_movie_count}}개</td>
+                                            </tr>
+					       <tr>
+                                                <td class='bold'>동영상 재생</td>
+                                                <td>{{item.target_play_count}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class='bold'>광고주계정 인바운드</td>
+                                                <td>{{item.target_inbound_count}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class='bold'>중복팔로워</td>
+                                                <td>{{item.duplicate_follower_count}}명</td>
+                                            </tr>
+                                        </tbody>
                                 </table>
                                 <div class="bill" :class='{red: item.isRed}'>
                                     <div class="cell">
@@ -74,7 +76,7 @@
                             </div>
                         </div>
                         <button class="blue"@click='$router.push("/sponsor-result")'>성과보기</button>
-                        <button class="red" @click='$router.push("/sponsor-payment")'>결제하기</button>
+                        <button class="red" @click='payAdInfluencer(item)'>결제하기</button>
                     </div>
                 </div>
                 <carousel
@@ -95,9 +97,11 @@
                         <div class="card-wrap">
                             <div class="card influ" :class='{selected: item.isSelected}' >
                                 <div class="profile-wrap" >
-                                    <div class="profile-img"></div>
+                                    <div class="profile-img">
+                                        <img class="profile-img" v-bind:src="item.picture_link" v-bind:alt="item.instgram">
+                                    </div>
                                 </div>
-                                <div class="_id">@abcde</div>
+                                <div class="_id">@{{item.instagram}}</div>
                                 <div class="term-val">{{item.termValue}}</div>
                                 <div class="state-msg"
                                     :class="{
@@ -112,39 +116,39 @@
                                         <tbody>
                                             <tr>
                                                 <td class='bold'>노출</td>
-                                                <td>총 8회</td>
+                                                <td>총 {{item.target_impression_count}}회</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>도달</td>
-                                                <td>총 10회</td>
+                                                <td>총 {{item.target_reach_count}}회</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>좋아요</td>
-                                                <td>430개</td>
+                                                <td>{{item.target_like_count}}개</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>댓글</td>
-                                                <td>230개</td>
+                                                <td>{{item.target_comment_count}}개</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>저장</td>
-                                                <td>120개</td>
+                                                <td>{{item.target_save_count}}개</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>동영상</td>
-                                                <td>300개</td>
+                                                <td>{{item.target_movie_count}}개</td>
                                             </tr>
 					       <tr>
                                                 <td class='bold'>동영상 재생</td>
-                                                <td>100,000,499</td>
+                                                <td>{{item.target_play_count}}</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>광고주계정 인바운드</td>
-                                                <td>0</td>
+                                                <td>{{item.target_inbound_count}}</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>중복팔로워</td>
-                                                <td>230명</td>
+                                                <td>{{item.duplicate_follower_count}}명</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -184,7 +188,8 @@ export default {
             carouselNum: 2,
             influList: [
                 {
-                    img: '/',
+                    picture_link: '/',
+                    instagram: '/',
                     isRed: false,
                     termValue: "2018. 03. 03 ~ 2018. 05. 05",
                     bottomMsg: "",
@@ -195,7 +200,8 @@ export default {
                     isSelected: true
                 },
                 {
-                    img: '/',
+                    picture_link: '/',
+                    instagram: '/',
                     isRed: true,
                     termValue: "2018. 03. 03 ~ 2018. 05. 05",
                     bottomMsg: "지급대기모델료",
@@ -206,7 +212,8 @@ export default {
                     isSelected: false
                 },
                 {
-                    img: '/',
+                    picture_link: '/',
+                    instagram: '/',
                     isRed: false,
                     termValue: "2018. 03. 03 ~ 2018. 05. 05",
                     bottomMsg: "총 3개월 중 1개월 결제완료",
@@ -216,49 +223,43 @@ export default {
                     state: "계약마감",
                     isSelected: true
                 },
-                {
-                    img: '/',
-                    isRed: false,
-                    termValue: "2018. 03. 03 ~ 2018. 05. 05",
-                    bottomMsg: "",
-                    follower: '2k',
-                    defaultMonth: 3,
-                    msg: "3개월 계약대기",
-                    state: "계약대기",
-                    isSelected: true
-                },
-                {
-                    img: '/',
-                    isRed: true,
-                    termValue: "2018. 03. 03 ~ 2018. 05. 05",
-                    bottomMsg: "지급대기모델료",
-                    follower: '2k',
-                    defaultMonth: 3,
-                    msg: "1개월 계약",
-                    state: "계약",
-                    isSelected: false
-                },
-                {
-                    img: '/',
-                    isRed: false,
-                    termValue: "2018. 03. 03 ~ 2018. 05. 05",
-                    bottomMsg: "총 3개월 중 1개월 결제완료",
-                    follower: '2k',
-                    defaultMonth: 3,
-                    msg: "3개월 마감",
-                    state: "계약마감",
-                    isSelected: true
-                },
             ]
         }
     },
+    created: async function(){
+      await this.$store.dispatch('fetchAdInfluencersByAdId', this.$store.getters.currentAd.id);
+      var influList = [];
+      this.$store.getters.adInfluencers.forEach(function(val){
+      var val_show = {
+                    picture_link: val.picture_link,
+                    instagram: val.instagram,
+                    isRed: false,
+                    termValue: "2018. 03. 03 ~ 2018. 05. 05",
+                    bottomMsg: "총 3개월 중 1개월 결제완료",
+                    follower: val.total_follower_count,
+                    defaultMonth: 3,
+                    msg: "3개월 계약마감",
+                    state: "계약마감",
+                    isSelected: true,
+                };
+      var result = Object.assign({}, val, val_show);
+          influList.push(result)
+      });
+      this.influList = influList;
+  },
     methods: {
+
+
         completeJoin(){
             this.$store.commit('openCompletePopup', '인플루언서 가입이 완료되었습니다.')
         },
         followerClick(){},
         carouselBtnClick(e){
             this.carouselNum = Number(e.currentTarget.getAttribute('value'))
+        },
+        payAdInfluencer(adInfluencer){
+            this.$store.commit('setCurrentAdInfluencer', adInfluencer);
+            this.$router.push("/sponsor-payment");
         }
     }
 };

@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="count-wrap">
                     <div class="col">
-                        <button class="circle" disabled>
+                        <button class="circle"  @click="ShowStartedAd()">
                             12
                         </button>
                         <div class="count-name">서비스중</div>
@@ -19,7 +19,7 @@
                         <div class="count-name">계약중</div>
                     </div>
                     <div class="col">
-                        <button class="circle" disabled>
+                        <button class="circle"  @click="ShowCompletedAd()">
                             15
                         </button>
                         <div class="count-name">서비스완료</div>
@@ -244,6 +244,14 @@ export default {
         },
         ShowRegisteredAd(){
             this.$store.commit('filterAdList','registered');
+            this.$router.push('/ad-list');
+        },
+        ShowStartedAd(){
+            this.$store.commit('filterAdList','started');
+            this.$router.push('/ad-list');
+        },
+        ShowCompletedAd(){
+            this.$store.commit('filterAdList','completed');
             this.$router.push('/ad-list');
         },
         checkCompanyNumber () {

@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 // imports of AJAX functions will go here
 import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
-    sponserUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAds,
+    sponserUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId,
     fetchAdInfluencersByAdId, updateAdInfluencer} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
@@ -178,8 +178,8 @@ export const store = new Vuex.Store({
             return result
 
           },
-        fetchAds (context, userData) {
-            const result = fetchAds(userData)
+        fetchAdBySponserId (context, userData) {
+            const result = fetchAdBySponserId(userData)
               .then(
                   function (response) {
                             console.log(response.data.result);

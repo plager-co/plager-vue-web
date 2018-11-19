@@ -65,10 +65,10 @@
             </div>
             <div class="payment-wrap">
                 <a href="">결제방법</a>
-                <button :class='{selected: currBtnName === "1"}' @click='currBtnName = "1"'>무통장입금</button>
-                <button :class='{selected: currBtnName === "2"}' @click='currBtnName = "2"'>신용카드</button>
+                <button :class='{selected: currBtnName === "deposit"}' @click='currBtnName = "deposit"'>무통장입금</button>
+                <button :class='{selected: currBtnName === "credit-card"}' @click='currBtnName = "credit-card"'>신용카드</button>
             </div>
-            <button class="payment-button" @click='pay(paymentData.data)'>결제하기</button>
+            <button class="payment-button" @click='paymentData.data.payment_method = currBtnName; pay(paymentData.data)'>결제하기</button>
         </div>
     </div>
 </div>
@@ -78,7 +78,7 @@
 export default {
   data() {
     return {
-        currBtnName: '1',
+        currBtnName: 'deposit',
       paymentData: {
         top: [
           { dataName: "노출", dataVal: "8회" },
@@ -122,7 +122,8 @@ export default {
         async pay(adInfluencer){
             var adInfluencerUpdate = {
                 id: adInfluencer.id,
-                is_deposit_requested: 1
+                is_deposit_requested: 1,
+                payment_method: adInfluencer.payment_method,
             };
             await this.$store.dispatch('updateAdInfluencer', adInfluencerUpdate);
         }

@@ -58,7 +58,9 @@ export function postNewSurvey (survey, jwt) {
   export function fetchAds(surveyId) {
     return axios.get(`${API_URL}/ads/`)
   }
-
+  export function fetchAdBySponserId(sponserId) {
+    return axios.get(`${API_URL}/ads/filter/1/` + sponserId + '/')
+  }
 
   export function registerAdInfluencers (userData, jwt) {
 

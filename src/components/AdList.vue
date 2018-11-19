@@ -7,9 +7,9 @@
 
             <div class="cards" v-for='(ad, i) in ads'>
                 <div class="card">
-                    <div class="data for-web" v-for='(data, i) in ad.top' :key='i'>
+                    <div class="data for-web">
                         <div class="top">
-                            <div class="col">
+                            <div class="col" v-for='(data, i) in ad.top' :key='i'>
                                 <div class="data-name">{{data.dataName}}</div>
                                 <div class="data-val">{{data.dataVal}}</div>
                             </div>
@@ -73,7 +73,7 @@ export default {
     };
   },
   created: async function(){
-      await this.$store.dispatch('fetchAds');
+      await this.$store.dispatch('fetchAdBySponserId', this.$store.getters.user_id);
       var filterAds = this.$store.getters.filterAds;
       function getStatus(statusAds){
           if (filterAds === 'registered'){

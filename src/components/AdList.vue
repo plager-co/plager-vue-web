@@ -3,7 +3,7 @@
     <div class="section start gray">
         <div class="container">
             <h1>광고 리스트</h1>
-            <div class="date">계약중</div>
+            <div class="date">{{ status }}</div>
 
             <div class="cards" v-for='(ad, i) in ads'>
                 <div class="card">
@@ -68,7 +68,8 @@ export default {
                   { dataName: "등록 날짜", dataVal: "2018 / 03 / 09" },
                 ]
               }
-        ]
+        ],
+        status: '계약중'
 
     };
   },
@@ -89,6 +90,7 @@ export default {
           }
           return statusAds;
       }
+      this.status = getStatus(filterAds);
       function getStatusPayable(statusAds){
           if (statusAds === 'reviewed'){
              return true

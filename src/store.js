@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
     sponserUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId,
-    fetchAdInfluencersByAdId, updateAdInfluencer} from '@/api'
+    fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -97,7 +97,8 @@ export const store = new Vuex.Store({
         filterAds: '',
         ads: [],
         adInfluencers: [],
-        currentAdInfluencer: {}
+        currentAdInfluencer: {},
+        count_ads: {}
     },
     actions: {
 
@@ -185,6 +186,21 @@ export const store = new Vuex.Store({
                             console.log(response.data.result);
                             if(response.data.result){
                                 context.commit('setAds', response.data.result);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
+        fetchCountAds (context, userData) {
+            const result = fetchCountAds(userData)
+              .then(
+                  function (response) {
+                            console.log(response.data.result);
+                            if(response.data.result){
+                                context.commit('setCountAds', response.data.result);
                             }
                         }
             ).catch(e => {
@@ -323,6 +339,10 @@ export const store = new Vuex.Store({
         setAdData (state, payload) {
         state.currentAd = payload
       },
+        setCountAds (state, payload) {
+        state.count_ads = payload
+      },
+
         userLogin(state, payload){
             state.navMenuList[1].username = '홍길동'
             state.userType = payload
@@ -562,6 +582,9 @@ export const store = new Vuex.Store({
         },
         currentAdInfluencer(state){
             return state.currentAdInfluencer
+        },
+        count_ads(state){
+            return state.count_ads
         }
     }
 })

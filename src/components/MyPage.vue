@@ -8,19 +8,19 @@
                 <div class="count-wrap">
                     <div class="col">
                         <button class="circle"  @click="ShowStartedAd()">
-                            12
+                            {{ count_ads.count_started_ads }}
                         </button>
                         <div class="count-name">서비스중</div>
                     </div>
                     <div class="col">
                         <button class="circle" @click="ShowRegisteredAd()">
-                            3
+                            {{ count_ads.count_registered_ads }}
                         </button>
                         <div class="count-name">계약중</div>
                     </div>
                     <div class="col">
                         <button class="circle"  @click="ShowCompletedAd()">
-                            15
+                            {{ count_ads.count_completed_ads }}
                         </button>
                         <div class="count-name">서비스완료</div>
                     </div>
@@ -143,6 +143,11 @@ export default {
     components: {AlertBase},
     data() {
       return {  errors: [],
+          count_ads: {
+              count_started_ads: 0,
+              count_registered_ads: 0,
+              count_completed_ads: 0,
+          },
         company_name: null,
         company_category: null,
         officer_name: null,
@@ -159,7 +164,10 @@ export default {
         password2: null,
         movie: null }
     },
-    created() {
+     created: async function(){
+        await this.$store.dispatch('fetchCountAds', this.$store.getters.user_id);
+        this.count_ads = this.$store.getters.count_ads;
+
         this.company_name = this.$store.getters.company_name;
         this.company_category = this.$store.getters.company_category;
         this.officer_name = this.$store.getters.officer_name;
@@ -239,8 +247,8 @@ export default {
           this.$store.dispatch('sponserUpdate', userData)
         },
         checkEmail () {
-            this.$store.commit('hasEmail', this.email)
-          this.$store.dispatch('checkEmail', this.email)
+            this.$store.commit('hasEmail', this.email);
+          this.$store.dispatch('checkEmail', this.email);
         },
         ShowRegisteredAd(){
             this.$store.commit('filterAdList','registered');
@@ -255,8 +263,8 @@ export default {
             this.$router.push('/ad-list');
         },
         checkCompanyNumber () {
-            this.$store.commit('hasCompanyNumber', this.company_number)
-          this.$store.dispatch('checkCompanyNumber', this.company_number)
+            this.$store.commit('hasCompanyNumber', this.company_number);
+          this.$store.dispatch('checkCompanyNumber', this.company_number);
         },
         validEmail: function (email) {
           var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

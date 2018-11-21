@@ -69,7 +69,7 @@
                                 <div class="bill" :class='{red: item.isRed}'>
                                     <div class="cell">
                                         <div class="msg" v-if='item.bottomMsg'>{{item.bottomMsg}}</div>
-                                        <div class="price">결제금액 <br class="for-mobile"> 300,000,000원</div>
+                                        <div class="price">결제금액 <br class="for-mobile"> {{item.price}}</div>
                                     </div>
                                 </div>
                                 <!-- <div class="price">1회 예상 광고비 {{item.price}}원</div> -->
@@ -155,7 +155,7 @@
                                     <div class="bill" :class='{red: item.isRed}'>
                                         <div class="cell">
                                             <div class="msg" v-if='item.bottomMsg'>{{item.bottomMsg}}</div>
-                                            <div class="price">결제금액 <br class="for-mobile"> 3,000,000원</div>
+                                            <div class="price">결제금액 <br class="for-mobile">{{item.price}}</div>
                                         </div>
                                     </div>
                                     <!-- <div class="price">1회 예상 광고비 {{item.price}}원</div> -->
@@ -233,6 +233,7 @@ export default {
       var val_show = {
                     picture_link: val.picture_link,
                     instagram: val.instagram,
+                    price: val.price.toLocaleString() + '원',
                     isRed: false,
                     termValue: "2018. 03. 03 ~ 2018. 05. 05",
                     bottomMsg: "총 3개월 중 1개월 결제완료",

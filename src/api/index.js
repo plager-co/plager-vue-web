@@ -41,7 +41,7 @@ export function postNewSurvey (survey, jwt) {
   export function authenticate (userData) {
   return axios.post(`${API_URL}/login/`, userData, { headers: basic_header })
   }
-  export function pictureUpdate (userData, jwt) {
+  export function userfileUpdate (userData, jwt) {
 
   let auth_dict = {
         'Acces-Control-Allow-Origin': '*',

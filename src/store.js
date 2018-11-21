@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
     sponserUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId,
-    fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, pictureUpdate} from '@/api'
+    fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, userfileUpdate} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -91,7 +91,6 @@ export const store = new Vuex.Store({
         tax_email: '',
         contact: '',
         company_website: '',
-        company_registration_link: '',
         instagram: '',
         facebook: '',
         social: '',
@@ -263,11 +262,27 @@ export const store = new Vuex.Store({
           },
             pictureUpdate (context, userData) {
             context.commit('setUserData', { userData })
-            return pictureUpdate(userData, context.getters.getJwt)
+            return userfileUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {
                       if(response.data.result.picture_link){
                         context.commit('setPictureLink', response.data.result.picture_link);
+                      }
+                      else{
+                          context.commit('errorUpdatePopup');
+                      }
+
+                  }).catch(e => {
+              context.commit('errorUpdatePopup');
+            });
+          },
+        documentUpdate (context, userData) {
+            context.commit('setUserData', { userData })
+            return userfileUpdate(userData, context.getters.getJwt)
+              .then(
+                  function (response) {
+                      if(response.data.result.document_link){
+                        context.commit('setDocumentLink', response.data.result.document_link);
                       }
                       else{
                           context.commit('errorUpdatePopup');
@@ -338,7 +353,6 @@ export const store = new Vuex.Store({
         state.contact = payload.contact;
         state.user_id = payload.id;
         state.company_website = payload.company_website;
-        state.company_registration_link = payload.company_registration_link;
         state.instagram = payload.instagram;
         state.facebook = payload.facebook;
         state.social = payload.social;
@@ -522,6 +536,9 @@ export const store = new Vuex.Store({
         setInfluencers(state, payload) {
             state.influencers = payload;
         },
+        setDocumentLink(state, payload) {
+            state.document_link = payload;
+        },
         setPictureLink(state, payload) {
             state.picture_link = payload;
         }
@@ -553,9 +570,6 @@ export const store = new Vuex.Store({
         },
         company_website(state){
             return state.company_website
-        },
-        company_registration_link(state){
-            return state.company_registration_link
         },
         instagram(state){
             return state.instagram
@@ -614,6 +628,9 @@ export const store = new Vuex.Store({
         },
         picture_link(state){
             return state.picture_link
+        },
+        document_link(state){
+            return state.document_link
         }
     }
 })

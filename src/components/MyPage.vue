@@ -32,7 +32,7 @@
                 <div class="profile">
                     <img class="profile-img" v-bind:src="picture_link">
                      <div class="edit">
-                        <label class="file-select">
+                        <label for='file' class="file-select">
                         <!-- We can't use a normal button element here, as it would become the target of the label. -->
                         <div class="select-button">
                           <!-- Display the filename if a file has been selected. -->
@@ -110,8 +110,23 @@
                         <div class="input-set">
                             <div class='label'>*사업자등록증 link</div>
                             <div class="input-wrap btn">
-                                <input type="text" v-model="company_registration_link">
-                                <button></button>
+
+                                <button class="select-button">
+                                    <label class="select-button file-select" for="document-file">
+
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  </label>
+
+                                </button>
+
+                                <!-- We can't use a normal button element here, as it would become the target of the label. -->
+                                <div class="select-button">
+                                  <!-- Display the filename if a file has been selected. -->
+                                    <h6 style="font-size: 12px;"><a v-bind:href="document_link" target="_blank">{{ document_link }}</a></h6>
+                                </div>
+                                <!-- Now, the file input that we hide. -->
+                                <input style="display: none;" type="file" id="document-file" ref="document_file" v-on:change="handleDocumentFileUpload()"/>
                             </div>
                         </div>
                         <div class="input-set">
@@ -164,7 +179,6 @@ export default {
         tax_email: null,
         contact: null,
         company_website: null,
-        company_registration_link: null,
         instagram: null,
         facebook: null,
         social: null,
@@ -173,7 +187,9 @@ export default {
         password: null,
         password2: null,
       picture_link: null,
+      document_link: null,
            file: '',
+           document_file: '',
         movie: null }
     },
      created: async function(){
@@ -186,13 +202,13 @@ export default {
         this.tax_email = this.$store.getters.tax_email;
         this.contact = this.$store.getters.contact;
         this.company_website = this.$store.getters.company_website;
-        this.company_registration_link = this.$store.getters.company_registration_link;
         this.instagram = this.$store.getters.instagram;
         this.facebook = this.$store.getters.facebook;
         this.social = this.$store.getters.social;
         this.email = this.$store.getters.email;
         this.company_number = this.$store.getters.company_number;
         this.picture_link = this.$store.getters.picture_link;
+        this.document_link = this.$store.getters.document_link;
         },
     methods: {
           async handleFileUpload (){
@@ -201,6 +217,14 @@ export default {
             formData.append('file', this.file);
           await this.$store.dispatch('pictureUpdate', formData);
           this.picture_link = this.$store.getters.picture_link;
+
+          },
+        async handleDocumentFileUpload (){
+            this.document_file = this.$refs.document_file.files[0];
+              let formData = new FormData();
+            formData.append('document_file', this.document_file);
+          await this.$store.dispatch('documentUpdate', formData);
+          this.document_link = this.$store.getters.document_link;
 
           },
         completeJoin(){
@@ -237,7 +261,7 @@ export default {
           //   this.errors.push('담당자 연락처를 입력해주세요.');
           // }
           //
-          // if (!this.company_registration_link) {
+          // if (!this.document_link) {
           //   this.errors.push('사업자 등록증을 업로드한 뒤 링크로 첨부해주세요.');
           // }
 
@@ -255,7 +279,7 @@ export default {
               tax_email: this.tax_email,
               contact: this.contact,
               company_website: this.company_website,
-              company_registration_link: this.company_registration_link,
+              document_link: this.document_link,
               instagram: this.instagram,
               facebook: this.facebook,
               social: this.social,
@@ -511,7 +535,6 @@ export default {
     }
 
     .input-set .input-wrap.btn button {
-        position: absolute;
         right: 0;
         width: 42px;
         height: 36px;

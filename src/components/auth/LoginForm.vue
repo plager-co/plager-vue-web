@@ -26,7 +26,7 @@
                 로그인 상태 유지
             </label>
         </div>
-        <div class="right">아이디찾기 / 비밀번호찾기</div>
+        <div class="right">비밀번호찾기</div>
     </div>
     <div class="button-wrap">
         <input type="submit" value="로그인">

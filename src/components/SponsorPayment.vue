@@ -111,7 +111,7 @@ export default {
           { dataName: "동영상", dataVal: currentAdInfluencer.target_movie_count + "0개" },
           { dataName: "동영상재생", dataVal: currentAdInfluencer.target_play_count + "회" },
           { dataName: "영향력지수", dataVal: currentAdInfluencer.influencer_effect_rate + "%" },
-          { dataName: "총광고비", dataVal: currentAdInfluencer.price.toLocaleString() + "원" }
+          { dataName: "총광고비", dataVal: currentAdInfluencer.price.toLocaleString() }
         ],
       data: currentAdInfluencer,
       };

@@ -108,7 +108,7 @@
                             </div>
                         </div>
                         <div class="input-set">
-                            <div class='label'>*사업자등록증 link</div>
+                            <div class='label'>*사업자 등록증</div>
                             <div class="input-wrap btn">
 
                                 <button class="select-button">
@@ -233,37 +233,37 @@ export default {
               var has_password_change = false;
 
 
-          // if (this.password !== this.password2) {
-          //   this.errors.push('비밀번호를 일치하게 작성해주세요.');
-          // }
-          //
-          // if (this.password && this.password === this.password2) {
-          //   has_password_change = true;
-          // }
-          //
-          // if (!this.company_name) {
-          //   this.errors.push('사업자명을 입력해주세요.');
-          // }
-          //
-          // if (!this.company_category) {
-          //   this.errors.push('사업 종목을 입력해주세요.');
-          // }
-          //
-          // if (!this.officer_name) {
-          //   this.errors.push('담당자명을 입력해주세요.');
-          // }
-          //
-          // if (!this.tax_email) {
-          //   this.errors.push('세금계산서 발행 이메일을 입력해주세요.');
-          // }
-          //
-          // if (!this.contact) {
-          //   this.errors.push('담당자 연락처를 입력해주세요.');
-          // }
-          //
-          // if (!this.document_link) {
-          //   this.errors.push('사업자 등록증을 업로드한 뒤 링크로 첨부해주세요.');
-          // }
+          if (this.password !== this.password2) {
+            this.errors.push('비밀번호를 일치하게 작성해주세요.');
+          }
+
+          if (this.password && this.password === this.password2) {
+            has_password_change = true;
+          }
+
+          if (!this.company_name) {
+            this.errors.push('사업자명을 입력해주세요.');
+          }
+
+          if (!this.company_category) {
+            this.errors.push('사업 종목을 입력해주세요.');
+          }
+
+          if (!this.officer_name) {
+            this.errors.push('담당자명을 입력해주세요.');
+          }
+
+          if (!this.tax_email) {
+            this.errors.push('세금계산서 발행 이메일을 입력해주세요.');
+          }
+
+          if (!this.contact) {
+            this.errors.push('담당자 연락처를 입력해주세요.');
+          }
+
+          if (!this.document_link) {
+            this.errors.push('사업자 등록증을 업로드한 뒤 링크로 첨부해주세요.');
+          }
 
           if (!this.errors.length) {
               this.register(has_password_change);

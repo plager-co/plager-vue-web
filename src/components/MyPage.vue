@@ -261,9 +261,9 @@ export default {
             this.errors.push('담당자 연락처를 입력해주세요.');
           }
 
-          if (!this.document_link) {
-            this.errors.push('사업자 등록증을 업로드한 뒤 링크로 첨부해주세요.');
-          }
+          // if (!this.document_link) {
+          //   this.errors.push('사업자 등록증을 업로드한 뒤 링크로 첨부해주세요.');
+          // }
 
           if (!this.errors.length) {
               this.register(has_password_change);

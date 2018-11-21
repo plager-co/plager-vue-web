@@ -30,8 +30,18 @@
 	    <h3>상세 정보가 정확하게 기입되어야 원활한 서비스를 받으실 수 있습니다.</h3>
             <div class="card user">
                 <div class="profile">
-                    <div class="profile-img"></div>
-                    <div class="edit">프로필 사진 수정</div>
+                    <img class="profile-img" v-bind:src="picture_link">
+                     <div class="edit">
+                        <label class="file-select">
+                        <!-- We can't use a normal button element here, as it would become the target of the label. -->
+                        <div class="select-button">
+                          <!-- Display the filename if a file has been selected. -->
+                          <span>프로필 사진 수정</span>
+                        </div>
+                        <!-- Now, the file input that we hide. -->
+                        <input style="display: none;" type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                      </label>
+                    </div>
                 </div>
                 <div class="cols">
                     <div class="half">
@@ -162,6 +172,8 @@ export default {
         company_number: null,
         password: null,
         password2: null,
+      picture_link: null,
+           file: '',
         movie: null }
     },
      created: async function(){
@@ -180,10 +192,18 @@ export default {
         this.social = this.$store.getters.social;
         this.email = this.$store.getters.email;
         this.company_number = this.$store.getters.company_number;
+        this.picture_link = this.$store.getters.picture_link;
         },
     methods: {
+          async handleFileUpload (){
+            this.file = this.$refs.file.files[0];
+              let formData = new FormData();
+            formData.append('file', this.file);
+          await this.$store.dispatch('pictureUpdate', formData);
+          this.picture_link = this.$store.getters.picture_link;
+
+          },
         completeJoin(){
-            console.log("completeJoin");
               this.errors = [];
 
               var has_password_change = false;
@@ -240,6 +260,8 @@ export default {
               facebook: this.facebook,
               social: this.social,
               company_number: this.company_number,
+               id: this.$store.getters.user_id
+
           }
             if(has_password_change){
                 userData['password'] = this.password;

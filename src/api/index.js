@@ -41,6 +41,15 @@ export function postNewSurvey (survey, jwt) {
   export function authenticate (userData) {
   return axios.post(`${API_URL}/login/`, userData, { headers: basic_header })
   }
+  export function pictureUpdate (userData, jwt) {
+
+  let auth_dict = {
+        'Acces-Control-Allow-Origin': '*',
+      Authorization: `Bearer: ${jwt}` ,
+      'Content-Type': 'multipart/form-data' };
+    return axios.put(`${API_URL}/users/`, userData, { headers: auth_dict } )
+  }
+
   export function sponserUpdate (userData, jwt) {
 
   let auth_dict = { Authorization: `Bearer: ${jwt}` };

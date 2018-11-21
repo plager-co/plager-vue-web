@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
     sponserUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId,
-    fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds} from '@/api'
+    fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, pictureUpdate} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -25,6 +25,7 @@ export const store = new Vuex.Store({
         isScoreCompleteMsg: '',
         email:'',
         company_number:'',
+        file:'',
         navMenuList: [
             {
             title: "인플루언서 등록",
@@ -81,6 +82,7 @@ export const store = new Vuex.Store({
         currentAd: {},
         jwt: '',
         user_id: '',
+        id: '',
         isInfluencer: false,
         isSponser: false,
         company_name: '',
@@ -98,7 +100,9 @@ export const store = new Vuex.Store({
         ads: [],
         adInfluencers: [],
         currentAdInfluencer: {},
-        count_ads: {}
+        count_ads: {},
+        picture_link: '',
+        document_link: ''
     },
     actions: {
 
@@ -257,7 +261,22 @@ export const store = new Vuex.Store({
               context.commit('errorCompanyNumberPopup');
             })
           },
+            pictureUpdate (context, userData) {
+            context.commit('setUserData', { userData })
+            return pictureUpdate(userData, context.getters.getJwt)
+              .then(
+                  function (response) {
+                      if(response.data.result.picture_link){
+                        context.commit('setPictureLink', response.data.result.picture_link);
+                      }
+                      else{
+                          context.commit('errorUpdatePopup');
+                      }
 
+                  }).catch(e => {
+              context.commit('errorUpdatePopup');
+            });
+          },
           sponserUpdate (context, userData) {
             context.commit('setUserData', { userData })
             return sponserUpdate(userData, context.getters.getJwt)
@@ -325,6 +344,10 @@ export const store = new Vuex.Store({
         state.social = payload.social;
         state.email = payload.email;
         state.company_number = payload.company_number;
+        state.file = payload.file;
+        state.picture_link = payload.picture_link;
+        state.document_link = payload.document_link;
+        state.id = payload.id;
       },
       setJwtToken (state, payload) {
         localStorage.token = payload.jwt.token
@@ -498,6 +521,9 @@ export const store = new Vuex.Store({
         },
         setInfluencers(state, payload) {
             state.influencers = payload;
+        },
+        setPictureLink(state, payload) {
+            state.picture_link = payload;
         }
     },
     getters: {
@@ -585,6 +611,9 @@ export const store = new Vuex.Store({
         },
         count_ads(state){
             return state.count_ads
+        },
+        picture_link(state){
+            return state.picture_link
         }
     }
 })

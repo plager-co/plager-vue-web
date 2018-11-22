@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://ec2-54-180-108-133.ap-northeast-2.compute.amazonaws.com:8083'
+const API_URL = 'http://ec2-54-180-114-62.ap-northeast-2.compute.amazonaws.com:8083'
 
 function extend(target) {
     var sources = [].slice.call(arguments, 1);

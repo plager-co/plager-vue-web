@@ -46,7 +46,7 @@
                 <input type="checkbox" name="keep" id="keep-register" v-model="keep_register">
                 <label for="keep-register">
                     <span class='checkbox'></span>
-                    이용약관과 개인정보처리방침에 동의합니다.
+                    <a href="/policy" target="_blank">이용약관</a>과 <a href="/private-policy" target="_blank">개인정보처리방침</a>에 동의합니다.
                 </label>
             </div>
             <div class="desc">광고주로 등록하시면 플래거의 SIM 서비스 소개서를 바로 확인할 수 있습니다.</div>

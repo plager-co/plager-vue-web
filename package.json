@@ -25,6 +25,7 @@
     "vue-in-viewport-directive": "^1.1.4",
     "vue-in-viewport-mixin": "^1.0.4",
     "vue-meta": "^1.5.5",
+    "vue-pdf": "^3.3.1",
     "vue-router": "^3.0.1",
     "vue-slider-component": "^2.7.8",
     "vue-video-player": "^5.0.2",

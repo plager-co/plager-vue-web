@@ -21,6 +21,9 @@ export default {
   metaInfo: {
       // if no subcomponents specify a metaInfo.title, this title will be used
       title: "브랜드 각인 마케팅 '플래거'",
+      link: [
+        { rel: 'shortcut icon', href: require('./assets/favicon.ico'), type: "image/x-icon" }
+      ],
       meta: [
           { charset: 'utf-8' },
           { vmid: 'description',

@@ -93,12 +93,52 @@ export default {
             this.$store.commit('openTestPopup')
         }
     },
+    metaInfo: {
+      // if no subcomponents specify a metaInfo.title, this title will be used
+      title: "브랜드 각인 마케팅 '플래거'",
+      meta: [
+
+          { vmid: 'og:type',
+              name: 'og:type',
+              content: 'plager'
+          },
+          { vmid: 'og:title',
+              name: "og:title",
+              content: 'SNS에 내 영향력 알아보기'
+          },
+          { vmid: 'og:description',
+              name: 'og:description',
+              content: '플래거에서는 누구나 인플루언서 될 수 있어요.'
+          },
+          { vmid: 'og:keywords',
+              name: 'og:keywords',
+              content: '브랜드 마케팅,brand marketing,마케팅,marketing,브랜딩,branding,인플루언서,influencer,sns,인스타그램,Instagram,페이스북,facebook,사진,image,동영상,video'
+          },
+          { vmid: 'og:image',
+              name: 'og:image',
+              content: 'http://www.plager.co/assets/my_level.jpg'
+          },
+          { vmid: 'og:url',
+              name: 'og:url',
+              content: 'http://www.plager.co'
+          },
+          ]
+        ,
+    __dangerouslyDisableSanitizers: ['meta'],
+      // all titles will be injected into this template
+      titleTemplate: '%s'
+    },
     created(){
         this.openTestPopup()
     }
 };
 </script>
-
+<meta property="og:type" content="plager">
+<meta property="og:title" content="SNS에 내 영향력 알아보기">
+<meta property="og:description" content="플래거에서는 누구나 인플루언서 될 수 있어요.">
+<meta property="og:keywords" content="브랜드 마케팅,brand marketing,마케팅,marketing,브랜딩,branding,인플루언서,influencer,sns,인스타그램,Instagram,페이스북,facebook,사진,image,동영상,video">
+<meta property="og:image" content="http://wwwplager.co/my_level.jpg">
+<meta property="og:url" content="http://www.plager.co">
 <style scoped>
 h1 {
   /* 내 영향력 테스트: */

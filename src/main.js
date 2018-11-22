@@ -5,9 +5,10 @@ import App from './App'
 import router from './router'
 import { store } from './store'
 import VueCarousel from 'vue-carousel'
+import Meta from 'vue-meta'
 
 Vue.use(VueCarousel)
-
+Vue.use(Meta)
 Vue.config.productionTip = false
 
 import inViewportDirective from 'vue-in-viewport-directive'

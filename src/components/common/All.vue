@@ -39,6 +39,7 @@ data() {
 
             '/no-ad',
             '/sponsor-no-ad',
+            '/private-policy',
             '/404',
         ]
     }

@@ -28,6 +28,8 @@ import AlertBase from '@/components/AlertBase'
 import SponsorNoAd from '@/components/SponsorNoAd'
 import Temp from '@/components/Temp'
 import All from '@/components/common/All'
+import PrivatePolicy from '@/components/PrivatePolicy'
+import Policy from '@/components/Policy'
 
 import Survey from '@/components/Survey'
 import NewSurvey from '@/components/NewSurvey'
@@ -147,8 +149,14 @@ export const routes = [
       path: '/my-page',
       component: MyPage,
     },
-
-    // error
+    {
+      path: '/policy',
+      component: Policy
+    },
+    {
+      path: '/private-policy',
+      component: PrivatePolicy
+    },
     {
       path: '*',
       redirect: '/404'

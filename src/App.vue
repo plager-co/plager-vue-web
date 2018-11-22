@@ -48,7 +48,11 @@ export default {
           },
           { vmid: 'og:type',
               name: 'og:type',
-              content: 'plager'
+              content: 'business.business'
+          },
+          { vmid: 'subject',
+              name: "subject",
+              content: '브랜드 마케팅 서비스'
           },
           { vmid: 'og:title',
               name: "og:title",
@@ -64,11 +68,11 @@ export default {
           },
           { vmid: 'og:image',
               name: 'og:image',
-              content: 'http://www.plager.co/assets/messenger_logo.jpg'
+              content: 'http://plager.co/assets/messenger_logo.jpg'
           },
           { vmid: 'og:url',
               name: 'og:url',
-              content: 'http://www.plager.co'
+              content: 'http://plager.co'
           },
           ]
         ,

@@ -73,48 +73,67 @@
 
 <script>
 import anime from 'animejs'
-var  scrollMonitor  = require ( "scrollmonitor" ) ; //  require를 사용하지 않으면 scrollMonitor 전역을 사용할 수 있습니다.  
-
+var  scrollMonitor  = require ( "scrollmonitor" ); //  require를 사용하지 않으면 scrollMonitor 전역을 사용할 수 있습니다.  
 
 export default {
   data(){
     return {
-      chartHeight: 0
+      chartHeight: 0,
+			scrollWatcher: '',
     }
   },
   methods: {
     lineAnimate() {
-			const element = document.getElementById('s2-chart-w')
-			const elementWatcher = scrollMonitor.create( element )
-			elementWatcher.enterViewport(() => {
-				anime({
-					targets: '.graph path',
-					strokeDashoffset: [anime.setDashoffset, 0],
-					easing: 'linear',
-					duration: 1000,
-					delay: function(el, i) { 
-						if(i < 4){
-							return i * 100 
-						} else return 800
-					},
-					direction: 'normal',
-					loop: false
-				})
+			const self = this
+
+			const ani = anime({
+				targets: '#s2-chart-w .graph path',
+				strokeDashoffset: [anime.setDashoffset, 0],
+				autoplay: false,
+				easing: 'linear',
+				duration: 1000,
+				delay: function(el, i) { 
+					if(i < 4){
+						return i * 100 
+					} else return 800
+				},
+				direction: 'normal',
+				loop: false,
+				run: function(a){
+					self.isRunning = true
+				},
+				complete: function(){
+					self.isRunning = false
+				}
+			})
+
+			this.scrollWatcher.fullyEnterViewport(() => {
+				ani.play()
+			})
+
+			this.scrollWatcher.exitViewport(() => {
+				ani.pause()
+				ani.seek(0)
 			})
 		}
   },
   created() {
     this.$nextTick(() => {
-      this.lineAnimate();
+			this.scrollWatcher = scrollMonitor.create(this.$refs.lines)
+			this.lineAnimate()
     });
-  }
-
+  },
+	computed: {
+		isViewport() {
+			return this.scrollWatcher.isFullyInViewport 
+		},
+	}
 };
 </script>
 
 <style scoped>
 
-	.full { width: 100%; height: 100%;}
+	.full { width: 100%; height: 100%; }
 
 	.main-st0{filter:url(#filter-2);}
 	.main-st1{fill:#FFFFFF;}
@@ -125,28 +144,16 @@ export default {
 	.main-st6{fill:#F0F0F0;}
 	.main-st7{fill:#4C6072;}
 	.main-st8{font-size:18px;}
-	.line2{fill:none;stroke:#00526C;stroke-width:2;stroke-linecap:round;}
-	.line1{fill:none;stroke:#8DDC59;stroke-width:4;stroke-linecap:round;}
-
-  /* #chart0 * {
-    transition: all 0.5s;
-    transition-timing-function: ease-out;
-    transition-delay: .3s;
-  } */
-
-	/* .graph.fully-in-viewport path {
-		animation: dash 1s ease forwards;
-	}
-
-	@keyframes dash {
-		to {
-			stroke-dashoffset: 0px;
-		}
-	} */
+	.line2{fill:none;stroke:#00526C;stroke-width:2;stroke-linecap:round;stroke-dashoffset:100;}
+	.line1{fill:none;stroke:#8DDC59;stroke-width:4;stroke-linecap:round;stroke-dashoffset:100;}
 
   @media screen and (min-width:0\0) and (min-resolution: +72dpi) {
     /* IE9+ CSS */
     svg * { font-size: 1rem !important;}
     svg .main-st4 { font-size: .7rem !important;}
   }
+
+	@media screen and (max-width: 640px) {
+		.full {display: none}
+	}
 </style>

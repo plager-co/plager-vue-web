@@ -191,6 +191,7 @@ p {
     width: 700px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 50px;
     padding-bottom: 59px;
 }
 

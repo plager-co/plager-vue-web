@@ -23,7 +23,7 @@
                              <span class="col status-wrap">
                                  <div class="data-name">상태</div>
                                 <div class="data-val"><button @click=''>{{ad.status}}</button></div>
-                                <div class="data-val" v-if="ad.status_payable"><button @click='payAd(ad.data)'>결재하기</button></div>
+                                <div class="data-val"><button @click='getAction(ad)'>{{ad.action_text}}</button></div>
                             </span>
 
                         </div>
@@ -38,7 +38,7 @@
                          <span class="col status-wrap">
                                  <div class="data-name">상태</div>
                                 <div class="data-val"><button @click=''>{{ad.status}}</button></div>
-                                <div class="data-val" v-if="ad.status_payable"><button style="border-color: #FF8000; color: #FF8000;"  @click='payAd(ad.data)'>결재하기</button></div>
+                                <div class="data-val"><button style="border-color: #FF8000; color: #FF8000;"  @click='getAction(ad)'>{{ad.action_text}}</button></div>
                             </span>
 
                     </table>
@@ -76,11 +76,12 @@ export default {
   created: async function(){
       await this.$store.dispatch('fetchAdBySponserId', this.$store.getters.user_id);
       var filterAds = this.$store.getters.filterAds;
-      function getStatus(statusAds){
+      function getStatus(filterAds){
+          var statusAds = '';
           if (filterAds === 'registered'){
           statusAds = '검토 대기중';
           } else if (filterAds === 'reviewed'){
-              statusAds = '결재하기';
+              statusAds = '검토 완료';
           } else if (filterAds === 'paid'){
               statusAds = '광고 준비중';
           } else if (filterAds === 'started'){
@@ -90,12 +91,25 @@ export default {
           }
           return statusAds;
       }
+      function getActionText(filterAds){
+          var statusAds = '';
+          if (filterAds === 'registered'){
+          statusAds = '확인중';
+          } else if (filterAds === 'reviewed'){
+              statusAds = '결재하기';
+          } else if (filterAds === 'paid'){
+              statusAds = '성과보기';
+          } else if (filterAds === 'started'){
+              statusAds = '성과보기';
+          } else if (filterAds === 'completed'){
+            statusAds = '성과보기';
+          }
+          return statusAds;
+      }
       this.status = getStatus(filterAds);
       function getStatusPayable(statusAds){
-          if (statusAds === 'reviewed'){
-             return true
-          }
-          return false;
+
+          return true;
       }
       var adsRaw = this.$store.getters.ads;
       var ads = [];
@@ -115,6 +129,8 @@ export default {
                       { dataName: "등록 날짜", dataVal: val.created_at },
                     ],
                       status: getStatus(val.status_text),
+                      status_text: val.status_text,
+                      action_text: getActionText(val.status_text),
                       status_payable: getStatusPayable(val.status_text),
                       data: val,
                   }
@@ -135,7 +151,10 @@ export default {
                       { dataName: "등록 날짜", dataVal: val.created_at },
                     ],
                       status: getStatus(val.status_text),
+                      status_text: val.status_text,
+                      action_text: getActionText(val.status_text),
                       status_payable: getStatusPayable(val.status_text),
+                      data: val,
                   }
               )
           }
@@ -145,7 +164,24 @@ export default {
   },
     methods: {
         payAd(ad) {
-            this.$store.dispatch('payAd', ad);
+            this.$store.dispatch('payAd', ad.data);
+        },
+          getAction(ad){
+            console.log(ad);
+              if (ad.status_text === 'registered'){
+              } else if (ad.status_text === 'reviewed'){
+                 this.$store.dispatch('payAd', ad.data);
+              } else if (ad.status_text === 'paid'){
+                this.$store.dispatch('checkPerformance', ad.data);
+              } else if (ad.status_text === 'started'){
+                this.$store.dispatch('checkPerformance', ad.data);
+              } else if (ad.status_text === 'completed'){
+                this.$store.dispatch('checkPerformance', ad.data);
+              }
+
+          },
+        checkPerformance(ad) {
+            this.$store.dispatch('checkPerformance', ad);
         }
     }
 };

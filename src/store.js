@@ -349,6 +349,10 @@ export const store = new Vuex.Store({
             context.commit('setAdData', userData);
             return Router.push('/sponsor-sim');
           },
+        checkPerformance (context, userData) {
+            context.commit('setAdData', userData);
+            return Router.push('/sponsor-result');
+          },
         updateAdInfluencer (context, userData) {
             return updateAdInfluencer(userData, context.getters.getJwt)
               .then(

@@ -211,25 +211,25 @@
 
 </template>
 
-
 <script>
 import anime from 'animejs'
-var  scrollMonitor  = require ( "scrollmonitor" ) ; //  require를 사용하지 않으면 scrollMonitor 전역을 사용할 수 있습니다.  
+var  scrollMonitor  = require ( "scrollmonitor" ); //  require를 사용하지 않으면 scrollMonitor 전역을 사용할 수 있습니다.  
 
 export default {
-  data() {
+  data(){
     return {
-      chartHeight: 0
-    };
+      chartHeight: 0,
+			scrollWatcher: '',
+    }
   },
   methods: {
     lineAnimate() {
-		const element = document.getElementById('s2-chart-m')
-		const elementWatcher = scrollMonitor.create( element )
-		elementWatcher.enterViewport(() => {
-			anime({
-				targets: '.graph path',
+			const self = this
+
+			const ani = anime({
+				targets: '#s2-chart-m .graph path',
 				strokeDashoffset: [anime.setDashoffset, 0],
+				autoplay: false,
 				easing: 'linear',
 				duration: 1000,
 				delay: function(el, i) { 
@@ -238,16 +238,36 @@ export default {
 					} else return 800
 				},
 				direction: 'normal',
-				loop: false
+				loop: false,
+				run: function(a){
+					self.isRunning = true
+				},
+				complete: function(){
+					self.isRunning = false
+				}
 			})
-		})
-	}
+
+			this.scrollWatcher.fullyEnterViewport(() => {
+				ani.play()
+			})
+
+			this.scrollWatcher.exitViewport(() => {
+				ani.pause()
+				ani.seek(0)
+			})
+		}
   },
   created() {
     this.$nextTick(() => {
-      this.lineAnimate();
+			this.scrollWatcher = scrollMonitor.create(this.$refs.lines)
+			this.lineAnimate()
     });
-  }
+  },
+	computed: {
+		isViewport() {
+			return this.scrollWatcher.isFullyInViewport 
+		},
+	}
 };
 </script>
 
@@ -270,5 +290,9 @@ export default {
   svg .main-st4 {
     font-size: 0.7rem !important;
   }
+}
+
+@media screen and (min-width: 640px) {
+	.full {display: none}
 }
 </style>

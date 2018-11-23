@@ -5,7 +5,8 @@ import Vuex from 'vuex'
 import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
     sponserUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId,
-    fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, userfileUpdate} from '@/api'
+    fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, userfileUpdate,
+    requestPassword} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -15,6 +16,7 @@ export const store = new Vuex.Store({
         userType: '',
         isTestPopup: false,
         isJoinPopup: false,
+        isRequestPasswordPopup: false,
         isCompletePopup: false,
         completeMsg: '',
         isAlertPopup: false,
@@ -151,6 +153,25 @@ export const store = new Vuex.Store({
             });
             return result
 
+          },
+
+        requestPassword (context, userData) {
+            return requestPassword(userData)
+              .then(
+                  function (response) {
+                      console.log(response);
+                      console.log(response.data);
+                      if(response.data){
+                        context.commit('closeRequestPasswordPopup');
+                        context.commit('isPasswordRequested');
+                      }
+                      else{
+                          context.commit('errorRequestPasswordPopup');
+                      }
+
+                  }).catch(e => {
+              context.commit('errorRequestPasswordPopup');
+            });
           },
             fetchInfluencers (context) {
             const result = fetchInfluencers()
@@ -395,6 +416,12 @@ export const store = new Vuex.Store({
         closeJoinPopup(state){
             state.isJoinPopup = false;
         },
+        openRequestPasswordPopup(state){
+            state.isRequestPasswordPopup = true;
+        },
+        closeRequestPasswordPopup(state){
+            state.isRequestPasswordPopup = false;
+        },
         errorRegisterPopup(state){
             state.isAlertPopup = true;
             state.email = '';
@@ -430,6 +457,12 @@ export const store = new Vuex.Store({
             state.alertMsg = '10초 후 다시 시도 ';
             state.alertMobileMsg = '부탁드립니다.';
         },
+        errorRequestPasswordPopup(state){
+            state.isAlertPopup = true;
+            state.email = '';
+            state.alertMsg = '일치하는 유저 정보가 ';
+            state.alertMobileMsg = '없습니다.';
+        },
         isAbnormalEmail(state, payload){
             state.isAlertPopup = true;
             state.email = '';
@@ -454,6 +487,13 @@ export const store = new Vuex.Store({
                 state.alertMsg = '사용가능한 ';
                 state.alertMobileMsg = '이메일입니다.';
             }
+        },
+        isPasswordRequested(state){
+            state.isAlertPopup = true;
+            state.email = '';
+
+            state.alertMsg = '이메일에서 새 비밀번호를 ';
+            state.alertMobileMsg = '확인해주세요.';
         },
         setCurrentAdInfluencer(state, payload){
             state.currentAdInfluencer = payload;
@@ -631,6 +671,9 @@ export const store = new Vuex.Store({
         },
         document_link(state){
             return state.document_link
+        },
+        isRequestPasswordPopup(state){
+            return state.isRequestPasswordPopup
         }
     }
 })

@@ -1,6 +1,7 @@
 <template>
     <div class='viewer'>
         <join-popup></join-popup>
+        <request-password-popup></request-password-popup>
         <alert-base></alert-base>
         <div class="section gray">
             <div class="container">
@@ -25,10 +26,11 @@
 <script>
 import JoinPopup from './JoinPopup'
 import AlertBase from './AlertBase'
+import RequestPasswordPopup from './RequestPasswordPopup'
 import LoginForm from './auth/LoginForm'
 
 export default {
-    components: {JoinPopup, AlertBase, LoginForm},
+    components: {JoinPopup, RequestPasswordPopup, AlertBase, LoginForm},
     methods: {
         influLogin(){
             this.$store.commit("userLogin", 'Influ')

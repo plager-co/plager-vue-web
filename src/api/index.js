@@ -41,6 +41,9 @@ export function postNewSurvey (survey, jwt) {
   export function authenticate (userData) {
   return axios.post(`${API_URL}/login/`, userData, { headers: basic_header })
   }
+  export function requestPassword (userData) {
+    return axios.post(`${API_URL}/request_password/`, userData, { headers: basic_header } )
+  }
   export function userfileUpdate (userData, jwt) {
 
   let auth_dict = {

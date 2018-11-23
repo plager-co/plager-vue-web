@@ -24,6 +24,7 @@ import InfluSIMResult from '@/components/InfluSIMResult'
 
 import NoAd from '@/components/NoAd'
 import JoinPopup from '@/components/JoinPopup'
+import RequestPasswordPopup from '@/components/RequestPasswordPopup'
 import AlertBase from '@/components/AlertBase'
 import SponsorNoAd from '@/components/SponsorNoAd'
 import Temp from '@/components/Temp'
@@ -121,6 +122,10 @@ export const routes = [
     {
       path: '/joinPopup',
       component: JoinPopup
+    },
+    {
+      path: '/RequestPasswordPopup',
+      component: RequestPasswordPopup
     },
         {
       path: '/alertBase',

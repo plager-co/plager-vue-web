@@ -6,7 +6,7 @@ import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
     sponserUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId,
     fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, userfileUpdate,
-    requestPassword, registerInfluencer} from '@/api'
+    requestPassword, registerInfluencer, deleteUser} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -379,6 +379,21 @@ export const store = new Vuex.Store({
               context.commit('errorUpdatePopup');
             });
           },
+        deleteUser (context) {
+            return deleteUser({'id': context.getters.id}, context.getters.getJwt)
+              .then(
+                  function (response) {
+                      if(response){
+                        context.commit('openDeletePopup');
+                      }
+                      else{
+                          context.commit('errorUpdatePopup');
+                      }
+
+                  }).catch(e => {
+              context.commit('errorUpdatePopup');
+            });
+          },
         createAd (context, userData) {
             return createAd(userData, context.getters.getJwt)
               .then(
@@ -485,6 +500,11 @@ export const store = new Vuex.Store({
         openUpdatePopup(state){
             state.isAlertPopup = true;
             state.alertMsg = '업데이트 ';
+            state.alertMobileMsg = '완료 되었습니다.';
+        },
+        openDeletePopup(state){
+            state.isAlertPopup = true;
+            state.alertMsg = '삭제 요청 ';
             state.alertMobileMsg = '완료 되었습니다.';
         },
         errorUpdatePopup(state){
@@ -657,6 +677,9 @@ export const store = new Vuex.Store({
         }
     },
     getters: {
+        id(state){
+            return state.user_id
+        },
         user_id(state){
             return state.user_id
         },

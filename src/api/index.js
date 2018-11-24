@@ -65,6 +65,13 @@ export function postNewSurvey (survey, jwt) {
     return axios.put(`${API_URL}/users/`, userData, { headers: auth_header } )
   }
 
+  export function deleteUser (userData, jwt) {
+
+  let auth_dict = { Authorization: `Bearer: ${jwt}` };
+  let auth_header = extend({}, basic_header, auth_dict);
+    return axios.delete(`${API_URL}/users/`, { headers: auth_header } )
+  }
+
   export function createAd (userData, jwt) {
 
   let auth_dict = { Authorization: `Bearer: ${jwt}` };

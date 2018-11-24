@@ -1,5 +1,6 @@
 <template>
   <div class="viewer">
+  <alert-base></alert-base>
       <div class="section start gray">
           <div class="container">
             <div class="card">
@@ -104,7 +105,7 @@
                     </div>
                 </div>
                 <button class="edit-button">수정하기</button>
-		<button class="delete-button" style="padding-left: 6px; margin-top: 30px; ">탈퇴</button>
+		<button class="delete-button" style="padding-left: 6px; margin-top: 30px; " @click="deleteUser()">탈퇴</button>
             </div>
           </div>
       </div>
@@ -112,7 +113,9 @@
 </template>
 
 <script>
+import AlertBase from './AlertBase'
 export default {
+     components: {AlertBase},
     computed: {
       categoryCount(){
           const val = this.categoryList.filter( x => x.isSelected == true)
@@ -160,6 +163,11 @@ export default {
             }
         ]
         }
+    },
+    methods: {
+        deleteUser(){
+            this.$store.dispatch('deleteUser');
+        },
     }
 };
 </script>

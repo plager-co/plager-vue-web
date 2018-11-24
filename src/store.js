@@ -110,7 +110,16 @@ export const store = new Vuex.Store({
         category: '',
         birth: '',
         name: '',
+        total_follower_count: 0,
+        total_post_count: 0,
+        total_like_count: 0,
+        total_comment_count: 0,
+        total_movie_count: 0,
+        total_play_count: 0,
+        influencer_cost: 0,
+        influencer_effect_rate: 0,
     },
+
     actions: {
 
         loadSurveys(context) {
@@ -394,6 +403,21 @@ export const store = new Vuex.Store({
               context.commit('errorUpdatePopup');
             });
           },
+        userUpdateNoPopup (context, userData) {
+            context.commit('setUserData', { userData })
+            return userUpdate(userData, context.getters.getJwt)
+              .then(
+                  function (response) {
+                      if(response.data.result.id){
+                      }
+                      else{
+                          context.commit('errorUpdatePopup');
+                      }
+
+                  }).catch(e => {
+              context.commit('errorUpdatePopup');
+            });
+          },
         deleteUser (context) {
             return deleteUser({'id': context.getters.id}, context.getters.getJwt)
               .then(
@@ -473,6 +497,14 @@ export const store = new Vuex.Store({
         state.birth = payload.birth;
         state.name = payload.name;
         state.user_type = payload.user_type;
+        state.total_follower_count = payload.total_follower_count;
+        state.total_post_count = payload.total_post_count;
+        state.total_like_count = payload.total_like_count;
+        state.total_comment_count = payload.total_comment_count;
+        state.total_movie_count = payload.total_movie_count;
+        state.total_play_count = payload.total_play_count;
+        state.influencer_cost = payload.influencer_cost;
+        state.influencer_effect_rate = payload.influencer_effect_rate;
       },
       setJwtToken (state, payload) {
         localStorage.token = payload.jwt.token
@@ -813,6 +845,30 @@ export const store = new Vuex.Store({
         },
         isValidEmail(state){
             return state.isValidEmail
+        },
+        total_follower_count(state){
+            return state.total_follower_count
+        },
+        total_post_count(state){
+            return state.total_post_count
+        },
+        total_like_count(state){
+            return state.total_like_count
+        },
+        total_comment_count(state){
+            return state.total_comment_count
+        },
+        total_movie_count(state){
+            return state.total_movie_count
+        },
+        total_play_count(state){
+            return state.total_play_count
+        },
+        influencer_cost(state){
+            return state.influencer_cost
+        },
+        influencer_effect_rate(state){
+            return state.influencer_effect_rate
         },
     }
 })

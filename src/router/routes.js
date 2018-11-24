@@ -16,6 +16,7 @@ import MyPage from '@/components/MyPage'
 import InfluJoin from '@/components/InfluJoin'
 import InfluList from '@/components/InfluList'
 import InfluComplete from '@/components/InfluComplete'
+import InfluAdList from '@/components/InfluAdList'
 import InfluMyScore from '@/components/InfluMyScore'
 import InfluMyPage from '@/components/InfluMyPage'
 import InfluScore from '@/components/InfluScore'
@@ -94,6 +95,10 @@ export const routes = [
     {
       path: '/influencer-list',
       component: InfluList
+    },
+    {
+      path: '/influencer-ad-list',
+      component: InfluAdList
     },
     {
       path: '/influencer-result',

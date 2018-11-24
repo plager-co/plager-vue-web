@@ -506,6 +506,20 @@ export default {
           });
         },
     methods: {
+
+        ShowRegisteredAd(){
+            this.$store.commit('filterAdList','registered');
+            this.$router.push('/influencer-ad-list');
+        },
+        ShowStartedAd(){
+            this.$store.commit('filterAdList','started');
+            this.$router.push('/influencer-ad-list');
+        },
+        ShowCompletedAd(){
+            this.$store.commit('filterAdList','completed');
+            this.$router.push('/influencer-ad-list');
+        },
+
         deleteUser(){
             this.$store.dispatch('deleteUser');
         },

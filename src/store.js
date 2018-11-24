@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 // imports of AJAX functions will go here
 import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
-    userUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId,
+    userUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId, fetchAdByInfluencerId,
     fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, fetchCountInfluencerAds, userfileUpdate,
     requestPassword, registerInfluencer, deleteUser} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
@@ -261,6 +261,21 @@ export const store = new Vuex.Store({
             return result
 
           },
+        fetchAdByInfluencerId (context, userData) {
+            const result = fetchAdByInfluencerId(userData)
+              .then(
+                  function (response) {
+                            console.log(response.data.result);
+                            if(response.data.result){
+                                context.commit('setAds', response.data.result);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
         fetchCountAds (context, userData) {
             const result = fetchCountAds(userData)
               .then(
@@ -456,6 +471,10 @@ export const store = new Vuex.Store({
         checkPerformance (context, userData) {
             context.commit('setAdData', userData);
             return Router.push('/sponsor-sim');
+          },
+        checkMyPerformance (context, userData) {
+            context.commit('setAdData', userData);
+            return Router.push('/sponsor-result');
           },
         updateAdInfluencer (context, userData) {
             return updateAdInfluencer(userData, context.getters.getJwt)

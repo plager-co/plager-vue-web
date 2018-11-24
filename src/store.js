@@ -4,16 +4,16 @@ import Vuex from 'vuex'
 // imports of AJAX functions will go here
 import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
-    sponserUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId,
-    fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, userfileUpdate,
-    requestPassword} from '@/api'
+    userUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId, fetchAdByInfluencerId,
+    fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, fetchCountInfluencerAds, userfileUpdate,
+    requestPassword, registerInfluencer, deleteUser} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
-        userType: '',
+        user_type: '',
         isTestPopup: false,
         isJoinPopup: false,
         isRequestPasswordPopup: false,
@@ -42,7 +42,7 @@ export const store = new Vuex.Store({
             },
             {
             username: "",
-            title: "광고 신청",
+            title: "영향력 지수 확인 & 광고 신청",
             url: "/influencer-score",
             auth: 'influencer',
             },
@@ -103,8 +103,23 @@ export const store = new Vuex.Store({
         currentAdInfluencer: {},
         count_ads: {},
         picture_link: '',
-        document_link: ''
+        document_link: '',
+        isValidEmail: false,
+        gender: '',
+        country: '',
+        category: '',
+        birth: '',
+        name: '',
+        total_follower_count: 0,
+        total_post_count: 0,
+        total_like_count: 0,
+        total_comment_count: 0,
+        total_movie_count: 0,
+        total_play_count: 0,
+        influencer_cost: 0,
+        influencer_effect_rate: 0,
     },
+
     actions: {
 
         loadSurveys(context) {
@@ -131,6 +146,26 @@ export const store = new Vuex.Store({
               context.commit('errorRegisterPopup');
             });
           },
+        registerInfluencer (context, userData) {
+            context.commit('setUserData', { userData })
+            return registerInfluencer(userData)
+              .then(
+                  function (response) {
+                      console.log(response);
+                      console.log(response.data.id);
+                      if(response.data.id){
+                        context.commit('closeJoinPopup');
+                        context.commit('openCompletePopup', '인플루언서');
+                          context.dispatch('login', userData)
+                      }
+                      else{
+                          context.commit('errorRegisterPopup');
+                      }
+
+                  }).catch(e => {
+              context.commit('errorRegisterPopup');
+            });
+          },
 
         login (context, userData) {
             context.commit('setUserData', { userData });
@@ -142,8 +177,16 @@ export const store = new Vuex.Store({
                                 console.log(response.data);
                                 context.commit('setUserData', response.data);
                                 context.commit('setJwtToken', { jwt: response.data.token });
-                                context.commit('setSponser', true);
-                                Router.push('/mypage');
+                                if (response.data.user_type === 'influencer'){
+                                    console.log("influencer");
+                                    context.commit('setInfluencer', true);
+                                    Router.push('/influencer-my-page');
+                                } else {
+                                    console.log("sponser");
+                                    context.commit('setSponser', true);
+                                    Router.push('/mypage');
+                                }
+
                             } else {
                                     context.commit('errorLoginPopup')
                             }
@@ -218,8 +261,38 @@ export const store = new Vuex.Store({
             return result
 
           },
+        fetchAdByInfluencerId (context, userData) {
+            const result = fetchAdByInfluencerId(userData)
+              .then(
+                  function (response) {
+                            console.log(response.data.result);
+                            if(response.data.result){
+                                context.commit('setAds', response.data.result);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
         fetchCountAds (context, userData) {
             const result = fetchCountAds(userData)
+              .then(
+                  function (response) {
+                            console.log(response.data.result);
+                            if(response.data.result){
+                                context.commit('setCountAds', response.data.result);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
+        fetchCountInfluencerAds (context, userData) {
+            const result = fetchCountInfluencerAds(userData)
               .then(
                   function (response) {
                             console.log(response.data.result);
@@ -261,6 +334,22 @@ export const store = new Vuex.Store({
             .then( 
                 function (response) {
                     return context.commit('isDuplicateEmail', response)}
+                    )
+          },
+        checkEmailNoPopup(context, userData){
+            if (!userData){
+                return context.commit('isEmptyEmail')
+            }
+
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            if (!re.test(String(userData).toLowerCase()))
+                return context.commit('isAbnormalEmail')
+
+            return checkDuplicateEmail(userData)
+            .then(
+                function (response) {
+                    return context.commit('isDuplicateEmailNoPopup', response)}
                     )
           },
             checkCompanyNumber(context, userData){
@@ -313,13 +402,43 @@ export const store = new Vuex.Store({
               context.commit('errorUpdatePopup');
             });
           },
-          sponserUpdate (context, userData) {
+          userUpdate (context, userData) {
             context.commit('setUserData', { userData })
-            return sponserUpdate(userData, context.getters.getJwt)
+            return userUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {
                       if(response.data.result.id){
                         context.commit('openUpdatePopup');
+                      }
+                      else{
+                          context.commit('errorUpdatePopup');
+                      }
+
+                  }).catch(e => {
+              context.commit('errorUpdatePopup');
+            });
+          },
+        userUpdateNoPopup (context, userData) {
+            context.commit('setUserData', { userData })
+            return userUpdate(userData, context.getters.getJwt)
+              .then(
+                  function (response) {
+                      if(response.data.result.id){
+                      }
+                      else{
+                          context.commit('errorUpdatePopup');
+                      }
+
+                  }).catch(e => {
+              context.commit('errorUpdatePopup');
+            });
+          },
+        deleteUser (context) {
+            return deleteUser({'id': context.getters.id}, context.getters.getJwt)
+              .then(
+                  function (response) {
+                      if(response){
+                        context.commit('openDeletePopup');
                       }
                       else{
                           context.commit('errorUpdatePopup');
@@ -352,6 +471,10 @@ export const store = new Vuex.Store({
         checkPerformance (context, userData) {
             context.commit('setAdData', userData);
             return Router.push('/sponsor-sim');
+          },
+        checkMyPerformance (context, userData) {
+            context.commit('setAdData', userData);
+            return Router.push('/sponsor-result');
           },
         updateAdInfluencer (context, userData) {
             return updateAdInfluencer(userData, context.getters.getJwt)
@@ -387,6 +510,20 @@ export const store = new Vuex.Store({
         state.picture_link = payload.picture_link;
         state.document_link = payload.document_link;
         state.id = payload.id;
+        state.country = payload.country;
+        state.gender = payload.gender;
+        state.category = payload.category;
+        state.birth = payload.birth;
+        state.name = payload.name;
+        state.user_type = payload.user_type;
+        state.total_follower_count = payload.total_follower_count;
+        state.total_post_count = payload.total_post_count;
+        state.total_like_count = payload.total_like_count;
+        state.total_comment_count = payload.total_comment_count;
+        state.total_movie_count = payload.total_movie_count;
+        state.total_play_count = payload.total_play_count;
+        state.influencer_cost = payload.influencer_cost;
+        state.influencer_effect_rate = payload.influencer_effect_rate;
       },
       setJwtToken (state, payload) {
         localStorage.token = payload.jwt.token
@@ -396,7 +533,7 @@ export const store = new Vuex.Store({
         state.isSponser = true
       },
          setInfluencer (state, payload) {
-        state.influencer = true
+        state.isInfluencer = true
       },
         setAdData (state, payload) {
         state.currentAd = payload
@@ -407,12 +544,12 @@ export const store = new Vuex.Store({
 
         userLogin(state, payload){
             state.navMenuList[1].username = '홍길동'
-            state.userType = payload
+            state.user_type = payload
         },
         userLogout(state, payload){
             state.jwt = '';
             state.isSponser = false;
-            state.influencer = false;
+            state.isInfluencer = false;
         },
         openJoinPopup(state){
             state.isJoinPopup = true;
@@ -435,6 +572,11 @@ export const store = new Vuex.Store({
         openUpdatePopup(state){
             state.isAlertPopup = true;
             state.alertMsg = '업데이트 ';
+            state.alertMobileMsg = '완료 되었습니다.';
+        },
+        openDeletePopup(state){
+            state.isAlertPopup = true;
+            state.alertMsg = '삭제 요청 ';
             state.alertMobileMsg = '완료 되었습니다.';
         },
         errorUpdatePopup(state){
@@ -480,6 +622,12 @@ export const store = new Vuex.Store({
             state.alertMsg = '이메일을 ';
             state.alertMobileMsg = '입력해주세요.';
         },
+        isNormalEmailInit(state){
+            state.isValidEmail = false;
+        },
+        isNormalEmail(state){
+            state.isValidEmail = true;
+        },
         isDuplicateEmail(state, payload){
             state.isAlertPopup = true;
 
@@ -488,6 +636,19 @@ export const store = new Vuex.Store({
                 state.alertMobileMsg = '이메일입니다.';
                 state.email = '';
             } else {
+                state.isValidEmail = true;
+                state.alertMsg = '사용가능한 ';
+                state.alertMobileMsg = '이메일입니다.';
+            }
+        },
+        isDuplicateEmailNoPopup(state, payload){
+
+            if (payload.data.result != null){
+                state.alertMsg = '중복된 ';
+                state.alertMobileMsg = '이메일입니다.';
+                state.email = '';
+            } else {
+                state.isValidEmail = true;
                 state.alertMsg = '사용가능한 ';
                 state.alertMobileMsg = '이메일입니다.';
             }
@@ -588,6 +749,9 @@ export const store = new Vuex.Store({
         }
     },
     getters: {
+        id(state){
+            return state.user_id
+        },
         user_id(state){
             return state.user_id
         },
@@ -627,9 +791,28 @@ export const store = new Vuex.Store({
         getTestPopup(state){
             return state.isTestPopup
         },
-        userType(state){
-            return state.userType
+        user_type(state){
+            return state.user_type
         },
+        country(state){
+            return state.country
+        },
+        gender(state){
+            return state.gender
+        },
+        contact(state){
+            return state.contact
+        },
+        category(state){
+            return state.category
+        },
+        birth(state){
+            return state.birth
+        },
+        name(state){
+            return state.name
+        },
+
         GetNavMenuList(state) {
             return state.navMenuList
         },
@@ -678,6 +861,33 @@ export const store = new Vuex.Store({
         },
         isRequestPasswordPopup(state){
             return state.isRequestPasswordPopup
-        }
+        },
+        isValidEmail(state){
+            return state.isValidEmail
+        },
+        total_follower_count(state){
+            return state.total_follower_count
+        },
+        total_post_count(state){
+            return state.total_post_count
+        },
+        total_like_count(state){
+            return state.total_like_count
+        },
+        total_comment_count(state){
+            return state.total_comment_count
+        },
+        total_movie_count(state){
+            return state.total_movie_count
+        },
+        total_play_count(state){
+            return state.total_play_count
+        },
+        influencer_cost(state){
+            return state.influencer_cost
+        },
+        influencer_effect_rate(state){
+            return state.influencer_effect_rate
+        },
     }
 })

@@ -154,7 +154,7 @@
                 </div>
 
                 <button class="edit-button" @click='completeJoin' style="margin-left: 30px; margin-right: 30px;">입력확인</button>
-		<button class="delete-button" style="padding-left: 6px; margin-top: 30px;">탈퇴</button>
+		<button class="delete-button" style="padding-left: 6px; margin-top: 30px;" @click="deleteUser()">탈퇴</button>
             </div>
           </div>
       </div>
@@ -290,7 +290,7 @@ export default {
             if(has_password_change){
                 userData['password'] = this.password;
             }
-          this.$store.dispatch('sponserUpdate', userData)
+          this.$store.dispatch('userUpdate', userData)
         },
         checkEmail () {
             this.$store.commit('hasEmail', this.email);
@@ -319,7 +319,10 @@ export default {
         validCompanyNumber: function (company_number) {
           var re = /^(?!0+$)[\-0-9]{10,12}$/;
           return re.test(company_number);
-        }
+        },
+        deleteUser(){
+            this.$store.dispatch('deleteUser');
+        },
     }
 }
 </script>

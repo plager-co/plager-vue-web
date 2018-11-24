@@ -17,13 +17,14 @@
                         <img src="../../assets/sns-kakao.svg" alt="">
                     </div>
                     <div class="sns-button">
-                        <img src="../../assets/sns-fb.svg" alt="">
+                        <a href="http://www.facebook.com/sharer/sharer.php?u=plager.co" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><img src="../../assets/sns-fb.svg" alt=""></a>
                     </div>
                     <div class="sns-button">
-                        <img src="../../assets/sns-blog.svg" alt="">
+                        <!--<img src="../../assets/sns-blog.svg" alt="">-->
                     </div>
                     <div class="sns-button">
-                        <img src="../../assets/sns-insta.svg" alt="">
+                    <a :href="share_blog_text" target="_blank"><img src="../../assets/sns-insta.svg" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -33,6 +34,14 @@
 
 <script>
 export default {
+    data(){
+        return {
+            share_blog_text: null
+        }
+    },
+    created(){
+        this.share_blog_text = 'http://line.me/R/msg/text/?' + encodeURIComponent('인플루언서로돈벌기!\nhttp://plager.co')
+    },
     methods: {
         closeSelf(){
             this.$store.commit('closeScoreImpossiblePopup')

@@ -113,7 +113,7 @@
               <p v-if='!isCompleted'>플래거 인플루언서로 활동이 가능합니다.<br>
               활동을 원하신다면 신청 버튼을 눌러주세요.</p>
              <button class="submit" @click='btnClick'>{{btnMsg}}</button>
-             <button class="submit" v-if='isCompleted' @click='btnClickTemp'>나의 성과보기</button>
+             <button class="submit" v-if='isCompleted' @click='$router.push("/influencer-my-score")'>나의 성과보기</button>
             </div>
           </div>
       </div>
@@ -131,24 +131,23 @@ export default {
     return {
       isCompletePopup: true,
       isImpossiblePopup: true,
-      isCompleted: false 
+      isCompleted: false ,
+    total_follower_count: 0,
     }
   },
+    created(){
+      this.total_follower_count = this.$store.getters.total_follower_count
+    },
   methods: {
     btnClick(){
-      if(!this.isCompleted){
-        this.isCompleted = !this.isCompleted
-      } else {
-        this.$store.commit('openScoreCompletePopup')
-      }
-    },
-    btnClickTemp(){
-      if(!this.isCompleted){
-        this.isCompleted = !this.isCompleted
+      console.log(this.total_follower_count);
+      if (this.total_follower_count > 1000){
+        this.$store.commit('openScoreCompletePopup');
+        this.$store.dispatch('userUpdateNoPopup', {  id: this.$store.getters.user_id, is_open_score: 1});
       } else {
         this.$store.commit('openScoreImpossiblePopup',[ "안타깝지만 지금은 인플루언서로 활동이 어렵습니다.", " 곧 플래거와 함께 인플루언서로 활동할 수 있기를 기대합니다."])
       }
-    }
+    },
   },
   computed: {
     btnMsg(){

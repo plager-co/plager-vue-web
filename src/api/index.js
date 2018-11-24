@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://api.plager.co'
+const API_URL = 'http://127.0.0.1:8083'
 
 function extend(target) {
     var sources = [].slice.call(arguments, 1);
@@ -38,6 +38,11 @@ export function postNewSurvey (survey, jwt) {
   export function register (userData) {
     return axios.post(`${API_URL}/register/`, userData, { headers: basic_header } )
   }
+
+  export function registerInfluencer (userData) {
+    return axios.post(`${API_URL}/register_influencer/`, userData, { headers: basic_header } )
+  }
+
   export function authenticate (userData) {
   return axios.post(`${API_URL}/login/`, userData, { headers: basic_header })
   }
@@ -53,11 +58,18 @@ export function postNewSurvey (survey, jwt) {
     return axios.put(`${API_URL}/users/`, userData, { headers: auth_dict } )
   }
 
-  export function sponserUpdate (userData, jwt) {
+  export function userUpdate (userData, jwt) {
 
   let auth_dict = { Authorization: `Bearer: ${jwt}` };
   let auth_header = extend({}, basic_header, auth_dict);
     return axios.put(`${API_URL}/users/`, userData, { headers: auth_header } )
+  }
+
+  export function deleteUser (userData, jwt) {
+
+  let auth_dict = { Authorization: `Bearer: ${jwt}` };
+  let auth_header = extend({}, basic_header, auth_dict);
+    return axios.delete(`${API_URL}/users/`, { headers: auth_header } )
   }
 
   export function createAd (userData, jwt) {
@@ -70,6 +82,10 @@ export function postNewSurvey (survey, jwt) {
   export function fetchAds(surveyId) {
     return axios.get(`${API_URL}/ads/`)
   }
+  export function fetchAdByInfluencerId(influencerId) {
+    return axios.get(`${API_URL}/ads/filter/0/` + influencerId + '/')
+  }
+
   export function fetchAdBySponserId(sponserId) {
     return axios.get(`${API_URL}/ads/filter/1/` + sponserId + '/')
   }
@@ -77,6 +93,11 @@ export function postNewSurvey (survey, jwt) {
   export function fetchCountAds(userData) {
 
     return axios.get(`${API_URL}/ads/filter/2/` + userData + '/')
+  }
+
+  export function fetchCountInfluencerAds(userData) {
+
+    return axios.get(`${API_URL}/ads/filter/3/` + userData + '/')
   }
 
   export function registerAdInfluencers (userData, jwt) {

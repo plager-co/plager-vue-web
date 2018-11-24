@@ -19,9 +19,9 @@
                         <a href="http://www.facebook.com/sharer/sharer.php?u=plager.co" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><img src="../../assets/sns-fb.svg" alt=""></a>
                     </div>
-                    <!--<div class="sns-button">-->
+                    <div class="sns-button">
                         <!--<img src="../../assets/sns-blog.svg" alt="">-->
-                    <!--</div>-->
+                    </div>
                     <div class="sns-button">
                     <a :href="share_blog_text" target="_blank"><img src="../../assets/sns-insta.svg" alt=""></a>
                     </div>

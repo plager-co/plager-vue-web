@@ -461,7 +461,7 @@ export default {
     created: async function(){
         await this.$store.dispatch('fetchCountInfluencerAds', this.$store.getters.user_id);
         this.count_ads = this.$store.getters.count_ads;
-
+        await this.$store.commit('closeAlertPopup');
         this.name = this.$store.getters.name;
         this.email = this.$store.getters.email;
         this.instagram = this.$store.getters.instagram;

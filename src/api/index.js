@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://api.plager.co'
+const API_URL = 'http://127.0.0.1:8083'
 
 function extend(target) {
     var sources = [].slice.call(arguments, 1);
@@ -38,6 +38,11 @@ export function postNewSurvey (survey, jwt) {
   export function register (userData) {
     return axios.post(`${API_URL}/register/`, userData, { headers: basic_header } )
   }
+
+  export function registerInfluencer (userData) {
+    return axios.post(`${API_URL}/register_influencer/`, userData, { headers: basic_header } )
+  }
+
   export function authenticate (userData) {
   return axios.post(`${API_URL}/login/`, userData, { headers: basic_header })
   }

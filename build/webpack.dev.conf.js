@@ -29,7 +29,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       ],
     },
     hot: true,
-    disableHostCheck: true,   // That solved it
     contentBase: false, // since we use CopyWebpackPlugin.
     compress: true,
     // host: HOST || config.dev.host,

@@ -113,6 +113,12 @@
 
 <script>
 export default {
+    computed: {
+      categoryCount(){
+          const val = this.categoryList.filter( x => x.isSelected == true)
+          return val.length
+      }
+    },
     data(){
         return {
         categoryList: [

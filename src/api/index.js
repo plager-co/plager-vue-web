@@ -91,6 +91,11 @@ export function postNewSurvey (survey, jwt) {
     return axios.get(`${API_URL}/ads/filter/2/` + userData + '/')
   }
 
+  export function fetchCountInfluencerAds(userData) {
+
+    return axios.get(`${API_URL}/ads/filter/3/` + userData + '/')
+  }
+
   export function registerAdInfluencers (userData, jwt) {
 
   let auth_dict = { Authorization: `Bearer: ${jwt}` };

@@ -6,20 +6,20 @@
             <div class="card">
                 <div class="count-wrap">
                     <div class="col">
-                        <button class="circle">
-                            12
+                        <button class="circle"  @click="ShowStartedAd()">
+                            {{ count_ads.count_started_ads }}
                         </button>
                         <div class="count-name">서비스중</div>
                     </div>
                     <div class="col">
-                        <button class="circle">
-                            3
+                        <button class="circle" @click="ShowRegisteredAd()">
+                            {{ count_ads.count_registered_ads }}
                         </button>
                         <div class="count-name">계약중</div>
                     </div>
                     <div class="col">
-                        <button class="circle">
-                            15
+                        <button class="circle"  @click="ShowCompletedAd()">
+                            {{ count_ads.count_completed_ads }}
                         </button>
                         <div class="count-name">서비스완료</div>
                     </div>
@@ -451,10 +451,15 @@ export default {
            file: '',
         password: null,
         password2: null,
+        count_ads: {
+          count_started_ads: 0,
+          count_registered_ads: 0,
+          count_completed_ads: 0,
+      },
         }
     },
     created: async function(){
-        await this.$store.dispatch('fetchCountAds', this.$store.getters.user_id);
+        await this.$store.dispatch('fetchCountInfluencerAds', this.$store.getters.user_id);
         this.count_ads = this.$store.getters.count_ads;
 
         this.name = this.$store.getters.name;

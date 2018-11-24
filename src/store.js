@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
     userUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId,
-    fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, userfileUpdate,
+    fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, fetchCountInfluencerAds, userfileUpdate,
     requestPassword, registerInfluencer, deleteUser} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
@@ -254,6 +254,21 @@ export const store = new Vuex.Store({
           },
         fetchCountAds (context, userData) {
             const result = fetchCountAds(userData)
+              .then(
+                  function (response) {
+                            console.log(response.data.result);
+                            if(response.data.result){
+                                context.commit('setCountAds', response.data.result);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
+        fetchCountInfluencerAds (context, userData) {
+            const result = fetchCountInfluencerAds(userData)
               .then(
                   function (response) {
                             console.log(response.data.result);

@@ -8,8 +8,10 @@
                 <span>비공개 계정은 테스트되지 않습니다.</span><br>
                 <div class="input-set btn">
                     <div class="input-wrap btn">
-                        <input type="text" placeholder='인스타그램 아이디 입력'>
-                        <button @click="closeSelf">확인</button>
+                        <button @click="closeSelf" class='influ-login'>
+                            <img src="../../assets/insta-white.svg" alt="">
+                            <b>인스타그램</b>으로 시작하기
+                        </button>
 			</div>
 		    </div>
                 </div>
@@ -73,6 +75,27 @@ button.next {
   color: #ffffff;
 }
 
+button.influ-login {
+  background-image: linear-gradient(-45deg, #123075 0%, #fa2b56 100%);
+  border-radius: 5px;
+  font-size: 18px;
+  color: #ffffff;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 18px;
+  width: 303px;
+  height: 60px;
+  font-size: 18px
+}
+button.influ-login b {
+    font-weight: 600;
+}
+button.influ-login img {
+    position: relative;
+    top: 4px;
+    margin-right: 5px;
+}
+
 .popup {
   margin: auto;
   width: 965px;
@@ -106,14 +129,13 @@ button.next {
 .input-set {
   width: 100%;
   padding-top: 50px;
-  text-align: left;
+  text-align: center;
 }
 .input-set .input-wrap {
   position: relative;
 }
 
 .input-set .input-wrap::after {
-    content: "@";
     display: inline-block;
     position: absolute;
     top: 12px;
@@ -137,18 +159,8 @@ button.next {
 }
 
 .input-set.btn button {
-  width: 263px;
+  width: 300px;
   height: 67px;
-  background-image: linear-gradient(-225deg, #123075 0%, #092056 100%);
-  border-radius: 5px;
-  font-size: 22px;
-  color: #ffffff;
-  letter-spacing: 0;
-  text-align: center;
-  position: absolute;
-  border: 0;
-  top: 0;
-  right: 0;
 }
 
 @media screen and (max-width: 640px) {

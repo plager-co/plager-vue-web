@@ -4,7 +4,7 @@
       @submit.prevent v-if='$store.state.isJoinPopup'
       novalidate="true"
     >
-      >
+
     <div class="dim">
         <div class="join-popup">
             <h1>광고주 가입</h1>
@@ -122,6 +122,7 @@ export default {
               email: this.email,
               password: this.password,
               company_number: this.company_number,
+              user_type: 'sponser',
           })
         },
         checkEmail () {

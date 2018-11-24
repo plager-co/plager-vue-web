@@ -6,7 +6,7 @@ import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
     sponserUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId,
     fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, userfileUpdate,
-    requestPassword} from '@/api'
+    requestPassword, registerInfluencer} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -103,7 +103,13 @@ export const store = new Vuex.Store({
         currentAdInfluencer: {},
         count_ads: {},
         picture_link: '',
-        document_link: ''
+        document_link: '',
+        isValidEmail: false,
+        gender: '',
+        country: '',
+        category: '',
+        birth: '',
+        name: '',
     },
     actions: {
 
@@ -121,6 +127,26 @@ export const store = new Vuex.Store({
                       if(response.data.id){
                         context.commit('closeJoinPopup');
                         context.commit('openCompletePopup', '광고주');
+                          context.dispatch('login', userData)
+                      }
+                      else{
+                          context.commit('errorRegisterPopup');
+                      }
+
+                  }).catch(e => {
+              context.commit('errorRegisterPopup');
+            });
+          },
+        registerInfluencer (context, userData) {
+            context.commit('setUserData', { userData })
+            return registerInfluencer(userData)
+              .then(
+                  function (response) {
+                      console.log(response);
+                      console.log(response.data.id);
+                      if(response.data.id){
+                        context.commit('closeJoinPopup');
+                        context.commit('openCompletePopup', '인플루언서');
                           context.dispatch('login', userData)
                       }
                       else{
@@ -261,6 +287,22 @@ export const store = new Vuex.Store({
             .then( 
                 function (response) {
                     return context.commit('isDuplicateEmail', response)}
+                    )
+          },
+        checkEmailNoPopup(context, userData){
+            if (!userData){
+                return context.commit('isEmptyEmail')
+            }
+
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            if (!re.test(String(userData).toLowerCase()))
+                return context.commit('isAbnormalEmail')
+
+            return checkDuplicateEmail(userData)
+            .then(
+                function (response) {
+                    return context.commit('isDuplicateEmailNoPopup', response)}
                     )
           },
             checkCompanyNumber(context, userData){
@@ -480,6 +522,12 @@ export const store = new Vuex.Store({
             state.alertMsg = '이메일을 ';
             state.alertMobileMsg = '입력해주세요.';
         },
+        isNormalEmailInit(state){
+            state.isValidEmail = false;
+        },
+        isNormalEmail(state){
+            state.isValidEmail = true;
+        },
         isDuplicateEmail(state, payload){
             state.isAlertPopup = true;
 
@@ -488,6 +536,19 @@ export const store = new Vuex.Store({
                 state.alertMobileMsg = '이메일입니다.';
                 state.email = '';
             } else {
+                state.isValidEmail = true;
+                state.alertMsg = '사용가능한 ';
+                state.alertMobileMsg = '이메일입니다.';
+            }
+        },
+        isDuplicateEmailNoPopup(state, payload){
+
+            if (payload.data.result != null){
+                state.alertMsg = '중복된 ';
+                state.alertMobileMsg = '이메일입니다.';
+                state.email = '';
+            } else {
+                state.isValidEmail = true;
                 state.alertMsg = '사용가능한 ';
                 state.alertMobileMsg = '이메일입니다.';
             }
@@ -678,6 +739,9 @@ export const store = new Vuex.Store({
         },
         isRequestPasswordPopup(state){
             return state.isRequestPasswordPopup
-        }
+        },
+        isValidEmail(state){
+            return state.isValidEmail
+        },
     }
 })

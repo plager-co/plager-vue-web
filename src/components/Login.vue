@@ -33,8 +33,8 @@ export default {
     components: {JoinPopup, RequestPasswordPopup, AlertBase, LoginForm},
     methods: {
         influLogin(){
-            this.$store.commit("userLogin", 'Influ')
-            this.$router.push('/')
+            // this.$store.commit("userLogin", 'Influ')
+            this.$router.push('/influencer-join')
         },
         sponsorLogin(){
             this.$store.commit("userLogin", 'Sponsor')

@@ -81,7 +81,7 @@ export default {
     },
   computed: {
     menuList(){
-      if(this.$store.getters.userType === 'Influ') {
+      if(this.$store.getters.userType === 'influencer') {
         return [
       {
          title:'내 영향력 지수', url:'/influencer-score'
@@ -93,7 +93,7 @@ export default {
          title:'마이페이지', url:'/influencer-my-page'
       }
    ]
-      } else if (this.$store.getters.userType === 'Sponsor') {
+      } else if (this.$store.getters.userType === 'sponsor') {
         return [
       {
          title:'SIM 서비스 신청하기', url:'/sponsor-filter'

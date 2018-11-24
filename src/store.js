@@ -42,7 +42,7 @@ export const store = new Vuex.Store({
             },
             {
             username: "",
-            title: "광고 신청",
+            title: "영향력 지수 확인 & 광고 신청",
             url: "/influencer-score",
             auth: 'influencer',
             },
@@ -168,8 +168,16 @@ export const store = new Vuex.Store({
                                 console.log(response.data);
                                 context.commit('setUserData', response.data);
                                 context.commit('setJwtToken', { jwt: response.data.token });
-                                context.commit('setSponser', true);
-                                Router.push('/mypage');
+                                if (response.data.user_type === 'influencer'){
+                                    console.log("influencer");
+                                    context.commit('setInfluencer', true);
+                                    Router.push('/influencer-my-page');
+                                } else {
+                                    console.log("sponser");
+                                    context.commit('setSponser', true);
+                                    Router.push('/mypage');
+                                }
+
                             } else {
                                     context.commit('errorLoginPopup')
                             }
@@ -438,7 +446,7 @@ export const store = new Vuex.Store({
         state.isSponser = true
       },
          setInfluencer (state, payload) {
-        state.influencer = true
+        state.isInfluencer = true
       },
         setAdData (state, payload) {
         state.currentAd = payload
@@ -454,7 +462,7 @@ export const store = new Vuex.Store({
         userLogout(state, payload){
             state.jwt = '';
             state.isSponser = false;
-            state.influencer = false;
+            state.isInfluencer = false;
         },
         openJoinPopup(state){
             state.isJoinPopup = true;

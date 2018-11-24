@@ -58,7 +58,7 @@ export function postNewSurvey (survey, jwt) {
     return axios.put(`${API_URL}/users/`, userData, { headers: auth_dict } )
   }
 
-  export function sponserUpdate (userData, jwt) {
+  export function userUpdate (userData, jwt) {
 
   let auth_dict = { Authorization: `Bearer: ${jwt}` };
   let auth_header = extend({}, basic_header, auth_dict);

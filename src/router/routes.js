@@ -146,7 +146,12 @@ export const routes = [
         if (!store.getters.isAuthenticated) {
           next('/login')
         } else {
-            next('/my-page')
+            if (store.getters.user_type === 'influencer'){
+                next('/influencer-my-page')
+            } else {
+                next('/my-page')
+            }
+
         }
       }
     },

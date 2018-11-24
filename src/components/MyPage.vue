@@ -290,7 +290,7 @@ export default {
             if(has_password_change){
                 userData['password'] = this.password;
             }
-          this.$store.dispatch('sponserUpdate', userData)
+          this.$store.dispatch('userUpdate', userData)
         },
         checkEmail () {
             this.$store.commit('hasEmail', this.email);

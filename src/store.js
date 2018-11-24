@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 // imports of AJAX functions will go here
 import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
-    sponserUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId,
+    userUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId,
     fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, userfileUpdate,
     requestPassword, registerInfluencer, deleteUser} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
@@ -13,7 +13,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
-        userType: '',
+        user_type: '',
         isTestPopup: false,
         isJoinPopup: false,
         isRequestPasswordPopup: false,
@@ -363,9 +363,9 @@ export const store = new Vuex.Store({
               context.commit('errorUpdatePopup');
             });
           },
-          sponserUpdate (context, userData) {
+          userUpdate (context, userData) {
             context.commit('setUserData', { userData })
-            return sponserUpdate(userData, context.getters.getJwt)
+            return userUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {
                       if(response.data.result.id){
@@ -452,6 +452,12 @@ export const store = new Vuex.Store({
         state.picture_link = payload.picture_link;
         state.document_link = payload.document_link;
         state.id = payload.id;
+        state.country = payload.country;
+        state.gender = payload.gender;
+        state.category = payload.category;
+        state.birth = payload.birth;
+        state.name = payload.name;
+        state.user_type = payload.user_type;
       },
       setJwtToken (state, payload) {
         localStorage.token = payload.jwt.token
@@ -472,7 +478,7 @@ export const store = new Vuex.Store({
 
         userLogin(state, payload){
             state.navMenuList[1].username = '홍길동'
-            state.userType = payload
+            state.user_type = payload
         },
         userLogout(state, payload){
             state.jwt = '';
@@ -719,9 +725,28 @@ export const store = new Vuex.Store({
         getTestPopup(state){
             return state.isTestPopup
         },
-        userType(state){
-            return state.userType
+        user_type(state){
+            return state.user_type
         },
+        country(state){
+            return state.country
+        },
+        gender(state){
+            return state.gender
+        },
+        contact(state){
+            return state.contact
+        },
+        category(state){
+            return state.category
+        },
+        birth(state){
+            return state.birth
+        },
+        name(state){
+            return state.name
+        },
+
         GetNavMenuList(state) {
             return state.navMenuList
         },

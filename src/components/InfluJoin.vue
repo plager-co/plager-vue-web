@@ -442,16 +442,6 @@ export default {
   methods: {
     async completeJoin() {
       // this.$store.commit("openCompletePopup", "인플루언서");
-        console.log({
-              email: this.email,
-              password: this.password,
-              instagram: this.instagram,
-              country: this.country,
-              gender: this.gender,
-              contact: this.contact,
-              birth: this.birth,
-              name: this.name,
-          });
           this.errors = [];
 
           if (!this.email) {
@@ -471,7 +461,7 @@ export default {
           if (!this.birth_date || !this.birth_month || !this.birth_year) {
             this.errors.push('생년월일을 입력해주세요.');
           } else {
-            this.birth = '' + this.birth_year + "/" + this.birth_month  + this.birth_date
+            this.birth = '' + this.birth_year + "/" + this.birth_month + "/" + this.birth_date
           }
           if (!this.country) {
             this.errors.push('거주 국가를 입력해주세요.');
@@ -520,17 +510,7 @@ export default {
           if (!this.keep_register) {
             this.errors.push('약관 확인후 동의시 동의 버튼을 눌러주세요.');
           }
-            console.log({
-              email: this.email,
-              password: this.password,
-              instagram: this.instagram,
-              country: this.country,
-              gender: this.gender,
-              contact: this.contact,
-              birth: this.birth,
-              name: this.name,
-              keep_register: this.keep_register,
-          });
+
 
           if (!this.errors.length) {
               this.register();

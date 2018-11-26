@@ -13,7 +13,9 @@
                 <div class="bottom">
                     <a>친구에게도 기회를 주세요!</a>
                     <div class="sns-button">
-                        <img src="../../assets/sns-kakao.svg" alt="">
+                        <a class="no-uline btn" id="kakao-link-btn2">
+                            <img src="../../assets/sns-kakao.svg" alt="">
+                        </a>
                     </div>
                     <div class="sns-button">
                         <a href="http://www.facebook.com/sharer/sharer.php?u=plager.co" onclick="window.open(this.href, 'mywin',
@@ -37,7 +39,22 @@ export default {
         closeSelf(){
             this.$store.commit('closeScoreCompletePopup')
         }
-    }
+    },
+    updated: function(){
+        console.log("updated");
+    Kakao.init('eb075a36556d7badedb6e60e5f6206a3');
+
+     // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createCustomButton({
+            container: '#kakao-link-btn2',
+         templateId: 13488,
+          templateArgs: {
+            'title': 'Plager',
+            'description': '브랜드 각인 마케팅 - 플래거'
+          }
+    });
+  //]]>
+        }
 
 };
 </script>

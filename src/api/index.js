@@ -104,7 +104,7 @@ export function postNewSurvey (survey, jwt) {
 
   let auth_dict = { Authorization: `Bearer: ${jwt}` };
   let auth_header = extend({}, basic_header, auth_dict);
-    return axios.post(`${API_URL}/ad_influcners/filter/0/`, {'influencers': userData}, { headers: auth_header } )
+    return axios.post(`${API_URL}/ad_influencers/filter/0/`, {'influencers': userData}, { headers: auth_header } )
   }
 
   export function updateAdInfluencer (userData, jwt) {

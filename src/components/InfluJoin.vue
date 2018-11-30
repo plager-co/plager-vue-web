@@ -560,6 +560,7 @@ h2 {
   height: 528px;
   background: url("../assets/influencerJoinTop.png") 50% 50% no-repeat;
   background-size: cover;
+    margin-top:131px;
 }
 
 .section.first .container {

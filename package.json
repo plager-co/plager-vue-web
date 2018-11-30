@@ -22,6 +22,7 @@
     "vue-animejs": "^1.0.1",
     "vue-carousel": "^0.14.0",
     "vue-chartjs": "^3.4.0",
+    "vue-clipboard2": "^0.2.1",
     "vue-in-viewport-directive": "^1.1.4",
     "vue-in-viewport-mixin": "^1.0.4",
     "vue-meta": "^1.5.5",

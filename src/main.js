@@ -6,7 +6,9 @@ import router from './router'
 import { store } from './store'
 import VueCarousel from 'vue-carousel'
 import Meta from 'vue-meta'
+import VueClipboard from 'vue-clipboard2'
 
+Vue.use(VueClipboard)
 Vue.use(VueCarousel)
 Vue.use(Meta)
 Vue.config.productionTip = false

@@ -23,7 +23,7 @@
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><img src="../../assets/sns-fb.svg" alt=""></a>
                     </div>
                     <div class="sns-button">
-                    <a :href="share_blog_text" target="_blank"><img src="../../assets/sns-blog.svg" alt=""></a>
+                    <a :href="share_blog_text" target="_blank"><img src="../../assets/sns-insta.svg" alt=""></a>
                     </div>
                     <div class="sns-button">
                         <a id="btn"  v-clipboard:copy="message"
@@ -45,8 +45,10 @@ export default {
           message: 'http://plager.co/influencer-my-score'
         }
     },
+    created: function() {
+            this.share_blog_text = 'http://line.me/R/msg/text/?' + encodeURIComponent('인플루언서로돈벌기!\nhttp://plager.co')
+    },
     updated(){
-        this.share_blog_text = 'http://line.me/R/msg/text/?' + encodeURIComponent('인플루언서로돈벌기!\nhttp://plager.co')
 
         if(!this.kakao_init){
 

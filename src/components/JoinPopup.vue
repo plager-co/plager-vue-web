@@ -19,26 +19,26 @@
             <div class="input-set btn">
                 <div class='label'>이메일</div>
                 <div class="input-wrap btn">
-                    <input type="email" placeholder='email@email.com'  v-model="email">
+                    <input id='email' type="email" placeholder='email@email.com'  v-model="email">
                     <button @click='checkEmail();'>중복확인</button>
                 </div>
             </div>
             <div class="input-set">
-                <div class='label'>비밀번호</div>
+                <div class='password label'>비밀번호</div>
                 <div class="input-wrap btn">
-                    <input type="password" placeholder="**********" v-model="password">
+                    <input id='password' type="password" placeholder="**********" v-model="password">
                 </div>
             </div>
             <div class="input-set">
                 <div class='label'>비밀번호 확인</div>
                 <div class="input-wrap btn">
-                    <input type="password" placeholder="**********" v-model="password2">
+                    <input id='password2' type="password" placeholder="**********" v-model="password2">
                 </div>
             </div>
             <div class="input-set btn">
                 <div class='label'>사업자등록번호</div>
                 <div class="input-wrap btn">
-                    <input type="text" placeholder="000-00-00000" v-model="company_number">
+                    <input id='company-number' type="text" placeholder="000-00-00000" v-model="company_number">
                     <button @click='checkCompanyNumber();'>조회</button>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                 </label>
             </div>
             <div class="desc">광고주로 등록하시면 플래거의 SIM 서비스 소개서를 바로 확인할 수 있습니다.</div>
-            <p v-if="errors.length">
+            <p v-if="errors.length" style="color:red;">
                   <span v-for="error in errors">{{ error }}<br></span>
               </p>
             <div class="btn-wrap">
@@ -75,9 +75,9 @@ export default {
     },
     methods: {
         completeJoin(){
-            console.log("keep_register");
-            console.log(this.keep_register);
-              this.errors = [];
+          this.errors = [];
+
+          document.getElementById('email').style.border='2px solid red';
 
           if (!this.email) {
             this.errors.push('이메일 주소를 입력해주세요.');
@@ -85,8 +85,11 @@ export default {
             this.errors.push('유효한 이메일 주소를 입력해주세요.');
           } else if (!this.$store.getters.email){
               this.errors.push('이메일 중복 체크를 해주세요.');
+          } else {
+            document.getElementById('email').style.border='1px solid #d9dee8';
           }
 
+            document.getElementById('company-number').style.border='2px solid red';
 
           if (!this.company_number) {
             this.errors.push('사업자 번호를 입력해주세요.');
@@ -94,22 +97,35 @@ export default {
             this.errors.push('유효한 사업자 번호를 입력해주세요.');
           } else if (!this.$store.getters.company_number){
               this.errors.push('사업자 번호 체크를 해주세요.');
+          } else {
+            document.getElementById('company-number').style.border='1px solid #d9dee8';
           }
 
           if (!this.password) {
             this.errors.push('비밀번호를 입력해주세요.');
+            document.getElementById('password').style.border='2px solid red';
+          } else {
+            document.getElementById('password').style.border='1px solid #d9dee8';
           }
 
           if (!this.password2) {
             this.errors.push('일치 확인용 비밀번호를 입력해주세요.');
+             document.getElementById('password2').style.border='2px solid red';
+          } else {
+            document.getElementById('password').style.border='1px solid #d9dee8';
           }
 
           if (this.password !== this.password2) {
             this.errors.push('비밀번호를 일치하게 작성해주세요.');
+             document.getElementById('password').style.border='2px solid red';
+             document.getElementById('password2').style.border='2px solid red';
           }
 
           if (!this.keep_register) {
             this.errors.push('약관 확인후 동의시 동의 버튼을 눌러주세요.');
+             document.getElementById('keep-register').style.border='2px solid red';
+          } else {
+            document.getElementById('keep-register').style.border='1px solid #d9dee8';
           }
 
           if (!this.errors.length) {

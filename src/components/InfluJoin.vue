@@ -26,25 +26,25 @@
                             <div class="input-set btn">
                                 <div class='label'>SNS 계정</div>
                                 <div class="input-wrap sns">
-                                    <input type="text" placeholder='@인스타그램 아이디' v-model="instagram">
+                                    <input id="instagram" type="text" placeholder='@인스타그램 아이디' v-model="instagram">
                                 </div>
                             </div>
                             <div class="input-set">
                                 <div class='label'>패스워드</div>
                                 <div class="input-wrap">
-                                    <input type="password" placeholder="**********" v-model="password">
+                                    <input id="password" type="password" placeholder="**********" v-model="password">
                                 </div>
                             </div>
                             <div class="input-set">
                                 <div class='label'>이름</div>
                                 <div class="input-wrap">
-                                    <input type="text" v-model="name">
+                                    <input id="name" type="text" v-model="name">
                                 </div>
                             </div>
                             <div class="input-set">
                                 <div class='label'>연락처</div>
                                 <div class="input-wrap">
-                                    <input type="text" v-model="contact">
+                                    <input id="contact" type="text" v-model="contact">
                                 </div>
                             </div>
                             <div class="input-set">
@@ -307,13 +307,13 @@
                             <div class="input-set">
                                 <div class='label'>이메일</div>
                                 <div class="input-wrap">
-                                    <input type="text" v-model="email">
+                                    <input id="email" type="text" v-model="email">
                                 </div>
                             </div>
                             <div class="input-set">
                                 <div class='label'>패스워드 확인</div>
                                 <div class="input-wrap">
-                                    <input type="password" placeholder="**********" v-model="password2">
+                                    <input id="password2" type="password" placeholder="**********" v-model="password2">
                                 </div>
                             </div>
                             <div class="input-set birth">
@@ -350,7 +350,7 @@
 
                         </div>
                         <div class="input-set">
-                            <div class="label">관심분야</div>
+                            <div id="category" class="label">관심분야</div>
                             <div class="category-wrap">
                                 <div class="item" :class='{selected: item.isSelected}' @click='item.isSelected ? item.isSelected = false : (categoryCount < 2 ? item.isSelected = !item.isSelected :"")' :value='i' v-for='(item, i) in categoryList' :key='i'>{{item.value}}</div>
                                 <span>*2가지 분야 중복선택 가능합니다.</span>
@@ -358,7 +358,7 @@
                         </div>
                         <div class="input-set">
                                 <input type="checkbox" name="keep" id="keep-register" v-model="keep_register">
-                                <label for="keep-register" style="font-size:15px;">
+                                <label id="keep-register-label" for="keep-register" style="font-size:15px;">
                                     <span class='checkbox'></span>
                                     <a href="/policy" target="_blank">이용약관</a>과 <a href="/private-policy" target="_blank">개인정보처리방침</a>에 동의합니다.
                                 </label>
@@ -444,41 +444,68 @@ export default {
       // this.$store.commit("openCompletePopup", "인플루언서");
           this.errors = [];
 
+          document.getElementById('email').style.border='2px solid red';
+
           if (!this.email) {
             this.errors.push('이메일 주소를 입력해주세요.');
           } else if (!this.validEmail(this.email)) {
             this.errors.push('유효한 이메일 주소를 입력해주세요.');
           }
-
           else {
               await this.checkEmail();
 
               if (!this.$store.getters.isValidEmail){
               this.errors.push('중복된 이메일입니다.');
-            }
+                } else {
+              document.getElementById('email').style.border='1px solid #d9dee8';
+              }
           }
 
           if (!this.birth_date || !this.birth_month || !this.birth_year) {
             this.errors.push('생년월일을 입력해주세요.');
+          document.getElementById('year').style.border='2px solid red';
+          document.getElementById('month').style.border='2px solid red';
+          document.getElementById('date').style.border='2px solid red';
+
           } else {
             this.birth = '' + this.birth_year + "/" + this.birth_month + "/" + this.birth_date
+
+          document.getElementById('year').style.border='1px solid #d9dee8';
+          document.getElementById('month').style.border='1px solid #d9dee8';
+          document.getElementById('date').style.border='1px solid #d9dee8';
           }
+
           if (!this.country) {
             this.errors.push('거주 국가를 입력해주세요.');
+            document.getElementById('country').style.border='2px solid red';
+          } else {
+              document.getElementById('country').style.border='1px solid #d9dee8';
           }
 
           if (!this.name) {
             this.errors.push('성함을 입력해주세요.');
+            document.getElementById('name').style.border='2px solid red';
+          } else {
+              document.getElementById('name').style.border='1px solid #d9dee8';
           }
           if (!this.gender) {
             this.errors.push('성별을 입력해주세요.');
+            document.getElementById('gender').style.border='2px solid red';
+          } else {
+              document.getElementById('gender').style.border='1px solid #d9dee8';
           }
           if (!this.contact) {
             this.errors.push('연락처를 입력해주세요.');
+            document.getElementById('contact').style.border='2px solid red';
+          } else {
+              document.getElementById('contact').style.border='1px solid #d9dee8';
           }
 
           if (!this.instagram) {
             this.errors.push('인스타그램 아이디를 입력해주세요.');
+            document.getElementById('instagram').style.border='2px solid red';
+          } else {
+              document.getElementById('instagram').style.border='1px solid #d9dee8';
           }
 
           var categorySelectedList = [];
@@ -491,24 +518,38 @@ export default {
           this.category = categorySelectedList.join();
 
             if (typeof this.category !== 'undefined' && this.category.length > 0) {
+
+            document.getElementById('category').style.border='1px solid #d9dee8';
           } else {
             this.errors.push('카테고리를 선택해주세요.');
+            document.getElementById('category').style.border='2px solid red';
           }
 
           if (!this.password) {
             this.errors.push('비밀번호를 입력해주세요.');
+            document.getElementById('password').style.border='2px solid red';
+          } else {
+              document.getElementById('password').style.border='1px solid #d9dee8';
           }
 
           if (!this.password2) {
             this.errors.push('일치 확인용 비밀번호를 입력해주세요.');
+            document.getElementById('password2').style.border='2px solid red';
+          } else {
+              document.getElementById('password2').style.border='1px solid #d9dee8';
           }
 
           if (this.password !== this.password2) {
             this.errors.push('비밀번호를 일치하게 작성해주세요.');
+            document.getElementById('password').style.border='2px solid red';
+            document.getElementById('password2').style.border='2px solid red';
           }
 
           if (!this.keep_register) {
             this.errors.push('약관 확인후 동의시 동의 버튼을 눌러주세요.');
+            document.getElementById('keep-register-label').style.color='red';
+          } else {
+              document.getElementById('keep-register-label').style.color='black';
           }
 
 

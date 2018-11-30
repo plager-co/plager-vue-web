@@ -873,7 +873,7 @@ background-size: cover;}
   left: -100vw;
   right: -100vw;
   margin: auto;
-  top: calc(50% - 10.5%);
+  top: calc(32% - 10.5%);
   position: absolute;
 }
 

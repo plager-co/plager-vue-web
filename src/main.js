@@ -17,12 +17,12 @@ Vue.use(VueClipboard)
 Vue.use(VueCarousel)
 Vue.use(Meta)
 Vue.use(VueAuthenticate, {
-  baseUrl: 'http://127.0.0.1:8083', // Your API domain
+  baseUrl: 'http://52.79.190.26:8083', // Your API domain
 
   providers: {
     instagram: {
       clientId: 'd350de41c32e4c47b97061fa9747d367',
-      redirectUri: 'http://127.0.0.1:8080/influencer-my-page' // Your client app URL
+      redirectUri: 'http://plager.co:8080/influencer-my-page' // Your client app URL
     }
   }
 })

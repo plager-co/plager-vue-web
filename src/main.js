@@ -22,7 +22,7 @@ Vue.use(VueAuthenticate, {
   providers: {
     instagram: {
       clientId: 'd350de41c32e4c47b97061fa9747d367',
-      redirectUri: 'http://plager.co:8080/influencer-my-page' // Your client app URL
+      redirectUri: 'http://52.79.190.26:8080/influencer-my-page' // Your client app URL
     }
   }
 })

@@ -34,35 +34,44 @@
 			<div class="top">
                             <div class="title">최근 3개월 평균</div>
                         </div>
-                        <div class="middle">
-                            <table>
-                                <tbody>
-				    <tr>
-                                       <td>게시물</td>
-                                       <td>348개</td>
-                                    </tr>
-                                    <tr>
-                                        <td>좋아요</td>
-                                        <td>1,000개</td>
-                                    </tr>
-                                    <tr>
-                                        <td>댓글</td>
-                                        <td>3,000개</td>
-                                    </tr>
-                                    <tr>
-                                        <td>동영상 수</td>
-                                        <td>30개</td>
-                                    </tr>
-                                    <tr>
-                                        <td>동영상 재생</td>
-                                        <td>15,000회</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="card">
+                            <div class="left2">
+                                <div class="middle">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                               <td>게시물</td>
+                                               <td>348개</td>
+                                            </tr>
+                                            <tr>
+                                                <td>좋아요</td>
+                                                <td>1,000개</td>
+                                            </tr>
+                                            <tr>
+                                                <td>댓글</td>
+                                                <td>3,000개</td>
+                                            </tr>
+                                            <tr>
+                                                <td>동영상 수</td>
+                                                <td>30개</td>
+                                            </tr>
+                                            <tr>
+                                                <td>동영상 재생</td>
+                                                <td>15,000회</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="right2" >
+
+                                <div class="pred">1회 노출 예상 모델료 : </div>
+                                <div class="pred">약<b2> 1,500,000,000원</b2></div>
+                            </div>
+
+
                         </div>
-                        
-                        <div class="pred">1회 노출 예상 모델료 : </div>  
-			<div class="pred">약<b2> 1,500,000,000원</b2></div>
                     </div>
                 </div>
                 <p class="bottom for-web">
@@ -176,6 +185,14 @@ p {
     padding: 45px 0 0 0;
 }
 
+.card .left2 {
+    display: inline-block;
+    vertical-align: top;
+    width: 330px;
+    border-right: 1px solid rgba(151, 151, 151, .5);
+    padding: 45px 0 0 0;
+}
+
 .card .left .profile-img {
     width: 259px;
     height: 259px;
@@ -214,7 +231,7 @@ p {
 
 .card .left table tr td:first-child {
     font-weight: 600;
-    width: 85px;
+    /*width: 85px;*/
 }
 
 .card .right {
@@ -223,6 +240,14 @@ p {
     width: calc(100% - 414px);
     padding: 0 0 0 47px;
     box-sizing: border-box;
+}
+
+.card .right2 {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    width: calc(100% - 331px);
+    padding: 145px 0 0 0px;
 }
 
 .card .right .top {
@@ -356,6 +381,7 @@ p {
     p {font-size: 1.2rem; line-height: 1.5rem; }
     .card { padding: 1.2rem 1.1rem 2.6rem; margin-bottom: 1rem;}
     .card .left {padding-top: 0;}
+    .card .left2 {padding-top: 0;}
     .card .left .profile-img { width: 10rem; height: 10rem; margin-bottom: .8rem;}
     .card .left .profile-name { font-size: 1rem; line-height: 2.2rem; margin-bottom: .8rem;}
     .card .left table { font-size: 1.4rem; }
@@ -363,6 +389,8 @@ p {
     
     .card .left,
     .card .right { width: 100%; display: block; border: none; margin: 0; padding: 0;}
+    .card .left2,
+    .card .right2 { width: 100%; display: block; border: none; margin: 0; padding: 0;}
 
     .container > button { width: 20.2rem; height: 4rem; font-size: 1.2rem;}
 

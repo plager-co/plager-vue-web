@@ -387,7 +387,7 @@
       <div class="container">
         <h1>플래거 서비스 이용에 도움이 필요하신가요?<br>
 언제든 연락주세요 </h1>
-        <p><span>010 - 3333 - 4444</span> plager.kr@gmail.com</p>
+        <p><span>070 - 8624 - 9967</span> plager@plager.co</p>
         <button @click='$router.push(" ")'>도움 요청하기</button>
       </div>
     </div>
@@ -873,7 +873,7 @@ background-size: cover;}
   left: -100vw;
   right: -100vw;
   margin: auto;
-  top: calc(32% - 10.5%);
+  top: calc(50% - 10.5%);
   position: absolute;
 }
 

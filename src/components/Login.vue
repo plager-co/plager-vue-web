@@ -8,7 +8,7 @@
                 <div class="card-wrap">
                     <div class="card">
                         <h2>인플루언서 로그인</h2>
-                        <h3>당신도 인플루언서가 될 수 있습니다.</h3>
+                        <h3>누구나 인플루언서가 될 수 있습니다.</h3>
                         <button @click="authenticate('instagram')" class='influ-login'>
                             <img src="../assets/insta-white.svg" alt="">
                             <b>인스타그램</b>으로 시작하기

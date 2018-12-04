@@ -42,13 +42,13 @@
 
     <div class="line"></div>
     <div class="container bottom">
-      <div class="right">
+      <div class="center">
           <span>101-10-21194.</span>
-          <span>폼 Form Co., Ltd.</span>
+          <span>폼 컴퍼니 Co., Ltd.</span>
           <span>권민성</span> <br class="for-mobile">
-          <span>서울시 강남구 수서동 708</span>  <br class="for-mobile">
-          <span>02-9273-1019</span>
-          <span>plager.kr@gmail.com</span>
+          <span>서울시 강남구 삼성로 540 빌딩 브로모 2F</span>  <br class="for-mobile">
+          <span>070-8624-9967</span>
+          <span>plager@plager.co</span>
       </div>
     </div>
   </div>
@@ -120,7 +120,7 @@ export default {};
   height: 73px;
 }
 
-.section.footer .container.bottom .right {
+.section.footer .container.bottom .center {
   padding-top: 20px;
 }
 
@@ -151,7 +151,7 @@ export default {};
 .section.footer .container .left > div ul li:nth-child(3) { white-space: nowrap; }
 .section.footer .container .right > div ul li:nth-child(3) { display: block; margin-top: 1.5rem; vertical-align: top;}
 
-.section.footer .container.bottom .right { padding: 1rem 0 1.4rem;}
+.section.footer .container.bottom .center { padding: 1rem 1rem 2rem;}
 .section.footer .container.bottom span { font-size: .7rem; }
 
 }

@@ -1,7 +1,6 @@
 <template>
   <div class="viewer">
-      <test-popup v-if='$store.getters.getTestPopup'></test-popup>
-      <!--<loading v-if='$store.getters.getTestPopup'></loading>-->
+      <loading v-if='$store.getters.getTestPopup'></loading>
       <div class="section start gray">
           <div class="container">
               <h1>내 영향력 테스트</h1>

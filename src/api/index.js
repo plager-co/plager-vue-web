@@ -128,7 +128,9 @@ export function postNewSurvey (survey, jwt) {
   export function fetchInfluencers() {
     return axios.get(`${API_URL}/users/filters/1/`)
   }
-
+  export function avgInfluencerEffectRate() {
+    return axios.get(`${API_URL}/users/filters/2/`)
+  }
 
 
   const actions = {  

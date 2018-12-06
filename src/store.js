@@ -6,7 +6,7 @@ import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
     userUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId, fetchAdByInfluencerId,
     fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, fetchCountInfluencerAds, userfileUpdate,
-    requestPassword, registerInfluencer, deleteUser} from '@/api'
+    requestPassword, registerInfluencer, deleteUser, avgInfluencerEffectRate} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -118,6 +118,7 @@ export const store = new Vuex.Store({
         total_play_count: 0,
         influencer_cost: 0,
         influencer_effect_rate: 0,
+        avg_influencer_effect_rate: 0,
     },
 
     actions: {
@@ -131,8 +132,6 @@ export const store = new Vuex.Store({
             return register(userData)
               .then(
                   function (response) {
-                      console.log(response);
-                      console.log(response.data.id);
                       if(response.data.id){
                         context.commit('closeJoinPopup');
                         context.commit('openCompletePopup', '광고주');
@@ -151,8 +150,6 @@ export const store = new Vuex.Store({
             return registerInfluencer(userData)
               .then(
                   function (response) {
-                      console.log(response);
-                      console.log(response.data.id);
                       if(response.data.id){
                         context.commit('closeJoinPopup');
                         context.commit('openCompletePopup', '인플루언서');
@@ -172,9 +169,7 @@ export const store = new Vuex.Store({
             const result = authenticate(userData)
               .then(
                   function (response) {
-                      console.log(response);
                             if(response.data.token){
-                                console.log(response.data);
                                 context.commit('setUserData', response.data);
                                 context.commit('setJwtToken', { jwt: response.data.token });
                                 if (response.data.user_type === 'influencer'){
@@ -202,8 +197,6 @@ export const store = new Vuex.Store({
             return requestPassword(userData)
               .then(
                   function (response) {
-                      console.log(response);
-                      console.log(response.data);
                       if(response.data){
                         context.commit('closeRequestPasswordPopup');
                         context.commit('isPasswordRequested');
@@ -250,7 +243,6 @@ export const store = new Vuex.Store({
             const result = fetchAdBySponserId(userData)
               .then(
                   function (response) {
-                            console.log(response.data.result);
                             if(response.data.result){
                                 context.commit('setAds', response.data.result);
                             }
@@ -265,7 +257,6 @@ export const store = new Vuex.Store({
             const result = fetchAdByInfluencerId(userData)
               .then(
                   function (response) {
-                            console.log(response.data.result);
                             if(response.data.result){
                                 context.commit('setAds', response.data.result);
                             }
@@ -280,7 +271,6 @@ export const store = new Vuex.Store({
             const result = fetchCountAds(userData)
               .then(
                   function (response) {
-                            console.log(response.data.result);
                             if(response.data.result){
                                 context.commit('setCountAds', response.data.result);
                             }
@@ -295,7 +285,6 @@ export const store = new Vuex.Store({
             const result = fetchCountInfluencerAds(userData)
               .then(
                   function (response) {
-                            console.log(response.data.result);
                             if(response.data.result){
                                 context.commit('setCountAds', response.data.result);
                             }
@@ -476,6 +465,20 @@ export const store = new Vuex.Store({
             context.commit('setAdData', userData);
             return Router.push('/sponsor-result');
           },
+        avgInfluencerEffectRate (context, userData) {
+            const result = avgInfluencerEffectRate(userData)
+              .then(
+                  function (response) {
+                            if(response.data.result){
+                                context.commit('setAvgInfluencerEffectRate', response.data.result);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
         updateAdInfluencer (context, userData) {
             return updateAdInfluencer(userData, context.getters.getJwt)
               .then(
@@ -494,6 +497,7 @@ export const store = new Vuex.Store({
             state.surveys = payload.surveys
           },
         setUserData (state, payload) {
+        state.user = payload;
         state.company_name = payload.company_name;
         state.company_category = payload.company_category;
         state.officer_name = payload.officer_name;
@@ -699,6 +703,9 @@ export const store = new Vuex.Store({
         setAds(state, payload){
             state.ads = payload;
         },
+        setAvgInfluencerEffectRate(state, payload){
+            state.avg_influencer_effect_rate = payload;
+        },
         setAdInfluencers(state, payload){
             state.adInfluencers = payload;
         },
@@ -751,6 +758,9 @@ export const store = new Vuex.Store({
     getters: {
         id(state){
             return state.user_id
+        },
+        user(state){
+            return state.user
         },
         user_id(state){
             return state.user_id
@@ -888,6 +898,9 @@ export const store = new Vuex.Store({
         },
         influencer_effect_rate(state){
             return state.influencer_effect_rate
+        },
+        avg_influencer_effect_rate(state){
+            return state.avg_influencer_effect_rate
         },
     }
 })

@@ -136,8 +136,6 @@ export default {
     async created(){
       this.total_follower_count = this.$store.getters.total_follower_count;
         this.user = this.$store.getters.user;
-        console.log('this.user');
-        console.log(this.user);
         await this.$store.dispatch('avgInfluencerEffectRate');
         this.avg_influencer_effect_rate = this.$store.getters.avg_influencer_effect_rate;
 

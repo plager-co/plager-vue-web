@@ -131,7 +131,10 @@ export function postNewSurvey (survey, jwt) {
   export function avgInfluencerEffectRate() {
     return axios.get(`${API_URL}/users/filters/2/`)
   }
+ export function fetchInstagramAccount (userData) {
 
+     return axios.post(`https://api.instagram.com/oauth/access_token`, userData, {headers: basic_header})
+ }
 
   const actions = {  
     // asynchronous operations

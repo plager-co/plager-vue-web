@@ -40,16 +40,17 @@ export default {
             this.$store.commit("userLogin", 'Sponsor')
             this.$router.push('/')
         },
-        async authenticate(provider) {
+        authenticate(provider) {
 
             var store = this.$store;
             var router = this.$router;
 
-          await this.$auth.authenticate(provider).then(function (response) {
+          this.$auth.authenticate(provider).then(function (response) {
             // Execute application logic after successful social authentication
                 console.log("authed")
                 console.log(response)
-              store.commit('setUserData', response.data);
+              if (response.data.token){
+                store.commit('setUserData', response.data);
                 store.commit('setJwtToken', { jwt: response.data.token });
                 if (response.data.user_type === 'influencer'){
                     console.log("influencer");
@@ -60,6 +61,11 @@ export default {
                     store.commit('setSponser', true);
                     router.push('/mypage');
                 }
+              } else {
+                store.commit('setInstagramCode', response.data.code);
+                router.push('/influencer-join');
+              }
+
 
           })
         }

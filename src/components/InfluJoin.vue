@@ -439,6 +439,14 @@ export default {
       ]
     };
   },
+    created(){
+
+        console.log("instagram_code");
+        console.log(this.$store.getters.instagram_code);
+
+        // await this.$store.dispatch('fetchInstagramAccount');
+
+    },
   methods: {
     async completeJoin() {
       // this.$store.commit("openCompletePopup", "인플루언서");

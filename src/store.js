@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
     userUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId, fetchAdByInfluencerId,
-    fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, fetchCountInfluencerAds, userfileUpdate,
+    fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, fetchInstagramAccount, fetchCountInfluencerAds, userfileUpdate,
     requestPassword, registerInfluencer, deleteUser, avgInfluencerEffectRate} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
@@ -119,6 +119,8 @@ export const store = new Vuex.Store({
         influencer_cost: 0,
         influencer_effect_rate: 0,
         avg_influencer_effect_rate: 0,
+        instagram_code: '',
+        instagram_account: {},
     },
 
     actions: {
@@ -231,6 +233,20 @@ export const store = new Vuex.Store({
                   function (response) {
                             if(response.data.result){
                                 Router.push("/influencer-complete")
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
+        fetchInstagramAccount (context, userData) {
+            const result = fetchInstagramAccount(userData)
+              .then(
+                  function (response) {
+                            if(response.data.result){
+                                context.commit('setInstagramAccount', response.data.result);
                             }
                         }
             ).catch(e => {
@@ -753,6 +769,12 @@ export const store = new Vuex.Store({
         },
         setPictureLink(state, payload) {
             state.picture_link = payload;
+        },
+        setInstagramCode(state, payload) {
+            state.instagram_code = payload;
+        },
+        setInstagramAccount(state, payload) {
+            state.instagram_account = payload;
         }
     },
     getters: {
@@ -901,6 +923,12 @@ export const store = new Vuex.Store({
         },
         avg_influencer_effect_rate(state){
             return state.avg_influencer_effect_rate
+        },
+        instagram_code(state){
+            return state.instagram_code
+        },
+        instagram_account(state){
+            return state.instagram_account
         },
     }
 })

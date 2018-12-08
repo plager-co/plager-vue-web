@@ -23,6 +23,7 @@ import InfluMyPage from '@/components/InfluMyPage'
 import InfluScore from '@/components/InfluScore'
 import InfluResult from '@/components/InfluResult'
 import InfluSIMResult from '@/components/InfluSIMResult'
+import InstagramRedirectPage from '@/components/InstagramRedirectPage'
 
 import NoAd from '@/components/NoAd'
 import JoinPopup from '@/components/JoinPopup'
@@ -164,6 +165,10 @@ export const routes = [
 
         }
       }
+    },
+    {
+      path: '/instagram-redirect',
+      component: InstagramRedirectPage,
     },
     {
       path: '/my-page',

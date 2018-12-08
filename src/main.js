@@ -18,11 +18,13 @@ Vue.use(VueCarousel)
 Vue.use(Meta)
 Vue.use(VueAuthenticate, {
   baseUrl: 'http://52.79.190.26', // Your API domain
-
+  tokenName: 'code',
   providers: {
     instagram: {
       clientId: '04754f7c54714cc59143d57665eaa235',
       redirectUri: 'http://52.79.190.26:8080/influencer-my-page' // Your client app URL
+    requiredUrlParams: ['scope'],
+      scope: ['basic','public_content'],
     }
   }
 })

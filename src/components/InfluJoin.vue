@@ -395,6 +395,8 @@ export default {
         country: null,
         gender: null,
         name: null,
+        instagram_client_id: null,
+        picture_link: null,
         birth_year: null,
         birth_month: null,
         birth_date: null,
@@ -450,7 +452,10 @@ export default {
         this.instagram_account = this.$store.getters.instagram_account;
         this.instagram = this.instagram_account.user.username;
         this.name = this.instagram_account.user.full_name;
-
+        this.picture_link = this.instagram_account.user.profile_picture;
+        this.instagram_client_id = this.$store.getters.instagram_client_id;
+        console.log('this.instagram_client_id');
+        console.log(this.instagram_client_id);
     },
   methods: {
     async completeJoin() {
@@ -581,6 +586,8 @@ export default {
               category: this.category,
               birth: this.birth,
               name: this.name,
+              instagram_client_id: this.instagram_client_id,
+              picture_link: this.picture_link,
               user_type: 'influencer',
           })
         },

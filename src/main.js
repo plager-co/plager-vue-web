@@ -22,7 +22,9 @@ Vue.use(VueAuthenticate, {
   providers: {
     instagram: {
       clientId: '04754f7c54714cc59143d57665eaa235',
-      redirectUri: 'http://127.0.0.1:8080/instagram-redirect' // Your client app URL
+      redirectUri: 'http://127.0.0.1:8080/instagram-redirect', // Your client app URL
+    requiredUrlParams: ['scope'],
+      scope: ['basic','public_content'],
     }
   }
 })

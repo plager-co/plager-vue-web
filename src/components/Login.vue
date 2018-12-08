@@ -63,6 +63,7 @@ export default {
                 }
               } else {
                 store.commit('setInstagramCode', response.data.code);
+                store.commit('setInstagramClientId', response.data.clientId);
                 router.push('/influencer-join');
               }
 

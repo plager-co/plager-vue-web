@@ -120,6 +120,7 @@ export const store = new Vuex.Store({
         influencer_effect_rate: 0,
         avg_influencer_effect_rate: 0,
         instagram_code: '',
+        instagram_client_id: '',
         instagram_account: {},
     },
 
@@ -773,6 +774,9 @@ export const store = new Vuex.Store({
         setInstagramCode(state, payload) {
             state.instagram_code = payload;
         },
+        setInstagramClientId(state, payload) {
+            state.instagram_client_id = payload;
+        },
         setInstagramAccount(state, payload) {
             state.instagram_account = payload;
         }
@@ -929,6 +933,9 @@ export const store = new Vuex.Store({
         },
         instagram_account(state){
             return state.instagram_account
+        },
+        instagram_client_id(state){
+            return state.instagram_client_id
         },
     }
 })

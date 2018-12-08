@@ -133,7 +133,7 @@ export function postNewSurvey (survey, jwt) {
   }
  export function fetchInstagramAccount (userData) {
 
-     return axios.post(`https://api.instagram.com/oauth/access_token`, userData, {headers: basic_header})
+     return axios.get(`${API_URL}/auth/instagram/` + userData)
  }
 
   const actions = {  

@@ -399,6 +399,7 @@ export default {
         birth_month: null,
         birth_date: null,
         birth: null,
+        instagram_account:{},
       categoryList: [
         {
           value: "뷰티",
@@ -439,12 +440,16 @@ export default {
       ]
     };
   },
-    created(){
+    async created(){
 
         console.log("instagram_code");
         console.log(this.$store.getters.instagram_code);
 
-        // await this.$store.dispatch('fetchInstagramAccount');
+        await this.$store.dispatch('fetchInstagramAccount', this.$store.getters.instagram_code);
+
+        this.instagram_account = this.$store.getters.instagram_account;
+        this.instagram = this.instagram_account.user.username;
+        this.name = this.instagram_account.user.full_name;
 
     },
   methods: {

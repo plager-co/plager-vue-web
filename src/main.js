@@ -21,7 +21,7 @@ Vue.use(VueAuthenticate, {
   tokenName: 'code',
   providers: {
     instagram: {
-      clientId: '04754f7c54714cc59143d57665eaa235',
+      clientId: 'd350de41c32e4c47b97061fa9747d367',
       redirectUri: 'http://52.79.190.26:8080/instagram-redirect', // Your client app URL
     requiredUrlParams: ['scope'],
       scope: ['basic','public_content'],

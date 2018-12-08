@@ -6,21 +6,21 @@
           <div class="container">
             <div class="card user">
                 <div class="profile">
-                    <div class="profile-img"></div>
-                    <div class="username">@abcdefg123</div>
+                    <img class="profile-img" v-bind:src="user.picture_link">
+                    <div class="username">@{{ user.instagram }}</div>
                 </div>
                 <div class="cols">
                     <div class="left">
-                        <p class='bold'>게시물 348 / 팔로워 7,512</p>
-                        <p>포지션: 마이크로 인플루언서</p>
-                        <p>부정 프로그램 사용 여부 : X</p>
+                        <p class='bold'>게시물 {{ numberWithCommas(user.total_post_count) }} / 팔로워 {{ numberWithCommas(user.total_follower_count) }}</p>
+                        <p>포지션: {{ user.level }} 인플루언서</p>
+                        <p>부정 프로그램 사용 여부 : {{ yesOrNo(user.is_fake_instagram) }}</p>
                         <p class='small'>(부정 프로그램 사용시 광고주에게 추천되지 않습니다.)</p>
-                        <p class='gray for-web'>전체 인플루언서 평균 영향력 지수 3.44%</p>
+                        <p class='gray for-web'>전체 인플루언서 평균 영향력 지수 {{ Math.round(avg_influencer_effect_rate * 100) / 100 }}%</p>
                     </div>
                     <div class="right">
                         <h1>내 영향력 지수</h1>
-                        <p class='gray for-mobile'>전체 인플루언서 <br>평균 영향력 지수 3.44%</p>
-                        <button class="percent">3.44%</button>
+                        <p class='gray for-mobile'>전체 인플루언서 <br>평균 영향력 지수 {{ Math.round(avg_influencer_effect_rate * 100) / 100  }}%</p>
+                        <button class="percent">{{ Math.round(user.influencer_effect_rate * 100) / 100 }}%</button>
                     </div>
                 </div>
             </div>
@@ -32,35 +32,31 @@
                     <tbody>
                       <tr>
                         <td>좋아요</td>
-                        <td>1,000개</td>
+                        <td>{{ numberWithCommas(user.three_month_like_count) }}개</td>
                       </tr>
                       <tr>
                         <td>댓글</td>
-                        <td>2,000개</td>
+                        <td>{{ numberWithCommas(user.three_month_comment_count) }}개</td>
                       </tr>
 		       <tr>
                         <td>내 댓글</td>
-                        <td>2,000개</td>
+                        <td>{{ numberWithCommas(user.three_month_influencer_comment_count) }}개</td>
                       </tr>
                       <tr>
                         <td>동영상</td>
-                        <td>15,000개</td>
+                        <td>{{ numberWithCommas(user.three_month_movie_count) }}개</td>
                       </tr>
 		      <tr>
                         <td>동영상 재생</td>
-                        <td>15,000회</td>
+                        <td>{{ numberWithCommas(user.three_month_play_count) }}회</td>
                       </tr>
                       <tr>
-                        <td>저장</td>
-                        <td>100회</td>
+                        <td>부정 워딩 수</td>
+                        <td>{{ numberWithCommas(user.three_month_negative_comment_count) }}회</td>
                       </tr>
                       <tr>
-                        <td>게시물 평균 도달</td>
-                        <td>100,000명</td>
-                      </tr>
-                      <tr>
-                        <td>게시물 평균 노출</td>
-                        <td>300,000명</td>
+                        <td>제품 문의 수</td>
+                        <td>{{ numberWithCommas(user.three_month_inquery_comment_count) }}명</td>
                       </tr>
                     </tbody>
                   </table>
@@ -109,7 +105,7 @@
               </div>
             </div>
             <div class="card bottom">
-              <h1 :class='{completed : isCompleted}'>홍길동 님의 <b>1회</b> 예상 모델료는 <br class="for-mobile"> <b>약 110,500원</b> 입니다.</h1>
+              <h1 :class='{completed : isCompleted}'>{{ user.name }} 님의 <b>1회</b> 예상 모델료는 <br class="for-mobile"> <b>약 {{ numberWithCommas(user.price) }}원</b> 입니다.</h1>
               <p v-if='!isCompleted'>플래거 인플루언서로 활동이 가능합니다.<br>
               활동을 원하신다면 신청 버튼을 눌러주세요.</p>
              <button class="submit" @click='btnClick'>{{btnMsg}}</button>
@@ -133,12 +129,34 @@ export default {
       isImpossiblePopup: true,
       isCompleted: false ,
     total_follower_count: 0,
+    user: {},
+    avg_influencer_effect_rate: 0,
     }
   },
-    created(){
-      this.total_follower_count = this.$store.getters.total_follower_count
+    async created(){
+      this.total_follower_count = this.$store.getters.total_follower_count;
+        this.user = this.$store.getters.user;
+        await this.$store.dispatch('avgInfluencerEffectRate');
+        this.avg_influencer_effect_rate = this.$store.getters.avg_influencer_effect_rate;
+
+
     },
   methods: {
+      yesOrNo(x){
+          if (x){
+            return '예'
+          }
+            else{
+            return '아니요'
+          }
+      },
+    numberWithCommas(x) {
+          if (x){
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        } else {
+              return 0;
+          }
+    },
     btnClick(){
       console.log(this.total_follower_count);
       if (this.total_follower_count > 1000){

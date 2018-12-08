@@ -16,7 +16,7 @@
 
               <div class="card">
                 <div class="profile">
-                    <div class="profile-img"></div>
+                    <img class="profile-img" v-bind:src="user.picture_link">
                     <div class="state">3개월 계약</div>
                 </div>
                 <div class="data for-web">
@@ -114,9 +114,21 @@ export default {
           { dataName: "광고주계정 인바운드", dataVal: "0회" },
           { dataName: "중복팔로워", dataVal: "230명" }
         ]
-      }
+      },
+         user: {}
     };
   },
+    methods: {
+        yesOrNo(x) {
+            if (x) {
+                return '예'
+            }
+            else {
+                return '아니요'
+            }
+        },
+
+    },
   created(){
 
 			var chart5
@@ -124,6 +136,31 @@ export default {
 			var chart7
 			var chart8
 			var chart9
+
+            this.user = this.$store.getters.user;
+
+			function numberWithCommas(x) {
+                if (x) {
+                    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                } else {
+                    return 0;
+                }
+            }
+
+			this.paymentData = {
+                top: [
+                  { dataName: "팔로워", dataVal: numberWithCommas(this.user.total_follower_count) + "개" },
+                  { dataName: "좋아요", dataVal: numberWithCommas(this.user.three_month_like_count) + "개" },
+                  { dataName: "댓글", dataVal: numberWithCommas(this.user.three_month_comment_count) + "개" },
+                  { dataName: "내댓글", dataVal: numberWithCommas(this.user.three_month_influencer_comment_count) + "회" }
+                ],
+                bottom: [
+                  { dataName: "동영상", dataVal: numberWithCommas(this.user.three_month_movie_count) + "개" },
+                  { dataName: "동영상재생", dataVal: numberWithCommas(this.user.three_month_play_count) + "회" },
+                  { dataName: "부정워딩수", dataVal: numberWithCommas(this.user.three_month_negative_comment_count) + "회" },
+                  { dataName: "제품문의수", dataVal: numberWithCommas(this.user.three_month_inquery_comment_count) + "명" }
+                ]
+              }
 
 			// 반응형
 			// $(window).on("resize", function(){

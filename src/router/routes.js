@@ -18,6 +18,7 @@ import InfluList from '@/components/InfluList'
 import InfluComplete from '@/components/InfluComplete'
 import InfluAdList from '@/components/InfluAdList'
 import InfluMyScore from '@/components/InfluMyScore'
+import InfluMyScoreLoading from '@/components/InfluMyScoreLoading'
 import InfluMyPage from '@/components/InfluMyPage'
 import InfluScore from '@/components/InfluScore'
 import InfluResult from '@/components/InfluResult'
@@ -119,6 +120,10 @@ export const routes = [
     {
       path: '/influencer-my-score',
       component: InfluMyScore
+    },
+    {
+      path: '/influencer-my-score-loading',
+      component: InfluMyScoreLoading
     },
     {
       path: '/influencer-my-page',

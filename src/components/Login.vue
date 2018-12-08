@@ -40,61 +40,26 @@ export default {
             this.$store.commit("userLogin", 'Sponsor')
             this.$router.push('/')
         },
-        authenticate: function (provider) {
-            console.log('success')
-              var userData = {
-                  "birth":"1959/10/19",
-                    "category":"홈인테리어",
-                    "company_category":null,
-                    "company_name":null,
-                    "company_number":null,
-                    "company_website":null,
-                    "contact":"awer",
-                    "country":"SS",
-                    "created_at":"Sat, 24 Nov 2018 15:37:31 GMT",
-                    "document_link":null,
-                    "email":"uniqcon89@gmail.com",
-                    "facebook":null,
-                    "gender":"female",
-                    "id":84,
-                    "influencer_cost":null,
-                    "influencer_effect_rate":3.54,
-                    "instagram":"awer",
-                    "is_blocked":0,
-                    "is_delete_requested":null,
-                    "is_fake_instagram":1,
-                    "is_open_score":1,
-                    "is_recommended":null,
-                    "is_removed":0,
-                    "last_login_at":"Sat, 01 Dec 2018 21:34:57 GMT",
-                    "level":null,
-                    "name":"awer",
-                    "officer_name":null,
-                    "picture_link":"http://127.0.0.1:8083/static/uploads/2018-11-24T06:37:51.127366Screenshot_from_2018-11-12_13-30-25.png",
-                    "sid":null,
-                    "social":null,
-                    "tag":null,
-                    "tax_email":null,
-                    "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1bmlxY29uODlAZ21haWwuY29tIiwiaWF0IjoxNTQzNjY3NzE1LCJleHAiOjE1NDM2Njk1MTV9.KXt9fctygOGc9OuLyErqw9dgvt5WwM9UHacE67OCXD4",
-                    "total_comment_count":null,
-                    "total_follower_count":1001,
-                    "total_like_count":1001,
-                    "total_movie_count":null,
-                    "total_paid":10000,
-                    "total_play_count":null,
-                    "total_post_count":null,
-                    "updated_at":"Sat, 24 Nov 2018 18:21:37 GMT",
-                    "user_type":"influencer"
-              }
-              this.$store.commit('setUserData', userData);
-              this.$store.commit('setJwtToken', {jwt: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1bmlxY29uODlAZ21haWwuY29tIiwiaWF0IjoxNTQzNjY4NDM1LCJleHAiOjE1NDM2NzAyMzV9.UW4PLRJgOiYVwXUn2jUi_B61vE7zjmcGcXaDRX9POXA"});
-              this.$store.commit('setInfluencer', true);
-                this.$router.push('/influencer-my-page');
-                
-          this.$auth.authenticate(provider).then(function () {
+        async authenticate(provider) {
+
+            var store = this.$store;
+            var router = this.$router;
+
+          await this.$auth.authenticate(provider).then(function (response) {
             // Execute application logic after successful social authentication
                 console.log("authed")
-                console.log(this)
+                console.log(response)
+              store.commit('setUserData', response.data);
+                store.commit('setJwtToken', { jwt: response.data.token });
+                if (response.data.user_type === 'influencer'){
+                    console.log("influencer");
+                    store.commit('setInfluencer', true);
+                    router.push('/influencer-my-page');
+                } else {
+                    console.log("sponser");
+                    store.commit('setSponser', true);
+                    router.push('/mypage');
+                }
 
           })
         }

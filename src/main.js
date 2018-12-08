@@ -17,7 +17,7 @@ Vue.use(VueClipboard)
 Vue.use(VueCarousel)
 Vue.use(Meta)
 Vue.use(VueAuthenticate, {
-  baseUrl: 'http://52.79.190.26:8083', // Your API domain
+  baseUrl: 'http://52.79.190.26', // Your API domain
 
   providers: {
     instagram: {

@@ -135,7 +135,10 @@ export function postNewSurvey (survey, jwt) {
 
      return axios.get(`${API_URL}/auth/instagram/` + userData)
  }
+export function fetchTesterByInstagramId (userData) {
 
+     return axios.get(`${API_URL}/testers/filter/0/` + userData + '/')
+ }
   const actions = {  
     // asynchronous operations
     loadSurveys(context) {

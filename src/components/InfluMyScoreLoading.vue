@@ -1,6 +1,6 @@
 <template>
   <div class="viewer">
-      <loading v-if='$store.getters.getTestPopup'></loading>
+      <!--<loading v-if='$store.getters.getTestPopup'></loading>-->
       <div class="section start gray">
           <div class="container">
               <h1>내 영향력 테스트</h1>
@@ -93,11 +93,11 @@
 </template>
 
 <script>
-import TestPopup from './common/TestPopup'
+// import TestPopup from './common/TestPopup'
 import Loading from './common/Loading'
 
 export default {
-    components: { TestPopup, Loading },
+    components: { Loading },
     methods: {
         openTestPopup(){
             this.$store.commit('openTestPopup')

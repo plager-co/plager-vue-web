@@ -6,7 +6,8 @@ import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
     userUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId, fetchAdByInfluencerId,
     fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, fetchInstagramAccount, fetchCountInfluencerAds, userfileUpdate,
-    requestPassword, registerInfluencer, deleteUser, avgInfluencerEffectRate} from '@/api'
+    requestPassword, registerInfluencer, deleteUser, avgInfluencerEffectRate,
+    fetchTesterByInstagramId} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -122,6 +123,7 @@ export const store = new Vuex.Store({
         instagram_code: '',
         instagram_client_id: '',
         instagram_account: {},
+        testers: [],
     },
 
     actions: {
@@ -322,6 +324,20 @@ export const store = new Vuex.Store({
                         }
             ).catch(e => {
               context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
+        fetchTesterByInstagramId (context, userData) {
+            const result = fetchTesterByInstagramId(userData)
+              .then(
+                  function (response) {
+                            if(response.data.result){
+                                context.commit('setTesters', response.data.result);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorPopup');
             });
             return result
 
@@ -624,6 +640,12 @@ export const store = new Vuex.Store({
             state.alertMsg = '10초 후 다시 시도 ';
             state.alertMobileMsg = '부탁드립니다.';
         },
+        errorPopup(state){
+            state.isAlertPopup = true;
+            state.email = '';
+            state.alertMsg = '잠시 후 다시 시도 ';
+            state.alertMobileMsg = '부탁드립니다.';
+        },
         errorRequestPasswordPopup(state){
             state.isAlertPopup = true;
             state.email = '';
@@ -714,6 +736,19 @@ export const store = new Vuex.Store({
                 state.company_number = '';
             }
         },
+        isFailedTester(state){
+            state.isAlertPopup = true;
+            state.email = '';
+
+            state.alertMsg = '잠시 후 다시 ';
+            state.alertMobileMsg = '시도해주세요.';
+        },
+        isNoTester(state){
+            state.isAlertPopup = true;
+            state.email = '';
+            state.alertMsg = '인스타그램에 ';
+            state.alertMobileMsg = '없는 아이디입니다.';
+        },
         filterAdList(state, payload){
             state.filterAds = payload;
         },
@@ -779,6 +814,9 @@ export const store = new Vuex.Store({
         },
         setInstagramAccount(state, payload) {
             state.instagram_account = payload;
+        },
+        setTesters(state, payload) {
+            state.testers = payload;
         }
     },
     getters: {
@@ -936,6 +974,9 @@ export const store = new Vuex.Store({
         },
         instagram_client_id(state){
             return state.instagram_client_id
+        },
+        testers(state){
+            return state.testers
         },
     }
 })

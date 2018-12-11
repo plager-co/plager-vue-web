@@ -53,7 +53,7 @@
                         <div class="input-set">
                             <div class='label'>이름</div>
                             <div class="input-wrap">
-                                <input type="text"  v-model="email">
+                                <input type="text"  v-model=name>
                             </div>
                         </div>
                         <div class="input-set">

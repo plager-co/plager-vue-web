@@ -505,7 +505,13 @@ export const store = new Vuex.Store({
         setUserData (state, payload) {
         state.user = payload;
         state.navMenuList.forEach(function(val){
-            val.username = payload.name;
+            if(payload.name){
+                val.username = payload.name;
+            } else if (payload.officer_name){
+                val.username = payload.officer_name;
+            } else {
+                val.username = payload.instagram;
+            }
         });
         state.company_name = payload.company_name;
         state.company_category = payload.company_category;

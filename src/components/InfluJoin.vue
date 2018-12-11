@@ -359,13 +359,10 @@
                         <div class="input-set">
                                 <input type="checkbox" name="keep" id="keep-register" v-model="keep_register">
                                 <label id="keep-register-label" for="keep-register" style="font-size:15px;">
-                                    <span class='checkbox'></span>
+                                    <span id="checkbox-register" class='checkbox'></span>
                                     <a href="/policy" target="_blank">이용약관</a>과 <a href="/private-policy" target="_blank">개인정보처리방침</a>에 동의합니다.
                                 </label>
                             </div>
-                        <p v-if="errors.length" style="   font-size: 15px; color: red;">
-                          <span >{{ errors[0] }}<br></span>
-                      </p>
                         <button @click='completeJoin'>가입하기</button>
                     </div>
                 </div>
@@ -565,9 +562,9 @@ export default {
 
           if (!this.keep_register) {
             this.errors.push('약관 확인후 동의시 동의 버튼을 눌러주세요.');
-            document.getElementById('keep-register-label').style.color='red';
+            document.getElementById('checkbox-register').style.border='2px solid red';
           } else {
-              document.getElementById('keep-register-label').style.color='black';
+              document.getElementById('checkbox-register').style.border='1px solid #d9dee8';
           }
 
 

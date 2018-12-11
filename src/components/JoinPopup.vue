@@ -45,14 +45,11 @@
             <div class="info">
                 <input type="checkbox" name="keep" id="keep-register" v-model="keep_register">
                 <label for="keep-register">
-                    <span class='checkbox'></span>
+                    <span id="checkbox-register" class='checkbox'></span>
                     <a href="/policy" target="_blank">이용약관</a>과 <a href="/private-policy" target="_blank">개인정보처리방침</a>에 동의합니다.
                 </label>
             </div>
             <div class="desc">광고주로 등록하시면 플래거의 SIM 서비스 소개서를 바로 확인할 수 있습니다.</div>
-            <p v-if="errors.length" style="color:red;">
-                  <span v-for="error in errors">{{ error }}<br></span>
-              </p>
             <div class="btn-wrap">
                  <button class='next' @click="completeJoin()" type="submit">상세정보등록</button>
                 <button class='prev' @click='$store.commit("closeJoinPopup")'>취소</button>
@@ -123,9 +120,9 @@ export default {
 
           if (!this.keep_register) {
             this.errors.push('약관 확인후 동의시 동의 버튼을 눌러주세요.');
-             document.getElementById('keep-register').style.border='2px solid red';
+             document.getElementById('checkbox-register').style.border='2px solid red';
           } else {
-            document.getElementById('keep-register').style.border='1px solid #d9dee8';
+            document.getElementById('checkbox-register').style.border='1px solid #d9dee8';
           }
 
           if (!this.errors.length) {

@@ -8,9 +8,6 @@
 
 
     <h2>광고주 로그인</h2>
-    <h4 v-if="errors.length">
-          <span v-for="error in errors">{{ error }}</span>
-      </h4>
     <input id="email"
       v-model="email"
       type="email"

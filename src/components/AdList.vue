@@ -2,8 +2,7 @@
 <div class="viewer">
     <div class="section start gray">
         <div class="container">
-            <h1>광고 리스트</h1>
-            <div class="date">{{ status }}</div>
+            <h1>{{ status }}</h1>
 
             <div class="cards" v-for='(ad, i) in ads'>
                 <div class="card">
@@ -79,15 +78,15 @@ export default {
       function getStatus(filterAds){
           var statusAds = '';
           if (filterAds === 'registered'){
-          statusAds = '검토 대기중';
+          statusAds = '서비스 대기중';
           } else if (filterAds === 'reviewed'){
-              statusAds = '검토 완료';
+              statusAds = '서비스 대기중';
           } else if (filterAds === 'paid'){
-              statusAds = '광고 준비중';
+              statusAds = '서비스 대기중';
           } else if (filterAds === 'started'){
-              statusAds = '광고 진행중';
+              statusAds = '서비스 진행중';
           } else if (filterAds === 'completed'){
-            statusAds = '광고 완료';
+            statusAds = '서비스 완료';
           }
           return statusAds;
       }

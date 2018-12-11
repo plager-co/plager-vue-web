@@ -32,16 +32,21 @@ export const store = new Vuex.Store({
         navMenuList: [
             {
             username: "",
-            title: "인플루언서 등록",
-            url: "/influencer-join",
-            auth: '',
-            },
-            {
-            username: "",
             title: "로그인",
             url: "/login",
             auth: '',
             },
+            {
+            username: "",
+            auth: 'sponsor',
+            },
+            {
+            username: "",
+            auth: 'influencer',
+            }
+
+        ],
+        mobileNavMenuList: [
             {
             username: "",
             auth: 'sponsor',
@@ -513,6 +518,15 @@ export const store = new Vuex.Store({
                 val.username = payload.instagram;
             }
         });
+        state.mobileNavMenuList.forEach(function(val){
+            if(payload.name){
+                val.username = payload.name;
+            } else if (payload.officer_name){
+                val.username = payload.officer_name;
+            } else {
+                val.username = payload.instagram;
+            }
+        });
         state.company_name = payload.company_name;
         state.company_category = payload.company_category;
         state.officer_name = payload.officer_name;
@@ -568,6 +582,9 @@ export const store = new Vuex.Store({
             state.jwt = '';
             state.user_type = '';
             state.navMenuList.forEach(function(val){
+            val.username = '';
+            });
+            state.mobileNavMenuList.forEach(function(val){
             val.username = '';
             });
             state.isSponsor = false;
@@ -874,6 +891,9 @@ export const store = new Vuex.Store({
 
         GetNavMenuList(state) {
             return state.navMenuList
+        },
+        GetMobileNavMenuList(state) {
+            return state.mobileNavMenuList
         },
         getJwt (state) {
         return state.jwt

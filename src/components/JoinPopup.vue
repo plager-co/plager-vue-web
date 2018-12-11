@@ -135,7 +135,7 @@ export default {
               email: this.email,
               password: this.password,
               company_number: this.company_number,
-              user_type: 'sponser',
+              user_type: 'sponsor',
           })
         },
         checkEmail () {

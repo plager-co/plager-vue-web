@@ -57,8 +57,8 @@ export default {
                     store.commit('setInfluencer', true);
                     router.push('/influencer-my-page');
                 } else {
-                    console.log("sponser");
-                    store.commit('setSponser', true);
+                    console.log("sponsor");
+                    store.commit('setSponsor', true);
                     router.push('/mypage');
                 }
               } else {

@@ -73,7 +73,7 @@ export default {
     };
   },
   created: async function(){
-      await this.$store.dispatch('fetchAdBySponserId', this.$store.getters.user_id);
+      await this.$store.dispatch('fetchAdBySponsorId', this.$store.getters.user_id);
       var filterAds = this.$store.getters.filterAds;
       function getStatus(filterAds){
           var statusAds = '';

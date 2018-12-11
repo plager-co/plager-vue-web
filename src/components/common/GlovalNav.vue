@@ -8,7 +8,7 @@
           <div class="login" @click='$router.push("/login")'>로그인</div>
           <button @click='$router.push("/influencer-my-score")'>내 영향력 테스트</button>
           <div class="menu" @click='sponsorJoinCall' v-if="($store.getters.isAuthenticated === false)">광고주 등록</div>
-          <div class="menu" @click='menu.url' v-for='(menu, i) in $store.getters.GetNavMenuList' :key='i'  v-if="($store.getters.isAuthenticated === false & menu.auth === '') | ($store.getters.isSponserAccount === true & menu.auth === 'sponser')  | ($store.getters.isInfluencerAccount === true & menu.auth === 'influencer')">
+          <div class="menu" @click='menu.url' v-for='(menu, i) in $store.getters.GetNavMenuList' :key='i'  v-if="($store.getters.isAuthenticated === false & menu.auth === '') | ($store.getters.isSponsorAccount === true & menu.auth === 'sponsor')  | ($store.getters.isInfluencerAccount === true & menu.auth === 'influencer')">
             {{menu.title}}
           </div>
         </div>
@@ -31,7 +31,9 @@
         <div class="menu-wrapper">
           <ul>
             <li v-if="($store.getters.isAuthenticated === false)"><a @click='sponsorJoinCall'>광고주 등록</a></li>
-            <li v-for='(menu, i) in $store.getters.GetNavMenuList' :key='i'  v-if="($store.getters.isAuthenticated === false & menu.auth === '') | ($store.getters.isSponserAccount === true & menu.auth === 'sponser')  | ($store.getters.isInfluencerAccount === true & menu.auth === 'influencer')">
+            <li v-if="($store.getters.user_type === 'influencer')"><a @click='$router.push("/influencer-score")'>내 영향력 지수</a></li>
+            <li v-if="($store.getters.user_type === 'sponsor')"><a @click='$router.push("/sponsor-filter")'>SIM 서비스 신청</a></li>
+            <li v-for='(menu, i) in $store.getters.GetNavMenuList' :key='i'  v-if="($store.getters.isAuthenticated === false & menu.auth === '') | ($store.getters.isSponsorAccount === true & menu.auth === 'sponsor')  | ($store.getters.isInfluencerAccount === true & menu.auth === 'influencer')">
 
                 <a class="user-data"
                 v-if="menu.username"
@@ -90,7 +92,10 @@ export default {
          title:'SIM 서비스 진행 현황', url:'/sponsor-list'
       },
       {
-         title:'마이페이지', url:'/influencer-my-page'
+         title:'마이 페이지', url:'/influencer-my-page'
+      },
+      {
+         title:'로그아웃', url:'/logout'
       }
    ]
       } else if (this.$store.getters.user_type === 'sponsor') {
@@ -105,7 +110,7 @@ export default {
          title:'SIM 진행 인플루언서', url:'/sponsor-sim'
       },
       {
-         title:'마이페이지', url:'/mypage'
+         title:'로그아웃', url:'/logout'
       }
    ]
       }

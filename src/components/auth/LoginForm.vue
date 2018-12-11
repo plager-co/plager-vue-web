@@ -8,9 +8,6 @@
 
 
     <h2>광고주 로그인</h2>
-    <h4 v-if="errors.length">
-          <span v-for="error in errors">{{ error }}</span>
-      </h4>
     <input id="email"
       v-model="email"
       type="email"
@@ -53,15 +50,19 @@ export default {
 
           this.errors = [];
 
+          document.getElementById('email').style.border='1px solid #d9dee8';
+          document.getElementById('password').style.border='1px solid #d9dee8';
+
           if (!this.email && this.password) {
-            this.errors.push('이메일을 입력해주세요.');
+             document.getElementById('email').style.border='2px solid red';
           }
           if (this.email && !this.password) {
-            this.errors.push('패스워드를 입력해주세요.');
+             document.getElementById('password').style.border='2px solid red';
           }
 
           if     (!this.email && !this.password) {
-            this.errors.push('이메일과 패스워드를 입력해주세요.');
+            document.getElementById('email').style.border='2px solid red';
+            document.getElementById('password').style.border='2px solid red';
           }
 
           var headers = [];

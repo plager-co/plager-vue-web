@@ -10,19 +10,19 @@
                         <button class="circle"  @click="ShowStartedAd()">
                             {{ count_ads.count_started_ads }}
                         </button>
-                        <div class="count-name">서비스중</div>
+                        <div class="count-name">서비스 진행중</div>
                     </div>
                     <div class="col">
                         <button class="circle" @click="ShowRegisteredAd()">
                             {{ count_ads.count_registered_ads }}
                         </button>
-                        <div class="count-name">계약중</div>
+                        <div class="count-name">서비스 대기중</div>
                     </div>
                     <div class="col">
                         <button class="circle"  @click="ShowCompletedAd()">
                             {{ count_ads.count_completed_ads }}
                         </button>
-                        <div class="count-name">서비스완료</div>
+                        <div class="count-name">서비스 완료</div>
                     </div>
                 </div>
             </div>
@@ -123,7 +123,7 @@
                                 <!-- We can't use a normal button element here, as it would become the target of the label. -->
                                 <div class="select-button">
                                   <!-- Display the filename if a file has been selected. -->
-                                    <h6 style="font-size: 12px;"><a v-bind:href="document_link" target="_blank">{{ document_link }}</a></h6>
+                                    <h6 style="font-size: 12px;"><label v-if="!document_link" class="select-button file-select" for="document-file"><u style="color: navy;">사업자등록증을 업로드 해주세요</u></label><a v-if="document_link" v-bind:href="document_link" target="_blank">사업자 등록 완료</a></h6>
                                 </div>
                                 <!-- Now, the file input that we hide. -->
                                 <input style="display: none;" type="file" id="document-file" ref="document_file" v-on:change="handleDocumentFileUpload()"/>

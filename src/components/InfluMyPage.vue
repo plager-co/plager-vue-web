@@ -9,19 +9,19 @@
                         <button class="circle"  @click="ShowStartedAd()">
                             {{ count_ads.count_started_ads }}
                         </button>
-                        <div class="count-name">서비스중</div>
+                        <div class="count-name">서비스 진행중</div>
                     </div>
                     <div class="col">
                         <button class="circle" @click="ShowRegisteredAd()">
                             {{ count_ads.count_registered_ads }}
                         </button>
-                        <div class="count-name">계약중</div>
+                        <div class="count-name">서비스 대기중</div>
                     </div>
                     <div class="col">
                         <button class="circle"  @click="ShowCompletedAd()">
                             {{ count_ads.count_completed_ads }}
                         </button>
-                        <div class="count-name">서비스완료</div>
+                        <div class="count-name">서비스 완료</div>
                     </div>
                 </div>
             </div>

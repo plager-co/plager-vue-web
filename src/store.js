@@ -4,10 +4,10 @@ import Vuex from 'vuex'
 // imports of AJAX functions will go here
 import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
-    userUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponserId, fetchAdByInfluencerId,
+    userUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponsorId, fetchAdByInfluencerId,
     fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, fetchInstagramAccount, fetchCountInfluencerAds, userfileUpdate,
     requestPassword, registerInfluencer, deleteUser, avgInfluencerEffectRate,
-    fetchTesterByInstagramId} from '@/api'
+    fetchTesterByInstagramId, fetchCountryName} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -31,11 +31,6 @@ export const store = new Vuex.Store({
         file:'',
         navMenuList: [
             {
-            title: "인플루언서 등록",
-            url: "/influencer-join",
-            auth: '',
-            },
-            {
             username: "",
             title: "로그인",
             url: "/login",
@@ -43,39 +38,22 @@ export const store = new Vuex.Store({
             },
             {
             username: "",
-            title: "영향력 지수 확인 & 광고 신청",
-            url: "/influencer-score",
+            auth: 'sponsor',
+            },
+            {
+            username: "",
             auth: 'influencer',
+            }
+
+        ],
+        mobileNavMenuList: [
+            {
+            username: "",
+            auth: 'sponsor',
             },
             {
             username: "",
-            title: "마이 페이지",
-            url: "/influencer-my-page",
             auth: 'influencer',
-            },
-            {
-            username: "",
-            title: "광고 신청",
-            url: "/sponsor-filter",
-            auth: 'sponser',
-            },
-            {
-            username: "",
-            title: "마이 페이지",
-            url: "/mypage",
-            auth: 'sponser',
-            },
-            {
-            username: "",
-            title: "로그아웃",
-            url: "/logout",
-            auth: 'influencer',
-            },
-            {
-            username: "",
-            title: "로그아웃",
-            url: "/logout",
-            auth: 'sponser',
             }
 
         ],
@@ -87,7 +65,7 @@ export const store = new Vuex.Store({
         user_id: '',
         id: '',
         isInfluencer: false,
-        isSponser: false,
+        isSponsor: false,
         company_name: '',
         company_category: '',
         officer_name: '',
@@ -182,8 +160,8 @@ export const store = new Vuex.Store({
                                     context.commit('setInfluencer', true);
                                     Router.push('/influencer-my-page');
                                 } else {
-                                    console.log("sponser");
-                                    context.commit('setSponser', true);
+                                    console.log("sponsor");
+                                    context.commit('setSponsor', true);
                                     Router.push('/mypage');
                                 }
 
@@ -258,8 +236,8 @@ export const store = new Vuex.Store({
             return result
 
           },
-        fetchAdBySponserId (context, userData) {
-            const result = fetchAdBySponserId(userData)
+        fetchAdBySponsorId (context, userData) {
+            const result = fetchAdBySponsorId(userData)
               .then(
                   function (response) {
                             if(response.data.result){
@@ -338,6 +316,20 @@ export const store = new Vuex.Store({
                         }
             ).catch(e => {
               context.commit('errorPopup');
+            });
+            return result
+
+          },
+        fetchCountryName (context, userData) {
+            const result = fetchCountryName(userData)
+              .then(
+                  function (response) {
+                            if(response.data.result){
+                                context.commit('setCountry', response.data.result.korean_name);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
             });
             return result
 
@@ -531,6 +523,24 @@ export const store = new Vuex.Store({
           },
         setUserData (state, payload) {
         state.user = payload;
+        state.navMenuList.forEach(function(val){
+            if(payload.name){
+                val.username = payload.name;
+            } else if (payload.officer_name){
+                val.username = payload.officer_name;
+            } else {
+                val.username = payload.instagram;
+            }
+        });
+        state.mobileNavMenuList.forEach(function(val){
+            if(payload.name){
+                val.username = payload.name;
+            } else if (payload.officer_name){
+                val.username = payload.officer_name;
+            } else {
+                val.username = payload.instagram;
+            }
+        });
         state.company_name = payload.company_name;
         state.company_category = payload.company_category;
         state.officer_name = payload.officer_name;
@@ -566,8 +576,8 @@ export const store = new Vuex.Store({
         localStorage.token = payload.jwt.token
         state.jwt = payload.jwt
       },
-        setSponser (state, payload) {
-        state.isSponser = true
+        setSponsor (state, payload) {
+        state.isSponsor = true
       },
          setInfluencer (state, payload) {
         state.isInfluencer = true
@@ -580,12 +590,18 @@ export const store = new Vuex.Store({
       },
 
         userLogin(state, payload){
-            state.navMenuList[1].username = '홍길동'
             state.user_type = payload
         },
         userLogout(state, payload){
             state.jwt = '';
-            state.isSponser = false;
+            state.user_type = '';
+            state.navMenuList.forEach(function(val){
+            val.username = '';
+            });
+            state.mobileNavMenuList.forEach(function(val){
+            val.username = '';
+            });
+            state.isSponsor = false;
             state.isInfluencer = false;
         },
         openJoinPopup(state){
@@ -817,6 +833,9 @@ export const store = new Vuex.Store({
         },
         setTesters(state, payload) {
             state.testers = payload;
+        },
+        setCountry(state, payload) {
+            state.country = payload;
         }
     },
     getters: {
@@ -890,6 +909,9 @@ export const store = new Vuex.Store({
         GetNavMenuList(state) {
             return state.navMenuList
         },
+        GetMobileNavMenuList(state) {
+            return state.mobileNavMenuList
+        },
         getJwt (state) {
         return state.jwt
         },
@@ -897,8 +919,8 @@ export const store = new Vuex.Store({
         isAuthenticated (state) {
         return isValidJwt(state.jwt)
         },
-        isSponserAccount (state) {
-        return state.isSponser
+        isSponsorAccount (state) {
+        return state.isSponsor
         },
         isInfluencerAccount (state) {
         return state.isInfluencer

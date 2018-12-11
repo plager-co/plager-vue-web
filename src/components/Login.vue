@@ -4,7 +4,7 @@
         <request-password-popup></request-password-popup>
         <alert-base></alert-base>
         <div class="section gray">
-            <div class="container">
+            <div class="container" style="    height: 80vh;">
                 <div class="card-wrap">
                     <div class="card">
                         <h2>인플루언서 로그인</h2>
@@ -57,8 +57,8 @@ export default {
                     store.commit('setInfluencer', true);
                     router.push('/influencer-my-page');
                 } else {
-                    console.log("sponser");
-                    store.commit('setSponser', true);
+                    console.log("sponsor");
+                    store.commit('setSponsor', true);
                     router.push('/mypage');
                 }
               } else {

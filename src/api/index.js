@@ -86,8 +86,8 @@ export function postNewSurvey (survey, jwt) {
     return axios.get(`${API_URL}/ads/filter/0/` + influencerId + '/')
   }
 
-  export function fetchAdBySponserId(sponserId) {
-    return axios.get(`${API_URL}/ads/filter/1/` + sponserId + '/')
+  export function fetchAdBySponsorId(sponsorId) {
+    return axios.get(`${API_URL}/ads/filter/1/` + sponsorId + '/')
   }
 
   export function fetchCountAds(userData) {
@@ -138,6 +138,10 @@ export function postNewSurvey (survey, jwt) {
 export function fetchTesterByInstagramId (userData) {
 
      return axios.get(`${API_URL}/testers/filter/0/` + userData + '/')
+ }
+ export function fetchCountryName (userData) {
+
+     return axios.get(`${API_URL}/util_country/filter/0/` + userData + '/')
  }
   const actions = {  
     // asynchronous operations

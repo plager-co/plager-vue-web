@@ -457,7 +457,7 @@ export default {
           });
 
         var userData =  {
-              sponser_id: this.$store.getters.user_id,
+              sponsor_id: this.$store.getters.user_id,
               required_influencer_follower: this.s2Value[0] + 'K ~ '+ this.s2Value[1] + 'K',
               target_category: categoryList.join(),
               target_age: this.s4Value[0] + ' ~ '+ this.s4Value[1],

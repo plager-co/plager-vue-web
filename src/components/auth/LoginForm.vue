@@ -263,7 +263,7 @@ button.influ-login img {
     .card .info .right,
     .card .info .left { font-size: 1rem;}
     .card .info .right {position: relative; bottom: .5rem; line-height: 1.9rem;}
-    .button-wrap button,
+    .button-wrap input,.button-wrap button,
     .button-wrap button:last-child { width: 20.2rem; height: 4rem; float: none; margin-bottom: .7rem; margin-right: 0; font-size: 1.2rem;}
     .button-wrap button:last-child { margin-bottom: 0;}
 

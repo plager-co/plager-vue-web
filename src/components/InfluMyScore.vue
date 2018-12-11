@@ -639,6 +639,7 @@ button.influ-login img {
 .input-set.btn input[type="text"]{
     padding: 0 80px;
   width: 80%;
+     margin-bottom:1rem;
 }
 
 .input-set input[type="text"]{
@@ -663,8 +664,8 @@ button.influ-login img {
 .cell { padding: 0 1.5rem; box-sizing: border-box;}
 .popup { width: 100%; padding: 4rem 1rem 5rem; font-size: 1.4rem; line-height:  2.5rem; letter-spacing: -.05rem;}
 .popup1 { font-size: 1.4rem;}
-.input-set { height: 3rem; font-size: 1.2rem; padding-top: 3.9rem;}
-.input-set.btn input[type="text"] {padding: 0 0 0 3rem; height: 3rem; font-size: 1.2rem;}
+.input-set { height: 3rem; font-size: 1.2rem; padding-top: 2rem;}
+.input-set.btn input[type="text"] {padding: 0 0 0 3rem; height: 3rem; font-size: 1.2rem; margin-bottom:1rem;}
 .input-set.btn button { width: 30%; height: 3rem; font-size: 1.2rem; border-top-left-radius: 0; border-bottom-left-radius: 0;}
 .input-set .input-wrap::after {left: 1.5rem; top: .25rem;}
 

@@ -4,7 +4,7 @@
         <request-password-popup></request-password-popup>
         <alert-base></alert-base>
         <div class="section gray">
-            <div class="container">
+            <div class="container" style="    height: 80vh;">
                 <div class="card-wrap">
                     <div class="card">
                         <h2>인플루언서 로그인</h2>

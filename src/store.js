@@ -7,7 +7,7 @@ import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     userUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponsorId, fetchAdByInfluencerId,
     fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, fetchInstagramAccount, fetchCountInfluencerAds, userfileUpdate,
     requestPassword, registerInfluencer, deleteUser, avgInfluencerEffectRate,
-    fetchTesterByInstagramId} from '@/api'
+    fetchTesterByInstagramId, fetchCountryName} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -316,6 +316,20 @@ export const store = new Vuex.Store({
                         }
             ).catch(e => {
               context.commit('errorPopup');
+            });
+            return result
+
+          },
+        fetchCountryName (context, userData) {
+            const result = fetchCountryName(userData)
+              .then(
+                  function (response) {
+                            if(response.data.result){
+                                context.commit('setCountry', response.data.result.korean_name);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
             });
             return result
 
@@ -819,6 +833,9 @@ export const store = new Vuex.Store({
         },
         setTesters(state, payload) {
             state.testers = payload;
+        },
+        setCountry(state, payload) {
+            state.country = payload;
         }
     },
     getters: {

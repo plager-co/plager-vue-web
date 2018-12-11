@@ -113,7 +113,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="input-set">
+                        <div class="input-set" style="font-size: 15px;">
                             <div class='label'>거주국가</div>
                             <div class="input-wrap">
                                 {{country}}
@@ -216,6 +216,7 @@ export default {
         this.name = this.$store.getters.name;
         this.email = this.$store.getters.email;
         this.instagram = this.$store.getters.instagram;
+        await this.$store.dispatch('fetchCountryName', this.$store.getters.country);
         this.country = this.$store.getters.country;
         this.gender = this.$store.getters.gender;
         this.contact = this.$store.getters.contact;
@@ -249,6 +250,7 @@ export default {
         console.log({
               name: this.name,
               birth: this.birth,
+              country: this.country,
               birth_year: this.birth_year,
               birth_month: this.birth_month,
               birth_date: this.birth_date,

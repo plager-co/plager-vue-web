@@ -139,6 +139,10 @@ export function fetchTesterByInstagramId (userData) {
 
      return axios.get(`${API_URL}/testers/filter/0/` + userData + '/')
  }
+ export function fetchCountryName (userData) {
+
+     return axios.get(`${API_URL}/util_country/filter/0/` + userData + '/')
+ }
   const actions = {  
     // asynchronous operations
     loadSurveys(context) {

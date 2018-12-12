@@ -7,7 +7,8 @@ import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     userUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponsorId, fetchAdByInfluencerId,
     fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, fetchInstagramAccount, fetchCountInfluencerAds, userfileUpdate,
     requestPassword, registerInfluencer, deleteUser, avgInfluencerEffectRate,
-    fetchTesterByInstagramId, fetchCountryName} from '@/api'
+    fetchTesterByInstagramId, fetchCountryName, fetchAdInfluencersBySponsorIdAndStatus,
+    fetchAdInfluencersByInfluencerIdAndStatus} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -255,6 +256,36 @@ export const store = new Vuex.Store({
                   function (response) {
                             if(response.data.result){
                                 context.commit('setAds', response.data.result);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
+        fetchAdInfluencersBySponsorIdAndStatus (context, userData) {
+            const result = fetchAdInfluencersBySponsorIdAndStatus(userData)
+              .then(
+                  function (response) {
+                            if(response.data.result){
+                                context.commit('setAdInfluencers', response.data.result);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
+        fetchAdInfluencersByInfluencerIdAndStatus (context, userData) {
+            const result = fetchAdInfluencersByInfluencerIdAndStatus(userData)
+              .then(
+                  function (response) {
+                      console.log('response');
+                      console.log(response);
+                            if(response.data.result){
+                                context.commit('setAdInfluencers', response.data.result);
                             }
                         }
             ).catch(e => {

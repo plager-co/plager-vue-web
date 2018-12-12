@@ -266,19 +266,19 @@ export default {
         ShowRegisteredAd(){
             if(this.count_ads.count_started_ads > 0) {
                 this.$store.commit('filterAdList', 'registered');
-                this.$router.push('/influencer-ad-list');
+                this.$router.push('/influencer-sim');
             }
         },
         ShowStartedAd(){
             if(this.count_ads.count_registered_ads > 0) {
                 this.$store.commit('filterAdList', 'started');
-                this.$router.push('/influencer-ad-list');
+                this.$router.push('/influencer-sim');
             }
         },
         ShowCompletedAd(){
           if(this.count_ads.count_completed_ads > 0) {
               this.$store.commit('filterAdList', 'completed');
-              this.$router.push('/influencer-ad-list');
+              this.$router.push('/influencer-sim');
           }
         },
 

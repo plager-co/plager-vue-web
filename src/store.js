@@ -7,7 +7,8 @@ import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     userUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponsorId, fetchAdByInfluencerId,
     fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, fetchInstagramAccount, fetchCountInfluencerAds, userfileUpdate,
     requestPassword, registerInfluencer, deleteUser, avgInfluencerEffectRate,
-    fetchTesterByInstagramId, fetchCountryName} from '@/api'
+    fetchTesterByInstagramId, fetchCountryName, fetchAdInfluencersBySponsorIdAndStatus,
+    fetchAdInfluencersByInfluencerIdAndStatus} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -27,6 +28,7 @@ export const store = new Vuex.Store({
         isScoreImpossiblePopup: false,
         isScoreCompleteMsg: '',
         email:'',
+        error: false,
         company_number:'',
         file:'',
         navMenuList: [
@@ -240,9 +242,7 @@ export const store = new Vuex.Store({
             const result = fetchAdBySponsorId(userData)
               .then(
                   function (response) {
-                            if(response.data.result){
-                                context.commit('setAds', response.data.result);
-                            }
+                        context.commit('setAds', response.data.result);
                         }
             ).catch(e => {
               context.commit('errorLoginPopup');
@@ -256,6 +256,36 @@ export const store = new Vuex.Store({
                   function (response) {
                             if(response.data.result){
                                 context.commit('setAds', response.data.result);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
+        fetchAdInfluencersBySponsorIdAndStatus (context, userData) {
+            const result = fetchAdInfluencersBySponsorIdAndStatus(userData)
+              .then(
+                  function (response) {
+                            if(response.data.result){
+                                context.commit('setAdInfluencers', response.data.result);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
+        fetchAdInfluencersByInfluencerIdAndStatus (context, userData) {
+            const result = fetchAdInfluencersByInfluencerIdAndStatus(userData)
+              .then(
+                  function (response) {
+                      console.log('response');
+                      console.log(response);
+                            if(response.data.result){
+                                context.commit('setAdInfluencers', response.data.result);
                             }
                         }
             ).catch(e => {
@@ -316,6 +346,7 @@ export const store = new Vuex.Store({
                         }
             ).catch(e => {
               context.commit('errorPopup');
+              context.commit('setError', true);
             });
             return result
 
@@ -385,7 +416,6 @@ export const store = new Vuex.Store({
             })
           },
             pictureUpdate (context, userData) {
-            context.commit('setUserData', { userData })
             return userfileUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {
@@ -401,7 +431,6 @@ export const store = new Vuex.Store({
             });
           },
         documentUpdate (context, userData) {
-            context.commit('setUserData', { userData })
             return userfileUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {
@@ -417,7 +446,6 @@ export const store = new Vuex.Store({
             });
           },
           userUpdate (context, userData) {
-            context.commit('setUserData', { userData })
             return userUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {
@@ -433,7 +461,6 @@ export const store = new Vuex.Store({
             });
           },
         userUpdateNoPopup (context, userData) {
-            context.commit('setUserData', { userData })
             return userUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {
@@ -782,6 +809,11 @@ export const store = new Vuex.Store({
             state.alertMsg = '';
             state.alertMobileMsg = '';
         },
+        openAlertPopupMsg(state, payload){
+            state.isAlertPopup = true;
+            state.alertMsg = payload;
+            state.alertMobileMsg = '';
+        },
         closeAlertPopup(state){
             state.isAlertPopup = false;
             state.alertMsg = '';
@@ -836,7 +868,10 @@ export const store = new Vuex.Store({
         },
         setCountry(state, payload) {
             state.country = payload;
-        }
+        },
+        setError(state, payload) {
+            state.error = payload;
+        },
     },
     getters: {
         id(state){
@@ -999,6 +1034,9 @@ export const store = new Vuex.Store({
         },
         testers(state){
             return state.testers
+        },
+        error(state){
+            return state.error
         },
     }
 })

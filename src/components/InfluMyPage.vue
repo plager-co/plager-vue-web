@@ -224,21 +224,24 @@ export default {
         var category = this.$store.getters.category;
         var categoryListNew = [];
         this.categoryList.forEach(function(val){
-            if(category.indexOf(val.value) > -1){
-                categoryListNew.push(
-                    {
-                    value: val.value,
-                    isSelected: true
-                    },
-                )
-            } else {
-                categoryListNew.push(
-                    {
-                    value: val.value,
-                    isSelected: false
-                    },
-                )
+            if(category){
+                if(category.indexOf(val.value) > -1){
+                    categoryListNew.push(
+                        {
+                        value: val.value,
+                        isSelected: true
+                        },
+                    )
+                } else {
+                    categoryListNew.push(
+                        {
+                        value: val.value,
+                        isSelected: false
+                        },
+                    )
+                }
             }
+
         });
         this.categoryList = categoryListNew;
         this.birth = this.$store.getters.birth;
@@ -261,16 +264,22 @@ export default {
     methods: {
 
         ShowRegisteredAd(){
-            this.$store.commit('filterAdList','registered');
-            this.$router.push('/influencer-ad-list');
+            if(this.count_ads.count_started_ads > 0) {
+                this.$store.commit('filterAdList', 'registered');
+                this.$router.push('/influencer-sim');
+            }
         },
         ShowStartedAd(){
-            this.$store.commit('filterAdList','started');
-            this.$router.push('/influencer-ad-list');
+            if(this.count_ads.count_registered_ads > 0) {
+                this.$store.commit('filterAdList', 'started');
+                this.$router.push('/influencer-sim');
+            }
         },
         ShowCompletedAd(){
-            this.$store.commit('filterAdList','completed');
-            this.$router.push('/influencer-ad-list');
+          if(this.count_ads.count_completed_ads > 0) {
+              this.$store.commit('filterAdList', 'completed');
+              this.$router.push('/influencer-sim');
+          }
         },
 
         deleteUser(){

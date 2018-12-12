@@ -106,6 +106,18 @@ export function postNewSurvey (survey, jwt) {
   let auth_header = extend({}, basic_header, auth_dict);
     return axios.post(`${API_URL}/ad_influencers/filter/0/`, {'influencers': userData}, { headers: auth_header } )
   }
+  export function fetchAdInfluencersByInfluencerIdAndStatus (userData, jwt) {
+
+  let auth_dict = { Authorization: `Bearer: ${jwt}` };
+  let auth_header = extend({}, basic_header, auth_dict);
+    return axios.post(`${API_URL}/ad_influencers/filter/1/`, userData, { headers: auth_header } )
+  }
+  export function fetchAdInfluencersBySponsorIdAndStatus (userData, jwt) {
+
+  let auth_dict = { Authorization: `Bearer: ${jwt}` };
+  let auth_header = extend({}, basic_header, auth_dict);
+    return axios.post(`${API_URL}/ad_influencers/filter/2/`, userData, { headers: auth_header } )
+  }
 
   export function updateAdInfluencer (userData, jwt) {
 

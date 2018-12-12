@@ -8,7 +8,7 @@
                 <div class="complete-wrap">
                     <img src="../assets/complete.svg" alt="">
                 </div>
-                <h1>{{$store.state.alertMsg || ''}} <br class="for-mobile">{{$store.state.alertMobileMsg || '로딩중입니다.'}}</h1>
+                <h1>{{$store.state.alertMsg || ''}} <br class="for-mobile">{{$store.state.alertMobileMsg || ''}}</h1>
                 <button class="next" @click='closeSelf'>확 인</button>
             </div>
         </div>

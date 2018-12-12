@@ -127,6 +127,7 @@ export default {
     },
     async closeSelf() {
         this.$store.commit('closeAlertPopup');
+        this.$store.commit('setError', false);
         this.testPopup = false;
         this.loadingPopup = true;
         this.loadFlag = true;
@@ -186,9 +187,7 @@ export default {
                 failPopup = true;
             }
 
-            if (!this.loadFlag){
-                loadFlag = this.loadFlag
-            }
+            loadFlag = !this.$store.getters.error
         }
 
         this.loadingPopup = false;

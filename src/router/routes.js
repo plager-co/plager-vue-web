@@ -22,6 +22,7 @@ import InfluMyScoreLoading from '@/components/InfluMyScoreLoading'
 import InfluMyPage from '@/components/InfluMyPage'
 import InfluScore from '@/components/InfluScore'
 import InfluResult from '@/components/InfluResult'
+import InfluSIM from '@/components/InfluSIM'
 import InfluSIMResult from '@/components/InfluSIMResult'
 import InstagramRedirectPage from '@/components/InstagramRedirectPage'
 
@@ -109,6 +110,10 @@ export const routes = [
     {
       path: '/influencer-sim-result',
       component: InfluSIMResult
+    },
+    {
+      path: '/influencer-sim',
+      component: InfluSIM
     },
     {
       path: '/influencer-score',

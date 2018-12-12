@@ -366,9 +366,34 @@ import vueSlider from 'vue-slider-component';
 
 export default {
   components: { vueSlider },
-  created(){
+  async created(){
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
+      if (!this.$store.getters.company_name || !this.$store.getters.company_category || !this.$store.getters.officer_name
+          || !this.$store.getters.tax_email || !this.$store.getters.contact
+          || !this.$store.getters.picture_link || !this.$store.getters.document_link){
+
+
+        this.$router.push('/my-page');
+        this.$store.commit('openAlertPopupMsg', '사용자 정보를 등록해주세요.')
+
+      }
+
+      await this.$store.dispatch('fetchAdBySponsorId', this.$store.getters.user_id);
+
+      var adsRaw = this.$store.getters.ads;
+      var hasRegisteredAd = false;
+      adsRaw.forEach(function (val) {
+          if (val.status_text === 'registered') {
+              hasRegisteredAd = true;
+          }
+      });
+
+      if(hasRegisteredAd){
+        this.$router.push('/my-page');
+        this.$store.commit('openAlertPopupMsg', '이미 등록 중인 광고가 있습니다.')
+      }
+
   },
   data() {
     return {

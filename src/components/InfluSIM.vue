@@ -265,10 +265,13 @@ export default {
         var store = this.$store;
         var influList = [];
         var payload = {
-            'sponsor_id': this.$store.getters.user_id,
+            'influencer_id': this.$store.getters.user_id,
             'status': filterAds
         }
-        await store.dispatch('fetchAdInfluencersBySponsorIdAndStatus', payload);
+        await store.dispatch('fetchAdInfluencersByInfluencerIdAndStatus', payload);
+
+        console.log('store.getters.adInfluencers');
+        console.log(store.getters.adInfluencers);
 
         store.getters.adInfluencers.forEach(function(val){
             console.log(val);

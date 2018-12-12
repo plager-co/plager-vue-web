@@ -241,9 +241,7 @@ export const store = new Vuex.Store({
             const result = fetchAdBySponsorId(userData)
               .then(
                   function (response) {
-                            if(response.data.result){
-                                context.commit('setAds', response.data.result);
-                            }
+                        context.commit('setAds', response.data.result);
                         }
             ).catch(e => {
               context.commit('errorLoginPopup');

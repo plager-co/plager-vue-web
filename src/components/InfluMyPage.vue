@@ -224,21 +224,24 @@ export default {
         var category = this.$store.getters.category;
         var categoryListNew = [];
         this.categoryList.forEach(function(val){
-            if(category.indexOf(val.value) > -1){
-                categoryListNew.push(
-                    {
-                    value: val.value,
-                    isSelected: true
-                    },
-                )
-            } else {
-                categoryListNew.push(
-                    {
-                    value: val.value,
-                    isSelected: false
-                    },
-                )
+            if(category){
+                if(category.indexOf(val.value) > -1){
+                    categoryListNew.push(
+                        {
+                        value: val.value,
+                        isSelected: true
+                        },
+                    )
+                } else {
+                    categoryListNew.push(
+                        {
+                        value: val.value,
+                        isSelected: false
+                        },
+                    )
+                }
             }
+
         });
         this.categoryList = categoryListNew;
         this.birth = this.$store.getters.birth;

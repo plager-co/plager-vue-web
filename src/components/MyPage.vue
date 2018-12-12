@@ -108,7 +108,7 @@
                             </div>
                         </div>
                         <div class="input-set">
-                            <div class='label'>*사업자 등록증</div>
+                            <div class='label'>*사업자 등록증(1MB 이하)</div>
                             <div class="input-wrap btn">
 
                                 <button class="select-button">

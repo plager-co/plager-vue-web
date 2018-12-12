@@ -385,7 +385,6 @@ export const store = new Vuex.Store({
             })
           },
             pictureUpdate (context, userData) {
-            context.commit('setUserData', { userData })
             return userfileUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {
@@ -401,7 +400,6 @@ export const store = new Vuex.Store({
             });
           },
         documentUpdate (context, userData) {
-            context.commit('setUserData', { userData })
             return userfileUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {

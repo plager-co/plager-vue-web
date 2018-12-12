@@ -27,6 +27,7 @@ export const store = new Vuex.Store({
         isScoreImpossiblePopup: false,
         isScoreCompleteMsg: '',
         email:'',
+        error: false,
         company_number:'',
         file:'',
         navMenuList: [
@@ -316,6 +317,7 @@ export const store = new Vuex.Store({
                         }
             ).catch(e => {
               context.commit('errorPopup');
+              context.commit('setError', true);
             });
             return result
 
@@ -839,7 +841,10 @@ export const store = new Vuex.Store({
         },
         setCountry(state, payload) {
             state.country = payload;
-        }
+        },
+        setError(state, payload) {
+            state.error = payload;
+        },
     },
     getters: {
         id(state){
@@ -1002,6 +1007,9 @@ export const store = new Vuex.Store({
         },
         testers(state){
             return state.testers
+        },
+        error(state){
+            return state.error
         },
     }
 })

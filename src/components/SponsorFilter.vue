@@ -369,6 +369,15 @@ export default {
   created(){
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
+      if (!this.$store.getters.company_name || !this.$store.getters.company_category || this.$store.getters.officer_name
+          || !this.$store.getters.tax_email || !this.$store.getters.contact
+          || !this.$store.getters.picture_link || !this.$store.getters.document_link){
+
+
+        this.$router.push('/my-page');
+        this.$store.commit('openAlertPopupMsg', '사용자 정보를 등록해주세요.')
+
+      }
   },
   data() {
     return {

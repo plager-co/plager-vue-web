@@ -780,6 +780,11 @@ export const store = new Vuex.Store({
             state.alertMsg = '';
             state.alertMobileMsg = '';
         },
+        openAlertPopupMsg(state, payload){
+            state.isAlertPopup = true;
+            state.alertMsg = payload;
+            state.alertMobileMsg = '';
+        },
         closeAlertPopup(state){
             state.isAlertPopup = false;
             state.alertMsg = '';

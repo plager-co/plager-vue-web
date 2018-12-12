@@ -92,6 +92,7 @@
                     paginationPadding=6
                     tag='div' 
                     class='influ-list'
+                     ref="sponsors"
                 >
                     <slide v-for='(item, i) in influList' :key='i'>
                         <div class="card-wrap">
@@ -176,17 +177,31 @@
                             :class='{selected: i * 2 === carouselNum}'
                         ></div>
                     </div> -->
+                <vue-ads-pagination
+                    :page="0"
+                    :itemsPerPage="6"
+                    :maxVisiblePages="6"
+                    :totalItems="count"
+                    @page-change="pageChange"
+                />
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import VueAdsPagination from 'vue-ads-pagination';
 export default {
+     components: {
+        VueAdsPagination,
+    },
     data(){
         return {
             status: '계약중',
             carouselNum: 2,
+            count: 7,
+            pageMax: 6,
+            currentSlide: 0,
             influList: [
                 {
                     picture_link: '/',
@@ -227,6 +242,14 @@ export default {
             ]
         }
     },
+  mounted () {
+    this.currentSlide = this.$refs['sponsors'].currentPage
+  },
+    watch: {
+    currentSlide: function (value, old) {
+      console.log(value)
+    }
+  },
     created: async function(){
 
         function getStatus(filterAds){
@@ -262,14 +285,37 @@ export default {
         var filterAds = this.$store.getters.filterAds;
         this.status = getStatus(filterAds);
 
+        if (filterAds === 'registered'){
+            if (this.$store.getters.count_ads.count_registered_ads > 6){
+               this.count =  this.$store.getters.count_ads.count_registered_ads;
+            }
+          } else if (filterAds === 'reviewed'){
+            if (this.$store.getters.count_ads.count_registered_ads > 6) {
+                this.count = this.$store.getters.count_ads.count_registered_ads;
+            }
+          } else if (filterAds === 'paid'){
+                if (this.$store.getters.count_ads.count_registered_ads > 6){
+                 this.count =  this.$store.getters.count_ads.count_registered_ads;
+                }
+          } else if (filterAds === 'started'){
+             if (this.$store.getters.count_ads.count_started_ads > 6){
+             this.count =  this.$store.getters.count_ads.count_started_ads;
+             }
+          } else if (filterAds === 'completed'){
+            if (this.$store.getters.count_ads.count_completed_ads > 6) {
+                this.count = this.$store.getters.count_ads.count_completed_ads;
+            }
+          }
+
         var store = this.$store;
         var influList = [];
         var payload = {
             'sponsor_id': this.$store.getters.user_id,
-            'status': filterAds
+            'status': filterAds,
+            'limit': 1,
+            'page_size': 6,
         }
         await store.dispatch('fetchAdInfluencersBySponsorIdAndStatus', payload);
-
         store.getters.adInfluencers.forEach(function(val){
             console.log(val);
             var price = 0;
@@ -296,8 +342,43 @@ export default {
       this.influList = influList;
   },
     methods: {
-
-
+        async pageChange (page, range) {
+            console.log(page, range);
+            this.$refs['sponsors'].currentPage = 0;
+             var store = this.$store;
+                var influList = [];
+                var payload = {
+                    'sponsor_id': this.$store.getters.user_id,
+                    'status': this.$store.getters.filterAds,
+                    'limit': page + 1,
+                    'page_size': 6,
+                }
+                await store.dispatch('fetchAdInfluencersBySponsorIdAndStatus', payload);
+                store.getters.adInfluencers.forEach(function(val){
+                    console.log(val);
+                    var price = 0;
+                    if (val.price){
+                        price = val.price.toLocaleString();
+                    }
+                      var val_show = {
+                                    picture_link: val.picture_link,
+                                    instagram: val.instagram,
+                                    price: price + '원',
+                                    isRed: false,
+                                    termValue: "2018. 03. 03 ~ 2018. 05. 05",
+                                    bottomMsg: "총 3개월 중 1개월 결제완료",
+                                    follower: val.total_follower_count,
+                                    defaultMonth: 3,
+                                    msg: "3개월 계약마감",
+                                    state: "계약마감",
+                                    isSelected: true,
+                                };
+                      var result = Object.assign({}, val, val_show);
+                          influList.push(result)
+                      });
+              this.influList = influList;
+            this.pageMax = influList.length + 1;
+        },
         completeJoin(){
             this.$store.commit('openCompletePopup', '인플루언서 가입이 완료되었습니다.')
         },
@@ -657,7 +738,6 @@ button.red {
 
     button { height: 3rem; font-size: 1.2rem; }
     button.blue { margin-bottom: .8rem; }
-
 
     /* .carousel-btn-wrap {margin-bottom: 3rem;}
     .carousel-btn-wrap .carousel-btn { width: 1rem; height: 1rem; background-color: #BFBFBF; border-radius: 50%; display: inline-block; margin-right: 1rem;}

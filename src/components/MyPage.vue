@@ -297,16 +297,23 @@ export default {
           this.$store.dispatch('checkEmail', this.email);
         },
         ShowRegisteredAd(){
+          if(this.count_ads.count_started_ads > 0){
             this.$store.commit('filterAdList','registered');
             this.$router.push('/ad-list');
+          }
+
         },
         ShowStartedAd(){
-            this.$store.commit('filterAdList','started');
-            this.$router.push('/ad-list');
+            if(this.count_ads.count_registered_ads > 0) {
+                this.$store.commit('filterAdList', 'started');
+                this.$router.push('/ad-list');
+            }
         },
         ShowCompletedAd(){
-            this.$store.commit('filterAdList','completed');
-            this.$router.push('/ad-list');
+          if(this.count_ads.count_completed_ads > 0) {
+              this.$store.commit('filterAdList', 'completed');
+              this.$router.push('/ad-list');
+          }
         },
         checkCompanyNumber () {
             this.$store.commit('hasCompanyNumber', this.company_number);

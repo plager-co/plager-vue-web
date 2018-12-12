@@ -261,16 +261,22 @@ export default {
     methods: {
 
         ShowRegisteredAd(){
-            this.$store.commit('filterAdList','registered');
-            this.$router.push('/influencer-ad-list');
+            if(this.count_ads.count_started_ads > 0) {
+                this.$store.commit('filterAdList', 'registered');
+                this.$router.push('/influencer-ad-list');
+            }
         },
         ShowStartedAd(){
-            this.$store.commit('filterAdList','started');
-            this.$router.push('/influencer-ad-list');
+            if(this.count_ads.count_registered_ads > 0) {
+                this.$store.commit('filterAdList', 'started');
+                this.$router.push('/influencer-ad-list');
+            }
         },
         ShowCompletedAd(){
-            this.$store.commit('filterAdList','completed');
-            this.$router.push('/influencer-ad-list');
+          if(this.count_ads.count_completed_ads > 0) {
+              this.$store.commit('filterAdList', 'completed');
+              this.$router.push('/influencer-ad-list');
+          }
         },
 
         deleteUser(){

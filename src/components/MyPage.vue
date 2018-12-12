@@ -393,20 +393,20 @@ export default {
         ShowRegisteredAd(){
           if(this.count_ads.count_started_ads > 0){
             this.$store.commit('filterAdList','registered');
-            this.$router.push('/ad-list');
+            this.$router.push('/sponsor-sim');
           }
 
         },
         ShowStartedAd(){
             if(this.count_ads.count_registered_ads > 0) {
                 this.$store.commit('filterAdList', 'started');
-                this.$router.push('/ad-list');
+                this.$router.push('/sponsor-sim');
             }
         },
         ShowCompletedAd(){
           if(this.count_ads.count_completed_ads > 0) {
               this.$store.commit('filterAdList', 'completed');
-              this.$router.push('/ad-list');
+              this.$router.push('/sponsor-sim');
           }
         },
         checkCompanyNumber () {

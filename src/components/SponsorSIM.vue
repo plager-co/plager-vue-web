@@ -3,7 +3,7 @@
     <div class='viewer'>
         <div class="section first gray">
             <div class="container">                
-                <h2>SIM 서비스 진행 인플루언서</h2>
+                <h2>{{ status }}</h2>
                 <div class="btn">
                     <button @click='$router.push("/sponsor-result")'>전체 성과보기</button>
                 </div>
@@ -185,6 +185,7 @@
 export default {
     data(){
         return {
+            status: '계약중',
             carouselNum: 2,
             influList: [
                 {
@@ -227,25 +228,95 @@ export default {
         }
     },
     created: async function(){
-      await this.$store.dispatch('fetchAdInfluencersByAdId', this.$store.getters.currentAd.id);
-      var influList = [];
-      this.$store.getters.adInfluencers.forEach(function(val){
-      var val_show = {
-                    picture_link: val.picture_link,
-                    instagram: val.instagram,
-                    price: val.price.toLocaleString() + '원',
-                    isRed: false,
-                    termValue: "2018. 03. 03 ~ 2018. 05. 05",
-                    bottomMsg: "총 3개월 중 1개월 결제완료",
-                    follower: val.total_follower_count,
-                    defaultMonth: 3,
-                    msg: "3개월 계약마감",
-                    state: "계약마감",
-                    isSelected: true,
-                };
-      var result = Object.assign({}, val, val_show);
-          influList.push(result)
-      });
+        await this.$store.dispatch('fetchAdBySponsorId', this.$store.getters.user_id);
+      var filterAds = this.$store.getters.filterAds;
+      function getStatus(filterAds){
+          var statusAds = '';
+          if (filterAds === 'registered'){
+          statusAds = '서비스 대기중';
+          } else if (filterAds === 'reviewed'){
+              statusAds = '서비스 대기중';
+          } else if (filterAds === 'paid'){
+              statusAds = '서비스 대기중';
+          } else if (filterAds === 'started'){
+              statusAds = '서비스 진행중';
+          } else if (filterAds === 'completed'){
+            statusAds = '서비스 완료';
+          }
+          return statusAds;
+      }
+      this.status = getStatus(filterAds);
+      function getActionText(filterAds){
+          var statusAds = '';
+          if (filterAds === 'registered'){
+          statusAds = '확인중';
+          } else if (filterAds === 'reviewed'){
+              statusAds = '결재하기';
+          } else if (filterAds === 'paid'){
+              statusAds = '성과보기';
+          } else if (filterAds === 'started'){
+              statusAds = '성과보기';
+          } else if (filterAds === 'completed'){
+            statusAds = '성과보기';
+          }
+          return statusAds;
+      }
+      this.status = getStatus(filterAds);
+      function getStatusPayable(statusAds){
+
+          return true;
+      }
+      var adsRaw = this.$store.getters.ads;
+      var ads = [];
+      var store = this.$store;
+    var influList = [];
+      await adsRaw.forEach( async function (val){
+          if (filterAds === 'registered'){
+              if (val.status_text === filterAds || val.status_text === 'reviewed'){
+              //
+              await store.dispatch('fetchAdInfluencersByAdId', val.id);
+              store.getters.adInfluencers.forEach(function(val){
+              var val_show = {
+                            picture_link: val.picture_link,
+                            instagram: val.instagram,
+                            price: val.price.toLocaleString() + '원',
+                            isRed: false,
+                            termValue: "2018. 03. 03 ~ 2018. 05. 05",
+                            bottomMsg: "총 3개월 중 1개월 결제완료",
+                            follower: val.total_follower_count,
+                            defaultMonth: 3,
+                            msg: "3개월 계약마감",
+                            state: "계약마감",
+                            isSelected: true,
+                        };
+              var result = Object.assign({}, val, val_show);
+                  influList.push(result)
+              });
+            }
+          }
+          else if (val.status_text === filterAds){
+              //
+               await store.dispatch('fetchAdInfluencersByAdId', val.id);
+              store.getters.adInfluencers.forEach(function(val){
+              var val_show = {
+                            picture_link: val.picture_link,
+                            instagram: val.instagram,
+                            price: val.price.toLocaleString() + '원',
+                            isRed: false,
+                            termValue: "2018. 03. 03 ~ 2018. 05. 05",
+                            bottomMsg: "총 3개월 중 1개월 결제완료",
+                            follower: val.total_follower_count,
+                            defaultMonth: 3,
+                            msg: "3개월 계약마감",
+                            state: "계약마감",
+                            isSelected: true,
+                        };
+              var result = Object.assign({}, val, val_show);
+                  influList.push(result)
+              });
+          }
+
+        });
       this.influList = influList;
   },
     methods: {

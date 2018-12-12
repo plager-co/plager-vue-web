@@ -415,7 +415,6 @@ export const store = new Vuex.Store({
             });
           },
           userUpdate (context, userData) {
-            context.commit('setUserData', { userData })
             return userUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {
@@ -431,7 +430,6 @@ export const store = new Vuex.Store({
             });
           },
         userUpdateNoPopup (context, userData) {
-            context.commit('setUserData', { userData })
             return userUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {

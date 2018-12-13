@@ -179,8 +179,8 @@
                     </div> -->
                 <vue-ads-pagination
                     :page="0"
-                    :itemsPerPage="6"
-                    :maxVisiblePages="6"
+                    :itemsPerPage="itemsPerPage"
+                    :maxVisiblePages="maxVisiblePages"
                     :totalItems="count"
                     @page-change="pageChange"
                 />
@@ -201,6 +201,8 @@ export default {
             carouselNum: 2,
             count: 7,
             pageMax: 6,
+            itemsPerPage: 6,
+            maxVisiblePages: 6,
             currentSlide: 0,
             influList: [
                 {
@@ -288,21 +290,25 @@ export default {
         if (filterAds === 'registered'){
             if (this.$store.getters.count_ads.count_registered_ads > 6){
                this.count =  this.$store.getters.count_ads.count_registered_ads;
-            }
-          } else if (filterAds === 'reviewed'){
-            if (this.$store.getters.count_ads.count_registered_ads > 6) {
+            } else {
+                this.itemsPerPage = this.$store.getters.count_ads.count_registered_ads;
+                this.maxVisiblePages = this.$store.getters.count_ads.count_registered_ads;
                 this.count = this.$store.getters.count_ads.count_registered_ads;
             }
-          } else if (filterAds === 'paid'){
-                if (this.$store.getters.count_ads.count_registered_ads > 6){
-                 this.count =  this.$store.getters.count_ads.count_registered_ads;
-                }
           } else if (filterAds === 'started'){
              if (this.$store.getters.count_ads.count_started_ads > 6){
              this.count =  this.$store.getters.count_ads.count_started_ads;
-             }
+             } else {
+                this.itemsPerPage = this.$store.getters.count_ads.count_started_ads;
+                this.maxVisiblePages = this.$store.getters.count_ads.count_started_ads;
+                this.count = this.$store.getters.count_ads.count_started_ads;
+            }
           } else if (filterAds === 'completed'){
             if (this.$store.getters.count_ads.count_completed_ads > 6) {
+                this.count = this.$store.getters.count_ads.count_completed_ads;
+            } else {
+                this.itemsPerPage = this.$store.getters.count_ads.count_completed_ads;
+                this.maxVisiblePages = this.$store.getters.count_ads.count_completed_ads;
                 this.count = this.$store.getters.count_ads.count_completed_ads;
             }
           }

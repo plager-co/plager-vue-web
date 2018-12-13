@@ -391,14 +391,14 @@ export default {
           this.$store.dispatch('checkEmail', this.email);
         },
         ShowRegisteredAd(){
-          if(this.count_ads.count_started_ads > 0){
+          if(this.count_ads.count_registered_ads > 0){
             this.$store.commit('filterAdList','registered');
             this.$router.push('/sponsor-sim');
           }
 
         },
         ShowStartedAd(){
-            if(this.count_ads.count_registered_ads > 0) {
+            if(this.count_ads.count_started_ads > 0) {
                 this.$store.commit('filterAdList', 'started');
                 this.$router.push('/sponsor-sim');
             }

@@ -51,7 +51,7 @@
                     </div>
                     <div class="right">
                         <div class="bottom">
-                            <h1>내 영향력 지수</h1>
+                            <h2>내 영향력 지수</h2>
                             <div class="desc">전체 인플루언서 <br class="for-mobile"> 평균 영향력 지수 {{Math.round(avg_influencer_effect_rate * 100) / 100}}%</div>
                             <button class="percent" disabled>{{Math.round(tester.influencer_effect_rate * 100) / 100}}%</button>
                         </div>
@@ -142,7 +142,7 @@ export default {
             this.$store.commit('openEmptyTesterPopup');
             return
         }
-        this.$store.commit('closeAlertPopup');
+        this.$store.commit('closeTestPopup');
         this.$store.commit('setError', false);
         this.loadingPopup = true;
         this.loadFlag = true;
@@ -256,7 +256,9 @@ export default {
     },
     data(){
         return {
-            tester: {},
+            tester: {
+                influencer_effect_rate: ''
+            },
             box:'1px solid #d9dee8',
             instagram_id: '',
             loadingPopup: false,
@@ -427,14 +429,14 @@ p {
     margin-bottom: 20px;
 }
 
-.card .right .bottom h1 {
+.card .right .bottom h2 {
     /* 내 영향력 지수: */
     font-weight: 400;
     font-size: 40px;
-    color: #000000;
     text-align: left;
     line-height: 48px;
     margin-bottom: 5px;
+    color: #9B9B9B;
 }
 
 .card .right .bottom .desc {
@@ -529,7 +531,7 @@ p {
     .card .right .middle {margin-bottom: 2.rem;}
     .card .right .middle table { font-size: 1.4rem; line-height: 2.7rem;}
     .card .right .bottom { padding-left: 0rem; box-sizing: border-box;}
-    .card .right .bottom h1 {font-size: 1.8rem; line-height: 2.1rem; margin-bottom: .4rem;}
+    .card .right .bottom h2 {font-size: 1.8rem; line-height: 2.1rem; margin-bottom: .4rem;}
     .card .right .bottom .desc { font-size: 1rem; line-height: 1.2rem;}
     .card .right .bottom .percent { width :135px; height: 50px; font-size: 2.2rem; bottom: 3px; right: 3rem;}
     .card .right .pred { font-size:1.4rem; text-align: center;}

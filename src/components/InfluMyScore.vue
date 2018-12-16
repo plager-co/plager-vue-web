@@ -1,7 +1,8 @@
 <template>
   <div class="viewer">
+    <empty-tester-popup></empty-tester-popup>
     <alert-base></alert-base>
-      <div class="dim" v-if='testPopup'>
+      <div class="dim" v-if='$store.state.isTestPopup'>
         <div class="cell">
             <div class="popup">
                 <span>내 영향력을 간단하게 테스트 해볼 수 있습니다.<br>
@@ -11,7 +12,7 @@
                 <div class="input-set btn">
                     <div class="input-wrap btn">
                         <div class="text" style=" padding-left: 3rem; height: 4rem; margin-bottom: 2rem;">@
-                         <input type="text" placeholder='인스타그램 아이디 입력' v-model="instagram_id">
+                         <input type="text" :style="{border: box}" id="input-tester-instagram-id" placeholder='인스타그램 아이디 입력' v-model="instagram_id">
                         </div>
                         <button style="margin-bottom:30px;" class="influ-login" @click="closeSelf">확인</button>
 			</div>
@@ -115,9 +116,10 @@
 <script>
 import Loading from './common/Loading'
 import AlertBase from './AlertBase'
+import EmptyTesterPopup from "./common/EmptyTesterPopup";
 
 export default {
-    components: { Loading, AlertBase },
+    components: {EmptyTesterPopup, Loading, AlertBase },
     methods: {
 
     numberWithCommas(x) {
@@ -128,9 +130,14 @@ export default {
           }
     },
     async closeSelf() {
+        if(!this.instagram_id){
+            this.box = '2px solid red';
+            this.$store.commit('closeTestPopup');
+            this.$store.commit('openEmptyTesterPopup');
+            return
+        }
         this.$store.commit('closeAlertPopup');
         this.$store.commit('setError', false);
-        this.testPopup = false;
         this.loadingPopup = true;
         this.loadFlag = true;
         function sleep(ms) {
@@ -244,9 +251,9 @@ export default {
     data(){
         return {
             tester: {},
+            box:'1px solid #d9dee8',
             instagram_id: '',
             loadingPopup: false,
-            testPopup: true,
             avg_influencer_effect_rate: 0,
             loadFlag: false,
         }

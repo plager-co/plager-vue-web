@@ -107,9 +107,6 @@ export default {
          title:'SIM 서비스 신청하기', url:'/sponsor-filter'
       },
       {
-         title:'인플루언서 추천리스트', url:'/influencer-list'
-      },
-      {
          title:'SIM 진행 인플루언서', url:'/sponsor-sim'
       },
       {
@@ -137,9 +134,6 @@ export default {
         return [
       {
          title:'SIM 서비스 신청하기', url:'/sponsor-filter'
-      },
-      {
-         title:'인플루언서 추천리스트', url:'/influencer-list'
       },
       {
          title:'SIM 진행 인플루언서', url:'/sponsor-sim'

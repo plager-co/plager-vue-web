@@ -184,6 +184,7 @@ export default {
   float: left;
   border: 0;
   border-radius: 30px;
+  width: 215px;
   background-color: #fa2b56;
   background-image: none;
   color: #ffffff;

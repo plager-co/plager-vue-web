@@ -259,6 +259,7 @@ button.influ-login img {
     button.influ-login {width: 20.2rem; height: 4rem; font-size: 1.2rem;}
     button.influ-login img {width: 1.6rem; height: 1.6rem; margin-right: .6rem;}
     .card input[type=text],
+    .card input[type=email],
     .card input[type=password] { height: 3.5rem; font-size: 1rem; padding: 0 1.5rem;}
     .card .info .right,
     .card .info .left { font-size: 1rem;}

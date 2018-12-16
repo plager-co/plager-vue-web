@@ -10,7 +10,9 @@
                 <span>비공개 계정은 테스트되지 않습니다.</span><br>
                 <div class="input-set btn">
                     <div class="input-wrap btn">
+                        <div class="text" style=" padding-left: 3rem; height: 4rem; margin-bottom: 2rem;">@
                          <input type="text" placeholder='인스타그램 아이디 입력' v-model="instagram_id">
+                        </div>
                         <button style="margin-bottom:30px;" class="influ-login" @click="closeSelf">확인</button>
 			</div>
 		    </div>
@@ -636,8 +638,8 @@ button.influ-login img {
 }
 
 .input-set.btn input[type="text"]{
-    padding: 0 80px;
-  width: 80%;
+    padding: 0 10px;
+  width: 60%;
      margin-bottom:1rem;
 }
 
@@ -664,7 +666,7 @@ button.influ-login img {
 .popup { width: 100%; padding: 4rem 1rem 10rem; font-size: 1.4rem; line-height:  2.5rem; letter-spacing: -.05rem;}
 .popup1 { font-size: 1.4rem;}
 .input-set { height: 3rem; font-size: 1.2rem; padding-top: 2rem;}
-.input-set.btn input[type="text"] {padding: 0 0 0 3rem; height: 3rem; font-size: 1.2rem; margin-bottom:1rem;}
+.input-set.btn input[type="text"] {padding: 0 0 0 1rem; height: 3rem; font-size: 1.2rem; margin-bottom:1rem;}
 .input-set.btn button { width: 30%; height: 3rem; font-size: 1.2rem; border-top-left-radius: 0; border-bottom-left-radius: 0;}
 .input-set .input-wrap::after {left: 1.5rem; top: .25rem;}
 

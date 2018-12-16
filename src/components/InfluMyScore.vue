@@ -5,6 +5,9 @@
       <div class="dim" v-if='$store.state.isTestPopup'>
         <div class="cell">
             <div class="popup">
+                <div class="close-wrap" style="height: 40px;">
+                    <img src="../assets/cross.svg" alt="" @click='exitSelf'>
+                </div>
                 <span>내 영향력을 간단하게 테스트 해볼 수 있습니다.<br>
                     테스트하고 인플루언서 직업으로 활동하세요.</span><br>
 		<div class="popup1">
@@ -129,6 +132,9 @@ export default {
               return 0;
           }
     },
+    exitSelf() {
+        this.$router.push("/");
+        },
     async closeSelf() {
         if(!this.instagram_id){
             this.box = '2px solid red';
@@ -666,12 +672,22 @@ button.influ-login img {
   height: 67px;
 }
 
+.close-wrap {
+    width: 100%;
+    text-align: right;
+}
+.close-wrap img {
+    width: 33px;
+    height: 33px;
+    margin-bottom: 53px;
+}
 @media screen and (max-width: 640px) {
 
 
 .cell { padding: 0 1.5rem; box-sizing: border-box;}
 .popup { width: 100%; padding: 4rem 1rem 10rem; font-size: 1.4rem; line-height:  2.5rem; letter-spacing: -.05rem;}
 .popup1 { font-size: 1.4rem;}
+.close-wrap img { width: 1.5rem; height: 1.5rem; }
 .input-set { height: 3rem; font-size: 1.2rem; padding-top: 2rem;}
 .input-set.btn input[type="text"] {padding: 0 0 0 1rem; height: 3rem; font-size: 1.2rem; margin-bottom:1rem;}
 .input-set.btn button { width: 30%; height: 3rem; font-size: 1.2rem; border-top-left-radius: 0; border-bottom-left-radius: 0;}

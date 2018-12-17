@@ -88,10 +88,10 @@
                                 </div>
                             </div>
 
-                            <div class="right2" >
+                            <div class="right2" style="text-align:  right;">
 
                                 <div class="pred">1회 노출 예상 모델료 : </div>
-                                <div class="pred">약<h2> {{numberWithCommas(tester.price)}}원</h2></div>
+                                <div class="pred" style="display: inline;">약<h2 style="display: inline;"> {{numberWithCommas(tester.price)}}원</h2></div>
                             </div>
 
 

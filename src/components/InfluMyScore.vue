@@ -44,7 +44,7 @@
 
                                 <tr>
                                     <td>포지션</td>
-                                    <td>{{tester.level}} 인플루언서</td>
+                                    <td>{{tester.level}}</td>
                                 </tr>
                             </tbody>
                         </table>

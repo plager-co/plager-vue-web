@@ -5,7 +5,7 @@
             <div class="container">                
                 <h2>{{ status }}</h2>
                 <div class="btn">
-                    <button @click='$router.push("/sponsor-result")'>전체 성과보기</button>
+                    <button @click='$router.push("/sponsor-all-result")'>전체 성과보기</button>
                 </div>
                 <div class="influ-list web">
                     <div class="card-wrap" v-for='(item, i) in influList' :key='i'>
@@ -234,7 +234,6 @@ export default {
                     instagram: '/',
                     isRed: false,
                     termValue: "2018. 03. 03 ~ 2018. 05. 05",
-                    bottomMsg: "총 3개월 중 1개월 결제완료",
                     follower: '2k',
                     defaultMonth: 3,
                     msg: "3개월 계약마감",
@@ -334,7 +333,6 @@ export default {
                             price: price + '원',
                             isRed: false,
                             termValue: "2018. 03. 03 ~ 2018. 05. 05",
-                            bottomMsg: "총 3개월 중 1개월 결제완료",
                             follower: val.total_follower_count,
                             defaultMonth: 3,
                             msg: "3개월 계약마감",
@@ -372,7 +370,6 @@ export default {
                                     price: price + '원',
                                     isRed: false,
                                     termValue: "2018. 03. 03 ~ 2018. 05. 05",
-                                    bottomMsg: "총 3개월 중 1개월 결제완료",
                                     follower: val.total_follower_count,
                                     defaultMonth: 3,
                                     msg: "3개월 계약마감",

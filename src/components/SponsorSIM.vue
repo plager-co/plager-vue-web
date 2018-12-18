@@ -25,7 +25,7 @@
                                     red: item.state === '계약마감'
                                 }"
                                 >{{item.msg}}</div>
-                            <div class="times-count">0/{{item.ad_month * 3}}회</div>
+                            <div class="times-count">{{item.paid_month}}/{{item.ad_month * 3}}회</div>
                             <div class="sns-data">
                                 <table>
                                     <tbody>

@@ -24,7 +24,7 @@
                                     red: item.state === '계약마감'
                                 }"
                                 >{{item.msg}}</div>
-                            <div class="times-count">0/18회</div>
+                            <div class="times-count">0/{{item.ad_month * 3}}회</div>
                             <div class="sns-data">
                                 <table>
                                     <tbody>
@@ -75,8 +75,7 @@
                                 <!-- <div class="price">1회 예상 광고비 {{item.price}}원</div> -->
                             </div>
                         </div>
-                        <button class="blue"@click='$router.push("/sponsor-result")'>성과보기</button>
-                        <button class="red" @click='payAdInfluencer(item)'>결제하기</button>
+                        <button class="blue" v-if="item.status > 2" @click='$router.push("/sponsor-result")'>성과보기</button>
                     </div>
                 </div>
                 <carousel
@@ -111,7 +110,7 @@
                                         red: item.state === '계약마감'
                                     }"
                                     >{{item.msg}}</div>
-                                <div class="times-count">0/18회</div>
+                                <div class="times-count">0/{{item.defaultMonth * 15}}회</div>
                                 <div class="sns-data">
                                     <table>
                                         <tbody>
@@ -328,17 +327,26 @@ export default {
             if (val.price){
                 price = val.price.toLocaleString();
             }
+            if (val.status < 2){
+                val.state = "계약대기"
+                val.msg = "계약 대기중"
+            } else if (val.status === 3){
+                val.state = "계약"
+                val.msg = "광고 진행중"
+            } else if (val.status === 4){
+                val.state = "계약마감"
+                val.msg = "광고 완료"
+            }
               var val_show = {
                             picture_link: val.picture_link,
                             instagram: val.instagram,
                             price: price + '원',
                             isRed: false,
-                            termValue: "2018. 03. 03 ~ 2018. 05. 05",
-                            bottomMsg: "총 3개월 중 1개월 결제완료",
+                            termValue: val.ad_start_at.split(" ")[0] + " ~ " + val.ad_end_at.split(" ")[0],
                             follower: val.total_follower_count,
-                            defaultMonth: 3,
-                            msg: "3개월 계약마감",
-                            state: "계약마감",
+                            defaultMonth: val.ad_month,
+                            msg: val.msg,
+                            state: val.state,
                             isSelected: true,
                         };
               var result = Object.assign({}, val, val_show);
@@ -366,17 +374,26 @@ export default {
                     if (val.price){
                         price = val.price.toLocaleString();
                     }
+                    if (val.status < 2){
+                        val.state = "계약대기"
+                        val.msg = "계약 대기중"
+                    } else if (val.status === 3){
+                        val.state = "계약"
+                        val.msg = "광고 진행중"
+                    } else if (val.status === 4){
+                        val.state = "계약마감"
+                        val.msg = "광고 완료"
+                    }
                       var val_show = {
                                     picture_link: val.picture_link,
                                     instagram: val.instagram,
                                     price: price + '원',
                                     isRed: false,
-                                    termValue: "2018. 03. 03 ~ 2018. 05. 05",
-                                    bottomMsg: "총 3개월 중 1개월 결제완료",
+                                    termValue: val.ad_start_at.split(" ")[0] + " ~ " + val.ad_end_at.split(" ")[0],
                                     follower: val.total_follower_count,
-                                    defaultMonth: 3,
-                                    msg: "3개월 계약마감",
-                                    state: "계약마감",
+                                    defaultMonth: val.ad_month,
+                                    msg: val.msg,
+                                    state: val.state,
                                     isSelected: true,
                                 };
                       var result = Object.assign({}, val, val_show);

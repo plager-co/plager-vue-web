@@ -16,7 +16,7 @@
         </div>
         <div class="bottom" v-if='$store.getters.GetMobileNavMenuList[0].username'>
           <div class="username">{{$store.getters.GetMobileNavMenuList[0].username}} 님</div>
-          <div class="menu" v-for='(menu, i) in mobileMenuList' :key='i' @click='$router.push(menu.url)'>{{menu.title}}</div>
+          <div class="menu" v-for='(menu, i) in mobileMenuList' :key='i' @click='menuAction(menu.url)'>{{menu.title}}</div>
         </div>
       </div>
     </transition>
@@ -46,7 +46,7 @@
                 <div class='username-wrap' >
                   <div class="user-menu" v-if='isPopupOpen'>
                     <ul>
-                      <li v-for='(menu, i) in menuList' :key='i' @click='$router.push(menu.url)'>{{menu.title}}</li>
+                      <li v-for='(menu, i) in menuList' :key='i' @click='menuAction(menu.url)'>{{menu.title}}</li>
                     </ul>
                   </div>
                 </div>
@@ -80,6 +80,12 @@ export default {
     sponsorJoinCall(){
       this.$router.push('/login')
       this.$store.commit('openJoinPopup')
+    },
+    menuAction(url){
+        if (url.indexOf('influencer-sim') > -1){
+          this.$store.commit('filterAdList', 'started');
+        }
+        this.$router.push(url);
     }
   },
     mounted() {
@@ -92,7 +98,7 @@ export default {
          title:'내 영향력 지수', url:'/influencer-score'
       },
       {
-         title:'SIM 서비스 진행 현황', url:'/sponsor-list'
+         title:'SIM 서비스 진행 현황', url:'/influencer-sim'
       },
       {
          title:'마이 페이지', url:'/influencer-my-page'
@@ -124,7 +130,7 @@ export default {
          title:'내 영향력 지수', url:'/influencer-score'
       },
       {
-         title:'SIM 서비스 진행 현황', url:'/sponsor-list'
+         title:'SIM 서비스 진행 현황', url:'/influencer-sim'
       },
       {
          title:'마이 페이지', url:'/influencer-my-page'

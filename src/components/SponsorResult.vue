@@ -2,22 +2,21 @@
   <div class="viewer">
       <div class="section start gray">
           <div class="container">
-              <div class="date">
-                <a class='count'>8/10회</a>
-                <a class="label">기간</a>
-                <div class="date-box">
-                    <input type="date" name="start" id="" value='2018-08-01'>
-                </div>
-                <a class="label in">~</a>
-                <div class="date-box"> 
-                    <input type="date" name="end" id="" value='2018-08-01'>
-                </div>
-            </div>
+              <!--<div class="date">-->
+                <!--<a class='count'>8/10회</a>-->
+                <!--<a class="label">기간</a>-->
+                <!--<div class="date-box">-->
+                    <!--<input type="date" name="start" id="" value='2018-08-01'>-->
+                <!--</div>-->
+                <!--<a class="label in">~</a>-->
+                <!--<div class="date-box"> -->
+                    <!--<input type="date" name="end" id="" value='2018-08-01'>-->
+                <!--</div>-->
+            <!--</div>-->
 
               <div class="card">
                 <div class="profile">
                     <img class="profile-img" v-bind:src="user.picture_link">
-                    <div class="state">3개월 계약</div>
                 </div>
                 <div class="data for-web">
                     <div class="top">

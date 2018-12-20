@@ -2,7 +2,7 @@
 <template>
     <div class='viewer'>
       <loading v-if='loadingPopup'></loading>
-        <div class="section first gray">
+        <div class="first gray">
             <div class="container">                
                 <h2>{{ status }}</h2>
                 <div class="btn">
@@ -199,7 +199,7 @@ export default {
         return {
             status: '계약중',
             carouselNum: 2,
-            count: 7,
+            count: 6,
             itemsPerPage: 6,
             maxVisiblePages: 6,
             pageMax: 6,

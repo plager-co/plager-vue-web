@@ -62,47 +62,47 @@
                   </table>
                 </div>
               </div>
-              <div class="card chart">
-                <div class="chart-wrap">
-                  <div class='chart-title for-web'>도달 팔로워 성별</div>
-                  <div class="color-wrap">
-                    <div class="color-box a"></div>여성
-                  </div>
-                  <div class="color-wrap">
-                    <div class="color-box b"></div>남성
-                  </div>
-                  <div class="color-wrap">
-                    <div class="color-box c"></div>기타
-                  </div>
-                  <div class="chartjs-wrap">
-                    <doughnut-chart
-                      :data='[70, 20, 10, 0]'
-                     :width='214' :height='214'></doughnut-chart>
-                     <div class='chart-title for-mobile'>도달 팔로워 성별</div>
-                  </div>
-                </div>
-                <div class="chart-wrap">
-                  <div class='chart-title for-web'>도달 팔로워 국가별</div>
-                  <div class="color-wrap">
-                    <div class="color-box a"></div>한국
-                  </div>
-                  <div class="color-wrap">
-                    <div class="color-box b"></div>일본
-                  </div>
-                  <div class="color-wrap">
-                    <div class="color-box c"></div>미국
-                  </div>
-                  <div class="color-wrap">
-                    <div class="color-box d"></div>프랑스
-                  </div>
-                  <div class="chartjs-wrap">
-                    <doughnut-chart
-                     :data='[40, 30, 20, 10]'
-                     :width='214' :height='214'></doughnut-chart>
-                     <div class='chart-title for-mobile'>도달 팔로워 국가별</div>
-                  </div>
-                </div>
-              </div>
+              <!--<div class="card chart">-->
+                <!--<div class="chart-wrap">-->
+                  <!--<div class='chart-title for-web'>도달 팔로워 성별</div>-->
+                  <!--<div class="color-wrap">-->
+                    <!--<div class="color-box a"></div>여성-->
+                  <!--</div>-->
+                  <!--<div class="color-wrap">-->
+                    <!--<div class="color-box b"></div>남성-->
+                  <!--</div>-->
+                  <!--<div class="color-wrap">-->
+                    <!--<div class="color-box c"></div>기타-->
+                  <!--</div>-->
+                  <!--<div class="chartjs-wrap">-->
+                    <!--<doughnut-chart-->
+                      <!--:data='[70, 20, 10, 0]'-->
+                     <!--:width='214' :height='214'></doughnut-chart>-->
+                     <!--<div class='chart-title for-mobile'>도달 팔로워 성별</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="chart-wrap">-->
+                  <!--<div class='chart-title for-web'>도달 팔로워 국가별</div>-->
+                  <!--<div class="color-wrap">-->
+                    <!--<div class="color-box a"></div>한국-->
+                  <!--</div>-->
+                  <!--<div class="color-wrap">-->
+                    <!--<div class="color-box b"></div>일본-->
+                  <!--</div>-->
+                  <!--<div class="color-wrap">-->
+                    <!--<div class="color-box c"></div>미국-->
+                  <!--</div>-->
+                  <!--<div class="color-wrap">-->
+                    <!--<div class="color-box d"></div>프랑스-->
+                  <!--</div>-->
+                  <!--<div class="chartjs-wrap">-->
+                    <!--<doughnut-chart-->
+                     <!--:data='[40, 30, 20, 10]'-->
+                     <!--:width='214' :height='214'></doughnut-chart>-->
+                     <!--<div class='chart-title for-mobile'>도달 팔로워 국가별</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
             </div>
             <div class="card bottom">
               <h1 :class='{completed : isCompleted}'>{{ user.name }} 님의 <b>1회</b> 예상 모델료는 <br class="for-mobile"> <b>약 {{ numberWithCommas(user.price) }}원</b> 입니다.</h1>

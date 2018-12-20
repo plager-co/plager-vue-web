@@ -586,6 +586,7 @@ export default {
               instagram_client_id: this.instagram_client_id,
               picture_link: this.picture_link,
               user_type: 'influencer',
+              is_removed: 0,
           })
         },
     async checkEmail () {

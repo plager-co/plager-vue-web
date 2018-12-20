@@ -1,58 +1,37 @@
 <template>
     <form
-         id="join-popup"
-      @submit.prevent v-if='$store.state.isJoinPopup'
+         id="request-influ-password-popup"
+      @submit.prevent v-if='$store.state.isRequestInfluPasswordPopup'
       novalidate="true"
     >
-
+      >
     <div class="dim">
         <div class="join-popup">
-            <h1>광고주 가입</h1>
+            <h1>비밀번호 찾기</h1>
             <p class='for-web'>
-                반복적인 노출로 소비자가 브랜드를 기억 할 수 있도록<br>
-                지금 바로 플래거의 SIM(SNS Imprinting Marketing) 서비스를 시작하세요.
+                비밀번호를 찾기 위해 아이디와 사업자 번호를 입력해주세요.
             </p>
             <p class='for-mobile block'>
-                반복적인 노출로 소비자가 브랜드를 <br>기억 할 수 있도록
-                지금 바로 플래거의<br> SIM(SNS Imprinting Marketing) 서비스를 시작하세요.
+                비밀번호를 찾기 위해 아이디와 사업자 번호를 입력해주세요.
             </p>
             <div class="input-set btn">
                 <div class='label'>이메일</div>
                 <div class="input-wrap btn">
-                    <input id='email' type="email" placeholder='email@email.com'  v-model="email">
-                    <button @click='checkEmail();'>중복확인</button>
-                </div>
-            </div>
-            <div class="input-set">
-                <div class='password label'>비밀번호</div>
-                <div class="input-wrap btn">
-                    <input id='password' type="password" placeholder="**********" v-model="password">
-                </div>
-            </div>
-            <div class="input-set">
-                <div class='label'>비밀번호 확인</div>
-                <div class="input-wrap btn">
-                    <input id='password2' type="password" placeholder="**********" v-model="password2">
+                    <input type="email" placeholder='email@email.com'  v-model="email">
                 </div>
             </div>
             <div class="input-set btn">
-                <div class='label'>사업자등록번호</div>
+                <div class='label'>인스타그램 아이디</div>
                 <div class="input-wrap btn">
-                    <input id='company-number' type="text" placeholder="000-00-00000" v-model="company_number">
-                    <button @click='checkCompanyNumber();'>조회</button>
+                    <input type="text" placeholder="@" v-model="instagram">
                 </div>
             </div>
-            <div class="info">
-                <input type="checkbox" name="keep" id="keep-register" v-model="keep_register">
-                <label for="keep-register">
-                    <span id="checkbox-register" class='checkbox'></span>
-                    <a href="/policy" target="_blank">이용약관</a>과 <a href="/private-policy" target="_blank">개인정보처리방침</a>에 동의합니다.
-                </label>
-            </div>
-            <div class="desc">광고주로 등록하시면 플래거의 SIM 서비스 소개서를 바로 확인할 수 있습니다.</div>
+            <p v-if="errors.length">
+                  <span v-for="error in errors">{{ error }}<br></span>
+              </p>
             <div class="btn-wrap">
-                 <button class='next' @click="completeJoin()" type="submit">상세정보등록</button>
-                <button class='prev' @click='$store.commit("closeJoinPopup")'>취소</button>
+                 <button class='next' @click="completeJoin()" type="submit">찾기</button>
+                <button class='prev' @click='$store.commit("closeRequestInfluPasswordPopup")'>취소</button>
             </div>
         </div>
     </div>
@@ -64,6 +43,7 @@ export default {
     data() {
       return {  errors: [],
         email: null,
+        instagram: null,
         keep_register: null,
         company_number: null,
         password: null,
@@ -74,78 +54,27 @@ export default {
         completeJoin(){
           this.errors = [];
 
-          document.getElementById('email').style.border='2px solid red';
-
           if (!this.email) {
             this.errors.push('이메일 주소를 입력해주세요.');
           } else if (!this.validEmail(this.email)) {
             this.errors.push('유효한 이메일 주소를 입력해주세요.');
-          } else if (!this.$store.getters.email){
-              this.errors.push('이메일 중복 체크를 해주세요.');
-          } else {
-            document.getElementById('email').style.border='1px solid #d9dee8';
           }
 
-            document.getElementById('company-number').style.border='2px solid red';
 
-          if (!this.company_number) {
-            this.errors.push('사업자 번호를 입력해주세요.');
-          } else if (!this.validCompanyNumber(this.company_number)) {
-            this.errors.push('유효한 사업자 번호를 입력해주세요.');
-          } else if (!this.$store.getters.company_number){
-              this.errors.push('사업자 번호 체크를 해주세요.');
-          } else {
-            document.getElementById('company-number').style.border='1px solid #d9dee8';
-          }
-
-          if (!this.password) {
-            this.errors.push('비밀번호를 입력해주세요.');
-            document.getElementById('password').style.border='2px solid red';
-          } else {
-            document.getElementById('password').style.border='1px solid #d9dee8';
-          }
-
-          if (!this.password2) {
-            this.errors.push('일치 확인용 비밀번호를 입력해주세요.');
-             document.getElementById('password2').style.border='2px solid red';
-          } else {
-            document.getElementById('password').style.border='1px solid #d9dee8';
-          }
-
-          if (this.password !== this.password2) {
-            this.errors.push('비밀번호를 일치하게 작성해주세요.');
-             document.getElementById('password').style.border='2px solid red';
-             document.getElementById('password2').style.border='2px solid red';
-          }
-
-          if (!this.keep_register) {
-            this.errors.push('약관 확인후 동의시 동의 버튼을 눌러주세요.');
-             document.getElementById('checkbox-register').style.border='2px solid red';
-          } else {
-            document.getElementById('checkbox-register').style.border='1px solid #d9dee8';
+          if (!this.instagram) {
+            this.errors.push('인스타그램 아이디를 입력해주세요.');
           }
 
           if (!this.errors.length) {
-              this.register();
+              this.requestPassword();
           }
 
         },
-        register () {
-          this.$store.dispatch('register', {
+        requestPassword () {
+          this.$store.dispatch('requestInfluPassword', {
               email: this.email,
-              password: this.password,
-              company_number: this.company_number,
-              user_type: 'sponsor',
-              is_removed: 0,
+              instagram: this.instagram,
           })
-        },
-        checkEmail () {
-            this.$store.commit('hasEmail', this.email)
-          this.$store.dispatch('checkEmail', this.email)
-        },
-        checkCompanyNumber () {
-            this.$store.commit('hasCompanyNumber', this.company_number)
-          this.$store.dispatch('checkCompanyNumber', this.company_number)
         },
         validEmail: function (email) {
           var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -261,6 +190,7 @@ p {
     width: 700px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 50px;
     padding-bottom: 59px;
 }
 

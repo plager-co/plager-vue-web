@@ -379,6 +379,12 @@ export default {
                 val.state = "계약마감"
                 val.msg = "광고 완료"
             }
+            if (!val.ad_start_at){
+                val.ad_start_at = ' '
+            }
+            if (!val.ad_end_at){
+                val.ad_end_at = ' '
+            }
               var val_show = {
                             picture_link: val.picture_link,
                             instagram: val.instagram,
@@ -417,6 +423,13 @@ export default {
             } else if (val.status === 4){
                 val.state = "계약마감"
                 val.msg = "광고 완료"
+            }
+
+            if (!val.ad_start_at){
+                val.ad_start_at = ' '
+            }
+            if (!val.ad_end_at){
+                val.ad_end_at = ' '
             }
               var val_show = {
                             picture_link: val.picture_link,
@@ -468,6 +481,13 @@ export default {
                     } else if (val.status === 4){
                         val.state = "계약마감"
                         val.msg = "광고 완료"
+                    }
+                    
+                    if (!val.ad_start_at){
+                        val.ad_start_at = ' '
+                    }
+                    if (!val.ad_end_at){
+                        val.ad_end_at = ' '
                     }
                       var val_show = {
                                     picture_link: val.picture_link,

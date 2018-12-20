@@ -9,7 +9,7 @@
           <div class="login" v-if="($store.getters.isAuthenticated === true)" @click='$router.push("/logout")'>로그아웃</div>
           <button @click='$router.push("/influencer-my-score")'>내 영향력 테스트</button>
           <div class="menu" @click='sponsorJoinCall' v-if="($store.getters.isAuthenticated === false)">광고주 등록</div>
-          <div class="menu" @click="this.$router.push('/influencer-join')" v-if="($store.getters.isAuthenticated === false)">인플루언서 등록</div>
+          <div class="menu" @click='$router.push("/influencer-join")' v-if="($store.getters.isAuthenticated === false)">인플루언서 등록</div>
           <div class="menu" @click='menu.url' v-for='(menu, i) in $store.getters.GetMobileNavMenuList' :key='i'  v-if="($store.getters.isAuthenticated === false & menu.auth === '') | ($store.getters.isSponsorAccount === true & menu.auth === 'sponsor')  | ($store.getters.isInfluencerAccount === true & menu.auth === 'influencer')">
             {{menu.title}}
           </div>
@@ -33,7 +33,7 @@
         <div class="menu-wrapper">
           <ul>
             <li v-if="($store.getters.isAuthenticated === false)"><a @click='sponsorJoinCall'>광고주 등록</a></li>
-            <li v-if="($store.getters.isAuthenticated === false)"><a @click="this.$router.push('/influencer-join')">인플루언서 등록</a></li>
+            <li v-if="($store.getters.isAuthenticated === false)"><a @click="$router.push('/influencer-join')">인플루언서 등록</a></li>
             <li v-if="($store.getters.user_type === 'influencer')"><a @click='$router.push("/influencer-score")'>내 영향력 지수</a></li>
             <li v-if="($store.getters.user_type === 'sponsor')"><a @click='$router.push("/sponsor-filter")'>SIM 서비스 신청</a></li>
             <li v-for='(menu, i) in $store.getters.GetNavMenuList' :key='i'  v-if="($store.getters.isAuthenticated === false & menu.auth === '') | ($store.getters.isSponsorAccount === true & menu.auth === 'sponsor')  | ($store.getters.isInfluencerAccount === true & menu.auth === 'influencer')">

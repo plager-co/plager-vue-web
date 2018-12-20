@@ -384,6 +384,7 @@ export default {
             if(has_password_change){
                 userData['password'] = this.password;
             }
+          this.$store.commit('setUserDataMyPage', userData)
           this.$store.dispatch('userUpdate', userData)
         },
         checkEmail () {

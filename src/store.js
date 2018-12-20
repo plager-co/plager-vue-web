@@ -6,7 +6,7 @@ import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     authenticate, register, checkDuplicateEmail, checkDuplicateCompanyNumber,
     userUpdate, createAd, fetchInfluencers, registerAdInfluencers, fetchAdBySponsorId, fetchAdByInfluencerId,
     fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, fetchInstagramAccount, fetchCountInfluencerAds, userfileUpdate,
-    requestPassword, registerInfluencer, deleteUser, avgInfluencerEffectRate,
+    requestPassword, requestInfluPassword, registerInfluencer, deleteUser, avgInfluencerEffectRate,
     fetchTesterByInstagramId, fetchCountryName, fetchAdInfluencersBySponsorIdAndStatus,
     fetchAdInfluencersByInfluencerIdAndStatus} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
@@ -19,6 +19,7 @@ export const store = new Vuex.Store({
         isTestPopup: true,
         isJoinPopup: false,
         isRequestPasswordPopup: false,
+        isRequestInfluPasswordPopup: false,
         isCompletePopup: false,
         isEmptyTester: false,
         testerBorder: '2px solid red',
@@ -186,6 +187,22 @@ export const store = new Vuex.Store({
                   function (response) {
                       if(response.data){
                         context.commit('closeRequestPasswordPopup');
+                        context.commit('isPasswordRequested');
+                      }
+                      else{
+                          context.commit('errorRequestPasswordPopup');
+                      }
+
+                  }).catch(e => {
+              context.commit('errorRequestPasswordPopup');
+            });
+          },
+        requestInfluPassword (context, userData) {
+            return requestInfluPassword(userData)
+              .then(
+                  function (response) {
+                      if(response.data){
+                        context.commit('closeRequestInfluPasswordPopup');
                         context.commit('isPasswordRequested');
                       }
                       else{
@@ -601,6 +618,19 @@ export const store = new Vuex.Store({
         state.influencer_cost = payload.influencer_cost;
         state.influencer_effect_rate = payload.influencer_effect_rate;
       },
+        setUserDataMyPage (state, payload) {
+            state.company_name = payload.company_name;
+          state.company_category = payload.company_category;
+          state.officer_name = payload.officer_name;
+          state.tax_email = payload.tax_email;
+          state.contact = payload.contact;
+          state.company_website = payload.company_website;
+          state.document_link = payload.document_link;
+          state.instagram = payload.instagram;
+          state.facebook = payload.facebook;
+          state.social = payload.social;
+          state.company_number = payload.company_number;
+        },
       setJwtToken (state, payload) {
         localStorage.token = payload.jwt.token
         state.jwt = payload.jwt
@@ -644,6 +674,12 @@ export const store = new Vuex.Store({
         },
         closeRequestPasswordPopup(state){
             state.isRequestPasswordPopup = false;
+        },
+        openRequestInfluPasswordPopup(state){
+            state.isRequestInfluPasswordPopup = true;
+        },
+        closeRequestInfluPasswordPopup(state){
+            state.isRequestInfluPasswordPopup = false;
         },
         errorRegisterPopup(state){
             state.isAlertPopup = true;
@@ -1000,6 +1036,9 @@ export const store = new Vuex.Store({
         },
         isRequestPasswordPopup(state){
             return state.isRequestPasswordPopup
+        },
+        isRequestInfluPasswordPopup(state){
+            return state.isRequestInfluPasswordPopup
         },
         isValidEmail(state){
             return state.isValidEmail

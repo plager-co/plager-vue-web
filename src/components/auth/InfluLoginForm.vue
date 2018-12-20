@@ -8,22 +8,22 @@
 
 
     <h2>인플루언서 로그인</h2>
-    <input id="email"
+    <input id="influ-email"
       v-model="email"
       type="email"
       name="email" placeholder='email'>
-    <input id="password"
+    <input id="influ-password"
       v-model="password"
       name="password" type="password" placeholder='password'>
     <div class="info">
         <div class="left">
-            <input type="checkbox" name="keep" id="keep">
-            <label for="keep">
+            <input type="checkbox" name="influ-keep" id="influ-keep">
+            <label for="influ-keep">
                 <span class='checkbox'></span>
                 로그인 상태 유지
             </label>
         </div>
-        <div class="right" @click='$store.commit("openRequestPasswordPopup")'>비밀번호 찾기</div>
+        <div class="right" @click='$store.commit("openRequestInfluPasswordPopup")'>비밀번호 찾기</div>
     </div>
     <div class="button-wrap">
         <input type="submit" value="로그인">
@@ -50,19 +50,19 @@ export default {
 
           this.errors = [];
 
-          document.getElementById('email').style.border='1px solid #d9dee8';
-          document.getElementById('password').style.border='1px solid #d9dee8';
+          document.getElementById('influ-email').style.border='1px solid #d9dee8';
+          document.getElementById('influ-password').style.border='1px solid #d9dee8';
 
           if (!this.email && this.password) {
-             document.getElementById('email').style.border='2px solid red';
+             document.getElementById('influ-email').style.border='2px solid red';
           }
           if (this.email && !this.password) {
-             document.getElementById('password').style.border='2px solid red';
+             document.getElementById('influ-password').style.border='2px solid red';
           }
 
           if     (!this.email && !this.password) {
-            document.getElementById('email').style.border='2px solid red';
-            document.getElementById('password').style.border='2px solid red';
+            document.getElementById('influ-email').style.border='2px solid red';
+            document.getElementById('influ-password').style.border='2px solid red';
           }
 
           var headers = [];

@@ -17,7 +17,7 @@ Vue.use(VueClipboard)
 Vue.use(VueCarousel)
 Vue.use(Meta)
 Vue.use(VueAuthenticate, {
-  baseUrl: 'http://54.180.83.227:8080', // Your API domain
+  baseUrl: 'http://api.plager.co', // Your API domain
   tokenName: 'code',
   providers: {
     instagram: {

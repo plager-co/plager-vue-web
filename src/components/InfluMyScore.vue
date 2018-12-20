@@ -202,7 +202,9 @@ export default {
                 failPopup = true;
             }
 
-            loadFlag = !this.$store.getters.error
+            if(this.$store.getters.error){
+                loadFlag = false;
+            }
         }
 
         this.loadingPopup = false;

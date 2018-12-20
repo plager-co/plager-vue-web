@@ -17,12 +17,12 @@ Vue.use(VueClipboard)
 Vue.use(VueCarousel)
 Vue.use(Meta)
 Vue.use(VueAuthenticate, {
-  baseUrl: 'http://52.79.190.26', // Your API domain
+  baseUrl: 'http://52.79.143.32:8080', // Your API domain
   tokenName: 'code',
   providers: {
     instagram: {
       clientId: 'd350de41c32e4c47b97061fa9747d367',
-      redirectUri: 'http://52.79.190.26:8080/instagram-redirect', // Your client app URL
+      redirectUri: 'http://plager.co/instagram-redirect', // Your client app URL
     requiredUrlParams: ['scope'],
       scope: ['basic','public_content'],
     }

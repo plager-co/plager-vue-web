@@ -23,7 +23,7 @@
                 로그인 상태 유지
             </label>
         </div>
-        <div class="right" @click='$store.commit("openRequestPasswordPopup")'>비밀번호 찾기</div>
+        <div class="right" @click='$store.commit("openRequestInfluPasswordPopup")'>비밀번호 찾기</div>
     </div>
     <div class="button-wrap">
         <input type="submit" value="로그인">

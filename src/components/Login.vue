@@ -2,6 +2,7 @@
     <div class='viewer'>
         <join-popup></join-popup>
         <request-password-popup></request-password-popup>
+        <request-influ-password-popup></request-influ-password-popup>
         <alert-base></alert-base>
         <div class="section gray">
             <div class="container" style="    height: 80vh;">
@@ -22,11 +23,12 @@
 import JoinPopup from './JoinPopup'
 import AlertBase from './AlertBase'
 import RequestPasswordPopup from './RequestPasswordPopup'
+import RequestInfluPasswordPopup from './RequestInfluPasswordPopup'
 import LoginForm from './auth/LoginForm'
 import InfluLoginForm from './auth/InfluLoginForm'
 
 export default {
-    components: {JoinPopup, RequestPasswordPopup, AlertBase, InfluLoginForm, LoginForm},
+    components: {JoinPopup, RequestPasswordPopup, AlertBase, InfluLoginForm, LoginForm, RequestInfluPasswordPopup},
     methods: {
         influLogin(){
             // this.$store.commit("userLogin", 'Influ')

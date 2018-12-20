@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://52.79.143.32:8080'
+const API_URL = 'http://54.180.83.227:8080'
 
 function extend(target) {
     var sources = [].slice.call(arguments, 1);

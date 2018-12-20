@@ -601,6 +601,19 @@ export const store = new Vuex.Store({
         state.influencer_cost = payload.influencer_cost;
         state.influencer_effect_rate = payload.influencer_effect_rate;
       },
+        setUserDataMyPage (state, payload) {
+            state.company_name = payload.company_name;
+          state.company_category = payload.company_category;
+          state.officer_name = payload.officer_name;
+          state.tax_email = payload.tax_email;
+          state.contact = payload.contact;
+          state.company_website = payload.company_website;
+          state.document_link = payload.document_link;
+          state.instagram = payload.instagram;
+          state.facebook = payload.facebook;
+          state.social = payload.social;
+          state.company_number = payload.company_number;
+        },
       setJwtToken (state, payload) {
         localStorage.token = payload.jwt.token
         state.jwt = payload.jwt

@@ -136,6 +136,7 @@ export default {
               password: this.password,
               company_number: this.company_number,
               user_type: 'sponsor',
+              is_removed: 0,
           })
         },
         checkEmail () {

@@ -78,18 +78,18 @@
               </table>
             </div>
 
-            <h1>SIM 서비스 성과 현황</h1>
-            <div class="chart-wrap">
-                <div class="chart" id='container'/>
-                <div class="chart" id='container2'/>
-                <div class="chart" id='container3'/>
-                <div class="chart" id='container4'/>
-                <div class="chart" id='container5'/>
-                <div class="chart" id='container6'/>
-                <div class="chart" id='container7'/>
-                <div class="chart" id='container8'/>
-                <div class="chart" id='container9'/>
-            </div>
+            <!--<h1>SIM 서비스 성과 현황</h1>-->
+            <!--<div class="chart-wrap">-->
+                <!--<div class="chart" id='container'/>-->
+                <!--<div class="chart" id='container2'/>-->
+                <!--<div class="chart" id='container3'/>-->
+                <!--<div class="chart" id='container4'/>-->
+                <!--<div class="chart" id='container5'/>-->
+                <!--<div class="chart" id='container6'/>-->
+                <!--<div class="chart" id='container7'/>-->
+                <!--<div class="chart" id='container8'/>-->
+                <!--<div class="chart" id='container9'/>-->
+            <!--</div>-->
           </div>
       </div>
   </div>
@@ -182,828 +182,828 @@ export default {
 			// 	}
 			// });
 
-			//차트 데이터, 속성 컨트롤
-			$(document).ready(function () {
-				var chart = new Highcharts.Chart({
-					chart : {
-						renderTo : 'container',
-						marginTop: 100,
-						spacingRight : 0
-					},
-					title : {
-						text : null,
-
-					},
-					subtitle : {
-						text : null,
-
-					},
-					xAxis : {
-						type : 'datetime',
-						labels: {
-							format: '{value:%Y%m%d}',
-							style : {
-								fontSize:'10px'
-							}
-						},
-						tickWidth: 0,
-					},
-					yAxis : {
-						title : {
-							text : null,
-						},
-						offset: 0,
-						min : 0,
-						max : 2000,
-					},
-					// tooltip : {
-					// 	enabled: false
-					// },
-					plotOptions : {
-						series: {
-							fillColor: {
-								linearGradient: [0, 0, 0, 400],
-								stops: [
-									[0, Highcharts.getOptions().colors[0]],
-									[1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-								]
-							},
-							marker: {
-								enabled: false
-							}
-						}
-					},
-					legend: {
-						align: 'left',
-						verticalAlign: 'top',
-						y: -15,
-						symbolRadius:0,
-						borderWidth: 0
-					},
-					credits: {
-						enabled: false
-					},
-					series : [{
-						name : '게시물별 도달',
-						type : "areaspline",
-						data : [
-							[Date.UTC(2018, 9, 1), 800],
-							[Date.UTC(2018, 9, 3), 600],
-							[Date.UTC(2018, 9, 5), 595],
-							[Date.UTC(2018, 9, 7), 334],
-							[Date.UTC(2018, 9, 10), 420],
-							[Date.UTC(2018, 9, 13), 520],
-							[Date.UTC(2018, 9, 15), 620],
-							[Date.UTC(2018, 9, 17), 720],
-							[Date.UTC(2018, 9, 19), 520],
-							[Date.UTC(2018, 9, 20), 620],
-							[Date.UTC(2018, 9, 23), 820],
-							[Date.UTC(2018, 9, 25), 1000],
-							[Date.UTC(2018, 9, 28), 900],
-							[Date.UTC(2018, 9, 31), 800],
-
-						],
-
-					}],
-
-				});
-
-				var chart2 = new Highcharts.Chart({
-					chart : {
-						renderTo : 'container2',
-						marginTop: 100,
-					},
-					title : {
-						text : null,
-
-					},
-					subtitle : {
-						text : null,
-
-					},
-					xAxis : {
-						type : 'datetime',
-						labels: {
-							format: '{value:%Y%m%d}',
-							style : {
-								fontSize:'10px'
-							}
-						},
-						tickWidth: 0,
-					},
-					yAxis : {
-						title : {
-						text : null,
-						},
-						offset: 0,
-						min : 0,
-						max : 2000,
-					},
-					// tooltip : {
-					// 	enabled: false
-					// },
-					plotOptions : {
-						series: {
-							fillColor: {
-								linearGradient: [0, 0, 0, 400],
-								stops: [
-									[0, Highcharts.Color('#8ddc59').setOpacity(1).get('rgba')],
-									[1, Highcharts.Color('#fff').setOpacity(0.2).get('rgba')],
-								]
-							},
-							lineColor: '#8ddc59',
-							legendColor: '#8ddc59',
-							marker: {
-								enabled: false
-							}
-						}
-					},
-					legend: {
-						align: 'left',
-						verticalAlign: 'top',
-						y: -15,
-						symbolRadius:0,
-						borderWidth: 0,
-						color: '#8ddc59',
-					},
-					credits: {
-						enabled: false
-					},
-					series : [{
-						name : '게시물별 노출',
-						type : "areaspline",
-						color: '#8ddc59',
-						data : [
-							[Date.UTC(2018, 9, 1), 800],
-							[Date.UTC(2018, 9, 3), 600],
-							[Date.UTC(2018, 9, 5), 595],
-							[Date.UTC(2018, 9, 7), 334],
-							[Date.UTC(2018, 9, 10), 420],
-							[Date.UTC(2018, 9, 13), 520],
-							[Date.UTC(2018, 9, 15), 620],
-							[Date.UTC(2018, 9, 17), 720],
-							[Date.UTC(2018, 9, 19), 520],
-							[Date.UTC(2018, 9, 20), 620],
-							[Date.UTC(2018, 9, 23), 820],
-							[Date.UTC(2018, 9, 25), 1000],
-							[Date.UTC(2018, 9, 28), 900],
-							[Date.UTC(2018, 9, 31), 800],
-
-						],
-					}],
-				});
-
-				var chart3 = new Highcharts.Chart({
-					chart : {
-						renderTo : 'container3',
-						marginTop: 100,
-					},
-					title : {
-						text : null,
-
-					},
-					subtitle : {
-						text : null,
-
-					},
-					xAxis : {
-						type : 'datetime',
-						labels: {
-							format: '{value:%Y%m%d}',
-							style : {
-								fontSize:'10px'
-							}
-						},
-						tickWidth: 0,
-					},
-					yAxis : {
-						title : {
-							text : null,
-						},
-						offset: 0,
-						min : 0,
-						max : 2000,
-					},
-					// tooltip : {
-					// 	enabled: false
-					// },
-					plotOptions : {
-						series: {
-							marker: {
-								enabled: false
-							}
-						}
-					},
-					legend: {
-						align: 'left',
-						verticalAlign: 'top',
-						y: -15,
-						symbolRadius:0,
-						borderWidth: 0,
-						//color: '#2e95ec',
-					},
-					credits: {
-						enabled: false
-					},
-					series : [
-					{
-						name : '누적도달',
-						type : "spline",
-						color: '#2e95ec',
-						data : [
-							[Date.UTC(2018, 9, 1), 500],
-							[Date.UTC(2018, 9, 3), 600],
-							[Date.UTC(2018, 9, 5), 595],
-							[Date.UTC(2018, 9, 7), 334],
-							[Date.UTC(2018, 9, 10), 420],
-							[Date.UTC(2018, 9, 13), 520],
-							[Date.UTC(2018, 9, 15), 620],
-							[Date.UTC(2018, 9, 17), 720],
-							[Date.UTC(2018, 9, 19), 520],
-							[Date.UTC(2018, 9, 20), 620],
-							[Date.UTC(2018, 9, 23), 820],
-							[Date.UTC(2018, 9, 25), 1000],
-							[Date.UTC(2018, 9, 28), 900],
-							[Date.UTC(2018, 9, 31), 800],
-
-						],
-
-					},
-					{
-						name : '누적노출',
-						type : "spline",
-						color: '#8ddc59',
-						data : [
-							[Date.UTC(2018, 9, 1), 500],
-							[Date.UTC(2018, 9, 3), 650],
-							[Date.UTC(2018, 9, 5), 645],
-							[Date.UTC(2018, 9, 7), 384],
-							[Date.UTC(2018, 9, 10), 470],
-							[Date.UTC(2018, 9, 13), 690],
-							[Date.UTC(2018, 9, 15), 520],
-							[Date.UTC(2018, 9, 17), 620],
-							[Date.UTC(2018, 9, 19), 520],
-							[Date.UTC(2018, 9, 20), 720],
-							[Date.UTC(2018, 9, 23), 820],
-							[Date.UTC(2018, 9, 25), 900],
-							[Date.UTC(2018, 9, 28), 980],
-							[Date.UTC(2018, 9, 31), 1000],
-
-						],
-					}],
-
-				});
-
-				var chart4 = new Highcharts.Chart({
-					chart : {
-						renderTo : 'container4',
-						marginTop: 100,
-					},
-					title : {
-						text : null,
-
-					},
-					subtitle : {
-						text : null,
-
-					},
-					xAxis : {
-						type : 'datetime',
-						labels: {
-							format: '{value:%Y%m%d}',
-							style : {
-								fontSize:'10px'
-							}
-						},
-						tickWidth: 0,
-					},
-					yAxis : {
-						title : {
-							text : null,
-						},
-						offset: 0,
-						min : 0,
-						max : 2000,
-					},
-					// tooltip : {
-					// 	enabled: false
-					// },
-					plotOptions : {
-						series: {
-							marker: {
-								enabled: false
-							}
-						}
-					},
-					legend: {
-						align: 'left',
-						verticalAlign: 'top',
-						y: -15,
-						symbolRadius:0,
-						borderWidth: 0,
-						//color: '#2e95ec',
-					},
-					credits: {
-						enabled: false
-					},
-					series : [{
-						name : '동영상 누적 조회수',
-						type : "spline",
-						color: '#092056',
-						data : [
-							[Date.UTC(2018, 9, 1), 500],
-							[Date.UTC(2018, 9, 3), 600],
-							[Date.UTC(2018, 9, 5), 595],
-							[Date.UTC(2018, 9, 7), 334],
-							[Date.UTC(2018, 9, 10), 420],
-							[Date.UTC(2018, 9, 13), 520],
-							[Date.UTC(2018, 9, 15), 620],
-							[Date.UTC(2018, 9, 17), 720],
-							[Date.UTC(2018, 9, 19), 520],
-							[Date.UTC(2018, 9, 20), 620],
-							[Date.UTC(2018, 9, 23), 820],
-							[Date.UTC(2018, 9, 25), 1000],
-							[Date.UTC(2018, 9, 28), 900],
-							[Date.UTC(2018, 9, 31), 800],
-
-						],
-					}],
-				});
-
-				chart5 = new Highcharts.Chart({
-					chart : {
-						renderTo : 'container5',
-						marginTop: 100,
-					},
-					title : {
-						text : null,
-
-					},
-					subtitle : {
-						text : null,
-
-					},
-					xAxis : {
-						type : 'datetime',
-						labels: {
-							format: '{value:%Y%m%d}',
-							style : {
-								fontSize:'10px'
-							}
-						},
-						tickWidth: 0,
-					},
-					yAxis : {
-						title : {
-							text : null,
-						},
-						offset: 0,
-						min : 0,
-						max : 2000,
-					},
-					// tooltip : {
-					// 	enabled: false
-					// },
-					plotOptions : {
-						series: {
-							marker: {
-								enabled: false
-							},
-							pointWidth: ($(window).width() < 640) ? 7 : 15,
-						}
-					},
-					legend: {
-						align: 'left',
-						verticalAlign: 'top',
-						y: -15,
-						symbolRadius:0,
-						borderWidth: 0,
-					},
-					credits: {
-						enabled: false
-					},
-					series : [{
-						name : '좋아요',
-						type : "column",
-						color: '#8ddc59',
-						pointPadding: 2,
-						groupPadding: 0,
-						data : [
-							[Date.UTC(2018, 9, 1), 500],
-							[Date.UTC(2018, 9, 2), 500],
-							[Date.UTC(2018, 9, 3), 600],
-							[Date.UTC(2018, 9, 4), 600],
-							[Date.UTC(2018, 9, 5), 595],
-							[Date.UTC(2018, 9, 6), 334],
-							[Date.UTC(2018, 9, 7), 334],
-							[Date.UTC(2018, 9, 8), 420],
-							[Date.UTC(2018, 9, 9), 520],
-							[Date.UTC(2018, 9, 10), 620],
-							[Date.UTC(2018, 9, 11), 720],
-							[Date.UTC(2018, 9, 12), 520],
-							[Date.UTC(2018, 9, 13), 620],
-							[Date.UTC(2018, 9, 14), 820],
-							[Date.UTC(2018, 9, 15), 1000],
-							[Date.UTC(2018, 9, 16), 900],
-							[Date.UTC(2018, 9, 17), 800],
-							[Date.UTC(2018, 9, 18), 600],
-							[Date.UTC(2018, 9, 19), 595],
-							[Date.UTC(2018, 9, 20), 334],
-							[Date.UTC(2018, 9, 21), 500],
-							[Date.UTC(2018, 9, 22), 500],
-							[Date.UTC(2018, 9, 23), 600],
-							[Date.UTC(2018, 9, 24), 600],
-							[Date.UTC(2018, 9, 25), 595],
-							[Date.UTC(2018, 9, 26), 334],
-							[Date.UTC(2018, 9, 27), 334],
-							[Date.UTC(2018, 9, 28), 420],
-							[Date.UTC(2018, 9, 29), 520],
-							[Date.UTC(2018, 9, 30), 620],
-
-						],
-					}],
-				});
-
-				chart6 = new Highcharts.Chart({
-					chart : {
-						renderTo : 'container6',
-						marginTop: 100,
-					},
-					title : {
-						text : null,
-
-					},
-					subtitle : {
-						text : null,
-
-					},
-					xAxis : {
-						type : 'datetime',
-						labels: {
-							format: '{value:%Y%m%d}',
-							style : {
-								fontSize:'10px'
-							}
-						},
-						tickWidth: 0,
-					},
-					yAxis : {
-						title : {
-							text : null,
-						},
-						offset: 0,
-						min : 0,
-						max : 2000,
-					},
-					// tooltip : {
-					// 	enabled: false
-					// },
-					plotOptions : {
-						series: {
-							marker: {
-								enabled: false
-							},
-							pointWidth: ($(window).width() < 640) ? 7 : 15,
-						}
-					},
-					legend: {
-						align: 'left',
-						verticalAlign: 'top',
-						y: -15,
-						symbolRadius:0,
-						borderWidth: 0,
-					},
-					credits: {
-						enabled: false
-					},
-					series : [{
-						name : '팔로워 댓글',
-						type : "column",
-						color: '#2e95ec',
-						pointPadding: 2,
-						groupPadding: 0,
-						data : [
-							[Date.UTC(2018, 9, 1), 500],
-							[Date.UTC(2018, 9, 2), 500],
-							[Date.UTC(2018, 9, 3), 600],
-							[Date.UTC(2018, 9, 4), 600],
-							[Date.UTC(2018, 9, 5), 595],
-							[Date.UTC(2018, 9, 6), 334],
-							[Date.UTC(2018, 9, 7), 334],
-							[Date.UTC(2018, 9, 8), 420],
-							[Date.UTC(2018, 9, 9), 520],
-							[Date.UTC(2018, 9, 10), 620],
-							[Date.UTC(2018, 9, 11), 720],
-							[Date.UTC(2018, 9, 12), 520],
-							[Date.UTC(2018, 9, 13), 620],
-							[Date.UTC(2018, 9, 14), 820],
-							[Date.UTC(2018, 9, 15), 1000],
-							[Date.UTC(2018, 9, 16), 900],
-							[Date.UTC(2018, 9, 17), 800],
-							[Date.UTC(2018, 9, 18), 600],
-							[Date.UTC(2018, 9, 19), 595],
-							[Date.UTC(2018, 9, 20), 334],
-							[Date.UTC(2018, 9, 21), 500],
-							[Date.UTC(2018, 9, 22), 500],
-							[Date.UTC(2018, 9, 23), 600],
-							[Date.UTC(2018, 9, 24), 600],
-							[Date.UTC(2018, 9, 25), 595],
-							[Date.UTC(2018, 9, 26), 334],
-							[Date.UTC(2018, 9, 27), 334],
-							[Date.UTC(2018, 9, 28), 420],
-							[Date.UTC(2018, 9, 29), 520],
-							[Date.UTC(2018, 9, 30), 620],
-
-						],
-					}],
-				});
-
-				chart7 = new Highcharts.Chart({
-					chart: {
-						renderTo : 'container7',
-						plotBackgroundColor: null,
-						plotBorderWidth: 0,
-						plotShadow: false
-					},
-					title: {
-						text: '도달 팔로워 성별',
-						floating: true,
-						align: 'center',
-						verticalAlign: 'bottom',
-						y: ($(window).width() < 640) ? -10 : -30,
-						margin: 10,
-						style: {
-							fontSize:'1.3em',
-							color: '#4c6072',
-						},
-					},
-					credits: {
-						enabled: false
-					},
-					tooltip : {
-						enabled: false
-					},
-					legend: {
-						enabled: true,
-						align: 'left',
-						verticalAlign: 'top',
-						layout: 'horizontal',
-						symbolRadius:0,
-						borderWidth: 0,
-					},
-					plotOptions: {
-						pie: {
-							dataLabels: {
-								enabled: true,
-								distance: -20,
-								style: {
-									fontWeight: 'normal',
-									color: '#fff',
-									textOutline: false,
-								},
-								connectorPadding: 10
-							},
-							startAngle: 0,
-							endAngle: 360,
-							center: ['50%', '50%'],
-							showInLegend: true
-						}
-					},
-					series: [{
-						size: '70%',
-						type: 'pie',
-						innerSize: ($(window).width() < 640) ? '50%' : '75%',
-						data: [
-							 {
-								name: '여성',
-								color: '#8ddc59',
-								y: 70,
-								dataLabels: {
-									enabled: true,
-									formatter: function(){
-										return Math.round(this.percentage) + ' %';
-									}
-								}
-							},{
-								name: '남성',
-								color: '#00bd7d',
-								y: 20,
-								dataLabels: {
-									enabled: true,
-
-									formatter: function(){
-										return Math.round(this.percentage) + ' %';
-									}
-								}
-							},{
-								name: '기타',
-								color: '#009e9b',
-								y: 10,
-								dataLabels: {
-									enabled: true,
-
-									formatter: function(){
-										return Math.round(this.percentage) + ' %';
-									}
-								}
-							}
-						]
-					}]
-				});
-
-				chart8 = new Highcharts.Chart({
-					chart: {
-						renderTo : 'container8',
-						plotBackgroundColor: null,
-						plotBorderWidth: 0,
-						plotShadow: false
-					},
-					title: {
-						text: '도달 팔로워 국가별',
-						floating: true,
-						align: 'center',
-						verticalAlign: 'bottom',
-						y: ($(window).width() < 640) ? -10 : -30,
-						margin: 10,
-						style: {
-							fontSize:'1.3em',
-							color: '#4c6072',
-						},
-					},
-					credits: {
-						enabled: false
-					},
-					tooltip : {
-						enabled: false
-					},
-					legend: {
-						enabled: true,
-						align: 'left',
-						verticalAlign: 'top',
-						layout: 'horizontal',
-						symbolRadius:0,
-						borderWidth: 0,
-					},
-					plotOptions: {
-						pie: {
-							dataLabels: {
-								enabled: true,
-								distance: -20,
-								style: {
-									fontWeight: 'normal',
-									color: '#fff',
-									textOutline: false,
-								},
-								connectorPadding: 10
-							},
-							startAngle: 0,
-							endAngle: 360,
-							center: ['50%', '50%'],
-							size: '70%',
-							showInLegend: true
-						}
-					},
-					series: [{
-						type: 'pie',
-						innerSize: ($(window).width() < 640) ? '50%' : '75%',
-						data: [
-							 {
-								name: '한국',
-								color: '#8ddc59',
-								y: 40,
-								dataLabels: {
-									enabled: true,
-									formatter: function(){
-										return Math.round(this.percentage) + ' %';
-									}
-								}
-							},{
-								name: '일본',
-								color: '#00bd7d',
-								y: 25,
-								dataLabels: {
-									enabled: true,
-
-									formatter: function(){
-										return Math.round(this.percentage) + ' %';
-									}
-								}
-							},{
-								name: '미국',
-								color: '#009e9b',
-								y: 25,
-								dataLabels: {
-									enabled: true,
-
-									formatter: function(){
-										return Math.round(this.percentage) + ' %';
-									}
-								}
-							},{
-								name: '기타',
-								color: '#00526c',
-								y: 10,
-								dataLabels: {
-									enabled: true,
-
-									formatter: function(){
-										return Math.round(this.percentage) + ' %';
-									}
-								}
-							}
-						]
-					}]
-				});
-
-				chart9 = new Highcharts.Chart({
-					chart: {
-						renderTo : 'container9',
-						marginTop: 100,
-
-					},
-					title : {
-						text : null,
-
-					},
-					subtitle : {
-						text : null,
-
-					},
-					credits: {
-						enabled: false
-					},
-					tooltip : {
-						enabled: false
-					},
-					xAxis: {
-
-						categories: ['10대','20대','30대','40대','50대','60대','70대'],
-						tickLength: 0,
-						labels: {
-							enabled: true
-						},
-					},
-					yAxis : {
-						title : {
-						text : null,
-						},
-						offset: 0,
-						min : 0,
-						max : 100,
-
-					},
-					legend: {
-						enabled: true,
-						align: 'left',
-						verticalAlign: 'top',
-						layout: 'horizontal',
-						y: -15,
-						symbolRadius:0,
-						borderWidth: 0,
-						margin:0
-					},
-					plotOptions: {
-						column: {
-							dataLabels: {
-								enabled: true,
-								style: {
-									fontSize:'10px',
-									fontWeight: 'normal',
-									color: '#31501c',
-
-									textOutline: false,
-								},
-								connectorPadding: 10,
-								format: '{y} %',
-							},
-						},
-						series: {
-							pointWidth: ($(window).width() < 640) ? 24 : 46,
-							borderRadius: '4px',
-							color: {
-							linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-							stops: [
-								[0, '#2e95ec'],
-								[1, '#8ddc59']
-								]
-							}
-						}
-					},
-					series: [{
-						name : '연령별 팔로워 도달%',
-						type: 'column',
-						linearGradient: {
-							x1: 0,
-							x2: 0,
-							y1: 0,
-							y2: 1
-						},
-						data: [90, 68, 50, 44, 37, 40, 34]
-					}],
-
-				});
-
-			});
+			// //차트 데이터, 속성 컨트롤
+			// $(document).ready(function () {
+			// 	var chart = new Highcharts.Chart({
+			// 		chart : {
+			// 			renderTo : 'container',
+			// 			marginTop: 100,
+			// 			spacingRight : 0
+			// 		},
+			// 		title : {
+			// 			text : null,
+            //
+			// 		},
+			// 		subtitle : {
+			// 			text : null,
+            //
+			// 		},
+			// 		xAxis : {
+			// 			type : 'datetime',
+			// 			labels: {
+			// 				format: '{value:%Y%m%d}',
+			// 				style : {
+			// 					fontSize:'10px'
+			// 				}
+			// 			},
+			// 			tickWidth: 0,
+			// 		},
+			// 		yAxis : {
+			// 			title : {
+			// 				text : null,
+			// 			},
+			// 			offset: 0,
+			// 			min : 0,
+			// 			max : 2000,
+			// 		},
+			// 		// tooltip : {
+			// 		// 	enabled: false
+			// 		// },
+			// 		plotOptions : {
+			// 			series: {
+			// 				fillColor: {
+			// 					linearGradient: [0, 0, 0, 400],
+			// 					stops: [
+			// 						[0, Highcharts.getOptions().colors[0]],
+			// 						[1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+			// 					]
+			// 				},
+			// 				marker: {
+			// 					enabled: false
+			// 				}
+			// 			}
+			// 		},
+			// 		legend: {
+			// 			align: 'left',
+			// 			verticalAlign: 'top',
+			// 			y: -15,
+			// 			symbolRadius:0,
+			// 			borderWidth: 0
+			// 		},
+			// 		credits: {
+			// 			enabled: false
+			// 		},
+			// 		series : [{
+			// 			name : '게시물별 도달',
+			// 			type : "areaspline",
+			// 			data : [
+			// 				[Date.UTC(2018, 9, 1), 800],
+			// 				[Date.UTC(2018, 9, 3), 600],
+			// 				[Date.UTC(2018, 9, 5), 595],
+			// 				[Date.UTC(2018, 9, 7), 334],
+			// 				[Date.UTC(2018, 9, 10), 420],
+			// 				[Date.UTC(2018, 9, 13), 520],
+			// 				[Date.UTC(2018, 9, 15), 620],
+			// 				[Date.UTC(2018, 9, 17), 720],
+			// 				[Date.UTC(2018, 9, 19), 520],
+			// 				[Date.UTC(2018, 9, 20), 620],
+			// 				[Date.UTC(2018, 9, 23), 820],
+			// 				[Date.UTC(2018, 9, 25), 1000],
+			// 				[Date.UTC(2018, 9, 28), 900],
+			// 				[Date.UTC(2018, 9, 31), 800],
+            //
+			// 			],
+            //
+			// 		}],
+            //
+			// 	});
+            //
+			// 	var chart2 = new Highcharts.Chart({
+			// 		chart : {
+			// 			renderTo : 'container2',
+			// 			marginTop: 100,
+			// 		},
+			// 		title : {
+			// 			text : null,
+            //
+			// 		},
+			// 		subtitle : {
+			// 			text : null,
+            //
+			// 		},
+			// 		xAxis : {
+			// 			type : 'datetime',
+			// 			labels: {
+			// 				format: '{value:%Y%m%d}',
+			// 				style : {
+			// 					fontSize:'10px'
+			// 				}
+			// 			},
+			// 			tickWidth: 0,
+			// 		},
+			// 		yAxis : {
+			// 			title : {
+			// 			text : null,
+			// 			},
+			// 			offset: 0,
+			// 			min : 0,
+			// 			max : 2000,
+			// 		},
+			// 		// tooltip : {
+			// 		// 	enabled: false
+			// 		// },
+			// 		plotOptions : {
+			// 			series: {
+			// 				fillColor: {
+			// 					linearGradient: [0, 0, 0, 400],
+			// 					stops: [
+			// 						[0, Highcharts.Color('#8ddc59').setOpacity(1).get('rgba')],
+			// 						[1, Highcharts.Color('#fff').setOpacity(0.2).get('rgba')],
+			// 					]
+			// 				},
+			// 				lineColor: '#8ddc59',
+			// 				legendColor: '#8ddc59',
+			// 				marker: {
+			// 					enabled: false
+			// 				}
+			// 			}
+			// 		},
+			// 		legend: {
+			// 			align: 'left',
+			// 			verticalAlign: 'top',
+			// 			y: -15,
+			// 			symbolRadius:0,
+			// 			borderWidth: 0,
+			// 			color: '#8ddc59',
+			// 		},
+			// 		credits: {
+			// 			enabled: false
+			// 		},
+			// 		series : [{
+			// 			name : '게시물별 노출',
+			// 			type : "areaspline",
+			// 			color: '#8ddc59',
+			// 			data : [
+			// 				[Date.UTC(2018, 9, 1), 800],
+			// 				[Date.UTC(2018, 9, 3), 600],
+			// 				[Date.UTC(2018, 9, 5), 595],
+			// 				[Date.UTC(2018, 9, 7), 334],
+			// 				[Date.UTC(2018, 9, 10), 420],
+			// 				[Date.UTC(2018, 9, 13), 520],
+			// 				[Date.UTC(2018, 9, 15), 620],
+			// 				[Date.UTC(2018, 9, 17), 720],
+			// 				[Date.UTC(2018, 9, 19), 520],
+			// 				[Date.UTC(2018, 9, 20), 620],
+			// 				[Date.UTC(2018, 9, 23), 820],
+			// 				[Date.UTC(2018, 9, 25), 1000],
+			// 				[Date.UTC(2018, 9, 28), 900],
+			// 				[Date.UTC(2018, 9, 31), 800],
+            //
+			// 			],
+			// 		}],
+			// 	});
+            //
+			// 	var chart3 = new Highcharts.Chart({
+			// 		chart : {
+			// 			renderTo : 'container3',
+			// 			marginTop: 100,
+			// 		},
+			// 		title : {
+			// 			text : null,
+            //
+			// 		},
+			// 		subtitle : {
+			// 			text : null,
+            //
+			// 		},
+			// 		xAxis : {
+			// 			type : 'datetime',
+			// 			labels: {
+			// 				format: '{value:%Y%m%d}',
+			// 				style : {
+			// 					fontSize:'10px'
+			// 				}
+			// 			},
+			// 			tickWidth: 0,
+			// 		},
+			// 		yAxis : {
+			// 			title : {
+			// 				text : null,
+			// 			},
+			// 			offset: 0,
+			// 			min : 0,
+			// 			max : 2000,
+			// 		},
+			// 		// tooltip : {
+			// 		// 	enabled: false
+			// 		// },
+			// 		plotOptions : {
+			// 			series: {
+			// 				marker: {
+			// 					enabled: false
+			// 				}
+			// 			}
+			// 		},
+			// 		legend: {
+			// 			align: 'left',
+			// 			verticalAlign: 'top',
+			// 			y: -15,
+			// 			symbolRadius:0,
+			// 			borderWidth: 0,
+			// 			//color: '#2e95ec',
+			// 		},
+			// 		credits: {
+			// 			enabled: false
+			// 		},
+			// 		series : [
+			// 		{
+			// 			name : '누적도달',
+			// 			type : "spline",
+			// 			color: '#2e95ec',
+			// 			data : [
+			// 				[Date.UTC(2018, 9, 1), 500],
+			// 				[Date.UTC(2018, 9, 3), 600],
+			// 				[Date.UTC(2018, 9, 5), 595],
+			// 				[Date.UTC(2018, 9, 7), 334],
+			// 				[Date.UTC(2018, 9, 10), 420],
+			// 				[Date.UTC(2018, 9, 13), 520],
+			// 				[Date.UTC(2018, 9, 15), 620],
+			// 				[Date.UTC(2018, 9, 17), 720],
+			// 				[Date.UTC(2018, 9, 19), 520],
+			// 				[Date.UTC(2018, 9, 20), 620],
+			// 				[Date.UTC(2018, 9, 23), 820],
+			// 				[Date.UTC(2018, 9, 25), 1000],
+			// 				[Date.UTC(2018, 9, 28), 900],
+			// 				[Date.UTC(2018, 9, 31), 800],
+            //
+			// 			],
+            //
+			// 		},
+			// 		{
+			// 			name : '누적노출',
+			// 			type : "spline",
+			// 			color: '#8ddc59',
+			// 			data : [
+			// 				[Date.UTC(2018, 9, 1), 500],
+			// 				[Date.UTC(2018, 9, 3), 650],
+			// 				[Date.UTC(2018, 9, 5), 645],
+			// 				[Date.UTC(2018, 9, 7), 384],
+			// 				[Date.UTC(2018, 9, 10), 470],
+			// 				[Date.UTC(2018, 9, 13), 690],
+			// 				[Date.UTC(2018, 9, 15), 520],
+			// 				[Date.UTC(2018, 9, 17), 620],
+			// 				[Date.UTC(2018, 9, 19), 520],
+			// 				[Date.UTC(2018, 9, 20), 720],
+			// 				[Date.UTC(2018, 9, 23), 820],
+			// 				[Date.UTC(2018, 9, 25), 900],
+			// 				[Date.UTC(2018, 9, 28), 980],
+			// 				[Date.UTC(2018, 9, 31), 1000],
+            //
+			// 			],
+			// 		}],
+            //
+			// 	});
+            //
+			// 	var chart4 = new Highcharts.Chart({
+			// 		chart : {
+			// 			renderTo : 'container4',
+			// 			marginTop: 100,
+			// 		},
+			// 		title : {
+			// 			text : null,
+            //
+			// 		},
+			// 		subtitle : {
+			// 			text : null,
+            //
+			// 		},
+			// 		xAxis : {
+			// 			type : 'datetime',
+			// 			labels: {
+			// 				format: '{value:%Y%m%d}',
+			// 				style : {
+			// 					fontSize:'10px'
+			// 				}
+			// 			},
+			// 			tickWidth: 0,
+			// 		},
+			// 		yAxis : {
+			// 			title : {
+			// 				text : null,
+			// 			},
+			// 			offset: 0,
+			// 			min : 0,
+			// 			max : 2000,
+			// 		},
+			// 		// tooltip : {
+			// 		// 	enabled: false
+			// 		// },
+			// 		plotOptions : {
+			// 			series: {
+			// 				marker: {
+			// 					enabled: false
+			// 				}
+			// 			}
+			// 		},
+			// 		legend: {
+			// 			align: 'left',
+			// 			verticalAlign: 'top',
+			// 			y: -15,
+			// 			symbolRadius:0,
+			// 			borderWidth: 0,
+			// 			//color: '#2e95ec',
+			// 		},
+			// 		credits: {
+			// 			enabled: false
+			// 		},
+			// 		series : [{
+			// 			name : '동영상 누적 조회수',
+			// 			type : "spline",
+			// 			color: '#092056',
+			// 			data : [
+			// 				[Date.UTC(2018, 9, 1), 500],
+			// 				[Date.UTC(2018, 9, 3), 600],
+			// 				[Date.UTC(2018, 9, 5), 595],
+			// 				[Date.UTC(2018, 9, 7), 334],
+			// 				[Date.UTC(2018, 9, 10), 420],
+			// 				[Date.UTC(2018, 9, 13), 520],
+			// 				[Date.UTC(2018, 9, 15), 620],
+			// 				[Date.UTC(2018, 9, 17), 720],
+			// 				[Date.UTC(2018, 9, 19), 520],
+			// 				[Date.UTC(2018, 9, 20), 620],
+			// 				[Date.UTC(2018, 9, 23), 820],
+			// 				[Date.UTC(2018, 9, 25), 1000],
+			// 				[Date.UTC(2018, 9, 28), 900],
+			// 				[Date.UTC(2018, 9, 31), 800],
+            //
+			// 			],
+			// 		}],
+			// 	});
+            //
+			// 	chart5 = new Highcharts.Chart({
+			// 		chart : {
+			// 			renderTo : 'container5',
+			// 			marginTop: 100,
+			// 		},
+			// 		title : {
+			// 			text : null,
+            //
+			// 		},
+			// 		subtitle : {
+			// 			text : null,
+            //
+			// 		},
+			// 		xAxis : {
+			// 			type : 'datetime',
+			// 			labels: {
+			// 				format: '{value:%Y%m%d}',
+			// 				style : {
+			// 					fontSize:'10px'
+			// 				}
+			// 			},
+			// 			tickWidth: 0,
+			// 		},
+			// 		yAxis : {
+			// 			title : {
+			// 				text : null,
+			// 			},
+			// 			offset: 0,
+			// 			min : 0,
+			// 			max : 2000,
+			// 		},
+			// 		// tooltip : {
+			// 		// 	enabled: false
+			// 		// },
+			// 		plotOptions : {
+			// 			series: {
+			// 				marker: {
+			// 					enabled: false
+			// 				},
+			// 				pointWidth: ($(window).width() < 640) ? 7 : 15,
+			// 			}
+			// 		},
+			// 		legend: {
+			// 			align: 'left',
+			// 			verticalAlign: 'top',
+			// 			y: -15,
+			// 			symbolRadius:0,
+			// 			borderWidth: 0,
+			// 		},
+			// 		credits: {
+			// 			enabled: false
+			// 		},
+			// 		series : [{
+			// 			name : '좋아요',
+			// 			type : "column",
+			// 			color: '#8ddc59',
+			// 			pointPadding: 2,
+			// 			groupPadding: 0,
+			// 			data : [
+			// 				[Date.UTC(2018, 9, 1), 500],
+			// 				[Date.UTC(2018, 9, 2), 500],
+			// 				[Date.UTC(2018, 9, 3), 600],
+			// 				[Date.UTC(2018, 9, 4), 600],
+			// 				[Date.UTC(2018, 9, 5), 595],
+			// 				[Date.UTC(2018, 9, 6), 334],
+			// 				[Date.UTC(2018, 9, 7), 334],
+			// 				[Date.UTC(2018, 9, 8), 420],
+			// 				[Date.UTC(2018, 9, 9), 520],
+			// 				[Date.UTC(2018, 9, 10), 620],
+			// 				[Date.UTC(2018, 9, 11), 720],
+			// 				[Date.UTC(2018, 9, 12), 520],
+			// 				[Date.UTC(2018, 9, 13), 620],
+			// 				[Date.UTC(2018, 9, 14), 820],
+			// 				[Date.UTC(2018, 9, 15), 1000],
+			// 				[Date.UTC(2018, 9, 16), 900],
+			// 				[Date.UTC(2018, 9, 17), 800],
+			// 				[Date.UTC(2018, 9, 18), 600],
+			// 				[Date.UTC(2018, 9, 19), 595],
+			// 				[Date.UTC(2018, 9, 20), 334],
+			// 				[Date.UTC(2018, 9, 21), 500],
+			// 				[Date.UTC(2018, 9, 22), 500],
+			// 				[Date.UTC(2018, 9, 23), 600],
+			// 				[Date.UTC(2018, 9, 24), 600],
+			// 				[Date.UTC(2018, 9, 25), 595],
+			// 				[Date.UTC(2018, 9, 26), 334],
+			// 				[Date.UTC(2018, 9, 27), 334],
+			// 				[Date.UTC(2018, 9, 28), 420],
+			// 				[Date.UTC(2018, 9, 29), 520],
+			// 				[Date.UTC(2018, 9, 30), 620],
+            //
+			// 			],
+			// 		}],
+			// 	});
+            //
+			// 	chart6 = new Highcharts.Chart({
+			// 		chart : {
+			// 			renderTo : 'container6',
+			// 			marginTop: 100,
+			// 		},
+			// 		title : {
+			// 			text : null,
+            //
+			// 		},
+			// 		subtitle : {
+			// 			text : null,
+            //
+			// 		},
+			// 		xAxis : {
+			// 			type : 'datetime',
+			// 			labels: {
+			// 				format: '{value:%Y%m%d}',
+			// 				style : {
+			// 					fontSize:'10px'
+			// 				}
+			// 			},
+			// 			tickWidth: 0,
+			// 		},
+			// 		yAxis : {
+			// 			title : {
+			// 				text : null,
+			// 			},
+			// 			offset: 0,
+			// 			min : 0,
+			// 			max : 2000,
+			// 		},
+			// 		// tooltip : {
+			// 		// 	enabled: false
+			// 		// },
+			// 		plotOptions : {
+			// 			series: {
+			// 				marker: {
+			// 					enabled: false
+			// 				},
+			// 				pointWidth: ($(window).width() < 640) ? 7 : 15,
+			// 			}
+			// 		},
+			// 		legend: {
+			// 			align: 'left',
+			// 			verticalAlign: 'top',
+			// 			y: -15,
+			// 			symbolRadius:0,
+			// 			borderWidth: 0,
+			// 		},
+			// 		credits: {
+			// 			enabled: false
+			// 		},
+			// 		series : [{
+			// 			name : '팔로워 댓글',
+			// 			type : "column",
+			// 			color: '#2e95ec',
+			// 			pointPadding: 2,
+			// 			groupPadding: 0,
+			// 			data : [
+			// 				[Date.UTC(2018, 9, 1), 500],
+			// 				[Date.UTC(2018, 9, 2), 500],
+			// 				[Date.UTC(2018, 9, 3), 600],
+			// 				[Date.UTC(2018, 9, 4), 600],
+			// 				[Date.UTC(2018, 9, 5), 595],
+			// 				[Date.UTC(2018, 9, 6), 334],
+			// 				[Date.UTC(2018, 9, 7), 334],
+			// 				[Date.UTC(2018, 9, 8), 420],
+			// 				[Date.UTC(2018, 9, 9), 520],
+			// 				[Date.UTC(2018, 9, 10), 620],
+			// 				[Date.UTC(2018, 9, 11), 720],
+			// 				[Date.UTC(2018, 9, 12), 520],
+			// 				[Date.UTC(2018, 9, 13), 620],
+			// 				[Date.UTC(2018, 9, 14), 820],
+			// 				[Date.UTC(2018, 9, 15), 1000],
+			// 				[Date.UTC(2018, 9, 16), 900],
+			// 				[Date.UTC(2018, 9, 17), 800],
+			// 				[Date.UTC(2018, 9, 18), 600],
+			// 				[Date.UTC(2018, 9, 19), 595],
+			// 				[Date.UTC(2018, 9, 20), 334],
+			// 				[Date.UTC(2018, 9, 21), 500],
+			// 				[Date.UTC(2018, 9, 22), 500],
+			// 				[Date.UTC(2018, 9, 23), 600],
+			// 				[Date.UTC(2018, 9, 24), 600],
+			// 				[Date.UTC(2018, 9, 25), 595],
+			// 				[Date.UTC(2018, 9, 26), 334],
+			// 				[Date.UTC(2018, 9, 27), 334],
+			// 				[Date.UTC(2018, 9, 28), 420],
+			// 				[Date.UTC(2018, 9, 29), 520],
+			// 				[Date.UTC(2018, 9, 30), 620],
+            //
+			// 			],
+			// 		}],
+			// 	});
+            //
+			// 	chart7 = new Highcharts.Chart({
+			// 		chart: {
+			// 			renderTo : 'container7',
+			// 			plotBackgroundColor: null,
+			// 			plotBorderWidth: 0,
+			// 			plotShadow: false
+			// 		},
+			// 		title: {
+			// 			text: '도달 팔로워 성별',
+			// 			floating: true,
+			// 			align: 'center',
+			// 			verticalAlign: 'bottom',
+			// 			y: ($(window).width() < 640) ? -10 : -30,
+			// 			margin: 10,
+			// 			style: {
+			// 				fontSize:'1.3em',
+			// 				color: '#4c6072',
+			// 			},
+			// 		},
+			// 		credits: {
+			// 			enabled: false
+			// 		},
+			// 		tooltip : {
+			// 			enabled: false
+			// 		},
+			// 		legend: {
+			// 			enabled: true,
+			// 			align: 'left',
+			// 			verticalAlign: 'top',
+			// 			layout: 'horizontal',
+			// 			symbolRadius:0,
+			// 			borderWidth: 0,
+			// 		},
+			// 		plotOptions: {
+			// 			pie: {
+			// 				dataLabels: {
+			// 					enabled: true,
+			// 					distance: -20,
+			// 					style: {
+			// 						fontWeight: 'normal',
+			// 						color: '#fff',
+			// 						textOutline: false,
+			// 					},
+			// 					connectorPadding: 10
+			// 				},
+			// 				startAngle: 0,
+			// 				endAngle: 360,
+			// 				center: ['50%', '50%'],
+			// 				showInLegend: true
+			// 			}
+			// 		},
+			// 		series: [{
+			// 			size: '70%',
+			// 			type: 'pie',
+			// 			innerSize: ($(window).width() < 640) ? '50%' : '75%',
+			// 			data: [
+			// 				 {
+			// 					name: '여성',
+			// 					color: '#8ddc59',
+			// 					y: 70,
+			// 					dataLabels: {
+			// 						enabled: true,
+			// 						formatter: function(){
+			// 							return Math.round(this.percentage) + ' %';
+			// 						}
+			// 					}
+			// 				},{
+			// 					name: '남성',
+			// 					color: '#00bd7d',
+			// 					y: 20,
+			// 					dataLabels: {
+			// 						enabled: true,
+            //
+			// 						formatter: function(){
+			// 							return Math.round(this.percentage) + ' %';
+			// 						}
+			// 					}
+			// 				},{
+			// 					name: '기타',
+			// 					color: '#009e9b',
+			// 					y: 10,
+			// 					dataLabels: {
+			// 						enabled: true,
+            //
+			// 						formatter: function(){
+			// 							return Math.round(this.percentage) + ' %';
+			// 						}
+			// 					}
+			// 				}
+			// 			]
+			// 		}]
+			// 	});
+            //
+			// 	chart8 = new Highcharts.Chart({
+			// 		chart: {
+			// 			renderTo : 'container8',
+			// 			plotBackgroundColor: null,
+			// 			plotBorderWidth: 0,
+			// 			plotShadow: false
+			// 		},
+			// 		title: {
+			// 			text: '도달 팔로워 국가별',
+			// 			floating: true,
+			// 			align: 'center',
+			// 			verticalAlign: 'bottom',
+			// 			y: ($(window).width() < 640) ? -10 : -30,
+			// 			margin: 10,
+			// 			style: {
+			// 				fontSize:'1.3em',
+			// 				color: '#4c6072',
+			// 			},
+			// 		},
+			// 		credits: {
+			// 			enabled: false
+			// 		},
+			// 		tooltip : {
+			// 			enabled: false
+			// 		},
+			// 		legend: {
+			// 			enabled: true,
+			// 			align: 'left',
+			// 			verticalAlign: 'top',
+			// 			layout: 'horizontal',
+			// 			symbolRadius:0,
+			// 			borderWidth: 0,
+			// 		},
+			// 		plotOptions: {
+			// 			pie: {
+			// 				dataLabels: {
+			// 					enabled: true,
+			// 					distance: -20,
+			// 					style: {
+			// 						fontWeight: 'normal',
+			// 						color: '#fff',
+			// 						textOutline: false,
+			// 					},
+			// 					connectorPadding: 10
+			// 				},
+			// 				startAngle: 0,
+			// 				endAngle: 360,
+			// 				center: ['50%', '50%'],
+			// 				size: '70%',
+			// 				showInLegend: true
+			// 			}
+			// 		},
+			// 		series: [{
+			// 			type: 'pie',
+			// 			innerSize: ($(window).width() < 640) ? '50%' : '75%',
+			// 			data: [
+			// 				 {
+			// 					name: '한국',
+			// 					color: '#8ddc59',
+			// 					y: 40,
+			// 					dataLabels: {
+			// 						enabled: true,
+			// 						formatter: function(){
+			// 							return Math.round(this.percentage) + ' %';
+			// 						}
+			// 					}
+			// 				},{
+			// 					name: '일본',
+			// 					color: '#00bd7d',
+			// 					y: 25,
+			// 					dataLabels: {
+			// 						enabled: true,
+            //
+			// 						formatter: function(){
+			// 							return Math.round(this.percentage) + ' %';
+			// 						}
+			// 					}
+			// 				},{
+			// 					name: '미국',
+			// 					color: '#009e9b',
+			// 					y: 25,
+			// 					dataLabels: {
+			// 						enabled: true,
+            //
+			// 						formatter: function(){
+			// 							return Math.round(this.percentage) + ' %';
+			// 						}
+			// 					}
+			// 				},{
+			// 					name: '기타',
+			// 					color: '#00526c',
+			// 					y: 10,
+			// 					dataLabels: {
+			// 						enabled: true,
+            //
+			// 						formatter: function(){
+			// 							return Math.round(this.percentage) + ' %';
+			// 						}
+			// 					}
+			// 				}
+			// 			]
+			// 		}]
+			// 	});
+            //
+			// 	chart9 = new Highcharts.Chart({
+			// 		chart: {
+			// 			renderTo : 'container9',
+			// 			marginTop: 100,
+            //
+			// 		},
+			// 		title : {
+			// 			text : null,
+            //
+			// 		},
+			// 		subtitle : {
+			// 			text : null,
+            //
+			// 		},
+			// 		credits: {
+			// 			enabled: false
+			// 		},
+			// 		tooltip : {
+			// 			enabled: false
+			// 		},
+			// 		xAxis: {
+            //
+			// 			categories: ['10대','20대','30대','40대','50대','60대','70대'],
+			// 			tickLength: 0,
+			// 			labels: {
+			// 				enabled: true
+			// 			},
+			// 		},
+			// 		yAxis : {
+			// 			title : {
+			// 			text : null,
+			// 			},
+			// 			offset: 0,
+			// 			min : 0,
+			// 			max : 100,
+            //
+			// 		},
+			// 		legend: {
+			// 			enabled: true,
+			// 			align: 'left',
+			// 			verticalAlign: 'top',
+			// 			layout: 'horizontal',
+			// 			y: -15,
+			// 			symbolRadius:0,
+			// 			borderWidth: 0,
+			// 			margin:0
+			// 		},
+			// 		plotOptions: {
+			// 			column: {
+			// 				dataLabels: {
+			// 					enabled: true,
+			// 					style: {
+			// 						fontSize:'10px',
+			// 						fontWeight: 'normal',
+			// 						color: '#31501c',
+            //
+			// 						textOutline: false,
+			// 					},
+			// 					connectorPadding: 10,
+			// 					format: '{y} %',
+			// 				},
+			// 			},
+			// 			series: {
+			// 				pointWidth: ($(window).width() < 640) ? 24 : 46,
+			// 				borderRadius: '4px',
+			// 				color: {
+			// 				linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+			// 				stops: [
+			// 					[0, '#2e95ec'],
+			// 					[1, '#8ddc59']
+			// 					]
+			// 				}
+			// 			}
+			// 		},
+			// 		series: [{
+			// 			name : '연령별 팔로워 도달%',
+			// 			type: 'column',
+			// 			linearGradient: {
+			// 				x1: 0,
+			// 				x2: 0,
+			// 				y1: 0,
+			// 				y2: 1
+			// 			},
+			// 			data: [90, 68, 50, 44, 37, 40, 34]
+			// 		}],
+            //
+			// 	});
+            //
+			// });
   }
 };
 </script>

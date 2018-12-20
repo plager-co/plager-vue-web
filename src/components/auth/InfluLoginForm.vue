@@ -1,76 +1,99 @@
 <template>
-    <div class='viewer'>
-        <join-popup></join-popup>
-        <request-password-popup></request-password-popup>
-        <alert-base></alert-base>
-        <div class="section gray">
-            <div class="container" style="    height: 80vh;">
-                <div class="card-wrap">
-                    <div class="card">
-                        <influ-login-form></influ-login-form>
-                    </div>
-                    <div class="card">
-                        <login-form></login-form>
-                    </div>
-                </div>
-            </div>
+    <form
+      id="login-form"
+      @submit.prevent="checkForm"
+  novalidate="true"
+    >
+
+
+
+    <h2>인플루언서 로그인</h2>
+    <input id="email"
+      v-model="email"
+      type="email"
+      name="email" placeholder='email'>
+    <input id="password"
+      v-model="password"
+      name="password" type="password" placeholder='password'>
+    <div class="info">
+        <div class="left">
+            <input type="checkbox" name="keep" id="keep">
+            <label for="keep">
+                <span class='checkbox'></span>
+                로그인 상태 유지
+            </label>
         </div>
+        <div class="right" @click='$store.commit("openRequestPasswordPopup")'>비밀번호 찾기</div>
     </div>
+    <div class="button-wrap">
+        <input type="submit" value="로그인">
+        <button @click='$router.push("/influencer-join")'>인플루언서 가입</button>
+    </div>
+
+    </form>
 </template>
 
 <script>
-import JoinPopup from './JoinPopup'
-import AlertBase from './AlertBase'
-import RequestPasswordPopup from './RequestPasswordPopup'
-import LoginForm from './auth/LoginForm'
-import InfluLoginForm from './auth/InfluLoginForm'
+
+
+import { isValidJwt, EventBus } from '@/utils'
 
 export default {
-    components: {JoinPopup, RequestPasswordPopup, AlertBase, InfluLoginForm, LoginForm},
+    data() {
+      return {  errors: [],
+        email: null,
+        password: null,
+        movie: null }
+    },
     methods: {
-        influLogin(){
-            // this.$store.commit("userLogin", 'Influ')
-            this.$router.push('/influencer-join')
+        checkForm: function (e) {
+
+          this.errors = [];
+
+          document.getElementById('email').style.border='1px solid #d9dee8';
+          document.getElementById('password').style.border='1px solid #d9dee8';
+
+          if (!this.email && this.password) {
+             document.getElementById('email').style.border='2px solid red';
+          }
+          if (this.email && !this.password) {
+             document.getElementById('password').style.border='2px solid red';
+          }
+
+          if     (!this.email && !this.password) {
+            document.getElementById('email').style.border='2px solid red';
+            document.getElementById('password').style.border='2px solid red';
+          }
+
+          var headers = [];
+
+          if (this.email && this.password) {
+            this.authenticate();
+
+          }
+
         },
-        sponsorLogin(){
-            this.$store.commit("userLogin", 'Sponsor')
-            this.$router.push('/')
+        authenticate () {
+          this.$store.dispatch('login', { email: this.email, password: this.password })
         },
-        authenticate(provider) {
-
-            var store = this.$store;
-            var router = this.$router;
-
-          this.$auth.authenticate(provider).then(function (response) {
-            // Execute application logic after successful social authentication
-                console.log("authed")
-                console.log(response)
-              if (response.data.token){
-                store.commit('setUserData', response.data);
-                store.commit('setJwtToken', { jwt: response.data.token });
-                if (response.data.user_type === 'influencer'){
-                    console.log("influencer");
-                    store.commit('setInfluencer', true);
-                    router.push('/influencer-my-page');
-                } else {
-                    console.log("sponsor");
-                    store.commit('setSponsor', true);
-                    router.push('/mypage');
-                }
-              } else {
-                store.commit('setInstagramCode', response.data.code);
-                store.commit('setInstagramClientId', response.data.clientId);
-                router.push('/influencer-join');
-              }
-
-
-          })
+        register () {
+          this.$store.dispatch('register', { email: this.email, password: this.password })
         }
-    }
+    },
+    mounted () {
+    EventBus.$on('failedRegistering', (msg) => {
+      this.errorMsg = msg
+    })
+    EventBus.$on('failedAuthentication', (msg) => {
+      this.errorMsg = msg
+    })
+  },
+  beforeDestroy () {
+    EventBus.$off('failedRegistering')
+    EventBus.$off('failedAuthentication')
+  }
 };
-
 </script>
-
 <style scoped>
 h1 {
   margin-top: 100px;
@@ -95,6 +118,16 @@ h3 {
   line-height: 22px;
   margin-top: 0;
   margin-bottom: 91px;
+}
+
+h4 {
+  font-size: 15px;
+  font-weight: 400;
+  color: #242e38;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 22px;
+  margin-top: 0;
 }
 
 .section .container {
@@ -145,6 +178,7 @@ button.influ-login img {
 }
 
 .card input[type=text],
+.card input[type=email],
 .card input[type=password] {
     background: #FFFFFF;
     border: 1px solid #E1E7EC;
@@ -188,6 +222,7 @@ button.influ-login img {
 .button-wrap {
     width: 100%;
 }
+.button-wrap input,
 .button-wrap button {
     border: none;
     height: 50px;
@@ -201,6 +236,7 @@ button.influ-login img {
     text-align: center;
     float: right;
 }
+.button-wrap input:last-child,
 .button-wrap button:last-child {
     background: #FFFFFF;
     border: 1px solid #DFE3E9;
@@ -222,15 +258,16 @@ button.influ-login img {
     .card-wrap .card:last-child h2 {margin-bottom: 3.2rem;}
     button.influ-login {width: 20.2rem; height: 4rem; font-size: 1.2rem;}
     button.influ-login img {width: 1.6rem; height: 1.6rem; margin-right: .6rem;}
-    .card input[type=text], 
+    .card input[type=text],
+    .card input[type=email],
     .card input[type=password] { height: 3.5rem; font-size: 1rem; padding: 0 1.5rem;}
     .card .info .right,
     .card .info .left { font-size: 1rem;}
     .card .info .right {position: relative; bottom: .5rem; line-height: 1.9rem;}
-    .button-wrap button,
+    .button-wrap input,.button-wrap button,
     .button-wrap button:last-child { width: 20.2rem; height: 4rem; float: none; margin-bottom: .7rem; margin-right: 0; font-size: 1.2rem;}
     .button-wrap button:last-child { margin-bottom: 0;}
-    
+
 }
 
 @media screen and (min-width:0\0) and (min-resolution: +72dpi) and (max-width: 640px) {

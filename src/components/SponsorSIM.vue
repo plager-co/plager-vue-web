@@ -1,11 +1,12 @@
 
 <template>
     <div class='viewer'>
+      <loading v-if='loadingPopup'></loading>
         <div class="section first gray">
             <div class="container">                
                 <h2>{{ status }}</h2>
                 <div class="btn">
-                    <button @click='$router.push("/sponsor-result")'>전체 성과보기</button>
+                    <button @click='$router.push("/sponsor-all-result")'>전체 성과보기</button>
                 </div>
                 <div class="influ-list web">
                     <div class="card-wrap" v-for='(item, i) in influList' :key='i'>
@@ -24,7 +25,7 @@
                                     red: item.state === '계약마감'
                                 }"
                                 >{{item.msg}}</div>
-                            <div class="times-count">0/18회</div>
+                            <div class="times-count">{{item.paid_month}}/{{item.ad_month * 3}}회</div>
                             <div class="sns-data">
                                 <table>
                                     <tbody>
@@ -54,11 +55,11 @@
                                             </tr>
 					       <tr>
                                                 <td class='bold'>동영상 재생</td>
-                                                <td>{{item.target_play_count}}</td>
+                                                <td>{{item.target_play_count}}회</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>광고주계정 인바운드</td>
-                                                <td>{{item.target_inbound_count}}</td>
+                                                <td>{{item.target_inbound_count}}회</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>중복팔로워</td>
@@ -75,8 +76,8 @@
                                 <!-- <div class="price">1회 예상 광고비 {{item.price}}원</div> -->
                             </div>
                         </div>
-                        <button class="blue"@click='$router.push("/sponsor-result")'>성과보기</button>
-                        <button class="red" @click='payAdInfluencer(item)'>결제하기</button>
+                        <button class="blue" v-if="item.status > 2" @click='$router.push("/sponsor-result")'>성과보기</button>
+                        <button class="red" v-if="item.status <= 2" @click='payAdInfluencer(item)'>결제하기</button>
                     </div>
                 </div>
                 <carousel
@@ -94,7 +95,7 @@
                     class='influ-list'
                      ref="sponsors"
                 >
-                    <slide v-for='(item, i) in influList' :key='i'>
+                    <slide v-for='(item, i) in influMobileList' :key='i'>
                         <div class="card-wrap">
                             <div class="card influ" :class='{selected: item.isSelected}' >
                                 <div class="profile-wrap" >
@@ -111,45 +112,45 @@
                                         red: item.state === '계약마감'
                                     }"
                                     >{{item.msg}}</div>
-                                <div class="times-count">0/18회</div>
+                                <div class="times-count">0/{{item.defaultMonth * 15}}회</div>
                                 <div class="sns-data">
                                     <table>
                                         <tbody>
                                             <tr>
                                                 <td class='bold'>노출</td>
-                                                <td>총 {{item.target_impression_count}}회</td>
+                                                <td class="break-word">총 {{item.target_impression_count}}회</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>도달</td>
-                                                <td>총 {{item.target_reach_count}}회</td>
+                                                <td class="break-word">총 {{item.target_reach_count}}회</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>좋아요</td>
-                                                <td>{{item.target_like_count}}개</td>
+                                                <td class="break-word">{{item.target_like_count}}개</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>댓글</td>
-                                                <td>{{item.target_comment_count}}개</td>
+                                                <td class="break-word">{{item.target_comment_count}}개</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>저장</td>
-                                                <td>{{item.target_save_count}}개</td>
+                                                <td class="break-word">{{item.target_save_count}}개</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>동영상</td>
-                                                <td>{{item.target_movie_count}}개</td>
+                                                <td class="break-word">{{item.target_movie_count}}개</td>
                                             </tr>
 					       <tr>
                                                 <td class='bold'>동영상 재생</td>
-                                                <td>{{item.target_play_count}}</td>
+                                                <td class="break-word">{{item.target_play_count}}회</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>광고주계정 인바운드</td>
-                                                <td>{{item.target_inbound_count}}</td>
+                                                <td class="break-word">{{item.target_inbound_count}}회</td>
                                             </tr>
                                             <tr>
                                                 <td class='bold'>중복팔로워</td>
-                                                <td>{{item.duplicate_follower_count}}명</td>
+                                                <td class="break-word">{{item.duplicate_follower_count}}명</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -162,8 +163,8 @@
                                     <!-- <div class="price">1회 예상 광고비 {{item.price}}원</div> -->
                                 </div>
                             </div>
-                            <button class="blue" @click='$router.push("/sponsor-result")'>성과보기</button>
-                            <button class="red" @click='$router.push("/sponsor-payment")' >결제하기</button>
+                            <button class="blue" v-if="item.status > 2" @click='$router.push("/sponsor-result")'>성과보기</button>
+                            <button class="red" v-if="item.status <= 2" @click='$router.push("/sponsor-payment")' >결제하기</button>
                         </div>
                     </slide>
                 </carousel>
@@ -190,10 +191,11 @@
 </template>
 
 <script>
+import Loading from './common/Loading'
 import VueAdsPagination from 'vue-ads-pagination';
 export default {
      components: {
-        VueAdsPagination,
+        VueAdsPagination, Loading
     },
     data(){
         return {
@@ -209,36 +211,74 @@ export default {
                     picture_link: '/',
                     instagram: '/',
                     isRed: false,
-                    termValue: "2018. 03. 03 ~ 2018. 05. 05",
+                    termValue: "",
                     bottomMsg: "",
-                    follower: '2k',
-                    defaultMonth: 3,
-                    msg: "3개월 계약대기",
-                    state: "계약대기",
+                    follower: '',
+                    defaultMonth: 0,
+                    msg: "",
+                    state: "",
                     isSelected: true
                 },
                 {
                     picture_link: '/',
                     instagram: '/',
-                    isRed: true,
-                    termValue: "2018. 03. 03 ~ 2018. 05. 05",
-                    bottomMsg: "지급대기모델료",
-                    follower: '2k',
-                    defaultMonth: 3,
-                    msg: "1개월 계약",
-                    state: "계약",
-                    isSelected: false
+                    isRed: false,
+                    termValue: "",
+                    bottomMsg: "",
+                    follower: '',
+                    defaultMonth: 0,
+                    msg: "",
+                    state: "",
+                    isSelected: true
                 },
                 {
                     picture_link: '/',
                     instagram: '/',
                     isRed: false,
-                    termValue: "2018. 03. 03 ~ 2018. 05. 05",
-                    bottomMsg: "총 3개월 중 1개월 결제완료",
-                    follower: '2k',
-                    defaultMonth: 3,
-                    msg: "3개월 계약마감",
-                    state: "계약마감",
+                    termValue: "",
+                    bottomMsg: "",
+                    follower: '',
+                    defaultMonth: 0,
+                    msg: "",
+                    state: "",
+                    isSelected: true
+                },
+            ],
+            influMobileList: [
+                {
+                    picture_link: '/',
+                    instagram: '/',
+                    isRed: false,
+                    termValue: "",
+                    bottomMsg: "",
+                    follower: '',
+                    defaultMonth: 0,
+                    msg: "",
+                    state: "",
+                    isSelected: true
+                },
+                {
+                    picture_link: '/',
+                    instagram: '/',
+                    isRed: false,
+                    termValue: "",
+                    bottomMsg: "",
+                    follower: '',
+                    defaultMonth: 0,
+                    msg: "",
+                    state: "",
+                    isSelected: true
+                },
+                {
+                    picture_link: '/',
+                    instagram: '/',
+                    isRed: false,
+                    termValue: "",
+                    bottomMsg: "",
+                    follower: '',
+                    defaultMonth: 0,
+                    msg: "",
+                    state: "",
                     isSelected: true
                 },
             ]
@@ -253,7 +293,7 @@ export default {
     }
   },
     created: async function(){
-
+    this.loadingPopup = true;
         function getStatus(filterAds){
           var statusAds = '';
           if (filterAds === 'registered'){
@@ -315,12 +355,13 @@ export default {
 
         var store = this.$store;
         var influList = [];
+        var influMobileList = [];
         var payload = {
             'sponsor_id': this.$store.getters.user_id,
             'status': filterAds,
             'limit': 1,
             'page_size': 6,
-        }
+        };
         await store.dispatch('fetchAdInfluencersBySponsorIdAndStatus', payload);
         store.getters.adInfluencers.forEach(function(val){
             console.log(val);
@@ -328,28 +369,80 @@ export default {
             if (val.price){
                 price = val.price.toLocaleString();
             }
+            if (val.status < 2){
+                val.state = "계약대기"
+                val.msg = "계약 대기중"
+            } else if (val.status === 3){
+                val.state = "계약"
+                val.msg = "광고 진행중"
+            } else if (val.status === 4){
+                val.state = "계약마감"
+                val.msg = "광고 완료"
+            }
               var val_show = {
                             picture_link: val.picture_link,
                             instagram: val.instagram,
                             price: price + '원',
                             isRed: false,
-                            termValue: "2018. 03. 03 ~ 2018. 05. 05",
-                            bottomMsg: "총 3개월 중 1개월 결제완료",
+                            termValue: val.ad_start_at.split(" ")[0] + " ~ " + val.ad_end_at.split(" ")[0],
                             follower: val.total_follower_count,
-                            defaultMonth: 3,
-                            msg: "3개월 계약마감",
-                            state: "계약마감",
+                            defaultMonth: val.ad_month,
+                            msg: val.msg,
+                            state: val.state,
                             isSelected: true,
                         };
               var result = Object.assign({}, val, val_show);
                   influList.push(result)
               });
 
-      this.influList = influList;
+        this.influList = influList;
+
+        var payloadMobile = {
+            'sponsor_id': this.$store.getters.user_id,
+            'status': filterAds,
+        };
+        await store.dispatch('fetchAdInfluencersBySponsorIdAndStatus', payloadMobile);
+        store.getters.adInfluencers.forEach(function(val){
+            console.log(val);
+            var price = 0;
+            if (val.price){
+                price = val.price.toLocaleString();
+            }
+            if (val.status < 2){
+                val.state = "계약대기"
+                val.msg = "계약 대기중"
+            } else if (val.status === 3){
+                val.state = "계약"
+                val.msg = "광고 진행중"
+            } else if (val.status === 4){
+                val.state = "계약마감"
+                val.msg = "광고 완료"
+            }
+              var val_show = {
+                            picture_link: val.picture_link,
+                            instagram: val.instagram,
+                            price: price + '원',
+                            isRed: false,
+                            termValue: val.ad_start_at.split(" ")[0] + " ~ " + val.ad_end_at.split(" ")[0],
+                            follower: val.total_follower_count,
+                            defaultMonth: val.ad_month,
+                            msg: val.msg,
+                            state: val.state,
+                            isSelected: true,
+                        };
+              var result = Object.assign({}, val, val_show);
+                  influMobileList.push(result)
+              });
+
+      this.influMobileList = influMobileList;
+
+        this.loadingPopup = false;
+
   },
     methods: {
         async pageChange (page, range) {
             console.log(page, range);
+            this.loadingPopup = true;
             this.$refs['sponsors'].currentPage = 0;
              var store = this.$store;
                 var influList = [];
@@ -366,17 +459,26 @@ export default {
                     if (val.price){
                         price = val.price.toLocaleString();
                     }
+                    if (val.status < 2){
+                        val.state = "계약대기"
+                        val.msg = "계약 대기중"
+                    } else if (val.status === 3){
+                        val.state = "계약"
+                        val.msg = "광고 진행중"
+                    } else if (val.status === 4){
+                        val.state = "계약마감"
+                        val.msg = "광고 완료"
+                    }
                       var val_show = {
                                     picture_link: val.picture_link,
                                     instagram: val.instagram,
                                     price: price + '원',
                                     isRed: false,
-                                    termValue: "2018. 03. 03 ~ 2018. 05. 05",
-                                    bottomMsg: "총 3개월 중 1개월 결제완료",
+                                    termValue: val.ad_start_at.split(" ")[0] + " ~ " + val.ad_end_at.split(" ")[0],
                                     follower: val.total_follower_count,
-                                    defaultMonth: 3,
-                                    msg: "3개월 계약마감",
-                                    state: "계약마감",
+                                    defaultMonth: val.ad_month,
+                                    msg: val.msg,
+                                    state: val.state,
                                     isSelected: true,
                                 };
                       var result = Object.assign({}, val, val_show);
@@ -384,6 +486,7 @@ export default {
                       });
               this.influList = influList;
             this.pageMax = influList.length + 1;
+            this.loadingPopup = false;
         },
         completeJoin(){
             this.$store.commit('openCompletePopup', '인플루언서 가입이 완료되었습니다.')
@@ -705,10 +808,12 @@ button.red {
     background-image: linear-gradient(-225deg, #FA2B56 0%, #F91C3D 100%);
 }
 
+.break-word{word-break: break-all;}
 
 @media screen and (max-width: 640px) {
     
     h2 { font-size: 2rem; line-height: 2.4rem; margin-bottom: 2.2rem;}
+    .break-word{word-break: break-all;}
 
     .section.first .container { width: 100vw; padding: 2.3rem 0rem 1rem; box-sizing: border-box;}
 
@@ -724,7 +829,7 @@ button.red {
 
     .influ-list { display: block; }
     .influ-list.web { display: none; }
-    
+    .vue-ads-flex {display: none; }
     .card-wrap.hide {display: none;}
     .card.influ ._id { font-size: 1rem; line-height: 1; margin: 0;}
     .card.influ .profile-wrap { width: 11rem; height: 11rem; padding: .5rem; margin-bottom: 1rem;}

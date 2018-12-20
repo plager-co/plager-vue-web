@@ -10,6 +10,7 @@ import SponsorPayment3 from '@/components/SponsorPayment3'
 import SponsorPayment4 from '@/components/SponsorPayment4'
 import SponsorSIM from '@/components/SponsorSIM'
 import SponsorResult from '@/components/SponsorResult'
+import SponsorAllResult from '@/components/SponsorAllResult'
 import SponsorList from '@/components/SponsorList'
 import MyPage from '@/components/MyPage'
 
@@ -62,6 +63,10 @@ export const routes = [
     {
       path: '/sponsor-result',
       component: SponsorResult
+    },
+    {
+      path: '/sponsor-all-result',
+      component: SponsorAllResult
     },
     {
       path: '/sponsor-filter',

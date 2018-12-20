@@ -76,11 +76,11 @@
                         }
                       }'
                       :formatter = 'value => {
-                        return value ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "") + "000" : value ;
+                        return value ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",").replace(/\B(?=(\d{3})+(?!\d))/g, "") + ",000" : value ;
                       }'
                     >
                         <div class='custom-label' slot='label' slot-scope='{ label, active }' v-if='
-                          (!label && label.toString() === "0") || (label ? label.toString().indexOf("00000") > 0 : false)
+                          (!label && label.toString() === "0") || (label ? label.toString().indexOf("00,000") > 0 : false)
                         '>
                           {{ label }}
                         </div>

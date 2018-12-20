@@ -16,10 +16,12 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         user_type: '',
-        isTestPopup: false,
+        isTestPopup: true,
         isJoinPopup: false,
         isRequestPasswordPopup: false,
         isCompletePopup: false,
+        isEmptyTester: false,
+        testerBorder: '2px solid red',
         completeMsg: '',
         isAlertPopup: false,
         alertMsg: '',
@@ -844,6 +846,12 @@ export const store = new Vuex.Store({
         },
         closeTestPopup(state) {
             state.isTestPopup = false;
+        },
+        openEmptyTesterPopup(state) {
+            state.isEmptyTester = true;
+        },
+        closeEmptyTesterPopup(state) {
+            state.isEmptyTester = false;
         },
         setInfluencers(state, payload) {
             state.influencers = payload;

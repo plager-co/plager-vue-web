@@ -256,7 +256,7 @@ p {
 
 .btn-wrap {
     width: 100%;
-    height: 59px;
+    height: 100px;
     width: 700px;
     margin-left: auto;
     margin-right: auto;

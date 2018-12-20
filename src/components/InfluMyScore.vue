@@ -197,7 +197,7 @@ export default {
             });
             await sleep(1000);
             tried = tried + 1;
-            if (tried > 120){
+            if (tried > 600){
                 loadFlag = false;
                 failPopup = true;
             }

@@ -11,10 +11,7 @@ import VueClipboard from 'vue-clipboard2'
 import VueAuthenticate from 'vue-authenticate'
 import VueAxios from 'vue-axios'
 import axios from 'axios';
-<<<<<<< HEAD
-require('es6-promise').polyfill()
-=======
->>>>>>> 35126fe... try
+
 Vue.use(VueAxios, axios)
 
 Vue.use(VueClipboard)

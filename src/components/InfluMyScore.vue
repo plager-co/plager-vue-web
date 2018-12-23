@@ -53,7 +53,7 @@
                         <div class="bottom">
                             <h2>내 영향력 지수</h2>
                             <div class="desc">전체 인플루언서 <br class="for-mobile"> 평균 영향력 지수 {{Math.round(avg_influencer_effect_rate * 100) / 100}}%</div>
-                            <button class="percent" :style="{background: button_background}">{{Math.round(tester.influencer_effect_rate * 100) / 100}}%</button>
+                            <button class="percent" disabled>{{Math.round(tester.influencer_effect_rate * 100) / 100}}%</button>
                         </div>
 			<div class="top">
                             <div class="title">최근 3개월 평균</div>
@@ -142,7 +142,6 @@ export default {
             this.$store.commit('openEmptyTesterPopup');
             return
         }
-        this.button_background = "rgba(136,200,107,0.8)";
         this.$store.commit('closeTestPopup');
         this.$store.commit('setError', false);
         this.loadingPopup = true;
@@ -217,8 +216,6 @@ export default {
             this.$store.commit('isNoTester');
         }
 
-        this.button_background = '#88c86b';
-
     }
     },
     metaInfo: {
@@ -269,7 +266,6 @@ export default {
             loadingPopup: false,
             avg_influencer_effect_rate: 0,
             loadFlag: false,
-            button_background: '#88c86b',
         }
     },
     async created(){

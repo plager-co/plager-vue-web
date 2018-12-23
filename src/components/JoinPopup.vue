@@ -26,13 +26,13 @@
             <div class="input-set">
                 <div class='password label'>비밀번호</div>
                 <div class="input-wrap btn">
-                    <input id='password' type="password" v-model="password">
+                    <input id='password' type="password" placeholder="**********" v-model="password">
                 </div>
             </div>
             <div class="input-set">
                 <div class='label'>비밀번호 확인</div>
                 <div class="input-wrap btn">
-                    <input id='password2' type="password" v-model="password2">
+                    <input id='password2' type="password" placeholder="**********" v-model="password2">
                 </div>
             </div>
             <div class="input-set btn">

@@ -74,7 +74,7 @@ export default {
 
         },
         authenticate () {
-          this.$store.dispatch('login', { email: this.email, password: this.password, user_type: 'sponsor' })
+          this.$store.dispatch('login', { email: this.email, password: this.password })
         },
         register () {
           this.$store.dispatch('register', { email: this.email, password: this.password })

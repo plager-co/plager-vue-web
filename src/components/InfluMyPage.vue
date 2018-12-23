@@ -57,13 +57,13 @@
                             </div>
                         </div>
                         <div class="input-set">
-                            <div class='label'>패스워드</div>
+                            <div class='label'>패스워드 수정</div>
                             <div class="input-wrap">
                                 <input type="password" v-model="password">
                             </div>
                         </div>
                         <div class="input-set">
-                            <div class='label'>패스워드 확인</div>
+                            <div class='label'>패스워드 수정 확인</div>
                             <div class="input-wrap">
                                 <input type="password" v-model="password2">
                             </div>

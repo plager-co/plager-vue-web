@@ -96,13 +96,13 @@
                             </div>
                         </div>
                         <div class="input-set">
-                            <div class='label'>비밀번호</div>
+                            <div class='label'>비밀번호 수정</div>
                             <div class="input-wrap">
                                 <input id="password" type="password" v-model="password">
                             </div>
                         </div>
                         <div class="input-set">
-                            <div class='label'>비밀번호 확인</div>
+                            <div class='label'>비밀번호 수정 확인</div>
                             <div class="input-wrap">
                                 <input id="password2" type="text" v-model="password2">
                             </div>

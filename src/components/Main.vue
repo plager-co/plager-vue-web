@@ -676,9 +676,6 @@ svg {width: 100%; height: auto;}
   font-weight: bold;
   color: #ffffff;
 }
-.contact h2 {
-  font-size: 20px;
-}
 .section.main h2 {
   margin: 0 0 30px 0;
   font-weight: 500;

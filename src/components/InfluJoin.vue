@@ -32,7 +32,7 @@
                             <div class="input-set">
                                 <div class='label'>패스워드</div>
                                 <div class="input-wrap">
-                                    <input id="password" type="password" v-model="password">
+                                    <input id="password" type="password" placeholder="**********" v-model="password">
                                 </div>
                             </div>
                             <div class="input-set">
@@ -313,7 +313,7 @@
                             <div class="input-set">
                                 <div class='label'>패스워드 확인</div>
                                 <div class="input-wrap">
-                                    <input id="password2" type="password" v-model="password2">
+                                    <input id="password2" type="password" placeholder="**********" v-model="password2">
                                 </div>
                             </div>
                             <div class="input-set birth">

@@ -34,7 +34,7 @@
                      <div class="edit">
                         <label for='file' class="file-select">
                         <!-- We can't use a normal button element here, as it would become the target of the label. -->
-                        <div class="select-button" >
+                        <div class="select-button">
                           <!-- Display the filename if a file has been selected. -->
                           <span>프로필 사진 수정</span>
                         </div>
@@ -121,9 +121,9 @@
                                 </button>
 
                                 <!-- We can't use a normal button element here, as it would become the target of the label. -->
-                                <div class="select-button" style="display: inline;">
+                                <div class="select-button">
                                   <!-- Display the filename if a file has been selected. -->
-                                    <h6 style="font-size: 12px; display: inline;"><label v-if="!document_link" class="select-button file-select" for="document-file"><u style="color: navy; margin-left:15px; margin-top:15px;">사업자등록증을 업로드 해주세요</u></label><a v-if="document_link" v-bind:href="document_link" target="_blank" style=" margin-left:15px; margin-top:15px;">사업자 등록 완료</a></h6>
+                                    <h6 style="font-size: 12px;"><label v-if="!document_link" class="select-button file-select" for="document-file"><u style="color: navy;">사업자등록증을 업로드 해주세요</u></label><a v-if="document_link" v-bind:href="document_link" target="_blank">사업자 등록 완료</a></h6>
                                 </div>
                                 <!-- Now, the file input that we hide. -->
                                 <input style="display: none;" type="file" id="document-file" ref="document_file" v-on:change="handleDocumentFileUpload()"/>

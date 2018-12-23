@@ -2,7 +2,7 @@
 <template>
     <div class='viewer'>
       <loading v-if='loadingPopup'></loading>
-        <div class="first gray">
+        <div class="section first gray">
             <div class="container">                
                 <h2>{{ status }}</h2>
                 <div class="btn">

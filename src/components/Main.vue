@@ -275,107 +275,107 @@
         </div>
       </div>
     </div>
-    <!--<div class="section sixth">-->
-      <!--<div class="container">-->
-        <!--<h1>인플루언서 마케팅을 <br class="for-mobile"> 아직도 망설이고 계신가요?</h1>-->
-        <!--<div class="chart-wrap">-->
-          <!--<div>-->
-            <!--<div class="svg-wrap">-->
-              <!--<chart-1/>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div>-->
-            <!--<div class="svg-wrap">-->
-              <!--<chart-2/>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div>-->
-            <!--<div class="svg-wrap">-->
-              <!--<chart-3/>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div>-->
-          <!--<div class="text-wrap">-->
-            <!--<h3 style=" margin-bottom: 4px;">01. </h3>-->
-            <!--<h2>인플루언서 1인에게 1달러를 투자하면 9.6달러 수익발생, 960% ROI 달성</h2>-->
-            <!--<p>미국의 디지털 광고 솔루션 업체 리듬원(Ryuthm One)의 연구</p>-->
-          <!--</div>-->
-          <!--<div class="text-wrap">-->
-            <!--<h3 style=" margin-bottom: 4px;">02. </h3>-->
-            <!--<h2>인플루언서 마케팅을 접한 1,000명이 그렇지 않은 1,000명보다 285달러 더 소비</h2>-->
-            <!--<p>인플루언서 마케팅 소프트웨어 업체 탭인플루언서(Tapinfluence)</p>-->
-          <!--</div>-->
-          <!--<div class="text-wrap">-->
-            <!--<h3 style=" margin-bottom: 4px;">03. </h3>-->
-            <!--<h2>UGC(User Generated Contents)는 4.5% 높은 전환율</h2>-->
-            <!--<p>Socialmediatoday - 10 Instagram Statistics to Keep <br class='for-mobile'>in Mind When Planning Your 2018 Strategy-->
-  <!--</p>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<h1>다양한 노출 영역</h1>-->
-        <!--<div class="mobile-wrap">-->
-          <!--<div class="mobile" >-->
-            <!--<img src="../assets/section-6-mobile1.png" alt="">-->
-            <!--<p>인스타그램 실행 첫 화면부터 <br class="for-mobile">-->
-<!--강제적으로 보게되는 팔로잉의 게시물</p>-->
-          <!--</div>-->
-          <!--<div class="mobile">-->
-            <!--<img src="../assets/section-6-mobile2.png" alt="">-->
-            <!--<p>내 관심사를 포함한, 추천,<br>-->
-<!--인기 게시물 영역</p>-->
-          <!--</div>-->
-          <!--<div class="mobile">-->
-            <!--<img src="../assets/section-6-mobile3.png" alt="">-->
-            <!--<p>IGTV 영역<br class="for-mobile"></p>-->
-          <!--</div>-->
-          <!--<div class="mobile">-->
-            <!--<img src="../assets/section-6-mobile4.png" alt="">-->
-            <!--<p>팔로잉 스토리 영역<br class="for-mobile"></p>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="mobile-carousel">-->
-          <!--<carousel-->
-              <!--:loop='true'-->
-              <!--:autoplay='true'-->
-              <!--:autoplayTimeout='5000'-->
-              <!--:perPage='1'-->
-              <!--:autoplayHoverPause='true'-->
-              <!--:paginationEnabled='true'-->
-              <!--paginationActiveColor='#FA2B56'-->
-              <!--:navigationEnabled='false'-->
-              <!--:navigationClickTargetSize='30'-->
-            <!--&gt;-->
-              <!--<slide :key='1'>-->
-                <!--<div class="mobile">-->
-                  <!--<img src="../assets/section-6-mobile1.png" alt="">-->
-                  <!--<p>인스타그램 실행 첫 화면부터 <br class="for-mobile">-->
-      <!--강제적으로 보게되는 팔로잉의 게시물</p>-->
-                <!--</div>-->
-              <!--</slide>-->
-              <!--<slide :key='2'>-->
-                <!--<div class="mobile">-->
-                  <!--<img src="../assets/section-6-mobile2.png" alt="">-->
-                  <!--<p>내 관심사를 포함한, 추천,<br>-->
-      <!--인기 게시물 영역</p>-->
-                <!--</div>-->
-              <!--</slide>-->
-              <!--<slide :key='3'>-->
-                <!--<div class="mobile">-->
-                  <!--<img src="../assets/section-6-mobile3.png" alt="">-->
-                  <!--<p>IGTV 영역<br class="for-mobile"></p>-->
-                <!--</div>-->
-              <!--</slide>-->
-              <!--<slide :key='4'>-->
-                <!--<div class="mobile">-->
-                  <!--<img src="../assets/section-6-mobile4.png" alt="">-->
-                  <!--<p>팔로잉 스토리 영역<br class="for-mobile"></p>-->
-                <!--</div>-->
-              <!--</slide>-->
-            <!--</carousel>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+    <div class="section sixth">
+      <div class="container">
+        <h1>인플루언서 마케팅을 <br class="for-mobile"> 아직도 망설이고 계신가요?</h1>
+        <div class="chart-wrap">
+          <div>
+            <div class="svg-wrap">
+              <chart-1/>
+            </div>
+          </div>
+          <div>
+            <div class="svg-wrap">
+              <chart-2/>
+            </div>
+          </div>
+          <div>
+            <div class="svg-wrap">
+              <chart-3/>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="text-wrap">
+            <h3 style=" margin-bottom: 4px;">01. </h3>
+            <h2>인플루언서 1인에게 1달러를 투자하면 9.6달러 수익발생, 960% ROI 달성</h2>
+            <p>미국의 디지털 광고 솔루션 업체 리듬원(Ryuthm One)의 연구</p>
+          </div>
+          <div class="text-wrap">
+            <h3 style=" margin-bottom: 4px;">02. </h3>
+            <h2>인플루언서 마케팅을 접한 1,000명이 그렇지 않은 1,000명보다 285달러 더 소비</h2>
+            <p>인플루언서 마케팅 소프트웨어 업체 탭인플루언서(Tapinfluence)</p>
+          </div>
+          <div class="text-wrap">
+            <h3 style=" margin-bottom: 4px;">03. </h3>
+            <h2>UGC(User Generated Contents)는 4.5% 높은 전환율</h2>
+            <p>Socialmediatoday - 10 Instagram Statistics to Keep <br class='for-mobile'>in Mind When Planning Your 2018 Strategy
+  </p>
+          </div>
+        </div>
+        <h1>다양한 노출 영역</h1>
+        <div class="mobile-wrap">
+          <div class="mobile" >
+            <img src="../assets/section-6-mobile1.png" alt="">
+            <p>인스타그램 실행 첫 화면부터 <br class="for-mobile">
+강제적으로 보게되는 팔로잉의 게시물</p>
+          </div>
+          <div class="mobile">
+            <img src="../assets/section-6-mobile2.png" alt="">
+            <p>내 관심사를 포함한, 추천,<br>
+인기 게시물 영역</p>
+          </div>
+          <div class="mobile">
+            <img src="../assets/section-6-mobile3.png" alt="">
+            <p>IGTV 영역<br class="for-mobile"></p>
+          </div>
+          <div class="mobile">
+            <img src="../assets/section-6-mobile4.png" alt="">
+            <p>팔로잉 스토리 영역<br class="for-mobile"></p>
+          </div>
+        </div>
+        <div class="mobile-carousel">
+          <carousel
+              :loop='true'
+              :autoplay='true'
+              :autoplayTimeout='5000'
+              :perPage='1'
+              :autoplayHoverPause='true'
+              :paginationEnabled='true'
+              paginationActiveColor='#FA2B56'
+              :navigationEnabled='false'
+              :navigationClickTargetSize='30'
+            >
+              <slide :key='1'>
+                <div class="mobile">
+                  <img src="../assets/section-6-mobile1.png" alt="">
+                  <p>인스타그램 실행 첫 화면부터 <br class="for-mobile">
+      강제적으로 보게되는 팔로잉의 게시물</p>
+                </div>
+              </slide>
+              <slide :key='2'>
+                <div class="mobile">
+                  <img src="../assets/section-6-mobile2.png" alt="">
+                  <p>내 관심사를 포함한, 추천,<br>
+      인기 게시물 영역</p>
+                </div>
+              </slide>
+              <slide :key='3'>
+                <div class="mobile">
+                  <img src="../assets/section-6-mobile3.png" alt="">
+                  <p>IGTV 영역<br class="for-mobile"></p>
+                </div>
+              </slide>
+              <slide :key='4'>
+                <div class="mobile">
+                  <img src="../assets/section-6-mobile4.png" alt="">
+                  <p>팔로잉 스토리 영역<br class="for-mobile"></p>
+                </div>
+              </slide>
+            </carousel>
+        </div>
+      </div>
+    </div>
     <div class="section seventh">
       <div class="container">
         <h1>브랜드를 각인 시키는 <br class="for-mobile"> SIM 서비스를 <br>

@@ -22,6 +22,7 @@ export const store = new Vuex.Store({
         isRequestInfluPasswordPopup: false,
         isCompletePopup: false,
         isEmptyTester: false,
+        currentRangeBtn: 0,
         testerBorder: '2px solid red',
         completeMsg: '',
         isAlertPopup: false,
@@ -916,6 +917,9 @@ export const store = new Vuex.Store({
         setError(state, payload) {
             state.error = payload;
         },
+        setCurrentRangeBtn(state, payload) {
+            state.currentRangeBtn = payload;
+        },
     },
     getters: {
         id(state){
@@ -1084,6 +1088,9 @@ export const store = new Vuex.Store({
         },
         error(state){
             return state.error
+        },
+        currentRangeBtn(state){
+            return state.currentRangeBtn
         },
     }
 })

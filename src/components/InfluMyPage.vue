@@ -57,13 +57,13 @@
                             </div>
                         </div>
                         <div class="input-set">
-                            <div class='label'>패스워드</div>
+                            <div class='label'>패스워드 수정</div>
                             <div class="input-wrap">
                                 <input type="password" v-model="password">
                             </div>
                         </div>
                         <div class="input-set">
-                            <div class='label'>패스워드 확인</div>
+                            <div class='label'>패스워드 수정 확인</div>
                             <div class="input-wrap">
                                 <input type="password" v-model="password2">
                             </div>
@@ -544,7 +544,7 @@ h1 {
   width: 16px;
   height: 10px;
   display: block;
-  background-image: url("../assets/dropdownArrow.svg");
+  /*background-image: url("../assets/dropdownArrow.svg");*/
 }
 
 .input-set .select-wrap .dropdown {
@@ -562,7 +562,7 @@ h1 {
   margin-right: 0;
 }
 .input-set .dropdown select {
-  appearance: none;
+  /*appearance: none;*/
 }
 
 .input-set .input-wrap.sns {

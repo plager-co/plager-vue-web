@@ -89,9 +89,9 @@ export default {
 tspan { font-family: AppleSDGothicNeo, "Noto Sans KR", 'Spoqa Han Sans', 'Avenir', Helvetica, Arial, sans-serif !important; }
 
 select {
-  appearance: none;
-  -moz-appearance:none; /* Firefox */
-  -webkit-appearance:none; /* Safari and Chrome */
+  /*appearance: none;*/
+  /*-moz-appearance:none; !* Firefox *!*/
+  /*-webkit-appearance:none; !* Safari and Chrome *!*/
 }
 
 body { 

@@ -187,7 +187,7 @@ h1 {
   width: 16px;
   height: 10px;
   display: block;
-  background-image: url("../assets/dropdownArrow.svg");
+  /*background-image: url("../assets/dropdownArrow.svg");*/
 }
 
 .input-set .select-wrap .dropdown {
@@ -205,7 +205,7 @@ h1 {
   margin-right: 0;
 }
 .input-set .dropdown select {
-  appearance: none;
+  /*appearance: none;*/
 }
 
 .input-set .input-wrap.sns {

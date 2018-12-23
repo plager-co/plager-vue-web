@@ -1183,7 +1183,7 @@ h2 {
   width: 16px;
   height: 10px;
   display: block;
-  background-image: url("../assets/dropdownArrow.svg");
+  /*background-image: url("../assets/dropdownArrow.svg");*/
 }
 
 .date-box {

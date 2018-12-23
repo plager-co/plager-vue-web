@@ -247,7 +247,7 @@ h2 {
   width: 16px;
   height: 10px;
   display: block;
-  background-image: url("../assets/dropdownArrow.svg");
+  /*background-image: url("../assets/dropdownArrow.svg");*/
 }
 
 .date-box {
@@ -270,7 +270,7 @@ h2 {
   line-height: 22px;
   border: none;
   margin-right: -20px;
-  appearance: none;
+  /*appearance: none;*/
 }
 
 

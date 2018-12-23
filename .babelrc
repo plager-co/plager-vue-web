@@ -1,7 +1,7 @@
 {
   "presets": [
     [
-      "@vue/app",
+      "vue",
       {
         "targets": {
           "ie": "11"

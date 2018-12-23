@@ -6,7 +6,7 @@
             <div class="container">                
                 <h2>{{ status }}</h2>
                 <div class="btn">
-                    <button @click='$router.push("/sponsor-result")'>전체 성과보기</button>
+                    <button @click='$router.push("/sponsor-all-result")'>전체 성과보기</button>
                 </div>
                 <div class="influ-list web">
                     <div class="card-wrap" v-for='(item, i) in influList' :key='i'>

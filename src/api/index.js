@@ -140,8 +140,8 @@ export function postNewSurvey (survey, jwt) {
     return axios.get(`${API_URL}/users/filters/0/` + userData + '/')
     }
 
-  export function fetchInfluencers() {
-    return axios.get(`${API_URL}/users/filters/1/`)
+  export function fetchInfluencers(userData) {
+    return axios.post(`${API_URL}/users/filters/1/`, userData, basic_header)
   }
   export function avgInfluencerEffectRate() {
     return axios.get(`${API_URL}/users/filters/2/`)

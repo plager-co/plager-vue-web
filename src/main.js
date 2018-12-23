@@ -10,7 +10,7 @@ import VueClipboard from 'vue-clipboard2'
 import VueAuthenticate from 'vue-authenticate'
 import VueAxios from 'vue-axios'
 import axios from 'axios';
-
+import 'babel-polyfill';
 Vue.use(VueAxios, axios)
 
 Vue.use(VueClipboard)

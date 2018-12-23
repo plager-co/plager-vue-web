@@ -57,7 +57,7 @@
                             </table>
                             <div class="price">1회 예상 광고비 {{item.influencer_cost}}원</div>
                             <div class="input-wrap">
-                                <input type="text" v-bind:id="'input' + item.id"> 개월
+                                {{ currentRangeBtn }}
                             </div>
                             <button class="choose" v-bind:id="'button' + item.id" @click="toggleSeen(item)">{{item.isSelected ? "선택 됨": "선택하기"}}</button>
                         </div>
@@ -119,7 +119,7 @@
                             </table>
                             <div class="price">1회 예상 광고비 {{item.influencer_cost}}원</div>
                             <div class="input-wrap">
-                                <input type="text" v-bind:id="'mobile_input' + item.id"> 개월
+                                {{ currentRangeBtn }}
                             </div>
                             <button class="choose" v-bind:id="'mobile_button' + item.id" @click="toggleSeen(item)">{{item.isSelected ? "선택 됨": "선택하기"}}</button>
                         </div>
@@ -137,12 +137,14 @@ export default {
     data(){
         return {
             carouselNum: 2,
+            currentRangeBtn: '1 개월',
             influList: []
         }
     },
     created: async function(){
         await this.$store.dispatch('fetchInfluencers');
         this.influList = this.$store.getters.influencers;
+        this.currentRangeBtn = this.$store.getters.currentRangeBtn;
         console.log("this.$store.getters.influencers");
         console.log(this.$store.getters.influencers);
     },
@@ -191,12 +193,13 @@ export default {
             var selectedInfluList = this.influList.filter(x => x.selected === true);
             var updatingInfluList = [];
             var ad_id = this.$store.getters.ad_id;
+            var currentRangeBtn = this.currentRangeBtn;
             selectedInfluList.forEach(function(value){
                 updatingInfluList.push(
                     {
                         'ad_id': ad_id,
                         'influencer_id': value.id,
-                        'period': document.getElementById("input"+value.id).value,
+                        'period': currentRangeBtn,
                         'status': '0',
                         'status_text': 'recommended'
                     }

@@ -493,6 +493,8 @@ export default {
               status_text: 'registered',
           }
 
+          this.$store.commit('setCurrentRangeBtn', this.currentRangeBtn);
+
           this.$store.dispatch('createAd', userData)
       }
   },

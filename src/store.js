@@ -82,6 +82,7 @@ export const store = new Vuex.Store({
         facebook: '',
         social: '',
         influencers: [],
+        mobileInfluencers: [],
         filterAds: '',
         ads: [],
         adInfluencers: [],
@@ -214,12 +215,28 @@ export const store = new Vuex.Store({
               context.commit('errorRequestPasswordPopup');
             });
           },
-            fetchInfluencers (context) {
-            const result = fetchInfluencers()
+            fetchInfluencers (context, userData) {
+            const result = fetchInfluencers(userData)
               .then(
                   function (response) {
                             if(response.data.result){
                                 context.commit('setInfluencers', response.data.result);
+                            } else {
+                                    context.commit('errorLoginPopup')
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorLoginPopup');
+            });
+            return result
+
+          },
+        fetchMobileInfluencers (context, userData) {
+            const result = fetchInfluencers(userData)
+              .then(
+                  function (response) {
+                            if(response.data.result){
+                                context.commit('setMobileInfluencers', response.data.result);
                             } else {
                                     context.commit('errorLoginPopup')
                             }
@@ -893,6 +910,9 @@ export const store = new Vuex.Store({
         setInfluencers(state, payload) {
             state.influencers = payload;
         },
+        setMobileInfluencers(state, payload) {
+            state.mobileInfluencers = payload;
+        },
         setDocumentLink(state, payload) {
             state.document_link = payload;
         },
@@ -1091,6 +1111,9 @@ export const store = new Vuex.Store({
         },
         currentRangeBtn(state){
             return state.currentRangeBtn
+        },
+        mobileInfluencers(state){
+            return state.mobileInfluencers
         },
     }
 })

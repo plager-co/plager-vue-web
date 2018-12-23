@@ -75,11 +75,11 @@
                     :navigationEnabled='false'
                     paginationActiveColor='#FA2B56'
                     paginationColor='#bfbfbf'
-                    paginationPadding=6
+                    :paginationPadding='pagenationPadding'
                     tag='div' 
                     class='influ-list'
                 >
-                    <slide v-for='(item, i) in influList' :key='i'>
+                    <slide v-for='(item, i) in influMobileList' :key='i'>
                     <div class="card influ">
                         <div class="profile-wrap" :class='{recommend: (item.is_recommended === 1) }'>
                             <div class="profile-img" >
@@ -126,6 +126,13 @@
                     </div>
                     </slide>
                 </carousel>
+                <vue-ads-pagination
+                    :page="0"
+                    :itemsPerPage="itemsPerPage"
+                    :maxVisiblePages="maxVisiblePages"
+                    :totalItems="count"
+                    @page-change="pageChange"
+                />
                 </div>
                 <button class='red' @click='registerAdInfluencers()'>SIM 서비스 요청하기</button>
             </div>
@@ -133,22 +140,54 @@
 </template>
 
 <script>
+import VueAdsPagination from 'vue-ads-pagination';
 export default {
+     components: {
+        VueAdsPagination
+    },
     data(){
         return {
             carouselNum: 2,
             currentRangeBtn: '1 개월',
-            influList: []
+            influList: [],
+            influMobileList: [],
+            pagenationPadding: 6,
+            count: 6,
+            itemsPerPage: 6,
+            maxVisiblePages: 6,
+            pageMax: 6,
+            currentSlide: 0,
         }
     },
     created: async function(){
-        await this.$store.dispatch('fetchInfluencers');
+
+        var payload = {
+            'limit': 1,
+            'page_size': this.itemsPerPage,
+        }
+        await this.$store.dispatch('fetchInfluencers', payload);
         this.influList = this.$store.getters.influencers;
         this.currentRangeBtn = this.$store.getters.currentRangeBtn;
-        console.log("this.$store.getters.influencers");
-        console.log(this.$store.getters.influencers);
+
+        await this.$store.dispatch('fetchMobileInfluencers', {});
+        this.influMobileList = this.$store.getters.mobileInfluencers;
+        this.pageMax = this.influList.length + 1;
+        this.count = this.influMobileList.length;
+
     },
     methods: {
+        async pageChange (page, range) {
+            console.log(page, range);
+            var payload = {
+                'limit': page + 1,
+                'page_size': this.itemsPerPage,
+            }
+        await this.$store.dispatch('fetchInfluencers', payload);
+        this.influList = this.$store.getters.influencers;
+
+        this.pageMax = influList.length + 1;
+        },
+
         carouselBtnClick(e){
             this.carouselNum = Number(e.currentTarget.getAttribute('value'))
         },
@@ -493,7 +532,7 @@ button.red {
     .card.everage b {font-size: 1.6rem; line-height: 1rem; letter-spacing: .255rem; padding: .4rem 1rem;}
     .influ-list { width: calc(100% - 3rem); margin: auto;}
     .influ-list .card.influ { width: 16rem; margin-right: 0;}
-
+    .vue-ads-flex {display: none; }
     .influ-list { display: block; }
     .influ-list.web { display: none; }
     /* .influ-list .card.influ:nth-child(3n) { width: calc(50% - .5rem); margin-right: 1rem; padding: 2.9rem 0 1.3rem;}

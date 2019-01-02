@@ -380,7 +380,7 @@
       <div class="container">
         <h1>브랜드를 각인 시키는 <br class="for-mobile"> SIM 서비스를 <br>
 지금 바로 이용해보세요.</h1>
-        <button @click='$router.push("/login")'>SIM 서비스 요청하기</button>
+        <button @click='$router.push(" ")'>SIM 서비스 요청하기</button>
       </div>
     </div>
     <div class="section eighth">
@@ -487,7 +487,7 @@ export default {
           isNavy: false,
           follower: "15만",
           percent: 1.8,
-          price: 105,000,
+          price: 105000,
         },
         {
           profileImage: require('../assets/plager_influencer_test01.png'),
@@ -495,7 +495,7 @@ export default {
           isNavy: true,
           follower: "8천",
           percent: 12.5,
-          price: 130,000,
+          price: 130000,
         },
         {
           profileImage: require('../assets/plager_influencer_test03.png'),
@@ -503,7 +503,7 @@ export default {
           isNavy: false,
           follower: "5만",
           percent: 2.2,
-          price: 90,000,
+          price: 90000,
         }
       ],
 
@@ -536,19 +536,19 @@ export default {
           ]
         },
         {
-          subTitle: '기억하지 못하면 잊혀진다',
-          title: ['“인플루언서의 일상과', ' 함꼐하는 브랜드”'],
+          subTitle: 'SNS를 활용한 브랜드 마케팅',
+          title: ['“기억하지 못하면 ', ' 잊혀집니다.”'],
           description: [
             ['데이터 통계와 알고리즘을 통해', ' 실제 영향력이 있는' ],
             ['인플루언서를 모델로', ' 반복적인 노출을 통해 브랜드를 기억하게 됩니다.']
           ]
         },
         {
-          subTitle: 'Go ageinst the grain'
-          title: ['“결이 다른 새로운', ' 브랜드 마케팅”'],
+          subTitle: '단 하나의 인플루언서 마케팅 - 플래거',
+          title: ['“회사와 브랜드가 ', '‘刻印’ (각인) 될 수 있다면!”'],
           description: [
-            ['플래거만에 알고리즘으로', ' 영향력과 비용을 알 수 있습니다.'],
-            ['이제 플래거를 통해 전세계', ' 인플루언서와 함꼐 브랜드를 만들어가세요.']
+            ['소비자가 브랜드를 기억하게', ' 하려면 얼마의 비용이 들까요?'],
+            ['플래거는 인플루언서를 통해', '소비자에게 각인이 되는 서비스를 하고 있습니다']
           ]
         },
        /* {
@@ -876,7 +876,7 @@ background-size: cover;}
   left: -100vw;
   right: -100vw;
   margin: auto;
-  top: calc(32% - 10.5%);
+  top: calc(50% - 10.5%);
   position: absolute;
 }
 

@@ -1042,7 +1042,7 @@ h2 {
 }
 
 .container {
-  padding: 50px 0 40px;
+    padding: 120px 0;
 }
 
 .card {

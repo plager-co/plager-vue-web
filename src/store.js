@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 
 // imports of AJAX functions will go here
 import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
@@ -14,6 +15,7 @@ import Router from './router'
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
+    plugins: [createPersistedState()],
     state: {
         user_type: '',
         isTestPopup: true,

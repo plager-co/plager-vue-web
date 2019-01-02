@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 
 // imports of AJAX functions will go here
 import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
@@ -14,6 +15,7 @@ import Router from './router'
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
+    plugins: [createPersistedState()],
     state: {
         user_type: '',
         isTestPopup: true,
@@ -126,6 +128,7 @@ export const store = new Vuex.Store({
                         context.commit('closeJoinPopup');
                         context.commit('openCompletePopup', '광고주');
                           context.dispatch('login', userData)
+                          Router.push('/mypage')
                       }
                       else{
                           context.commit('errorRegisterPopup');
@@ -143,7 +146,26 @@ export const store = new Vuex.Store({
                       if(response.data.id){
                         context.commit('closeJoinPopup');
                         context.commit('openCompletePopup', '인플루언서');
-                          context.dispatch('login', userData)
+                          context.commit('setUserData', { userData });
+                        const result = authenticate(userData)
+                          .then(
+                              function (response) {
+                                        if(response.data.token){
+                                            context.commit('setUserData', response.data);
+                                            context.commit('setJwtToken', { jwt: response.data.token });
+                                            if (response.data.user_type === 'influencer'){
+                                                console.log("influencer");
+                                                context.commit('setInfluencer', true);
+                                                Router.push('/influencer-my-score');
+                                            }
+
+                                        } else {
+                                                context.commit('errorLoginPopup')
+                                        }
+                                    }
+                        ).catch(e => {
+                          context.commit('errorLoginPopup');
+                        });
                       }
                       else{
                           context.commit('errorRegisterPopup');
@@ -593,7 +615,7 @@ export const store = new Vuex.Store({
             } else if (payload.officer_name){
                 val.username = payload.officer_name;
             } else {
-                val.username = payload.instagram;
+                val.username = payload.email;
             }
         });
         state.mobileNavMenuList.forEach(function(val){
@@ -602,7 +624,7 @@ export const store = new Vuex.Store({
             } else if (payload.officer_name){
                 val.username = payload.officer_name;
             } else {
-                val.username = payload.instagram;
+                val.username = payload.email;
             }
         });
         state.company_name = payload.company_name;
@@ -709,6 +731,11 @@ export const store = new Vuex.Store({
             state.isAlertPopup = true;
             state.alertMsg = '업데이트 ';
             state.alertMobileMsg = '완료 되었습니다.';
+        },
+        openTesterPopup(state){
+            state.isAlertPopup = true;
+            state.alertMsg = '분석에 몇 분이';
+            state.alertMobileMsg = '소요됩니다.';
         },
         openDeletePopup(state){
             state.isAlertPopup = true;

@@ -77,7 +77,7 @@ export default {
           this.$store.dispatch('login', { email: this.email, password: this.password, user_type: 'sponsor' })
         },
         register () {
-          this.$store.dispatch('register', { email: this.email, password: this.password })
+          this.$store.dispatch('register', { email: this.email, password: this.password, user_type: 'sponsor' })
         }
     },
     mounted () {

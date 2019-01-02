@@ -595,7 +595,7 @@ export const store = new Vuex.Store({
             } else if (payload.officer_name){
                 val.username = payload.officer_name;
             } else {
-                val.username = payload.instagram;
+                val.username = payload.email;
             }
         });
         state.mobileNavMenuList.forEach(function(val){
@@ -604,7 +604,7 @@ export const store = new Vuex.Store({
             } else if (payload.officer_name){
                 val.username = payload.officer_name;
             } else {
-                val.username = payload.instagram;
+                val.username = payload.email;
             }
         });
         state.company_name = payload.company_name;

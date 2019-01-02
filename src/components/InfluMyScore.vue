@@ -157,6 +157,7 @@ export default {
         var noIdPopup = false;
         var today = new Date();
         var loadFlag = true;
+        this.$store.commit('openTesterPopup');
 
         while (loadFlag){
             console.log('loading...')

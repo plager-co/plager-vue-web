@@ -20,7 +20,7 @@ export default {
     methods: {
         closeSelf(){
             this.$store.commit('closeCompletePopup')
-            this.$router.push('/mypage')
+            // this.$router.push('/mypage')
         }
     }
 

@@ -348,10 +348,12 @@ export default {
           }
 
           if (!this.picture_link) {
+          this.errors.push('프로필 사진을 업로드해주세요.');
             document.getElementById('picture_link').style.border='2px solid red';
           }
 
           if (!this.document_link) {
+            this.errors.push('사업자 등록증을 업로드해주세요.');
             document.getElementById('document_link').style.border='2px solid red';
           }
 

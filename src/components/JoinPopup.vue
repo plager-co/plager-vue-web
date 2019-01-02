@@ -131,6 +131,8 @@ export default {
 
         },
         register () {
+
+        this.$store.commit('closeJoinPopup');
           this.$store.dispatch('register', {
               email: this.email,
               password: this.password,

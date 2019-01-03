@@ -88,6 +88,7 @@ export const store = new Vuex.Store({
         filterAds: '',
         ads: [],
         adInfluencers: [],
+        runningAdInfluencers: [],
         currentAdInfluencer: {},
         count_ads: {},
         picture_link: '',
@@ -328,7 +329,9 @@ export const store = new Vuex.Store({
               .then(
                   function (response) {
                             if(response.data.result){
-                                context.commit('setAdInfluencers', response.data.result);
+                                console.log('response.data.result');
+                                console.log(response.data.result);
+                                context.commit('setRunningAdInfluencers', response.data.result);
                             }
                         }
             ).catch(e => {
@@ -344,7 +347,9 @@ export const store = new Vuex.Store({
                       console.log('response');
                       console.log(response);
                             if(response.data.result){
-                                context.commit('setAdInfluencers', response.data.result);
+                                console.log('response.data.result');
+                                console.log(response.data.result);
+                                context.commit('setRunningAdInfluencers', response.data.result);
                             }
                         }
             ).catch(e => {
@@ -875,6 +880,12 @@ export const store = new Vuex.Store({
             state.alertMsg = '인스타그램에 ';
             state.alertMobileMsg = '없는 아이디입니다.';
         },
+        noAdRunning(state){
+            state.isAlertPopup = true;
+            state.email = '';
+            state.alertMsg = '진행중인 ';
+            state.alertMobileMsg = '광고가 없습니다.';
+        },
         filterAdList(state, payload){
             state.filterAds = payload;
         },
@@ -886,6 +897,9 @@ export const store = new Vuex.Store({
         },
         setAdInfluencers(state, payload){
             state.adInfluencers = payload;
+        },
+        setRunningAdInfluencers(state, payload){
+            state.runningAdInfluencers = payload;
         },
         openAlertPopup(state, payload){
             state.isAlertPopup = true;
@@ -1072,6 +1086,9 @@ export const store = new Vuex.Store({
         },
         adInfluencers(state) {
             return state.adInfluencers
+        },
+        runningAdInfluencers(state) {
+            return state.runningAdInfluencers
         },
         currentAdInfluencer(state){
             return state.currentAdInfluencer

@@ -328,26 +328,32 @@ export default {
         if (filterAds === 'registered'){
             if (this.$store.getters.count_ads.count_registered_ads > 6){
                this.count =  this.$store.getters.count_ads.count_registered_ads;
-            } else {
+            }  else if (this.$store.getters.count_ads.count_registered_ads > 0) {
                 this.itemsPerPage = this.$store.getters.count_ads.count_registered_ads;
                 this.maxVisiblePages = this.$store.getters.count_ads.count_registered_ads;
                 this.count = this.$store.getters.count_ads.count_registered_ads;
+            } else {
+                this.count = 1
             }
           } else if (filterAds === 'started'){
              if (this.$store.getters.count_ads.count_started_ads > 6){
              this.count =  this.$store.getters.count_ads.count_started_ads;
-             } else {
+             }  else if (this.$store.getters.count_ads.count_started_ads > 0) {
                 this.itemsPerPage = this.$store.getters.count_ads.count_started_ads;
                 this.maxVisiblePages = this.$store.getters.count_ads.count_started_ads;
                 this.count = this.$store.getters.count_ads.count_started_ads;
+            } else {
+                this.count = 1
             }
           } else if (filterAds === 'completed'){
             if (this.$store.getters.count_ads.count_completed_ads > 6) {
                 this.count = this.$store.getters.count_ads.count_completed_ads;
-            } else {
+            }  else if (this.$store.getters.count_ads.count_completed_ads > 0) {
                 this.itemsPerPage = this.$store.getters.count_ads.count_completed_ads;
                 this.maxVisiblePages = this.$store.getters.count_ads.count_completed_ads;
                 this.count = this.$store.getters.count_ads.count_completed_ads;
+            } else {
+                this.count = 1
             }
           }
 
@@ -361,7 +367,7 @@ export default {
             'page_size': 6,
         }
         await store.dispatch('fetchAdInfluencersByInfluencerIdAndStatus', payload);
-        store.getters.adInfluencers.forEach(function(val){
+        store.getters.runningAdInfluencers.forEach(function(val){
             console.log(val);
             var price = 0;
             if (val.price){
@@ -398,9 +404,12 @@ export default {
         };
 
         this.influList = influList;
+        if(influList.length){
+            this.count = influList.length;
+        }
 
         await store.dispatch('fetchAdInfluencersByInfluencerIdAndStatus', payloadMobile);
-        store.getters.adInfluencers.forEach(function(val){
+        store.getters.runningAdInfluencers.forEach(function(val){
             console.log(val);
             var price = 0;
             if (val.price){
@@ -449,7 +458,7 @@ export default {
                     'page_size': 6,
                 }
                 await store.dispatch('fetchAdInfluencersByInfluencerIdAndStatus', payload);
-                store.getters.adInfluencers.forEach(function(val){
+                store.getters.runningAdInfluencers.forEach(function(val){
                     console.log(val);
                     var price = 0;
                     if (val.price){

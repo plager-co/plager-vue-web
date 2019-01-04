@@ -444,8 +444,6 @@ export default {
         console.log("instagram_code");
         console.log(this.$store.getters.instagram_code);
 
-        await this.$store.dispatch('fetchInstagramAccount', this.$store.getters.instagram_code);
-
         this.instagram_account = this.$store.getters.instagram_account;
         this.instagram = this.instagram_account.user.username;
         this.name = this.instagram_account.user.full_name;
@@ -454,9 +452,11 @@ export default {
         console.log('this.instagram_client_id');
         console.log(this.instagram_client_id);
     },
+    destroyed(){
+        this.$store.commit('closeAlertPopup');
+    },
   methods: {
     async completeJoin() {
-      // this.$store.commit("openCompletePopup", "인플루언서");
           this.errors = [];
 
           document.getElementById('email').style.border='2px solid red';

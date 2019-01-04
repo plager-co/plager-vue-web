@@ -1,7 +1,7 @@
 
 <template>
     <div class='viewer'>
-        <div class="section first gray">
+        <div class="first gray">
             <div class="container">
                 <h2>인플루언서 미리보기</h2>
                 <h3>희망하시는 인플루언서를 선택하시면 관리자가 <br class="for-mobile"> 선택된 인플루언서에 대해 자세히 안내해드립니다.<br>

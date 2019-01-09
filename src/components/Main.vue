@@ -68,7 +68,7 @@
               <chart-0-m></chart-0-m>
             </div>
           </div>
-          <div class="desc">S.I.M (SNS Imprinting Marketing) ‘광고로 <br class="for-mobile"> 보이지 않는 반복적인 노출’로 브랜드를 각인 시킬 수 있습니다.</div>
+          <div class="desc">S.I.M (SNS Imprint Marketing) ‘광고로 <br class="for-mobile"> 보이지 않는 반복적인 노출’로 브랜드를 각인 시킬 수 있습니다.</div>
         </div>
       </div>
     </div>
@@ -380,7 +380,7 @@
       <div class="container">
         <h1>브랜드를 각인 시키는 <br class="for-mobile"> SIM 서비스를 <br>
 지금 바로 이용해보세요.</h1>
-        <button @click='$router.push(" ")'>SIM 서비스 요청하기</button>
+        <button @click='$router.push("/login")'>SIM 서비스 요청하기</button>
       </div>
     </div>
     <div class="section eighth">
@@ -528,7 +528,7 @@ export default {
       mainTextCarouselNum: 1,
       mainTextCarousel: [
         {
-          subTitle: 'SIM ( SNS Imprinting Marketing ) SERVICE',
+          subTitle: 'SIM ( SNS Imprint Marketing ) SERVICE',
           title: ['“회사와 브랜드가 ', '‘刻印’ (각인) 될 수 있다면!”'],
           description: [
             ['소비자가 브랜드를 기억하게', ' 하려면 얼마의 비용이 들까요?'],

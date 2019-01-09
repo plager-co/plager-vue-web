@@ -10,11 +10,11 @@
             <h1>광고주 가입</h1>
             <p class='for-web'>
                 반복적인 노출로 소비자가 브랜드를 기억 할 수 있도록<br>
-                지금 바로 플래거의 SIM(SNS Imprinting Marketing) 서비스를 시작하세요.
+                지금 바로 플래거의 SIM(SNS Imprint Marketing) 서비스를 시작하세요.
             </p>
             <p class='for-mobile block'>
                 반복적인 노출로 소비자가 브랜드를 <br>기억 할 수 있도록
-                지금 바로 플래거의<br> SIM(SNS Imprinting Marketing) 서비스를 시작하세요.
+                지금 바로 플래거의<br> SIM(SNS Imprint Marketing) 서비스를 시작하세요.
             </p>
             <div class="input-set btn">
                 <div class='label'>이메일</div>
@@ -187,7 +187,7 @@ p {
 }
 
 .join-popup {
-  width: 965px;
+  width: 850px;
   margin: 120px auto;
   background: #ffffff;
   border-radius: 5px;

@@ -742,6 +742,11 @@ export const store = new Vuex.Store({
             state.alertMsg = '분석에 몇 분이';
             state.alertMobileMsg = '소요됩니다.';
         },
+        openEmptyInfluencerPopup(state){
+            state.isAlertPopup = true;
+            state.alertMsg = '진행중인 서비스가';
+            state.alertMobileMsg = '없습니다.';
+        },
         openDeletePopup(state){
             state.isAlertPopup = true;
             state.alertMsg = '삭제 요청 ';

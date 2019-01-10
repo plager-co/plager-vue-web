@@ -406,6 +406,9 @@ export default {
         this.influList = influList;
         if(influList.length){
             this.count = influList.length;
+        } else {
+            this.$store.commit('openEmptyInfluencerPopup');
+            this.$router.push('influ-my-page')
         }
 
         await store.dispatch('fetchAdInfluencersByInfluencerIdAndStatus', payloadMobile);

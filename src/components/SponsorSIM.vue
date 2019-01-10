@@ -335,6 +335,9 @@ export default {
         this.influList = influList;
         if(influList.length){
             this.count = influList.length;
+        } else {
+            this.$store.commit('openEmptyInfluencerPopup');
+            this.$router.push('my-page')
         }
 
         var payloadMobile = {

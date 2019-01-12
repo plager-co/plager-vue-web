@@ -17,6 +17,7 @@
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "chart.js": "^2.7.2",
+    "document-register-element": "^1.13.1",
     "es6-promise": "^4.2.5",
     "scrollmonitor": "^1.2.4",
     "vue": "^2.5.2",
@@ -26,6 +27,7 @@
     "vue-carousel": "^0.14.0",
     "vue-chartjs": "^3.4.0",
     "vue-clipboard2": "^0.2.1",
+    "vue-custom-element": "^3.2.6",
     "vue-in-viewport-directive": "^1.1.4",
     "vue-in-viewport-mixin": "^1.0.4",
     "vue-meta": "^1.5.5",
@@ -95,8 +97,6 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 8",
-    "IE 10",
-    "IE 11"
+    "not ie <= 8"
   ]
 }

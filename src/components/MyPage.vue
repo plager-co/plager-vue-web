@@ -426,6 +426,7 @@ export default {
         },
         deleteUser: function(){
             this.$store.dispatch('deleteUser');
+            this.$router.push("/logout");
         },
     }
 }

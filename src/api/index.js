@@ -17,15 +17,15 @@ const basic_header = {
   'Accept': 'application/json',
   'Content-Type': 'application/json',
 }
-export function fetchSurveys() {  
+export function fetchSurveys() {
   return axios.get(`${API_URL}/surveys/`)
 }
 
-export function fetchSurvey(surveyId) {  
+export function fetchSurvey(surveyId) {
   return axios.get(`${API_URL}/surveys/${surveyId}/`)
 }
 
-export function saveSurveyResponse(surveyResponse) {  
+export function saveSurveyResponse(surveyResponse) {
   return axios.put(`${API_URL}/surveys/${surveyResponse.id}/`, surveyResponse)
 }
 
@@ -158,7 +158,7 @@ export function fetchTesterByInstagramId (userData) {
 
      return axios.get(`${API_URL}/util_country/filter/0/` + userData + '/')
  }
-  const actions = {  
+  const actions = {
     // asynchronous operations
     loadSurveys(context) {
       return fetchSurveys()

@@ -25,7 +25,7 @@ Vue.use(VueAuthenticate, {
   providers: {
     instagram: {
       clientId: 'd350de41c32e4c47b97061fa9747d367',
-      redirectUri: 'http://plager.co/instagram-redirect', // Your client app URL
+      redirectUri: 'http://plager.co/instagram-redirect', // Your client app URL 
     requiredUrlParams: ['scope'],
       scope: ['basic','public_content'],
     }

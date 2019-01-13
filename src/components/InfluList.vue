@@ -257,7 +257,7 @@ export default {
 
 
 h2 {/* 인플루언서 미리보기: */
-    margin: 0 0 26px;
+    margin: 30px 0 26px;
     font-size: 42px;
     color: #000000;
     text-align: center;
@@ -268,7 +268,7 @@ font-size: 20px;
 color: #000000;
 text-align: center;
 line-height: 42px;
-margin: 0 0 63px;
+margin: 0 0 20px;
 font-weight: 400;
 }
 
@@ -342,7 +342,7 @@ label b {
     margin-right: 40px;
     margin-bottom: 24px;
     position: relative;
-    padding: 55px 10px 34px;
+    padding: 50px 10px 34px;
     box-sizing: border-box;
 }
 
@@ -464,7 +464,7 @@ label b {
     border: 1px solid #092056;
     background-color: #ffffff;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 20px;
     letter-spacing: 0;
     font-weight: 400;
     text-align: center;
@@ -561,7 +561,7 @@ button.red {
     .input-wrap { font-size: 1.4rem; line-height: 2; margin-bottom: .4rem;}
 
 
-    .influ-list {margin-bottom: 2.2rem; width: calc(100vw - 2rem); margin-left: 0; margin-right: 0;}
+    .influ-list {margin-bottom: 2.2rem; width: calc(100vw - 2rem); margin-left: 1rem; margin-right: 0;}
     .VueCarousel-wrapper { width: calc(100vw - 2rem) !important; }
 
 }

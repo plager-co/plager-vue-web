@@ -9,10 +9,10 @@
         <div class="join-popup">
             <h1>비밀번호 찾기</h1>
             <p class='for-web'>
-                비밀번호를 찾기 위해 아이디와 사업자 번호를 입력해주세요.
+                이메일과 인스타 아이디를 입력해주세요.
             </p>
             <p class='for-mobile block'>
-                비밀번호를 찾기 위해 아이디와 사업자 번호를 입력해주세요.
+                이메일과 인스타 아이디를 입력해주세요.
             </p>
             <div class="input-set btn">
                 <div class='label'>이메일</div>
@@ -120,8 +120,9 @@ p {
   border-radius: 5px;
 }
 .input-set {
-  width: 629px;
+  width: 550px;
   padding-top: 26px;
+  padding-left: 60px;
   margin: auto;
   text-align: left;
 }

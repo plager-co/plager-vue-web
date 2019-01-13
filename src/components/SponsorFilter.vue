@@ -123,7 +123,7 @@
                 <div class="part p4">
                     <div class="title-wrap">
                         <div class="step">step4</div>
-                        <div class="title">타겟 연령층</div>
+                        <div class="title">타겟 연령</div>
                     </div>
                     <div class="title-desc">
                         <div class="input-wrap" @click='s4Value = ["10세", "60세 이상"]'>
@@ -339,7 +339,7 @@
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>타겟 연령층</td>
+                                        <td>타겟 연령</td>
                                         <td>{{s4Value[0]}} ~ {{s4Value[1]}}</td>
                                     </tr>
                                     <tr>
@@ -881,7 +881,7 @@ button.navy {
 }
 
 .card .cols .col table {
-  font-size: 30px;
+  font-size: 25px;
   color: #000000;
   letter-spacing: 0.3px;
   line-height: 50px;

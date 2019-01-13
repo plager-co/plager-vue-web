@@ -14,7 +14,7 @@
                 <span>비공개 계정은 테스트되지 않습니다.</span><br>
                 <div class="input-set btn">
                     <div class="input-wrap btn">
-                        <div class="text" style=" padding-left: 3rem; height: 4rem; margin-bottom: 2rem;">@
+                        <div class="text" style=" padding-left: 1rem; height: 4rem; margin-bottom: 2rem;">@
                          <input type="text" :style="{border: box}" id="input-tester-instagram-id" placeholder='인스타그램 아이디 입력' v-model="instagram_id">
                         </div>
                         <button style="margin-bottom:30px;" class="influ-login" @click="closeSelf">확인</button>
@@ -311,7 +311,7 @@ p {
     background: #FFFFFF;
     box-shadow: 0 4px 8px 0 rgba(23,32,49,0.10);
     border-radius: 5px;
-    padding: 51px 41px 51px 11px;
+    padding: 15px 41px 20px 11px;
     box-sizing: border-box;
     text-align: left;
     margin-bottom: 8px;
@@ -387,7 +387,7 @@ p {
     vertical-align: top;
     box-sizing: border-box;
     width: calc(100% - 331px);
-    padding: 145px 0 0 0px;
+    padding: 100px 0 0 0px;
 }
 
 .card .right .top {
@@ -471,7 +471,7 @@ p {
     font-size: 40px;
     color: #FFFFFF;
     letter-spacing: 3.16px;
-    right: 0;
+    right: 40px;
     bottom: 2px;
 }
 
@@ -695,12 +695,12 @@ button.influ-login img {
 
 
 .cell { padding: 0 1.5rem; box-sizing: border-box;}
-.popup { width: 100%; padding: 4rem 1rem 10rem; font-size: 1.4rem; line-height:  2.5rem; letter-spacing: -.05rem;}
+.popup { width: 100%; padding: 1rem 1rem 10rem; font-size: 1.4rem; line-height:  2.5rem; letter-spacing: -.05rem;}
 .popup1 { font-size: 1.4rem;}
 .close-wrap img { width: 1.5rem; height: 1.5rem; }
 .input-set { height: 3rem; font-size: 1.2rem; padding-top: 2rem;}
 .input-set.btn input[type="text"] {padding: 0 0 0 1rem; height: 3rem; font-size: 1.2rem; margin-bottom:1rem;}
-.input-set.btn button { width: 30%; height: 3rem; font-size: 1.2rem; border-top-left-radius: 0; border-bottom-left-radius: 0;}
+.input-set.btn button { width: 30%; height: 3rem; font-size: 1.2rem; border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem;}
 .input-set .input-wrap::after {left: 1.5rem; top: .25rem;}
 
 }

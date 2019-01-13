@@ -21,7 +21,7 @@ export default {
 
 <style scoped>
 .section.empty {
-  padding: 207px 0 260px;
+  padding: 170px 0 170px;
 }
 
 .section.empty .background {
@@ -82,7 +82,7 @@ export default {
 
   .section.empty .background { padding: 3rem 0; height: auto; }
 
-  .section.empty { padding: 3.4rem 0 4.9rem; min-height: unset;}
+  .section.empty { padding: 20rem 0 20rem; min-height: unset;}
   .section.empty .background .complete {margin-bottom: 1.4rem;}
   .section.empty .background .complete img { width: 3.1rem; }
   .section.empty .background h1 {font-size: 2rem; line-height: 1.9rem; margin-bottom: .5rem;}

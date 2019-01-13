@@ -43,7 +43,12 @@ module.exports = {
                    loader: 'babel-loader',
                    options: {
                        presets: ['es2015'],
-                       plugins: ["syntax-dynamic-import"]
+                       plugins: [
+                           ["@babel/plugin-transform-async-to-generator", {
+                            "module": "bluebird",
+                            "method": "coroutine"
+                          }],
+                       ]
                    }
                 },
             }

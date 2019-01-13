@@ -40,6 +40,14 @@ module.exports = {
             loaders: {
                 js: {
                    loader: 'babel-loader',
+                    presets: [
+                      [
+                        "@babel/preset-env",
+                        {
+                          "useBuiltIns": "entry"
+                        }
+                      ]
+                    ],
                    options: {
                        plugins: ["@babel/plugin-transform-regenerator"]
                    }

@@ -41,12 +41,7 @@ module.exports = {
                 js: {
                    loader: 'babel-loader',
                    options: {
-                       plugins: [
-                           ["@babel/plugin-transform-async-to-generator", {
-                            "module": "bluebird",
-                            "method": "coroutine"
-                          }],
-                       ]
+                       plugins: ["@babel/plugin-transform-regenerator"]
                    }
                 },
             }

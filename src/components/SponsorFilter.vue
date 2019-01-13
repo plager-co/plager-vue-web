@@ -367,7 +367,7 @@ import vueSlider from 'vue-slider-component';
 export default {
   components: { vueSlider },
   created: async function(){
-    window.addEventListener('resize', this.handleResize)
+    window.addEventListener('resize', this.handleResize);
     this.handleResize()
       if (!this.$store.getters.company_name || !this.$store.getters.company_category || !this.$store.getters.officer_name
           || !this.$store.getters.tax_email || !this.$store.getters.contact

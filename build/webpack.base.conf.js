@@ -44,7 +44,10 @@ module.exports = {
                       [
                         "@babel/preset-env",
                         {
-                          "useBuiltIns": "entry"
+                          "useBuiltIns": "entry",
+                            "targets": {
+                              "esmodules": true
+                            }
                         }
                       ]
                     ],

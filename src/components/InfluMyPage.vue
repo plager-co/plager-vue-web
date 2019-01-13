@@ -284,6 +284,7 @@ export default {
 
         deleteUser: function(){
             this.$store.dispatch('deleteUser');
+            this.$router.push("/logout");
         },
         async handleFileUpload (){
             this.file = this.$refs.file.files[0];

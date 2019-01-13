@@ -51,7 +51,7 @@
 
 <script>
 export default {
-  data() {
+  data: function() {
     return {
         currBtnName: '1',
         ads: [
@@ -162,10 +162,10 @@ export default {
       this.ads = ads;
   },
     methods: {
-        payAd(ad) {
+        payAd: function(ad) {
             this.$store.dispatch('payAd', ad.data);
         },
-          getAction(ad){
+          getAction: function(ad){
             console.log(ad);
               if (ad.status_text === 'registered'){
               } else if (ad.status_text === 'reviewed'){
@@ -179,7 +179,7 @@ export default {
               }
 
           },
-        checkPerformance(ad) {
+        checkPerformance: function(ad) {
             this.$store.dispatch('checkMyPerformance', ad);
         }
     }

@@ -90,14 +90,14 @@
                             <th v-for='i in 8' :key='i' dragable="true"
                                     @dragover="dragOn"
                                     :value='i'>
-                                <div class="bar" 
+                                <div class="bar"
                                     :class='{
                                     "start": i === followerRange.start,
                                     "end": i === followerRange.end,
                                     "in": followerRange.start < i && i < followerRange.end
                                 }'>
                                 </div>
-                                <div class="btn" 
+                                <div class="btn"
                                 ></div>
                             </th>
                         </thead>
@@ -173,28 +173,28 @@
                             <th v-for='i in 11' :key='i'
                                     @dragover="dragOn"
                                     :value='i'>
-                                <div class="bar" 
+                                <div class="bar"
                                     :class='{
                                     "start": i === targetAgeRange.start,
                                     "end": i === targetAgeRange.end,
                                     "in": targetAgeRange.start < i && i < targetAgeRange.end
                                 }'>
                                 </div>
-                                <div class="btn" 
+                                <div class="btn"
                                     :value='i'
-                                    v-show='i === targetAgeRange.start || i === targetAgeRange.end' 
-                                    draggable="true" 
+                                    v-show='i === targetAgeRange.start || i === targetAgeRange.end'
+                                    draggable="true"
                                     @dragstart="drag"
                                     @touchstart='drag'
                                     @touchmove='touchCalc'
-                                    :btn-type='targetAgeRange.start === i ? "start" : "end"' 
-                                    data-type='targetAge' 
+                                    :btn-type='targetAgeRange.start === i ? "start" : "end"'
+                                    data-type='targetAge'
                                 ></div>
                             </th>
                         </thead>
                         <tbody>
                             <tr>
-                                <td v-for='(val, i) in targetAgeList' 
+                                <td v-for='(val, i) in targetAgeList'
                                 :class='{
                                   hidden: i + 1 !== targetAgeRange.start && i + 1 !== targetAgeRange.end
                                   }'
@@ -281,7 +281,7 @@
                             <th v-for='i in 8' :key='i'
                                     @dragover="dragOn"
                                     :value='i'>
-                                <div class="bar" 
+                                <div class="bar"
                                     :class='{
                                     "start": i === budgetRange.start,
                                     "end": i === budgetRange.end,
@@ -290,13 +290,13 @@
                                 </div>
                                 <div class="btn"
                                     :value='i'
-                                    v-show='i === budgetRange.start || i === budgetRange.end' 
-                                    draggable="true" 
-                                    @dragstart="drag" 
+                                    v-show='i === budgetRange.start || i === budgetRange.end'
+                                    draggable="true"
+                                    @dragstart="drag"
                                     @touchstart='drag'
                                     @touchmove='touchCalc'
-                                    :btn-type='budgetRange.start === i ? "start" : "end"' 
-                                    data-type='budget' 
+                                    :btn-type='budgetRange.start === i ? "start" : "end"'
+                                    data-type='budget'
                                 ></div>
                             </th>
                         </thead>
@@ -366,7 +366,7 @@ import vueSlider from 'vue-slider-component';
 
 export default {
   components: { vueSlider },
-  async created(){
+  created: async function(){
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
       if (!this.$store.getters.company_name || !this.$store.getters.company_category || !this.$store.getters.officer_name
@@ -395,7 +395,7 @@ export default {
       }
 
   },
-  data() {
+  data: function() {
     return {
       isMobile: false,
       s2Value: [1, 1000],
@@ -464,15 +464,15 @@ export default {
     };
   },
   computed: {
-    selectedCategoryList(){
+    selectedCategoryList: function(){
       const val = this.categoryList.filter(x => x.isSelected == true)
 
       return val
     },
-    isAllAge(){
+    isAllAge: function(){
       return this.s4Value[0] === "10세" && this.s4Value[1] === "60세 이상"
     },
-      createAd(){
+      createAd: function(){
         var categoryList = []
 
         var selectedCategory = this.categoryList.filter(x => x.isSelected == true)
@@ -499,10 +499,10 @@ export default {
       }
   },
   methods: {
-    handleResize() {
+    handleResize: function() {
       this.isMobile = window.innerWidth < 640
     },
-    completeJoin() {
+    completeJoin: function() {
       this.$store.commit("openCompletePopup", "인플루언서 가입이 완료되었습니다.");
     },
   },
@@ -695,7 +695,7 @@ h2 {
   position: absolute;
   display: inline-block;
   width: auto;
-  
+
   top: -4px;
   right: 20px;
   font-size: 13px;
@@ -733,7 +733,7 @@ h2 {
   padding-left: 15px;
   box-sizing: border-box;
 }
-/* 
+/*
 ::-webkit-input-placeholder {
     color: #002257;
 } */
@@ -1084,14 +1084,14 @@ button.navy {
   .part.p4 {
     margin-bottom: 4rem;
   }
-  
+
   .part.p2,
   .part.p4,
   .part.p6 {font-size: 0; margin-bottom: 7.2rem;}
-  
+
   .part.p2 .title-wrap,
   .part.p6 .title-wrap {margin-right: 0;}
-  
+
   .part.p6 .title-desc .input-wrap a,
   .part.p2 .title-desc .input-wrap a {
     padding: 0 .5rem;
@@ -1175,12 +1175,12 @@ span.comma:last-child:after { content: ''}
 
 <style>
 
-.vue-slider-component .vue-slider-tooltip-bottom .vue-merged-tooltip .vue-slider-tooltip:before, 
+.vue-slider-component .vue-slider-tooltip-bottom .vue-merged-tooltip .vue-slider-tooltip:before,
 .vue-slider-component .vue-slider-tooltip-wrap.vue-slider-tooltip-bottom .vue-slider-tooltip:before {
   border-right-width: 3px;
   border-left-width: 3px;
 }
-.vue-slider-component .vue-slider-tooltip-bottom .vue-merged-tooltip .vue-slider-tooltip:after, 
+.vue-slider-component .vue-slider-tooltip-bottom .vue-merged-tooltip .vue-slider-tooltip:after,
 .vue-slider-component .vue-slider-tooltip-wrap.vue-slider-tooltip-bottom .vue-slider-tooltip:after {
   content: "";
   position: absolute;

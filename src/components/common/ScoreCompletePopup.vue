@@ -45,7 +45,7 @@ export default {
     }
   },
     methods: {
-        closeSelf(){
+        closeSelf: function(){
             this.$store.commit('closeScoreCompletePopup')
         },
      onCopy: function (e) {

@@ -1,7 +1,7 @@
-<script>  
+<script>
 import NewQuestion from '@/components/NewQuestion'
 
-export default {  
+export default {
   components: { NewQuestion },
   data () {
     return {
@@ -16,7 +16,7 @@ export default {
     // omitting other methods
     //
 
-    submitSurvey () {
+    submitSurvey: function() {
       this.$store.dispatch('submitNewSurvey', {
         name: this.name,
         questions: this.questions
@@ -29,4 +29,4 @@ export default {
     }
   }
 }
-</script>  
+</script>

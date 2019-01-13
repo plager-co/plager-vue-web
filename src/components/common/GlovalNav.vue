@@ -65,7 +65,7 @@
 
 <script>
 export default {
-  data() {
+  data: function() {
     return {
       isPopupOpen: false,
       isSideBarOpen: false
@@ -77,21 +77,21 @@ export default {
     }
   },
   methods:{
-    sponsorJoinCall(){
+    sponsorJoinCall: function(){
       this.$router.push('/login')
       this.$store.commit('openJoinPopup')
     },
-    menuAction(url){
+    menuAction: function(url){
         if (url.indexOf('influencer-sim') > -1){
           this.$store.commit('filterAdList', 'started');
         }
         this.$router.push(url);
     }
   },
-    mounted() {
+    mounted: function() {
     },
   computed: {
-    menuList(){
+    menuList: function(){
       if(this.$store.getters.user_type === 'influencer') {
         return [
       {
@@ -123,7 +123,7 @@ export default {
       }
    ]
       }
-    } , mobileMenuList(){
+    } , mobileMenuList: function(){
       if(this.$store.getters.user_type === 'influencer') {
         return [
       {
@@ -339,7 +339,7 @@ export default {
     width: 1.4rem; height: 1.4rem; background: url('../../assets/hamburgerMenu.svg') 50% 50% no-repeat; background-size: 100%; position: absolute; right: 0; top: 3.2rem; right: 2.1rem; z-index: 1010;
     transition: all .2s ease;
   }
-  
+
   .section.gnv.black .container .hamburger-menu { background-image: url('../../assets/hamburgerMenuBlack.svg')}
   .section.gnv .container .hamburger-menu.open,
   .section.gnv.black .container .hamburger-menu.open { right: 13.7rem; background-image: url('../../assets/hamburgerMenu.svg'); }

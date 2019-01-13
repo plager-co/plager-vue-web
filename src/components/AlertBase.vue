@@ -18,7 +18,7 @@
 <script>
 export default {
     methods: {
-        closeSelf(){
+        closeSelf: function(){
             this.$store.commit('closeAlertPopup')
         }
     }

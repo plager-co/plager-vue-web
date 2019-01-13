@@ -123,7 +123,7 @@ import ScoreImpossiblePopup from "./common/ScoreImpossiblePopup";
 
 export default {
   components: { doughnutChart, ScoreCompletePopup, ScoreImpossiblePopup },
-  data() {
+  data: function() {
     return {
       isCompletePopup: true,
       isImpossiblePopup: true,
@@ -133,7 +133,7 @@ export default {
     avg_influencer_effect_rate: 0,
     }
   },
-    async created(){
+    created: async function(){
       this.total_follower_count = this.$store.getters.total_follower_count;
         this.user = this.$store.getters.user;
         await this.$store.dispatch('avgInfluencerEffectRate');
@@ -142,7 +142,7 @@ export default {
 
     },
   methods: {
-      yesOrNo(x){
+      yesOrNo: function(x){
           if (x){
             return '예'
           }
@@ -150,14 +150,14 @@ export default {
             return '아니요'
           }
       },
-    numberWithCommas(x) {
+    numberWithCommas: function(x) {
           if (x){
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         } else {
               return 0;
           }
     },
-    btnClick(){
+    btnClick: function(){
       console.log(this.total_follower_count);
       if (this.total_follower_count > 1000){
         this.$store.commit('openScoreCompletePopup');
@@ -168,7 +168,7 @@ export default {
     },
   },
   computed: {
-    btnMsg(){
+    btnMsg: function(){
       return this.isCompleted ? "확인" : "신청하기"
     }
   }
@@ -495,7 +495,7 @@ button.submit {
 
 
 @media screen and (max-width: 640px) {
-    
+
   .container { padding: 2.7rem 2.5rem .7rem; box-sizing: border-box;}
 
   .card-wrap { width: 100%;}
@@ -531,7 +531,7 @@ button.submit {
 
   .card.ever .body table td,
   .card.ever .body table td:first-child { font-size: 1.2rem; line-height: 2rem;}
-  
+
   .card.ever .title { padding-left: 0; font-size: 1.8rem; line-height: 2.1rem; border-bottom: 0;}
   .card.ever { padding: 2.7rem 2.1rem; }
   .card.ever .body { padding: 0 1.2rem; }

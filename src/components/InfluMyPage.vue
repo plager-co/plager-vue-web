@@ -147,7 +147,7 @@ export default {
       }
     },
 
-    data(){
+    data: function(){
         return {
         categoryList: [
             {
@@ -263,26 +263,26 @@ export default {
         },
     methods: {
 
-        ShowRegisteredAd(){
+        ShowRegisteredAd: function(){
             if(this.count_ads.count_registered_ads > 0) {
                 this.$store.commit('filterAdList', 'registered');
                 this.$router.push('/influencer-sim');
             }
         },
-        ShowStartedAd(){
+        ShowStartedAd: function(){
             if(this.count_ads.count_started_ads > 0) {
                 this.$store.commit('filterAdList', 'started');
                 this.$router.push('/influencer-sim');
             }
         },
-        ShowCompletedAd(){
+        ShowCompletedAd: function(){
           if(this.count_ads.count_completed_ads > 0) {
               this.$store.commit('filterAdList', 'completed');
               this.$router.push('/influencer-sim');
           }
         },
 
-        deleteUser(){
+        deleteUser: function(){
             this.$store.dispatch('deleteUser');
         },
         async handleFileUpload (){
@@ -293,7 +293,7 @@ export default {
           this.picture_link = this.$store.getters.picture_link;
 
           },
-        completeJoin(){
+        completeJoin: function(){
               this.errors = [];
 
               var has_password_change = false;
@@ -361,7 +361,7 @@ export default {
           }
 
         },
-        register (has_password_change) {
+        register: function(has_password_change) {
 
            var userData =  {
               birth: this.birth,
@@ -645,10 +645,10 @@ delete-button {
         font-size: 16px;
         color: #FFFFFF;
         letter-spacing: 0;
-        text-align: center; 
+        text-align: center;
         width: 300px;
         height: 60px;
-	
+
     }
 
 @media screen and (max-width: 640px) {

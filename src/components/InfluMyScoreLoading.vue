@@ -79,13 +79,13 @@
                     정확한 판단 기준이 되지는 못합니다.<br>
                     <br>
                     플래거의 인플루언서로 등록하여 더 자세히 알아보세요.
-                </p>        
+                </p>
                 <p class="bottom for-mobile">
                     위 영향력 지수와 모델료는 간단한 몇가지 항목으로 <br> 산출한 것으로
                     정확한 판단 기준이 되지는 못합니다.<br>
                     <br>
                     플래거의 인플루언서로 등록하여 더 자세히 알아보세요.
-                </p>        
+                </p>
                 <button @click='$router.push("/influencer-join")'>인플루언서 등록하기</button>
           </div>
       </div>
@@ -99,7 +99,7 @@ import Loading from './common/Loading'
 export default {
     components: { Loading },
     methods: {
-        openTestPopup(){
+        openTestPopup: function(){
             this.$store.commit('openTestPopup')
         }
     },
@@ -141,7 +141,7 @@ export default {
       // all titles will be injected into this template
       titleTemplate: '%s'
     },
-    created(){
+    created: function(){
         this.openTestPopup()
     }
 };
@@ -252,7 +252,7 @@ p {
 }
 
 .card .right .top {
-    
+
     width: 100%;
     padding: 0 42px 0 10px;
     box-sizing: border-box;
@@ -262,7 +262,7 @@ p {
     border-bottom: 1px solid rgba(151, 151, 151, .5);
     padding-left: 15px;
     padding-bottom: 18px;
-    
+
     /* 3달 평균: */
     font-weight: 400;
     font-size: 24px;
@@ -310,7 +310,7 @@ p {
 
 .card .right .bottom .desc {
     /* 전체 인플루언서 평균 영향력 지수 3: */
-    
+
     font-weight: 400;
     font-size: 20px;
     color: #9B9B9B;
@@ -375,7 +375,7 @@ p {
 
 
 @media screen and (max-width: 640px) {
-    
+
     .section.start { padding: 2.7rem 2.5rem 4.2rem; box-sizing: border-box;}
     .container > p.bottom { font-size: 1.2rem; line-height: 2rem;}
     h1 { font-size: 2rem; line-height: 1rem; }
@@ -386,8 +386,8 @@ p {
     .card .left .profile-img { width: 10rem; height: 10rem; margin-bottom: .8rem;}
     .card .left .profile-name { font-size: 1rem; line-height: 2.2rem; margin-bottom: .8rem;}
     .card .left table { font-size: 1.4rem; }
-    .card .left table tr td:first-child {width: 5rem;} 
-    
+    .card .left table tr td:first-child {width: 5rem;}
+
     .card .left,
     .card .right { width: 100%; display: block; border: none; margin: 0; padding: 0;}
     .card .left2,
@@ -395,7 +395,7 @@ p {
 
     .container > button { width: 20.2rem; height: 4rem; font-size: 1.2rem;}
 
-    .card .right .top { border-top: 1px solid rgba(151, 151, 151, .5); padding-top: 2rem; padding-left: 2rem;} 
+    .card .right .top { border-top: 1px solid rgba(151, 151, 151, .5); padding-top: 2rem; padding-left: 2rem;}
     .card .right .top .title { font-size: 1.8rem; line-height: 2.1rem; padding: 0; border: 0;}
     .card .right .middle {margin-bottom: 2.rem;}
     .card .right .middle table { font-size: 1.4rem; line-height: 2.7rem;}

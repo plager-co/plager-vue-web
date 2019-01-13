@@ -38,7 +38,7 @@
 
 <script>
 export default {
-    data(){
+    data: function(){
         return {
             share_blog_text: null,
             kakao_init: false,
@@ -68,7 +68,7 @@ export default {
         }
     },
     methods: {
-        closeSelf(){
+        closeSelf: function(){
             this.$store.commit('closeScoreImpossiblePopup')
         },
      onCopy: function (e) {
@@ -198,7 +198,7 @@ button.next {
 
     .dim .cell { display: block;}
     p { font-size: 1.1rem; line-height: 2.1rem; margin-top: 0; margin-bottom: 1.1rem;}
-    
+
     .complete-popup { width: calc(100% - 3rem); box-sizing: border-box; padding: 1.7rem 1.4rem 4rem; margin-top: 4.2rem;}
     .close-wrap img { width: 1.5rem; height: 1.5rem; }
     .complete-wrap img { width: 5.2rem; height: 5rem; }

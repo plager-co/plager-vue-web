@@ -3,7 +3,7 @@
     <div class='viewer'>
       <loading v-if='loadingPopup'></loading>
         <div class="first gray">
-            <div class="container">                
+            <div class="container">
                 <h2>{{ status }}</h2>
                 <div class="btn">
                     <button @click='$router.push("/sponsor-all-result")'>전체 성과보기</button>
@@ -90,7 +90,7 @@
                     paginationActiveColor='#FA2B56'
                     paginationColor='#bfbfbf'
                     :paginationPadding="pageMax"
-                    tag='div' 
+                    tag='div'
                     class='influ-list'
                      ref="influs"
                 >
@@ -166,12 +166,12 @@
                         </div>
                     </slide>
                 </carousel>
-                    
+
                     <!-- <div class="carousel-btn-wrap">
-                        <div class="carousel-btn" 
-                            v-for='i in 3' 
+                        <div class="carousel-btn"
+                            v-for='i in 3'
                             :value='i * 2'
-                            :key='i' 
+                            :key='i'
                             @click='carouselBtnClick'
                             :class='{selected: i * 2 === carouselNum}'
                         ></div>
@@ -195,7 +195,7 @@ export default {
      components: {
         VueAdsPagination, Loading
     },
-    data(){
+    data: function(){
         return {
             status: '계약중',
             carouselNum: 2,
@@ -448,7 +448,7 @@ export default {
         this.loadingPopup = false;
   },
     methods: {
-        async pageChange (page, range) {
+        pageChange: async function(page, range) {
             console.log(page, range);
             this.loadingPopup = true;
             this.$refs['influs'].currentPage = 0;
@@ -496,14 +496,14 @@ export default {
             this.pageMax = influList.length + 1;
             this.loadingPopup = false;
         },
-        completeJoin(){
+        completeJoin: function(){
             this.$store.commit('openCompletePopup', '인플루언서 가입이 완료되었습니다.')
         },
-        followerClick(){},
-        carouselBtnClick(e){
+        followerClick: function(){},
+        carouselBtnClick: function(e){
             this.carouselNum = Number(e.currentTarget.getAttribute('value'))
         },
-        payAdInfluencer(adInfluencer){
+        payAdInfluencer: function(adInfluencer){
             this.$store.commit('setCurrentAdInfluencer', adInfluencer);
             this.$router.push("/sponsor-payment");
         }
@@ -545,7 +545,7 @@ font-weight: 400;
 .btn {width: 100%; text-align: right;}
 
 .btn button {
-    width: 166px; 
+    width: 166px;
     height: 50px;
     white-space: nowrap;
     /* Bg Copy 2: */
@@ -609,7 +609,7 @@ font-weight: 400;
 .card.influ .profile-wrap {
     content: '';
     display: block;
-    width: 194px; 
+    width: 194px;
     height: 194px;
     margin: auto;
     padding: 7.5px;
@@ -820,14 +820,14 @@ button.red {
 
 
 @media screen and (max-width: 640px) {
-    
+
     h2 { font-size: 2rem; line-height: 2.4rem; margin-bottom: 2.2rem;}
     .break-word{word-break: break-all;}
 
     .section.first .container { width: 100vw; padding: 2.3rem 0rem 1rem; box-sizing: border-box;}
 
     .btn button {font-size: 1rem; width: 8.5rem; height: 2.4rem; margin-bottom: 1.2rem; margin-right: 1.5rem;}
-    
+
     .influ-list {margin-bottom: 2.2rem; width: calc(100vw - 2rem); margin-left: auto; margin-right: auto;}
     .influ-list .card-wrap {  width: 15.5rem; padding: 0; margin-bottom: 1.2rem;}
     .influ-list .card-wrap:nth-child(3n){ margin-right: 1rem;}
@@ -853,7 +853,7 @@ button.red {
     .sns-data table tbody tr td { font-size: 1.2rem;}
 
     .bill { width: 100%; margin-top: .9rem;}
-    .bill .cell .msg { font-size: 1rem; line-height: 1.2rem; margin-bottom: .3rem;} 
+    .bill .cell .msg { font-size: 1rem; line-height: 1.2rem; margin-bottom: .3rem;}
     .bill .cell .price { font-size: 1.4rem; line-height: 1.7rem;}
     .bill {height: 4.9rem;}
 

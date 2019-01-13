@@ -40,7 +40,7 @@
 
 <script>
 export default {
-    data() {
+    data: function() {
       return {  errors: [],
         email: null,
         keep_register: null,
@@ -50,7 +50,7 @@ export default {
         movie: null }
     },
     methods: {
-        completeJoin(){
+        completeJoin: function(){
           this.errors = [];
 
           if (!this.email) {
@@ -71,7 +71,7 @@ export default {
           }
 
         },
-        requestPassword () {
+        requestPassword: function() {
           this.$store.dispatch('requestPassword', {
               email: this.email,
               company_number: this.company_number,
@@ -234,7 +234,7 @@ label {
     .input-set {width: 100%; margin-top: .9rem; padding-top: .9rem;}
     .input-set .label { font-size: 1.2rem; line-height: 1; }
 
-    .input-set input[type=text], 
+    .input-set input[type=text],
     .input-set input[type=email],
     .input-set input[type=password] { height: 3.5rem; font-size: 1rem; padding: 0 1.5rem; width: 100%;}
     .input-set.btn button {height: 3.5rem; width: 8.1rem; font-size: 1.2rem;}
@@ -246,7 +246,7 @@ label {
     .btn-wrap button {float: none; width: 20.2rem; height: 4rem; font-size: 1.2rem;}
     .btn-wrap button.next { margin-bottom: .7rem;}
     .btn-wrap button.prev { margin: 0; float: none;}
-}   
+}
 
 
 </style>

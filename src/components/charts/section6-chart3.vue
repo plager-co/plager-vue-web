@@ -36,12 +36,12 @@
 
 <script>
 import anime from 'animejs'
-var  scrollMonitor  = require ( "scrollmonitor" ) ; //  require를 사용하지 않으면 scrollMonitor 전역을 사용할 수 있습니다.  
+var  scrollMonitor  = require ( "scrollmonitor" ) ; //  require를 사용하지 않으면 scrollMonitor 전역을 사용할 수 있습니다.
 
 
 export default {
 	methods: {
-    lineAnimate() {
+    lineAnimate: function() {
 			const element = document.getElementById('s6-chart-3')
 			const elementWatcher = scrollMonitor.create( element )
 
@@ -68,7 +68,7 @@ export default {
 			})
 		}
   },
-  created() {
+  created: function() {
     this.$nextTick(() => {
       this.lineAnimate();
     });

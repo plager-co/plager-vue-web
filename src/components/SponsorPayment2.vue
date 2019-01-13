@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  data() {
+  data: function() {
     return {
       paymentData: {
         top: [
@@ -63,7 +63,7 @@ export default {
         background:rgba(255, 255, 255, .7);
         border-radius: 5px;
         margin: 35px 0 130px;
-    }    
+    }
 
     .circle {
         width: 236px;

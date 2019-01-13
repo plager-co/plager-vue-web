@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  data() {
+  data: function() {
     return {
     };
   }
@@ -30,7 +30,7 @@ export default {
         font-size: 16px;
         color: #FFFFFF;
         letter-spacing: 0;
-        text-align: center; 
+        text-align: center;
         width: 323px;
         height: 50px;
     }
@@ -42,7 +42,7 @@ export default {
         background:rgba(255, 255, 255, .7);
         border-radius: 5px;
         margin: 35px 0 130px;
-    }    
+    }
 
     .circle {
         width: 236px;

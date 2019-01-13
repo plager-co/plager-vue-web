@@ -411,34 +411,34 @@ import { videoPlayer } from 'vue-video-player'
 export default {
   components: {Chart0, Chart0M, Chart1, Chart2, Chart3, videoPlayer},
   methods: {
-    carouselBtnClick(e){
+    carouselBtnClick: function(e){
         this.carouselNum = Number(e.currentTarget.getAttribute('value'))
     },
-    scrollTop(){
+    scrollTop: function(){
       window.scrollTo(0, "top")
     },
-    toContact(){
+    toContact: function(){
       window.scrollTo(0, document.body.clientHeight)
     },
-    changeCarouselNum(e) {
+    changeCarouselNum: function(e) {
       window.scrollTo
       this.carouselNum = Number(e.currentTarget.getAttribute('value'))
     },
-    changeImageLeft(){
+    changeImageLeft: function(){
       setInterval(() => {
         const val = this.forImageChangeLeft[0]
         this.forImageChangeLeft = this.forImageChangeLeft.slice(1)
         this.forImageChangeLeft.push(val)
       }, 2000)
     },
-    changeImageRight(){
+    changeImageRight: function(){
       setInterval(() => {
         const val = this.forImageChangeRight[2]
         this.forImageChangeRight.unshift(val)
         this.forImageChangeRight = this.forImageChangeRight.slice(0, 3)
       }, 2000)
     },
-    changeImageFull(){
+    changeImageFull: function(){
       setInterval(() => {
         const length = this.forImageChangeFull.length
         const val = this.forImageChangeFull[0]
@@ -446,7 +446,7 @@ export default {
         this.forImageChangeFull.splice(0, 1)
       }, 1000)
     },
-    slideImageClick(e){
+    slideImageClick: function(e){
       const parent = e.currentTarget.parentElement.parentElement.classList
       const type = e.currentTarget.classList[0]
       const value = Number(e.currentTarget.children[0].getAttribute('value'))
@@ -457,7 +457,7 @@ export default {
         this.isScreenPlay = false
       }
     },
-    carouselChange(){
+    carouselChange: function(){
       setInterval(() => {
         if(this.carouselNum < 4) {
           this.carouselNum ++
@@ -466,20 +466,20 @@ export default {
         }
       }, 2000)
     },
-    playerLoaded(){
+    playerLoaded: function(){
       this.$nextTick(() => {
         this.playerOption.width = this.$refs.videoContainer.clientWidth
         this.playerOption.height = this.$refs.videoContainer.clientHeight
       })
     }
   },
-  created() {
+  created: function() {
     this.changeImageFull()
     this.carouselChange()
   },
-  data() {
+  data: function() {
     return {
-	
+
 	 profileList: [
         {
           profileImage: require('../assets/plager_influencer_test02.png'),

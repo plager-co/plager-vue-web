@@ -76,7 +76,7 @@
 
 <script>
 export default {
-  data() {
+  data: function() {
     return {
         currBtnName: 'deposit',
       paymentData: {
@@ -119,7 +119,7 @@ export default {
   },
      methods: {
 
-        async pay(adInfluencer){
+        pay: async function(adInfluencer){
             var adInfluencerUpdate = {
                 id: adInfluencer.id,
                 is_deposit_requested: 1,

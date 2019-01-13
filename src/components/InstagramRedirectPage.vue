@@ -10,7 +10,7 @@ export default {
 
     },
 
-    data(){
+    data: function(){
         return {
 
         }
@@ -288,10 +288,10 @@ delete-button {
         font-size: 16px;
         color: #FFFFFF;
         letter-spacing: 0;
-        text-align: center; 
+        text-align: center;
         width: 300px;
         height: 60px;
-	
+
     }
 
 @media screen and (max-width: 640px) {

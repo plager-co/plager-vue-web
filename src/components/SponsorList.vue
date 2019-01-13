@@ -2,7 +2,7 @@
 <template>
     <div class='viewer'>
         <div class="section first gray">
-            <div class="container">                
+            <div class="container">
                 <h2>SIM 서비스 진행 광고주</h2>
                 <div class="sponsor-list web">
                     <div class='card-wrap' v-for='(item, i) in influList' :key='i'>
@@ -71,7 +71,7 @@
                             <!-- <button class="blue">성과 보기</button> -->
                     </div>
                 </div>
-                    
+
                 <carousel
 
                     :loop='false'
@@ -84,7 +84,7 @@
                     paginationActiveColor='#FA2B56'
                     paginationColor='#bfbfbf'
                     paginationPadding=6
-                    tag='div' 
+                    tag='div'
                     class='sponsor-list'
                 >
                     <slide v-for='(item, i) in influList' :key='i'>
@@ -167,7 +167,7 @@
 
 <script>
 export default {
-    data(){
+    data: function(){
         return {
             carouselNum: 2,
             influList: [
@@ -205,8 +205,8 @@ export default {
         }
     },
     methods: {
-        followerClick(){},
-        carouselBtnClick(e){
+        followerClick: function(){},
+        carouselBtnClick: function(e){
             this.carouselNum = Number(e.currentTarget.getAttribute('value'))
         }
     }
@@ -274,7 +274,7 @@ font-weight: 400;
 .btn {width: 100%; text-align: right;}
 
 .btn button {
-    width: 166px; 
+    width: 166px;
     height: 50px;
     /* Bg Copy 2: */
     background: #092056;
@@ -343,7 +343,7 @@ font-weight: 400;
 .card.sponsor .profile-wrap {
     content: '';
     display: block;
-    width: 194px; 
+    width: 194px;
     height: 194px;
     margin: auto;
     padding: 7.5px;
@@ -553,7 +553,7 @@ button.blue {
 
 
 @media screen and (max-width: 640px) {
-    
+
     h2 { font-size: 2rem; line-height: 2.4rem; margin-bottom: 3.2rem;}
 
     .section.first .container { width: 100vw; padding: 3.4rem 1rem 3.3rem; box-sizing: border-box;}
@@ -566,7 +566,7 @@ button.blue {
     .sponsor-list .card-wrap:nth-child(n+4) {border-top: 0; padding-top: 0;}
 
     .sponsor-list .card-wrap .card.sponsor {padding: 1.7rem 0 .9rem; margin-bottom: 1.1rem;}
-    
+
     .card-wrap.hide {display: none;}
     .card.sponsor .profile-wrap ._id { font-size: 1rem; line-height: 1; margin: 0;}
     .card.sponsor .profile-wrap { width: 11rem; height: 11rem; padding: .5rem; margin-bottom: 1.2rem;}
@@ -579,7 +579,7 @@ button.blue {
     .sns-data table { padding-bottom: 0; border-spacing: 0.5rem; margin: 0 0 .9rem; }
     .sns-data table tbody tr td { font-size: 1.2rem;}
 
-    .bill .cell .msg { font-size: 1rem; line-height: 1.2rem; margin-bottom: .9rem; white-space: nowrap } 
+    .bill .cell .msg { font-size: 1rem; line-height: 1.2rem; margin-bottom: .9rem; white-space: nowrap }
     .bill .cell .price { font-size: 1.4rem; line-height: 1.7rem; text-align: center; margin-bottom: .3rem;}
     .bill {height: 4.9rem;}
 

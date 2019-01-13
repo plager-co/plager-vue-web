@@ -2,7 +2,7 @@
 <div class="full" id='s6-chart-2'>
   <svg version="1.1" id="chart2" v-in-viewport xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
     y="0px" viewBox="0 0 470 458" style="enable-background:new 0 0 470 458;" xml:space="preserve">
-  
+
   <title>section-6-chart2</title>
   <desc>Created with Sketch.</desc>
   <g id="chart2">
@@ -46,12 +46,12 @@
 
 <script>
 import anime from 'animejs'
-var  scrollMonitor  = require ( "scrollmonitor" ) ; //  require를 사용하지 않으면 scrollMonitor 전역을 사용할 수 있습니다.  
+var  scrollMonitor  = require ( "scrollmonitor" ) ; //  require를 사용하지 않으면 scrollMonitor 전역을 사용할 수 있습니다.
 
 
 export default {
 	methods: {
-    lineAnimate() {
+    lineAnimate: function() {
 			const element = document.getElementById('s6-chart-2')
 			const elementWatcher = scrollMonitor.create( element )
 
@@ -78,7 +78,7 @@ export default {
 			})
 		}
   },
-  created() {
+  created: function() {
     this.$nextTick(() => {
       this.lineAnimate();
     });
@@ -130,7 +130,7 @@ export default {
 .st9 {
   font-size: 18px;
 }
-/* 
+/*
 #chart2 * {
   transition: all 0.5s;
   transition-timing-function: ease-out;

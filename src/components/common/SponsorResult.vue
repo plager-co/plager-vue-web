@@ -54,7 +54,7 @@
 
 <script>
 export default {
-  data() {
+  data: function() {
     return {
       paymentData: {
         top: [

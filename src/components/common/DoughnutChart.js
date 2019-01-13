@@ -5,7 +5,7 @@ import {
 export default {
   props: ['data'],
   extends: Doughnut,
-  mounted() {
+  mounted: function() {
     this.renderChart({
       labels: ['', '', '', ''],
       datasets: [{

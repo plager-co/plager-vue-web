@@ -55,130 +55,117 @@ export default {
     return {
         currBtnName: '1',
         ads: [
-            {
-                top: [
-                  { dataName: "광고 ID", dataVal: "#113584" },
-                  { dataName: "카테고리", dataVal: "컴퓨터,자동차,유아" },
-                  { dataName: "기간", dataVal: "3달" }
-                ],
-                bottom: [
-
-                  { dataName: "예산", dataVal: "10,000,000원" },
-                  { dataName: "등록 날짜", dataVal: "2018 / 03 / 09" }
-                ]
-              }
         ],
         status: '계약중'
 
     };
   },
-  created: async function(){
-      await this.$store.dispatch('fetchAdBySponsorId', this.$store.getters.user_id);
-      var filterAds = this.$store.getters.filterAds;
-      function getStatus(filterAds){
-          var statusAds = '';
-          if (filterAds === 'registered'){
-          statusAds = '서비스 대기중';
-          } else if (filterAds === 'reviewed'){
-              statusAds = '서비스 대기중';
-          } else if (filterAds === 'paid'){
-              statusAds = '서비스 대기중';
-          } else if (filterAds === 'started'){
-              statusAds = '서비스 진행중';
-          } else if (filterAds === 'completed'){
-            statusAds = '서비스 완료';
-          }
-          return statusAds;
-      }
-      function getActionText(filterAds){
-          var statusAds = '';
-          if (filterAds === 'registered'){
-          statusAds = '확인중';
-          } else if (filterAds === 'reviewed'){
-              statusAds = '결재하기';
-          } else if (filterAds === 'paid'){
-              statusAds = '성과보기';
-          } else if (filterAds === 'started'){
-              statusAds = '성과보기';
-          } else if (filterAds === 'completed'){
-            statusAds = '성과보기';
-          }
-          return statusAds;
-      }
-      this.status = getStatus(filterAds);
-      function getStatusPayable(statusAds){
-
-          return true;
-      }
-      var adsRaw = this.$store.getters.ads;
-      var ads = [];
-          adsRaw.forEach(function (val){
-          if (filterAds === 'registered'){
-              if (val.status_text === filterAds || val.status_text === 'reviewed'){
-              ads.push(
-                  {
-                    top: [
-                      { dataName: "광고 ID", dataVal: val.id },
-                      { dataName: "카테고리", dataVal: val.target_category },
-                      { dataName: "기간", dataVal: val.period },
-                    ],
-                    bottom: [
-
-                      { dataName: "예산", dataVal: val.budget },
-                      { dataName: "등록 날짜", dataVal: val.created_at },
-                    ],
-                      status: getStatus(val.status_text),
-                      status_text: val.status_text,
-                      action_text: getActionText(val.status_text),
-                      status_payable: getStatusPayable(val.status_text),
-                      data: val,
-                  }
-              )
-          }
-              }
-          else if (val.status_text === filterAds){
-              ads.push(
-                  {
-                    top: [
-                      { dataName: "광고 ID", dataVal: val.id },
-                      { dataName: "카테고리", dataVal: val.target_category },
-                      { dataName: "기간", dataVal: val.period },
-                    ],
-                    bottom: [
-
-                      { dataName: "예산", dataVal: val.budget },
-                      { dataName: "등록 날짜", dataVal: val.created_at },
-                    ],
-                      status: getStatus(val.status_text),
-                      status_text: val.status_text,
-                      action_text: getActionText(val.status_text),
-                      status_payable: getStatusPayable(val.status_text),
-                      data: val,
-                  }
-              )
-          }
-
-        });
-      this.ads = ads;
-  },
+  // created: async function(){
+  //     await this.$store.dispatch('fetchAdBySponsorId', this.$store.getters.user_id);
+  //     var filterAds = this.$store.getters.filterAds;
+  //     function getStatus(filterAds){
+  //         var statusAds = '';
+  //         if (filterAds === 'registered'){
+  //         statusAds = '서비스 대기중';
+  //         } else if (filterAds === 'reviewed'){
+  //             statusAds = '서비스 대기중';
+  //         } else if (filterAds === 'paid'){
+  //             statusAds = '서비스 대기중';
+  //         } else if (filterAds === 'started'){
+  //             statusAds = '서비스 진행중';
+  //         } else if (filterAds === 'completed'){
+  //           statusAds = '서비스 완료';
+  //         }
+  //         return statusAds;
+  //     }
+  //     function getActionText(filterAds){
+  //         var statusAds = '';
+  //         if (filterAds === 'registered'){
+  //         statusAds = '확인중';
+  //         } else if (filterAds === 'reviewed'){
+  //             statusAds = '결재하기';
+  //         } else if (filterAds === 'paid'){
+  //             statusAds = '성과보기';
+  //         } else if (filterAds === 'started'){
+  //             statusAds = '성과보기';
+  //         } else if (filterAds === 'completed'){
+  //           statusAds = '성과보기';
+  //         }
+  //         return statusAds;
+  //     }
+  //     this.status = getStatus(filterAds);
+  //     function getStatusPayable(statusAds){
+  //         return true;
+  //     }
+  //     var adsRaw = this.$store.getters.ads;
+  //     var ads = [];
+  //         adsRaw.forEach(function (val){
+  //         if (filterAds === 'registered'){
+  //             if (val.status_text === filterAds || val.status_text === 'reviewed'){
+  //             ads.push(
+  //                 {
+  //                   top: [
+  //                     { dataName: "광고 ID", dataVal: val.id },
+  //                     { dataName: "카테고리", dataVal: val.target_category },
+  //                     { dataName: "기간", dataVal: val.period },
+  //                   ],
+  //                   bottom: [
+  //
+  //                     { dataName: "예산", dataVal: val.budget },
+  //                     { dataName: "등록 날짜", dataVal: val.created_at },
+  //                   ],
+  //                     status: getStatus(val.status_text),
+  //                     status_text: val.status_text,
+  //                     action_text: getActionText(val.status_text),
+  //                     status_payable: getStatusPayable(val.status_text),
+  //                     data: val,
+  //                 }
+  //             )
+  //         }
+  //             }
+  //         else if (val.status_text === filterAds){
+  //             ads.push(
+  //                 {
+  //                   top: [
+  //                     { dataName: "광고 ID", dataVal: val.id },
+  //                     { dataName: "카테고리", dataVal: val.target_category },
+  //                     { dataName: "기간", dataVal: val.period },
+  //                   ],
+  //                   bottom: [
+  //
+  //                     { dataName: "예산", dataVal: val.budget },
+  //                     { dataName: "등록 날짜", dataVal: val.created_at },
+  //                   ],
+  //                     status: getStatus(val.status_text),
+  //                     status_text: val.status_text,
+  //                     action_text: getActionText(val.status_text),
+  //                     status_payable: getStatusPayable(val.status_text),
+  //                     data: val,
+  //                 }
+  //             )
+  //         }
+  //
+  //       });
+  //     this.ads = ads;
+  // },
     methods: {
         payAd: function(ad) {
             this.$store.dispatch('payAd', ad.data);
         },
-          getAction: function(ad){
-            console.log(ad);
-              if (ad.status_text === 'registered'){
-              } else if (ad.status_text === 'reviewed'){
-                 this.$store.dispatch('payAd', ad.data);
-              } else if (ad.status_text === 'paid'){
-                this.$store.dispatch('checkPerformance', ad.data);
-              } else if (ad.status_text === 'started'){
-                this.$store.dispatch('checkPerformance', ad.data);
-              } else if (ad.status_text === 'completed'){
-                this.$store.dispatch('checkPerformance', ad.data);
-              }
+      getAction: function(ad){
+        console.log(ad);
+          if (ad.status_text === 'registered'){
+          } else if (ad.status_text === 'reviewed'){
+             this.$store.dispatch('payAd', ad.data);
+          } else if (ad.status_text === 'paid'){
+            this.$store.dispatch('checkPerformance', ad.data);
+          } else if (ad.status_text === 'started'){
+            this.$store.dispatch('checkPerformance', ad.data);
+          } else if (ad.status_text === 'completed'){
+            this.$store.dispatch('checkPerformance', ad.data);
+          }
 
-          },
+      },
         checkPerformance: function(ad) {
             this.$store.dispatch('checkPerformance', ad);
         }

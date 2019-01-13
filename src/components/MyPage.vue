@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            <h1>마이페이지</h1> 
+            <h1>마이페이지</h1>
 	    <h3>상세 정보가 정확하게 기입되어야 원활한 서비스를 받으실 수 있습니다.</h3>
             <div class="card user">
                 <div class="profile">
@@ -166,7 +166,7 @@ import AlertBase from './AlertBase'
 export default {
 
     components: {AlertBase},
-    data() {
+    data: function() {
       return {  errors: [],
           count_ads: {
               count_started_ads: 0,
@@ -275,7 +275,7 @@ export default {
           }
         },
     methods: {
-          async handleFileUpload (){
+          handleFileUpload: async function(){
             this.file = this.$refs.file.files[0];
               let formData = new FormData();
             formData.append('file', this.file);
@@ -283,7 +283,7 @@ export default {
           this.picture_link = this.$store.getters.picture_link;
 
           },
-        async handleDocumentFileUpload (){
+        handleDocumentFileUpload: async function(){
             this.document_file = this.$refs.document_file.files[0];
               let formData = new FormData();
             formData.append('document_file', this.document_file);
@@ -291,7 +291,7 @@ export default {
           this.document_link = this.$store.getters.document_link;
 
           },
-        completeJoin(){
+        completeJoin: function(){
               this.errors = [];
 
               var has_password_change = false;
@@ -366,7 +366,7 @@ export default {
           }
 
         },
-        register (has_password_change) {
+        register: function(has_password_change) {
 
            var userData =  {
               company_name: this.company_name,
@@ -389,30 +389,30 @@ export default {
           this.$store.commit('setUserDataMyPage', userData)
           this.$store.dispatch('userUpdate', userData)
         },
-        checkEmail () {
+        checkEmail: function() {
             this.$store.commit('hasEmail', this.email);
           this.$store.dispatch('checkEmail', this.email);
         },
-        ShowRegisteredAd(){
+        ShowRegisteredAd: function(){
           if(this.count_ads.count_registered_ads > 0){
             this.$store.commit('filterAdList','registered');
             this.$router.push('/sponsor-sim');
           }
 
         },
-        ShowStartedAd(){
+        ShowStartedAd: function(){
             if(this.count_ads.count_started_ads > 0) {
                 this.$store.commit('filterAdList', 'started');
                 this.$router.push('/sponsor-sim');
             }
         },
-        ShowCompletedAd(){
+        ShowCompletedAd: function(){
           if(this.count_ads.count_completed_ads > 0) {
               this.$store.commit('filterAdList', 'completed');
               this.$router.push('/sponsor-sim');
           }
         },
-        checkCompanyNumber () {
+        checkCompanyNumber: function() {
             this.$store.commit('hasCompanyNumber', this.company_number);
           this.$store.dispatch('checkCompanyNumber', this.company_number);
         },
@@ -424,7 +424,7 @@ export default {
           var re = /^(?!0+$)[\-0-9]{10,12}$/;
           return re.test(company_number);
         },
-        deleteUser(){
+        deleteUser: function(){
             this.$store.dispatch('deleteUser');
         },
     }
@@ -433,11 +433,11 @@ export default {
 
 <style scoped>
 
-    h1 { 
+    h1 {
         text-align: left;
         margin-bottom: 0px;
     }
-    h3 { 
+    h3 {
         text-align: center;
 	margin-bottom: 5px;
     }
@@ -445,7 +445,7 @@ export default {
         padding-top: 104px;
     }
 
-    .card { 
+    .card {
         width: 100%;
         padding: 42px 70px 32px;
         /* Rectangle 48: */
@@ -517,7 +517,7 @@ export default {
     .count-wrap .col .circle {
         background-image: none;
         display: inline-block;
-        width: 120px; 
+        width: 120px;
         height: 120px;
         border-radius: 50%;
         background-color: #ffffff;
@@ -631,10 +631,10 @@ export default {
         content: '';
         display: block;
         position: absolute;
-        
+
         width: 42px;
         height: 36px;
-        
+
     }
 
     .input-set .input-wrap.btn {
@@ -655,7 +655,7 @@ export default {
         background: url("../assets/input-sns-instagram.svg");
     }
     .input-set .input-wrap.sns.facebook::before {
-        background: url("../assets/input-sns-facebook.svg");   
+        background: url("../assets/input-sns-facebook.svg");
     }
     .input-set .input-wrap.sns.etc::before {
         background: url("../assets/input-sns-etc.svg");
@@ -668,7 +668,7 @@ export default {
         font-size: 16px;
         color: #FFFFFF;
         letter-spacing: 0;
-        text-align: center; 
+        text-align: center;
         width: 323px;
         height: 60px;
     }
@@ -679,7 +679,7 @@ export default {
         font-size: 16px;
         color: #FFFFFF;
         letter-spacing: 0;
-        text-align: center; 
+        text-align: center;
         width: 323px;
         height: 60px;
     }

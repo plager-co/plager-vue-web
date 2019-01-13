@@ -51,7 +51,7 @@
 
 <script>
 export default {
-  data() {
+  data: function() {
     return {
         currBtnName: '1',
         ads: [
@@ -59,12 +59,12 @@ export default {
                 top: [
                   { dataName: "광고 ID", dataVal: "#113584" },
                   { dataName: "카테고리", dataVal: "컴퓨터,자동차,유아" },
-                  { dataName: "기간", dataVal: "3달" },
+                  { dataName: "기간", dataVal: "3달" }
                 ],
                 bottom: [
 
                   { dataName: "예산", dataVal: "10,000,000원" },
-                  { dataName: "등록 날짜", dataVal: "2018 / 03 / 09" },
+                  { dataName: "등록 날짜", dataVal: "2018 / 03 / 09" }
                 ]
               }
         ],
@@ -107,7 +107,6 @@ export default {
       }
       this.status = getStatus(filterAds);
       function getStatusPayable(statusAds){
-
           return true;
       }
       var adsRaw = this.$store.getters.ads;
@@ -120,18 +119,18 @@ export default {
                     top: [
                       { dataName: "광고 ID", dataVal: val.id },
                       { dataName: "카테고리", dataVal: val.target_category },
-                      { dataName: "기간", dataVal: val.period },
+                      { dataName: "기간", dataVal: val.period }
                     ],
                     bottom: [
 
                       { dataName: "예산", dataVal: val.budget },
-                      { dataName: "등록 날짜", dataVal: val.created_at },
+                      { dataName: "등록 날짜", dataVal: val.created_at }
                     ],
                       status: getStatus(val.status_text),
                       status_text: val.status_text,
                       action_text: getActionText(val.status_text),
                       status_payable: getStatusPayable(val.status_text),
-                      data: val,
+                      data: val
                   }
               )
           }
@@ -142,18 +141,18 @@ export default {
                     top: [
                       { dataName: "광고 ID", dataVal: val.id },
                       { dataName: "카테고리", dataVal: val.target_category },
-                      { dataName: "기간", dataVal: val.period },
+                      { dataName: "기간", dataVal: val.period }
                     ],
                     bottom: [
 
                       { dataName: "예산", dataVal: val.budget },
-                      { dataName: "등록 날짜", dataVal: val.created_at },
+                      { dataName: "등록 날짜", dataVal: val.created_at }
                     ],
                       status: getStatus(val.status_text),
                       status_text: val.status_text,
                       action_text: getActionText(val.status_text),
                       status_payable: getStatusPayable(val.status_text),
-                      data: val,
+                      data: val
                   }
               )
           }
@@ -162,24 +161,24 @@ export default {
       this.ads = ads;
   },
     methods: {
-        payAd(ad) {
+        payAd: function(ad) {
             this.$store.dispatch('payAd', ad.data);
         },
-          getAction(ad){
-            console.log(ad);
-              if (ad.status_text === 'registered'){
-              } else if (ad.status_text === 'reviewed'){
-                 this.$store.dispatch('payAd', ad.data);
-              } else if (ad.status_text === 'paid'){
-                this.$store.dispatch('checkPerformance', ad.data);
-              } else if (ad.status_text === 'started'){
-                this.$store.dispatch('checkPerformance', ad.data);
-              } else if (ad.status_text === 'completed'){
-                this.$store.dispatch('checkPerformance', ad.data);
-              }
+      getAction: function(ad){
+        console.log(ad);
+          if (ad.status_text === 'registered'){
+          } else if (ad.status_text === 'reviewed'){
+             this.$store.dispatch('payAd', ad.data);
+          } else if (ad.status_text === 'paid'){
+            this.$store.dispatch('checkPerformance', ad.data);
+          } else if (ad.status_text === 'started'){
+            this.$store.dispatch('checkPerformance', ad.data);
+          } else if (ad.status_text === 'completed'){
+            this.$store.dispatch('checkPerformance', ad.data);
+          }
 
-          },
-        checkPerformance(ad) {
+      },
+        checkPerformance: function(ad) {
             this.$store.dispatch('checkPerformance', ad);
         }
     }

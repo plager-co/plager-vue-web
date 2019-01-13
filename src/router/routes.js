@@ -162,7 +162,7 @@ export const routes = [
     },
     {
       path: '/mypage',
-        beforeEnter (to, from, next) {
+        beforeEnter: function(to, from, next) {
           console.log(store.getters.isAuthenticated);
         if (!store.getters.isAuthenticated) {
           next('/login')
@@ -207,7 +207,7 @@ export const routes = [
       path: '/surveys',
       name: 'NewSurvey',
       component: NewSurvey,
-      beforeEnter (to, from, next) {
+      beforeEnter: function(to, from, next) {
         if (!store.getters.isAuthenticated) {
           next('/login')
         } else {
@@ -219,7 +219,7 @@ export const routes = [
       path: '/logout',
       name: 'Logout',
       component: Login,
-      beforeEnter (to, from, next) {
+      beforeEnter: function(to, from, next) {
           if (store.getters.isAuthenticated) {
               store.commit('userLogout')
               next('/login')

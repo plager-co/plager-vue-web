@@ -9,7 +9,7 @@
                     <input type="date" name="start" id="start" value='2018-08-01'>
                 </div>
                 <a class="label in">~</a>
-                <div class="date-box"> 
+                <div class="date-box">
                     <input type="date" name="end" id="start" value='2018-08-01'>
                 </div>
             </div>
@@ -90,7 +90,7 @@
 
 <script>
 export default {
-  data() {
+  data: function() {
     return {
       paymentData: {
         top: [
@@ -109,7 +109,7 @@ export default {
       }
     };
   },
-  created(){
+  created: function(){
 
 			var chart5
 			var chart6
@@ -1162,7 +1162,7 @@ h2 {
   border: none;
   width: 100%;
   box-sizing: border-box;
-  
+
 }
 
 table.for-mobile tbody tr td {
@@ -1180,7 +1180,7 @@ table.for-mobile {
     padding-bottom: 20px;
     margin-bottom: 30px;
 }
-table.for-mobile tbody tr td { 
+table.for-mobile tbody tr td {
   text-align: right;
 }
 
@@ -1190,7 +1190,7 @@ table.for-mobile tbody tr td.bold {
 }
 table.for-mobile {
     border-spacing: 13px;
-    
+
 }
 
 
@@ -1223,7 +1223,7 @@ table.for-mobile {
   table.for-mobile { padding-bottom: 0; border-spacing: 1rem; margin: 0 1rem 1.9rem; }
   table.for-mobile tbody tr td { font-size: 1.4rem; line-height: 2rem;}
 
-  
+
   .chart-wrap { margin: 0; max-width: calc(100vw - 4rem);}
 
 

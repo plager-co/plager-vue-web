@@ -1,12 +1,11 @@
 {
   "presets": [
-    [
-      "vue",
-      {
-        "targets": {
-          "ie": "11"
+    ["@babel/preset-env", {
+      "useBuiltIns": "usage",
+       "targets": {
+          "browsers": [ "last 1 version", "ie >= 11" ]
         }
-      }
-    ]
-  ]
+    }]
+  ],
+   "plugins": ["@babel/plugin-transform-regenerator"]
 }

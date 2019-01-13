@@ -76,7 +76,7 @@
                     paginationActiveColor='#FA2B56'
                     paginationColor='#bfbfbf'
                     :paginationPadding='pagenationPadding'
-                    tag='div' 
+                    tag='div'
                     class='influ-list'
                 >
                     <slide v-for='(item, i) in influMobileList' :key='i'>
@@ -145,7 +145,7 @@ export default {
      components: {
         VueAdsPagination
     },
-    data(){
+    data: function(){
         return {
             carouselNum: 2,
             currentRangeBtn: '1 개월',
@@ -176,7 +176,7 @@ export default {
 
     },
     methods: {
-        async pageChange (page, range) {
+        pageChange: async function(page, range) {
             console.log(page, range);
             var payload = {
                 'limit': page + 1,
@@ -188,14 +188,14 @@ export default {
         this.pageMax = influList.length + 1;
         },
 
-        carouselBtnClick(e){
+        carouselBtnClick: function(e){
             this.carouselNum = Number(e.currentTarget.getAttribute('value'))
         },
-        completeJoin(){
+        completeJoin: function(){
             this.$store.commit('openCompletePopup', '인플루언서 가입이 완료되었습니다.')
         },
-        followerClick(){},
-        toggleSeen(item){
+        followerClick: function(){},
+        toggleSeen: function(item){
             if(!item.selected){
                 item.selected = true;
                 document.getElementById("button"+item.id).innerText= "선택됨";
@@ -215,7 +215,7 @@ export default {
             }
 
         },
-        allSelected(){
+        allSelected: function(){
             console.log("all selected");
             this.influList.map(x => x['selected'] = true);
             var x = document.getElementsByClassName('choose');
@@ -228,7 +228,7 @@ export default {
             }
 
         },
-        registerAdInfluencers(){
+        registerAdInfluencers: function(){
             var selectedInfluList = this.influList.filter(x => x.selected === true);
             var updatingInfluList = [];
             var ad_id = this.$store.getters.ad_id;
@@ -359,7 +359,7 @@ label b {
 .card.influ .profile-wrap {
     content: '';
     display: block;
-    width: 194px; 
+    width: 194px;
     height: 194px;
     margin: auto;
     padding: 7.5px;

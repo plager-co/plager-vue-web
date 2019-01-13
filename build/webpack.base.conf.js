@@ -14,7 +14,6 @@ module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: [
-      'babel-polyfill',
       './src/main.js'
     ]
   },
@@ -37,12 +36,18 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueLoaderConfig
+          options: {
+            loaders: {
+                js: {
+                   loader: 'babel-loader',
+                },
+            }
+        }
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+        include: [resolve('src'), resolve('node_modules/chart.js'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
       {
         test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,

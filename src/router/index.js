@@ -7,7 +7,7 @@ Vue.use(Router)
 
 export default new Router({
   mode: 'history',
-  scrollBehavior (to, from) {
+  scrollBehavior: function(to, from) {
     return { x: 0, y: 0 }
   },
   routes

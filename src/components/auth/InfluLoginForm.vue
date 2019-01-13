@@ -39,7 +39,7 @@
 import { isValidJwt, EventBus } from '@/utils'
 
 export default {
-    data() {
+    data: function() {
       return {  errors: [],
         email: null,
         password: null,
@@ -73,14 +73,14 @@ export default {
           }
 
         },
-        authenticate () {
+        authenticate: function() {
           this.$store.dispatch('login', { email: this.email, password: this.password, user_type: 'influencer' })
         },
-        register () {
+        register: function() {
           this.$store.dispatch('register', { email: this.email, password: this.password })
         }
     },
-    mounted () {
+    mounted: function() {
     EventBus.$on('failedRegistering', (msg) => {
       this.errorMsg = msg
     })
@@ -88,7 +88,7 @@ export default {
       this.errorMsg = msg
     })
   },
-  beforeDestroy () {
+  beforeDestroy: function() {
     EventBus.$off('failedRegistering')
     EventBus.$off('failedAuthentication')
   }

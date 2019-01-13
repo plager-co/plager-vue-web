@@ -1,12 +1,12 @@
-<template>  
-<div>  
+<template>
+<div>
   <h3>I'm a Survey Component</h3>
-</div>  
+</div>
 </template>
 
-<script>  
-export default {  
-  data() {
+<script>
+export default {
+  data: function() {
     return {
       survey: {}
     }
@@ -19,4 +19,4 @@ export default {
 
 <style>
 
-</style>  
+</style>

@@ -21,11 +21,11 @@
 
 <script>
 export default {
-  data() {
+  data: function() {
     return {
     };
   },
-created(){
+created: function(){
 
 			var chart5
 			var chart6
@@ -928,7 +928,7 @@ h2 {/* SIM 진행 인플루언서 전체 성과보기: */
 
 
 
-  
+
   .chart-wrap { margin: 0; max-width: calc(100vw - 4rem);}
 
 

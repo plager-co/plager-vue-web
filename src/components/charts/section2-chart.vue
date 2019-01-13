@@ -73,17 +73,17 @@
 
 <script>
 import anime from 'animejs'
-var  scrollMonitor  = require ( "scrollmonitor" ); //  require를 사용하지 않으면 scrollMonitor 전역을 사용할 수 있습니다.  
+var  scrollMonitor  = require ( "scrollmonitor" ); //  require를 사용하지 않으면 scrollMonitor 전역을 사용할 수 있습니다.
 
 export default {
-  data(){
+  data: function(){
     return {
       chartHeight: 0,
 			scrollWatcher: '',
     }
   },
   methods: {
-    lineAnimate() {
+    lineAnimate: function() {
 			const self = this
 
 			const ani = anime({
@@ -92,9 +92,9 @@ export default {
 				autoplay: false,
 				easing: 'linear',
 				duration: 1000,
-				delay: function(el, i) { 
+				delay: function(el, i) {
 					if(i < 4){
-						return i * 100 
+						return i * 100
 					} else return 800
 				},
 				direction: 'normal',
@@ -117,7 +117,7 @@ export default {
 			})
 		}
   },
-  created() {
+  created: function() {
     this.$nextTick(() => {
 			this.scrollWatcher = scrollMonitor.create(this.$refs.lines)
 			this.lineAnimate()
@@ -125,7 +125,7 @@ export default {
   },
 	computed: {
 		isViewport() {
-			return this.scrollWatcher.isFullyInViewport 
+			return this.scrollWatcher.isFullyInViewport
 		},
 	}
 };

@@ -30,15 +30,15 @@ import InfluLoginForm from './auth/InfluLoginForm'
 export default {
     components: {JoinPopup, RequestPasswordPopup, AlertBase, InfluLoginForm, LoginForm, RequestInfluPasswordPopup},
     methods: {
-        influLogin(){
+        influLogin: function(){
             // this.$store.commit("userLogin", 'Influ')
             this.$router.push('/influencer-join')
         },
-        sponsorLogin(){
+        sponsorLogin: function(){
             this.$store.commit("userLogin", 'Sponsor')
             this.$router.push('/')
         },
-        authenticate(provider) {
+        authenticate: function(provider) {
 
             var store = this.$store;
             var router = this.$router;
@@ -224,7 +224,7 @@ button.influ-login img {
     .card-wrap .card:last-child h2 {margin-bottom: 3.2rem;}
     button.influ-login {width: 20.2rem; height: 4rem; font-size: 1.2rem;}
     button.influ-login img {width: 1.6rem; height: 1.6rem; margin-right: .6rem;}
-    .card input[type=text], 
+    .card input[type=text],
     .card input[type=password] { height: 3.5rem; font-size: 1rem; padding: 0 1.5rem;}
     .card .info .right,
     .card .info .left { font-size: 1rem;}
@@ -232,7 +232,7 @@ button.influ-login img {
     .button-wrap button,
     .button-wrap button:last-child { width: 20.2rem; height: 4rem; float: none; margin-bottom: .7rem; margin-right: 0; font-size: 1.2rem;}
     .button-wrap button:last-child { margin-bottom: 0;}
-    
+
 }
 
 @media screen and (min-width:0\0) and (min-resolution: +72dpi) and (max-width: 640px) {

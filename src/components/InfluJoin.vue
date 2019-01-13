@@ -380,7 +380,7 @@ export default {
           return val.length
       }
     },
-  data() {
+  data: function() {
     return {
         errors: [],
         email: null,
@@ -439,7 +439,7 @@ export default {
       ]
     };
   },
-    async created(){
+    created: async function(){
 
         console.log("instagram_code");
         console.log(this.$store.getters.instagram_code);
@@ -452,11 +452,11 @@ export default {
         console.log('this.instagram_client_id');
         console.log(this.instagram_client_id);
     },
-    destroyed(){
+    destroyed: function(){
         this.$store.commit('closeAlertPopup');
     },
   methods: {
-    async completeJoin() {
+    completeJoin: async function() {
           this.errors = [];
 
           document.getElementById('email').style.border='2px solid red';
@@ -572,7 +572,7 @@ export default {
               this.register();
           }
     },
-    register () {
+    register: function() {
           this.$store.dispatch('registerInfluencer', {
               email: this.email,
               password: this.password,
@@ -589,7 +589,7 @@ export default {
               is_removed: 0,
           })
         },
-    async checkEmail () {
+    checkEmail: async function() {
         this.$store.commit('isNormalEmailInit', this.email)
         this.$store.commit('hasEmail', this.email)
       await this.$store.dispatch('checkEmailNoPopup', this.email)

@@ -1,5 +1,5 @@
-<template>  
-<nav class="navbar is-light" role="navigation" aria-label="main navigation">  
+<template>
+<nav class="navbar is-light" role="navigation" aria-label="main navigation">
   <div class="navbar-menu">
     <div class="navbar-start">
       <router-link to="/" class="navbar-item">
@@ -13,13 +13,13 @@
       </router-link>
     </div>
   </div>
-</nav>  
+</nav>
 </template>
 
-<script>  
-export default {  
+<script>
+export default {
   computed: {
-    isAuthenticated () {
+    isAuthenticated: function() {
       return this.$store.getters.isAuthenticated
     }
   }
@@ -28,4 +28,4 @@ export default {
 
 <style>
 
-</style>  
+</style>

@@ -1,12 +1,3 @@
 {
-  "presets": [
-    [
-      "vue",
-      {
-        "targets": {
-          "ie": "11"
-        }
-      }
-    ]
-  ]
+  "presets": ["vue"]
 }

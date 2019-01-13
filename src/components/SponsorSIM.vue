@@ -219,6 +219,8 @@ export default {
     }
   },
     created: async function(){
+    var store = this.$store;
+    store.commit('setRunningAdInfluencers', []);
     this.loadingPopup = true;
         function getStatus(filterAds){
           var statusAds = '';
@@ -285,60 +287,9 @@ export default {
             }
           }
 
-        var store = this.$store;
         var influList = [];
         var influMobileList = [];
-        var payload = {
-            'sponsor_id': this.$store.getters.user_id,
-            'status': filterAds,
-            'limit': 1,
-            'page_size': 6,
-        };
-        await store.dispatch('fetchAdInfluencersBySponsorIdAndStatus', payload);
-        store.getters.runningAdInfluencers.forEach(function(val){
-            var price = 0;
-            if (val.price){
-                price = val.price.toLocaleString();
-            }
-            if (val.status < 2){
-                val.state = "계약대기"
-                val.msg = "계약 대기중"
-            } else if (val.status === 3){
-                val.state = "계약"
-                val.msg = "광고 진행중"
-            } else if (val.status === 4){
-                val.state = "계약마감"
-                val.msg = "광고 완료"
-            }
-            if (!val.ad_start_at){
-                val.ad_start_at = ' '
-            }
-            if (!val.ad_end_at){
-                val.ad_end_at = ' '
-            }
-              var val_show = {
-                            picture_link: val.picture_link,
-                            instagram: val.instagram,
-                            price: price + '원',
-                            isRed: false,
-                            termValue: val.ad_start_at.split(" ")[0] + " ~ " + val.ad_end_at.split(" ")[0],
-                            follower: val.total_follower_count,
-                            defaultMonth: val.ad_month,
-                            msg: val.msg,
-                            state: val.state,
-                            isSelected: true,
-                        };
-              var result = Object.assign({}, val, val_show);
-                  influList.push(result)
-              });
 
-        this.influList = influList;
-        if(influList.length){
-            this.count = influList.length;
-        } else {
-            this.$store.commit('openEmptyInfluencerPopup');
-            this.$router.push('my-page')
-        }
 
         var payloadMobile = {
             'sponsor_id': this.$store.getters.user_id,
@@ -384,12 +335,19 @@ export default {
               });
 
       this.influMobileList = influMobileList;
+      if(influMobileList.length){
+            this.count = influMobileList.length;
+        } else {
+            this.$store.commit('openEmptyInfluencerPopup');
+            this.$router.push('my-page')
+        }
 
         this.loadingPopup = false;
 
   },
     methods: {
         pageChange: async function(page, range) {
+            console.log("pageChange");
             console.log(page, range);
             this.loadingPopup = true;
             this.$refs['sponsors'].currentPage = 0;
@@ -402,6 +360,8 @@ export default {
                     'page_size': 6,
                 }
                 await store.dispatch('fetchAdInfluencersBySponsorIdAndStatus', payload);
+                console.log('store.getters.runningAdInfluencers');
+                console.log(store.getters.runningAdInfluencers);
                 store.getters.runningAdInfluencers.forEach(function(val){
                     var price = 0;
                     if (val.price){

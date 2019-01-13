@@ -59,12 +59,12 @@ export default {
                 top: [
                   { dataName: "광고 ID", dataVal: "#113584" },
                   { dataName: "카테고리", dataVal: "컴퓨터,자동차,유아" },
-                  { dataName: "기간", dataVal: "3달" },
+                  { dataName: "기간", dataVal: "3달" }
                 ],
                 bottom: [
 
                   { dataName: "예산", dataVal: "10,000,000원" },
-                  { dataName: "등록 날짜", dataVal: "2018 / 03 / 09" },
+                  { dataName: "등록 날짜", dataVal: "2018 / 03 / 09" }
                 ]
               }
         ],

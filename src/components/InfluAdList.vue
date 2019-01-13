@@ -120,18 +120,18 @@ export default {
                     top: [
                       { dataName: "광고 ID", dataVal: val.id },
                       { dataName: "카테고리", dataVal: val.target_category },
-                      { dataName: "기간", dataVal: val.period },
+                      { dataName: "기간", dataVal: val.period }
                     ],
                     bottom: [
 
                       { dataName: "예산", dataVal: val.budget },
-                      { dataName: "등록 날짜", dataVal: val.created_at },
+                      { dataName: "등록 날짜", dataVal: val.created_at }
                     ],
                       status: getStatus(val.status_text),
                       status_text: val.status_text,
                       action_text: getActionText(val.status_text),
                       status_payable: getStatusPayable(val.status_text),
-                      data: val,
+                      data: val
                   }
               )
           }
@@ -142,18 +142,18 @@ export default {
                     top: [
                       { dataName: "광고 ID", dataVal: val.id },
                       { dataName: "카테고리", dataVal: val.target_category },
-                      { dataName: "기간", dataVal: val.period },
+                      { dataName: "기간", dataVal: val.period }
                     ],
                     bottom: [
 
                       { dataName: "예산", dataVal: val.budget },
-                      { dataName: "등록 날짜", dataVal: val.created_at },
+                      { dataName: "등록 날짜", dataVal: val.created_at }
                     ],
                       status: getStatus(val.status_text),
                       status_text: val.status_text,
                       action_text: getActionText(val.status_text),
                       status_payable: getStatusPayable(val.status_text),
-                      data: val,
+                      data: val
                   }
               )
           }

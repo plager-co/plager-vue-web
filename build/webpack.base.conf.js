@@ -37,12 +37,22 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueLoaderConfig
+	                options: {
+            loaders: {
+                js: {
+                   loader: 'babel-loader',
+                   options: {
+                       presets: ['es2015']
+                   }
+                },
+            }
+        }
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/')]
+	              include: [resolve('src'), resolve('node_modules/chart.js'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+
       },
       {
         test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,

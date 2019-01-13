@@ -14,7 +14,6 @@ module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: [
-      'babel-polyfill',
       './src/main.js'
     ]
   },
@@ -42,7 +41,6 @@ module.exports = {
                 js: {
                    loader: 'babel-loader',
                    options: {
-                       presets: ['es2015'],
                        plugins: [
                            ["@babel/plugin-transform-async-to-generator", {
                             "module": "bluebird",

@@ -1,8 +1,5 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import 'babel-polyfill';
-import "isomorphic-fetch";
-import 'es6-promise/auto';
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -14,7 +11,6 @@ import VueAuthenticate from 'vue-authenticate'
 import VueAxios from 'vue-axios'
 import axios from 'axios';
 import vueCustomElement from 'vue-custom-element'
-import 'document-register-element/build/document-register-element';
 
 Vue.use(vueCustomElement);
 Vue.use(VueAxios, axios)

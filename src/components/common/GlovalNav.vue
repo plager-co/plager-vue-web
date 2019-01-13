@@ -98,7 +98,7 @@ export default {
          title:'내 영향력 지수', url:'/influencer-score'
       },
       {
-         title:'SIM 서비스 진행 현황', url:'/influencer-sim'
+         title:'SIM 서비스 진행 현황', url:'/influencer-sim-running'
       },
       {
          title:'마이 페이지', url:'/influencer-my-page'
@@ -113,7 +113,7 @@ export default {
          title:'SIM 서비스 신청하기', url:'/sponsor-filter'
       },
       {
-         title:'SIM 진행 인플루언서', url:'/sponsor-sim'
+         title:'SIM 진행 인플루언서', url:'/sponsor-sim-running'
       },
       {
          title:'마이 페이지', url:'/my-page'
@@ -130,7 +130,7 @@ export default {
          title:'내 영향력 지수', url:'/influencer-score'
       },
       {
-         title:'SIM 서비스 진행 현황', url:'/influencer-sim'
+         title:'SIM 서비스 진행 현황', url:'/influencer-sim-running'
       },
       {
          title:'마이 페이지', url:'/influencer-my-page'
@@ -142,7 +142,7 @@ export default {
          title:'SIM 서비스 신청하기', url:'/sponsor-filter'
       },
       {
-         title:'SIM 진행 인플루언서', url:'/sponsor-sim'
+         title:'SIM 진행 인플루언서', url:'/sponsor-sim-running'
       },
    ]
       }

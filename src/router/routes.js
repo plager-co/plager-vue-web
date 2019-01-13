@@ -177,6 +177,22 @@ export const routes = [
       }
     },
     {
+      path: '/sponsor-sim-running',
+        beforeEnter: function(to, from, next) {
+          store.commit('filterAdList', 'started');
+          next('/sponsor-sim');
+          location.reload();
+      }
+    },
+    {
+      path: '/influencer-sim-running',
+        beforeEnter: function(to, from, next) {
+          store.commit('filterAdList', 'started');
+          next('/influencer-sim');
+          location.reload();
+      }
+    },
+    {
       path: '/instagram-redirect',
       component: InstagramRedirectPage,
     },

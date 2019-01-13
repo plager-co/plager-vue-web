@@ -116,11 +116,11 @@ export const store = new Vuex.Store({
 
     actions: {
 
-        loadSurveys(context) {
+        loadSurveys: function(context) {
             return fetchSurveys()
               .then((response) => context.commit('setSurveys', { surveys: response }))
           },
-        register (context, userData) {
+        register: function (context, userData) {
             context.commit('setUserData', { userData })
             return register(userData)
               .then(
@@ -139,7 +139,7 @@ export const store = new Vuex.Store({
               context.commit('errorRegisterPopup');
             });
           },
-        registerInfluencer (context, userData) {
+        registerInfluencer: function (context, userData) {
             context.commit('setUserData', { userData })
             return registerInfluencer(userData)
               .then(
@@ -177,7 +177,7 @@ export const store = new Vuex.Store({
             });
           },
 
-        login (context, userData) {
+        login: function (context, userData) {
             context.commit('setUserData', { userData });
             const result = authenticate(userData)
               .then(
@@ -206,7 +206,7 @@ export const store = new Vuex.Store({
 
           },
 
-        requestPassword (context, userData) {
+        requestPassword : function(context, userData) {
             return requestPassword(userData)
               .then(
                   function (response) {
@@ -222,7 +222,7 @@ export const store = new Vuex.Store({
               context.commit('errorRequestPasswordPopup');
             });
           },
-        requestInfluPassword (context, userData) {
+        requestInfluPassword : function(context, userData) {
             return requestInfluPassword(userData)
               .then(
                   function (response) {
@@ -238,7 +238,7 @@ export const store = new Vuex.Store({
               context.commit('errorRequestPasswordPopup');
             });
           },
-            fetchInfluencers (context, userData) {
+            fetchInfluencers: function(context, userData) {
             const result = fetchInfluencers(userData)
               .then(
                   function (response) {
@@ -254,7 +254,7 @@ export const store = new Vuex.Store({
             return result
 
           },
-        fetchMobileInfluencers (context, userData) {
+        fetchMobileInfluencers: function(context, userData) {
             const result = fetchInfluencers(userData)
               .then(
                   function (response) {
@@ -270,7 +270,7 @@ export const store = new Vuex.Store({
             return result
 
           },
-        registerAdInfluencers (context, userData) {
+        registerAdInfluencers: function(context, userData) {
             const result = registerAdInfluencers(userData, context.getters.getJwt)
               .then(
                   function (response) {
@@ -284,7 +284,7 @@ export const store = new Vuex.Store({
             return result
 
           },
-        fetchInstagramAccount (context, userData) {
+        fetchInstagramAccount: function(context, userData) {
             const result = fetchInstagramAccount(userData)
               .then(
                   function (response) {
@@ -298,7 +298,7 @@ export const store = new Vuex.Store({
             return result
 
           },
-        fetchAdBySponsorId (context, userData) {
+        fetchAdBySponsorId: function(context, userData) {
             const result = fetchAdBySponsorId(userData)
               .then(
                   function (response) {
@@ -310,7 +310,7 @@ export const store = new Vuex.Store({
             return result
 
           },
-        fetchAdByInfluencerId (context, userData) {
+        fetchAdByInfluencerId: function(context, userData) {
             const result = fetchAdByInfluencerId(userData)
               .then(
                   function (response) {
@@ -324,7 +324,7 @@ export const store = new Vuex.Store({
             return result
 
           },
-        fetchAdInfluencersBySponsorIdAndStatus (context, userData) {
+        fetchAdInfluencersBySponsorIdAndStatus: function(context, userData) {
             const result = fetchAdInfluencersBySponsorIdAndStatus(userData)
               .then(
                   function (response) {
@@ -340,7 +340,7 @@ export const store = new Vuex.Store({
             return result
 
           },
-        fetchAdInfluencersByInfluencerIdAndStatus (context, userData) {
+        fetchAdInfluencersByInfluencerIdAndStatus: function(context, userData) {
             const result = fetchAdInfluencersByInfluencerIdAndStatus(userData)
               .then(
                   function (response) {
@@ -358,7 +358,7 @@ export const store = new Vuex.Store({
             return result
 
           },
-        fetchCountAds (context, userData) {
+        fetchCountAds: function(context, userData) {
             const result = fetchCountAds(userData)
               .then(
                   function (response) {
@@ -372,7 +372,7 @@ export const store = new Vuex.Store({
             return result
 
           },
-        fetchCountInfluencerAds (context, userData) {
+        fetchCountInfluencerAds: function(context, userData) {
             const result = fetchCountInfluencerAds(userData)
               .then(
                   function (response) {
@@ -386,7 +386,7 @@ export const store = new Vuex.Store({
             return result
 
           },
-        fetchAdInfluencersByAdId (context, userData) {
+        fetchAdInfluencersByAdId: function(context, userData) {
             const result = fetchAdInfluencersByAdId(userData)
               .then(
                   function (response) {
@@ -400,7 +400,7 @@ export const store = new Vuex.Store({
             return result
 
           },
-        fetchTesterByInstagramId (context, userData) {
+        fetchTesterByInstagramId: function(context, userData) {
             const result = fetchTesterByInstagramId(userData)
               .then(
                   function (response) {
@@ -415,7 +415,7 @@ export const store = new Vuex.Store({
             return result
 
           },
-        fetchCountryName (context, userData) {
+        fetchCountryName: function(context, userData) {
             const result = fetchCountryName(userData)
               .then(
                   function (response) {
@@ -440,7 +440,7 @@ export const store = new Vuex.Store({
                 return context.commit('isAbnormalEmail')
 
             return checkDuplicateEmail(userData)
-            .then( 
+            .then(
                 function (response) {
                     return context.commit('isDuplicateEmail', response)}
                     )
@@ -479,7 +479,7 @@ export const store = new Vuex.Store({
               context.commit('errorCompanyNumberPopup');
             })
           },
-            pictureUpdate (context, userData) {
+            pictureUpdate: function(context, userData) {
             return userfileUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {
@@ -494,7 +494,7 @@ export const store = new Vuex.Store({
               context.commit('errorUpdatePopup');
             });
           },
-        documentUpdate (context, userData) {
+        documentUpdate: function(context, userData) {
             return userfileUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {
@@ -509,7 +509,7 @@ export const store = new Vuex.Store({
               context.commit('errorUpdatePopup');
             });
           },
-          userUpdate (context, userData) {
+          userUpdate: function(context, userData) {
             return userUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {
@@ -524,7 +524,7 @@ export const store = new Vuex.Store({
               context.commit('errorUpdatePopup');
             });
           },
-        userUpdateNoPopup (context, userData) {
+        userUpdateNoPopup: function(context, userData) {
             return userUpdate(userData, context.getters.getJwt)
               .then(
                   function (response) {
@@ -538,7 +538,7 @@ export const store = new Vuex.Store({
               context.commit('errorUpdatePopup');
             });
           },
-        deleteUser (context) {
+        deleteUser: function(context) {
             return deleteUser({'id': context.getters.id}, context.getters.getJwt)
               .then(
                   function (response) {
@@ -553,7 +553,7 @@ export const store = new Vuex.Store({
               context.commit('errorUpdatePopup');
             });
           },
-        createAd (context, userData) {
+        createAd: function(context, userData) {
             return createAd(userData, context.getters.getJwt)
               .then(
                   function (response) {
@@ -569,19 +569,19 @@ export const store = new Vuex.Store({
               context.commit('errorCreateAdPopup');
             });
           },
-        payAd (context, userData) {
+        payAd: function(context, userData) {
             context.commit('setAdData', userData);
             return Router.push('/sponsor-sim');
           },
-        checkPerformance (context, userData) {
+        checkPerformance: function(context, userData) {
             context.commit('setAdData', userData);
             return Router.push('/sponsor-sim');
           },
-        checkMyPerformance (context, userData) {
+        checkMyPerformance: function(context, userData) {
             context.commit('setAdData', userData);
             return Router.push('/sponsor-result');
           },
-        avgInfluencerEffectRate (context, userData) {
+        avgInfluencerEffectRate: function(context, userData) {
             const result = avgInfluencerEffectRate(userData)
               .then(
                   function (response) {
@@ -595,7 +595,7 @@ export const store = new Vuex.Store({
             return result
 
           },
-        updateAdInfluencer (context, userData) {
+        updateAdInfluencer: function(context, userData) {
             return updateAdInfluencer(userData, context.getters.getJwt)
               .then(
                   function (response) {
@@ -609,10 +609,10 @@ export const store = new Vuex.Store({
           },
     },
     mutations: {
-        setSurveys(state, payload) {
+        setSurveys: function(state, payload) {
             state.surveys = payload.surveys
           },
-        setUserData (state, payload) {
+        setUserData : function(state, payload) {
         state.user = payload;
         state.navMenuList.forEach(function(val){
             if(payload.name){
@@ -663,7 +663,7 @@ export const store = new Vuex.Store({
         state.influencer_cost = payload.influencer_cost;
         state.influencer_effect_rate = payload.influencer_effect_rate;
       },
-        setUserDataMyPage (state, payload) {
+        setUserDataMyPage : function(state, payload) {
             state.company_name = payload.company_name;
           state.company_category = payload.company_category;
           state.officer_name = payload.officer_name;
@@ -676,27 +676,27 @@ export const store = new Vuex.Store({
           state.social = payload.social;
           state.company_number = payload.company_number;
         },
-      setJwtToken (state, payload) {
+      setJwtToken : function(state, payload) {
         localStorage.token = payload.jwt.token
         state.jwt = payload.jwt
       },
-        setSponsor (state, payload) {
+        setSponsor : function(state, payload) {
         state.isSponsor = true
       },
-         setInfluencer (state, payload) {
+         setInfluencer : function(state, payload) {
         state.isInfluencer = true
       },
-        setAdData (state, payload) {
+        setAdData : function(state, payload) {
         state.currentAd = payload
       },
-        setCountAds (state, payload) {
+        setCountAds : function(state, payload) {
         state.count_ads = payload
       },
 
-        userLogin(state, payload){
+        userLogin: function(state, payload){
             state.user_type = payload
         },
-        userLogout(state, payload){
+        userLogout: function(state, payload){
             state.jwt = '';
             state.user_type = '';
             state.navMenuList.forEach(function(val){
@@ -708,106 +708,106 @@ export const store = new Vuex.Store({
             state.isSponsor = false;
             state.isInfluencer = false;
         },
-        openJoinPopup(state){
+        openJoinPopup: function(state){
             state.isJoinPopup = true;
         },
-        closeJoinPopup(state){
+        closeJoinPopup: function(state){
             state.isJoinPopup = false;
         },
-        openRequestPasswordPopup(state){
+        openRequestPasswordPopup: function(state){
             state.isRequestPasswordPopup = true;
         },
-        closeRequestPasswordPopup(state){
+        closeRequestPasswordPopup: function(state){
             state.isRequestPasswordPopup = false;
         },
-        openRequestInfluPasswordPopup(state){
+        openRequestInfluPasswordPopup: function(state){
             state.isRequestInfluPasswordPopup = true;
         },
-        closeRequestInfluPasswordPopup(state){
+        closeRequestInfluPasswordPopup: function(state){
             state.isRequestInfluPasswordPopup = false;
         },
-        errorRegisterPopup(state){
+        errorRegisterPopup: function(state){
             state.isAlertPopup = true;
             state.email = '';
             state.alertMsg = '올바른 정보를 ';
             state.alertMobileMsg = '입력해주세요.';
         },
-        openUpdatePopup(state){
+        openUpdatePopup: function(state){
             state.isAlertPopup = true;
             state.alertMsg = '업데이트 ';
             state.alertMobileMsg = '완료 되었습니다.';
         },
-        openTesterPopup(state){
+        openTesterPopup: function(state){
             state.isAlertPopup = true;
             state.alertMsg = '분석에 몇 분이';
             state.alertMobileMsg = '소요됩니다.';
         },
-        openEmptyInfluencerPopup(state){
+        openEmptyInfluencerPopup: function(state){
             state.isAlertPopup = true;
             state.alertMsg = '진행중인 서비스가';
             state.alertMobileMsg = '없습니다.';
         },
-        openDeletePopup(state){
+        openDeletePopup: function(state){
             state.isAlertPopup = true;
             state.alertMsg = '삭제 요청 ';
             state.alertMobileMsg = '완료 되었습니다.';
         },
-        errorUpdatePopup(state){
+        errorUpdatePopup: function(state){
             state.isAlertPopup = true;
             state.email = '';
             state.alertMsg = '올바른 정보를 ';
             state.alertMobileMsg = '입력해주세요.';
         },
-        errorLoginPopup(state){
+        errorLoginPopup: function(state){
             state.isAlertPopup = true;
             state.email = '';
             state.alertMsg = '아이디 또는 비밀번호가';
             state.alertMobileMsg = '일치하지 않습니다.';
         },
-        errorCreateAdPopup(state){
+        errorCreateAdPopup: function(state){
             state.isAlertPopup = true;
             state.email = '';
             state.alertMsg = '10초 후 다시 시도 ';
             state.alertMobileMsg = '부탁드립니다.';
         },
-        errorCompanyNumberPopup(state){
+        errorCompanyNumberPopup: function(state){
             state.isAlertPopup = true;
             state.email = '';
             state.alertMsg = '10초 후 다시 시도 ';
             state.alertMobileMsg = '부탁드립니다.';
         },
-        errorPopup(state){
+        errorPopup: function(state){
             state.isAlertPopup = true;
             state.email = '';
             state.alertMsg = '잠시 후 다시 시도 ';
             state.alertMobileMsg = '부탁드립니다.';
         },
-        errorRequestPasswordPopup(state){
+        errorRequestPasswordPopup: function(state){
             state.isAlertPopup = true;
             state.email = '';
             state.alertMsg = '일치하는 유저 정보가 ';
             state.alertMobileMsg = '없습니다.';
         },
-        isAbnormalEmail(state, payload){
+        isAbnormalEmail: function(state, payload){
             state.isAlertPopup = true;
             state.email = '';
             state.alertMsg = '올바른 이메일을 ';
             state.alertMobileMsg = '입력해주세요.';
         },
-        isEmptyEmail(state, payload){
+        isEmptyEmail: function(state, payload){
             state.isAlertPopup = true;
             state.email = '';
 
             state.alertMsg = '이메일을 ';
             state.alertMobileMsg = '입력해주세요.';
         },
-        isNormalEmailInit(state){
+        isNormalEmailInit: function(state){
             state.isValidEmail = false;
         },
-        isNormalEmail(state){
+        isNormalEmail: function(state){
             state.isValidEmail = true;
         },
-        isDuplicateEmail(state, payload){
+        isDuplicateEmail: function(state, payload){
             state.isAlertPopup = true;
 
             if (payload.data.result != null){
@@ -820,7 +820,7 @@ export const store = new Vuex.Store({
                 state.alertMobileMsg = '이메일입니다.';
             }
         },
-        isDuplicateEmailNoPopup(state, payload){
+        isDuplicateEmailNoPopup: function(state, payload){
 
             if (payload.data.result != null){
                 state.alertMsg = '중복된 ';
@@ -832,35 +832,35 @@ export const store = new Vuex.Store({
                 state.alertMobileMsg = '이메일입니다.';
             }
         },
-        isPasswordRequested(state){
+        isPasswordRequested: function(state){
             state.isAlertPopup = true;
             state.email = '';
 
             state.alertMsg = '이메일에서 새 비밀번호를 ';
             state.alertMobileMsg = '확인해주세요.';
         },
-        setCurrentAdInfluencer(state, payload){
+        setCurrentAdInfluencer: function(state, payload){
             state.currentAdInfluencer = payload;
         },
-        hasEmail(state, payload){
+        hasEmail: function(state, payload){
             state.email = payload;
         },
-        hasCompanyNumber(state, payload){
+        hasCompanyNumber: function(state, payload){
             state.company_number = payload;
         },
-        isAbnormalCompanyNumber(state, payload){
+        isAbnormalCompanyNumber: function(state, payload){
             state.isAlertPopup = true;
             state.company_number = '';
             state.alertMsg = '올바른 사업자 번호를 ';
             state.alertMobileMsg = '입력해주세요.';
         },
-        isEmptyCompanyNumber(state, payload){
+        isEmptyCompanyNumber: function(state, payload){
             state.isAlertPopup = true;
             state.company_number = '';
             state.alertMsg = '사업자 번호를 ';
             state.alertMobileMsg = '입력해주세요.';
         },
-        isValidCompanyNumber(state, payload){
+        isValidCompanyNumber: function(state, payload){
             state.isAlertPopup = true;
 
             if (payload.data != null){
@@ -872,296 +872,296 @@ export const store = new Vuex.Store({
                 state.company_number = '';
             }
         },
-        isFailedTester(state){
+        isFailedTester: function(state){
             state.isAlertPopup = true;
             state.email = '';
 
             state.alertMsg = '잠시 후 다시 ';
             state.alertMobileMsg = '시도해주세요.';
         },
-        isNoTester(state){
+        isNoTester: function(state){
             state.isAlertPopup = true;
             state.email = '';
             state.alertMsg = '인스타그램에 ';
             state.alertMobileMsg = '없는 아이디입니다.';
         },
-        noAdRunning(state){
+        noAdRunning: function(state){
             state.isAlertPopup = true;
             state.email = '';
             state.alertMsg = '진행중인 ';
             state.alertMobileMsg = '광고가 없습니다.';
         },
-        filterAdList(state, payload){
+        filterAdList: function(state, payload){
             state.filterAds = payload;
         },
-        setAds(state, payload){
+        setAds: function(state, payload){
             state.ads = payload;
         },
-        setAvgInfluencerEffectRate(state, payload){
+        setAvgInfluencerEffectRate: function(state, payload){
             state.avg_influencer_effect_rate = payload;
         },
-        setAdInfluencers(state, payload){
+        setAdInfluencers: function(state, payload){
             state.adInfluencers = payload;
         },
-        setRunningAdInfluencers(state, payload){
+        setRunningAdInfluencers: function(state, payload){
             state.runningAdInfluencers = payload;
         },
-        openAlertPopup(state, payload){
+        openAlertPopup: function(state, payload){
             state.isAlertPopup = true;
             state.alertMsg = '';
             state.alertMobileMsg = '';
         },
-        openAlertPopupMsg(state, payload){
+        openAlertPopupMsg: function(state, payload){
             state.isAlertPopup = true;
             state.alertMsg = payload;
             state.alertMobileMsg = '';
         },
-        closeAlertPopup(state){
+        closeAlertPopup: function(state){
             state.isAlertPopup = false;
             state.alertMsg = '';
             state.alertMobileMsg = '';
         },
-        openCompletePopup(state, payload){
+        openCompletePopup: function(state, payload){
             state.isCompletePopup = true;
             state.completeMsg = payload
         },
-        closeCompletePopup(state){
+        closeCompletePopup: function(state){
             state.isCompletePopup = false;
             state.completeMsg = ''
         },
-        openScoreCompletePopup(state, payload){
+        openScoreCompletePopup: function(state, payload){
             state.isScoreCompletePopup = true;
         },
-        closeScoreCompletePopup(state){
+        closeScoreCompletePopup: function(state){
             state.isScoreCompletePopup = false;
         },
-        openScoreImpossiblePopup(state, payload){
+        openScoreImpossiblePopup: function(state, payload){
             state.isScoreImpossiblePopup = true;
         },
-        closeScoreImpossiblePopup(state){
+        closeScoreImpossiblePopup: function(state){
             state.isScoreImpossiblePopup = false;
         },
-        openTestPopup(state) {
+        openTestPopup: function(state) {
             state.isTestPopup = true;
         },
-        closeTestPopup(state) {
+        closeTestPopup: function(state) {
             state.isTestPopup = false;
         },
-        openEmptyTesterPopup(state) {
+        openEmptyTesterPopup: function(state) {
             state.isEmptyTester = true;
         },
-        closeEmptyTesterPopup(state) {
+        closeEmptyTesterPopup: function(state) {
             state.isEmptyTester = false;
         },
-        setInfluencers(state, payload) {
+        setInfluencers: function(state, payload) {
             state.influencers = payload;
         },
-        setMobileInfluencers(state, payload) {
+        setMobileInfluencers: function(state, payload) {
             state.mobileInfluencers = payload;
         },
-        setDocumentLink(state, payload) {
+        setDocumentLink: function(state, payload) {
             state.document_link = payload;
         },
-        setPictureLink(state, payload) {
+        setPictureLink: function(state, payload) {
             state.picture_link = payload;
         },
-        setInstagramCode(state, payload) {
+        setInstagramCode: function(state, payload) {
             state.instagram_code = payload;
         },
-        setInstagramClientId(state, payload) {
+        setInstagramClientId: function(state, payload) {
             state.instagram_client_id = payload;
         },
-        setInstagramAccount(state, payload) {
+        setInstagramAccount: function(state, payload) {
             state.instagram_account = payload;
         },
-        setTesters(state, payload) {
+        setTesters: function(state, payload) {
             state.testers = payload;
         },
-        setCountry(state, payload) {
+        setCountry: function(state, payload) {
             state.country = payload;
         },
-        setError(state, payload) {
+        setError: function(state, payload) {
             state.error = payload;
         },
-        setCurrentRangeBtn(state, payload) {
+        setCurrentRangeBtn: function(state, payload) {
             state.currentRangeBtn = payload;
         },
     },
     getters: {
-        id(state){
+        id: function(state){
             return state.user_id
         },
-        user(state){
+        user: function(state){
             return state.user
         },
-        user_id(state){
+        user_id: function(state){
             return state.user_id
         },
-        email(state){
+        email: function(state){
             return state.email
         },
-        company_number(state){
+        company_number: function(state){
             return state.company_number
         },
-        company_name(state){
+        company_name: function(state){
             return state.company_name
         },
-        company_category(state){
+        company_category: function(state){
             return state.company_category
         },
-        officer_name(state){
+        officer_name: function(state){
             return state.officer_name
         },
-        tax_email(state){
+        tax_email: function(state){
             return state.tax_email
         },
-        contact(state){
+        contact: function(state){
             return state.contact
         },
-        company_website(state){
+        company_website: function(state){
             return state.company_website
         },
-        instagram(state){
+        instagram: function(state){
             return state.instagram
         },
-        facebook(state){
+        facebook: function(state){
             return state.facebook
         },
-        social(state){
+        social: function(state){
             return state.social
         },
-        getTestPopup(state){
+        getTestPopup: function(state){
             return state.isTestPopup
         },
-        user_type(state){
+        user_type: function(state){
             return state.user_type
         },
-        country(state){
+        country: function(state){
             return state.country
         },
-        gender(state){
+        gender: function(state){
             return state.gender
         },
-        contact(state){
+        contact: function(state){
             return state.contact
         },
-        category(state){
+        category: function(state){
             return state.category
         },
-        birth(state){
+        birth: function(state){
             return state.birth
         },
-        name(state){
+        name: function(state){
             return state.name
         },
 
-        GetNavMenuList(state) {
+        GetNavMenuList: function(state) {
             return state.navMenuList
         },
-        GetMobileNavMenuList(state) {
+        GetMobileNavMenuList: function(state) {
             return state.mobileNavMenuList
         },
-        getJwt (state) {
+        getJwt : function(state) {
         return state.jwt
         },
         // reusable data accessors
-        isAuthenticated (state) {
+        isAuthenticated : function(state) {
         return isValidJwt(state.jwt)
         },
-        isSponsorAccount (state) {
+        isSponsorAccount : function(state) {
         return state.isSponsor
         },
-        isInfluencerAccount (state) {
+        isInfluencerAccount : function(state) {
         return state.isInfluencer
         },
-        influencers (state) {
+        influencers : function(state) {
         return state.influencers
         },
-        currentAd (state) {
+        currentAd : function(state) {
         return state.currentAd
         },
-        ad_id (state) {
+        ad_id : function(state) {
         return state.currentAd.id
         },
-        filterAds(state) {
+        filterAds: function(state) {
             return state.filterAds
         },
-        ads(state) {
+        ads: function(state) {
             return state.ads
         },
-        adInfluencers(state) {
+        adInfluencers: function(state) {
             return state.adInfluencers
         },
-        runningAdInfluencers(state) {
+        runningAdInfluencers: function(state) {
             return state.runningAdInfluencers
         },
-        currentAdInfluencer(state){
+        currentAdInfluencer: function(state){
             return state.currentAdInfluencer
         },
-        count_ads(state){
+        count_ads: function(state){
             return state.count_ads
         },
-        picture_link(state){
+        picture_link: function(state){
             return state.picture_link
         },
-        document_link(state){
+        document_link: function(state){
             return state.document_link
         },
-        isRequestPasswordPopup(state){
+        isRequestPasswordPopup: function(state){
             return state.isRequestPasswordPopup
         },
-        isRequestInfluPasswordPopup(state){
+        isRequestInfluPasswordPopup: function(state){
             return state.isRequestInfluPasswordPopup
         },
-        isValidEmail(state){
+        isValidEmail: function(state){
             return state.isValidEmail
         },
-        total_follower_count(state){
+        total_follower_count: function(state){
             return state.total_follower_count
         },
-        total_post_count(state){
+        total_post_count: function(state){
             return state.total_post_count
         },
-        total_like_count(state){
+        total_like_count: function(state){
             return state.total_like_count
         },
-        total_comment_count(state){
+        total_comment_count: function(state){
             return state.total_comment_count
         },
-        total_movie_count(state){
+        total_movie_count: function(state){
             return state.total_movie_count
         },
-        total_play_count(state){
+        total_play_count: function(state){
             return state.total_play_count
         },
-        influencer_cost(state){
+        influencer_cost: function(state){
             return state.influencer_cost
         },
-        influencer_effect_rate(state){
+        influencer_effect_rate: function(state){
             return state.influencer_effect_rate
         },
-        avg_influencer_effect_rate(state){
+        avg_influencer_effect_rate: function(state){
             return state.avg_influencer_effect_rate
         },
-        instagram_code(state){
+        instagram_code: function(state){
             return state.instagram_code
         },
-        instagram_account(state){
+        instagram_account: function(state){
             return state.instagram_account
         },
-        instagram_client_id(state){
+        instagram_client_id: function(state){
             return state.instagram_client_id
         },
-        testers(state){
+        testers: function(state){
             return state.testers
         },
-        error(state){
+        error: function(state){
             return state.error
         },
-        currentRangeBtn(state){
+        currentRangeBtn: function(state){
             return state.currentRangeBtn
         },
-        mobileInfluencers(state){
+        mobileInfluencers: function(state){
             return state.mobileInfluencers
         },
     }

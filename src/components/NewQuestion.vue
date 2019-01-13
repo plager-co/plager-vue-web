@@ -3,7 +3,7 @@ import NewQuestion from '@/components/NewQuestion'
 
 export default {
   components: { NewQuestion },
-  data () {
+  data: function() {
     return {
       step: 'name',
       name: '',

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'https://api.plager.co'
+const API_URL = 'http://127.0.0.1:8083'
 
 function extend(target) {
     var sources = [].slice.call(arguments, 1);

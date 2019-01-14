@@ -9,10 +9,10 @@
         <div class="join-popup">
             <h1>비밀번호 찾기</h1>
             <p class='for-web'>
-                이메일과 사업자 번호를 입력해주세요.
+                가입시 등록한 이메일과 사업자 번호를 입력해주세요.
             </p>
             <p class='for-mobile block'>
-                이메일과 아이디와 사업자 번호를 입력해주세요.
+                가입시 등록한 이메일과 사업자 번호를 입력해주세요.
             </p>
             <div class="input-set btn">
                 <div class='label'>이메일</div>
@@ -192,7 +192,7 @@ p {
     width: 700px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
+    margin-top: 40px;
     padding-bottom: 59px;
 }
 

@@ -26,7 +26,7 @@
                             <div class="input-set btn">
                                 <div class='label'>SNS 계정</div>
                                 <div class="input-wrap sns">
-                                    <input id="instagram" type="text" placeholder='@인스타그램 아이디' v-model="instagram">
+                                    <input id="instagram" type="text" placeholder='@제외한 인스타그램 아이디' v-model="instagram">
                                 </div>
                             </div>
                             <div class="input-set">

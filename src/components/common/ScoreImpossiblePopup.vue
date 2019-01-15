@@ -46,7 +46,7 @@ export default {
         }
     },
     created: function() {
-            this.share_blog_text = 'http://line.me/R/msg/text/?' + encodeURIComponent('인플루언서로돈벌기!\nhttp://plager.co')
+            this.share_blog_text = 'http://line.me/R/msg/text/?' + encodeURIComponent('인플루언서 되기!\nhttp://plager.co')
     },
     updated(){
 
@@ -124,10 +124,10 @@ p {
 
 .complete-popup {
   margin: auto;
-  width: 965px;
+  width: 850px;
   background: #ffffff;
   border-radius: 5px;
-  padding: 60px 50px 82px;
+  padding: 60px 50px 62px;
 }
 
 .close-wrap {

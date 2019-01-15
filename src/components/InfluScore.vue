@@ -26,7 +26,7 @@
             </div>
             <div class="card-wrap">
               <div class="card ever">
-                <div class="title">3달 평균 영향력</div>
+                <div class="title">3개월 Engagement</div>
                 <div class="body">
                   <table>
                     <tbody>
@@ -210,8 +210,8 @@ h1 {
   vertical-align: top;
   width: 50%;
   display: inline-block;
-  padding: 39px 22px 42px;
-  min-height: 633px;
+  padding: 39px 32px 42px;
+  min-height: 63px;
 }
 
 .card.ever .title {

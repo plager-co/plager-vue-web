@@ -3,9 +3,9 @@
         <div class="section first">
             <div class="container">
                 <div class="cell">
-                    <div class="title">스폰서 필터 선택</div>
+                    <div class="title">광고주 필터 선택</div>
                     <div class="desc">
-                        상세하게 설정할수록 성과가 높습니다.
+                        상세하게 설정할 수 록 성과가 높습니다.
                     </div>
                 </div>
             </div>
@@ -635,12 +635,12 @@ h2 {
 
 .part {
   width: 100%;
-  margin-bottom: 108px;
+  margin-bottom: 110px;
   text-align: left;
 }
 
 .part.p2 {
-  margin-bottom: 109px;
+  margin-bottom: 110px;
 }
 
 .part:last-child {

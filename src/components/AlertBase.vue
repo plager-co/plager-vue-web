@@ -58,7 +58,7 @@ p {
 
 .complete-popup {
   margin: auto;
-  width: 965px;
+  width: 850px;
   background: #ffffff;
   border-radius: 5px;
   padding: 60px 50px 44px;

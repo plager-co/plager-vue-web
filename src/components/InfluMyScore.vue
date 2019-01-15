@@ -56,7 +56,7 @@
                             <button class="percent" :style="{background: button_background}">{{Math.round(tester.influencer_effect_rate * 100) / 100}}%</button>
                         </div>
 			<div class="top">
-                            <div class="title">최근 3개월 평균</div>
+                            <div class="title">최근 3개월 Engagement</div>
                         </div>
                         <div class="card">
                             <div class="left2">
@@ -331,7 +331,7 @@ p {
     vertical-align: top;
     width: 330px;
     border-right: 1px solid rgba(151, 151, 151, .5);
-    padding: 45px 0 0 0;
+    padding: 5px 0 0 0;
 }
 
 .card .left .profile-img {

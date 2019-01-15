@@ -29,7 +29,7 @@ export default {
 }
 
 section.wrapper {
-  padding: 40px 0;
+  padding: 200px 0;
 }
 section.wrapper.dark {
   background: #313134;

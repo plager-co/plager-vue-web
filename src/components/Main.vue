@@ -396,7 +396,7 @@
         <h1>플래거 서비스 이용에 도움이 필요하신가요?<br>
 언제든 연락주세요 </h1>
         <p><span>070 - 8624 - 9967</span> plager@plager.co</p>
-        <button @click='$router.push("https://goo.gl/forms/boz2NAik9tYDU2Wd2")'>도움 요청하기</button>
+        <button @click='$router.push("https://goo.gl/forms/boz2NAik9tYDU2Wd2")'>메모로 도움 요청하기</button>
       </div>
     </div>
     <div class="remote-btn">

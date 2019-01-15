@@ -28,6 +28,7 @@ export const store = new Vuex.Store({
         testerBorder: '2px solid red',
         completeMsg: '',
         isAlertPopup: false,
+        isForceAlertPopup: false,
         alertMsg: '',
         alertMobileMsg: '',
         isScoreCompletePopup: false,
@@ -157,7 +158,7 @@ export const store = new Vuex.Store({
                                             if (response.data.user_type === 'influencer'){
                                                 console.log("influencer");
                                                 context.commit('setInfluencer', true);
-                                                Router.push('/influencer-my-score');
+                                                Router.push('/influencer-score');
                                             }
 
                                         } else {
@@ -692,6 +693,9 @@ export const store = new Vuex.Store({
         setCountAds : function(state, payload) {
         state.count_ads = payload
       },
+        setForceAlertPopup : function(state, payload) {
+        state.isForceAlertPopup = payload
+      },
 
         userLogin: function(state, payload){
             state.user_type = payload
@@ -1163,6 +1167,9 @@ export const store = new Vuex.Store({
         },
         mobileInfluencers: function(state){
             return state.mobileInfluencers
+        },
+        isForceAlertPopup: function(state){
+            return state.isForceAlertPopup
         },
     }
 })

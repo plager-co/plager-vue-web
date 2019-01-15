@@ -364,6 +364,12 @@ export default {
         var influList = [];
         var influMobileList = [];
 
+
+        var payloadMobile = {
+            'influencer_id': this.$store.getters.user_id,
+            'status': this.$store.getters.filterAds,
+        }
+
         await store.dispatch('fetchAdInfluencersByInfluencerIdAndStatus', payloadMobile);
         store.getters.runningAdInfluencers.forEach(function(val){
             console.log(val);
@@ -403,7 +409,8 @@ export default {
             this.count = influMobileList.length;
         } else {
             this.$store.commit('openEmptyInfluencerPopup');
-            this.$router.push('influ-my-page')
+            this.$store.commit('setForceAlertPopup', true);
+            this.$router.push('/influencer-my-page')
         }
         this.loadingPopup = false;
   },

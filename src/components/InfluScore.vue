@@ -106,10 +106,10 @@
             </div>
             <div class="card bottom">
               <h1 :class='{completed : isCompleted}'>{{ user.name }} 님의 <b>1회</b> 예상 모델료는 <br class="for-mobile"> <b>약 {{ numberWithCommas(user.price) }}원</b> 입니다.</h1>
-              <p v-if='!isCompleted'>플래거 인플루언서로 활동이 가능합니다.<br>
-              활동을 원하신다면 신청 버튼을 눌러주세요.</p>
-             <button class="submit" @click='btnClick'>{{btnMsg}}</button>
-             <button class="submit" v-if='isCompleted' @click='$router.push("/influencer-my-score")'>나의 성과보기</button>
+              <!--<p v-if='!isCompleted'>플래거 인플루언서로 활동이 가능합니다.<br>-->
+              <!--활동을 원하신다면 신청 버튼을 눌러주세요.</p>-->
+             <button class="submit" v-if='!isCompleted'@click='btnClick'>{{btnMsg}}</button>
+             <button class="submit" v-if='isCompleted' @click='$router.push("/influencer-sim")'>나의 성과보기</button>
             </div>
           </div>
       </div>
@@ -134,11 +134,11 @@ export default {
     }
   },
     created: async function(){
+      this.isCompleted = this.$store.getters.user.is_open_score;
       this.total_follower_count = this.$store.getters.total_follower_count;
         this.user = this.$store.getters.user;
         await this.$store.dispatch('avgInfluencerEffectRate');
         this.avg_influencer_effect_rate = this.$store.getters.avg_influencer_effect_rate;
-
 
     },
   methods: {
@@ -160,6 +160,7 @@ export default {
     btnClick: function(){
       console.log(this.total_follower_count);
       if (this.total_follower_count > 1000){
+          this.isCompleted = true;
         this.$store.commit('openScoreCompletePopup');
         this.$store.dispatch('userUpdateNoPopup', {  id: this.$store.getters.user_id, is_open_score: 1});
       } else {

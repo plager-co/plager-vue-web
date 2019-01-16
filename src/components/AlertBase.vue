@@ -100,7 +100,7 @@ button.next {
 }
 
 @media screen and (max-width: 640px) {
-    .complete-popup { width: calc(100% - 3rem); box-sizing: border-box; padding: 1.7rem 1.4rem 6rem; margin-top: 4.2rem;}
+    .complete-popup { width: calc(100% - 3rem); box-sizing: border-box; padding: 1.7rem 1.4rem 4rem; margin-top: 15rem;}
     .close-wrap img { width: 1.5rem; height: 1.5rem; }
     .complete-wrap img { width: 5.2rem; height: 5rem; }
     .complete-wrap { margin-bottom: 2.7rem;}

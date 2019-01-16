@@ -168,14 +168,7 @@ export const routes = [
     },
     {
       path: '/influencer-join',
-      component: InfluJoin,
-        beforeEnter: function(to, from, next) {
-            if (!store.getters.isAuthenticated) {
-              next('/login')
-            } else {
-                next()
-            }
-        }
+      component: InfluJoin
     },
     {
       path: '/influencer-list',

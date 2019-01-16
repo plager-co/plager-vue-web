@@ -58,75 +58,201 @@ export const routes = [
     },
     {
       path: '/ad-list',
-      component: AdList
+      component: AdList,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/sponsor-result',
-      component: SponsorResult
+      component: SponsorResult,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/sponsor-all-result',
-      component: SponsorAllResult
+      component: SponsorAllResult,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/sponsor-filter',
-      component: SponsorFilter
+      component: SponsorFilter,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/sponsor-payment',
-      component: SponsorPayment
+      component: SponsorPayment,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/sponsor-payment2',
-      component: SponsorPayment2
+      component: SponsorPayment2,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/sponsor-payment3',
-      component: SponsorPayment3
+      component: SponsorPayment3,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/sponsor-payment4',
-      component: SponsorPayment4
+      component: SponsorPayment4,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/sponsor-sim',
-      component: SponsorSIM
+      component: SponsorSIM,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/sponsor-list',
-      component: SponsorList
+      component: SponsorList,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/influencer-join',
-      component: InfluJoin
+      component: InfluJoin,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/influencer-list',
-      component: InfluList
+      component: InfluList,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/influencer-ad-list',
-      component: InfluAdList
+      component: InfluAdList,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/influencer-result',
-      component: InfluResult
+      component: InfluResult,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/influencer-sim-result',
-      component: InfluSIMResult
+      component: InfluSIMResult,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/influencer-sim',
-      component: InfluSIM
+      component: InfluSIM,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/influencer-score',
-      component: InfluScore
+      component: InfluScore,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/influencer-complete',
-      component: InfluComplete
+      component: InfluComplete,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/influencer-my-score',
@@ -138,7 +264,14 @@ export const routes = [
     },
     {
       path: '/influencer-my-page',
-      component: InfluMyPage
+      component: InfluMyPage,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/joinPopup',
@@ -158,12 +291,18 @@ export const routes = [
     },
     {
       path: '/sponsor-no-ad',
-      component: SponsorNoAd
+      component: SponsorNoAd,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/mypage',
         beforeEnter: function(to, from, next) {
-          console.log(store.getters.isAuthenticated);
         if (!store.getters.isAuthenticated) {
           next('/login')
         } else {
@@ -199,6 +338,13 @@ export const routes = [
     {
       path: '/my-page',
       component: MyPage,
+        beforeEnter: function(to, from, next) {
+            if (!store.getters.isAuthenticated) {
+              next('/login')
+            } else {
+                next()
+            }
+        }
     },
     {
       path: '/policy',

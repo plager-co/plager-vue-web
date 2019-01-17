@@ -28,6 +28,7 @@ export const store = new Vuex.Store({
         testerBorder: '2px solid red',
         completeMsg: '',
         isAlertPopup: false,
+        isSideBarOpen: false,
         isForceAlertPopup: false,
         alertMsg: '',
         alertMobileMsg: '',
@@ -925,6 +926,15 @@ export const store = new Vuex.Store({
             state.alertMsg = '';
             state.alertMobileMsg = '';
         },
+        openSideBar: function(state){
+            state.isSideBarOpen = true;
+        },
+        closeSideBar: function(state){
+            state.isSideBarOpen = false;
+        },
+        setSideBar: function(state, payload){
+            state.isSideBarOpen = payload;
+        },
         openCompletePopup: function(state, payload){
             state.isCompletePopup = true;
             state.completeMsg = payload
@@ -1170,6 +1180,9 @@ export const store = new Vuex.Store({
         },
         isForceAlertPopup: function(state){
             return state.isForceAlertPopup
+        },
+        isSideBarOpen: function(state){
+            return state.isSideBarOpen
         },
     }
 })

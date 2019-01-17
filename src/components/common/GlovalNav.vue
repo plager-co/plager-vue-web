@@ -1,9 +1,9 @@
 <template>
   <div class="section gnv" :class='{black: $route.path !== "/"}'>
     <!-- side-bar -->
-    <div class="side-bar-dim" v-if='isSideBarOpen' @click.self='isSideBarOpen=!isSideBarOpen'/>
+    <div class="side-bar-dim" v-if='$store.state.isSideBarOpen' @click.self='$store.commit("setSideBar", !$store.state.isSideBarOpen)' />
     <transition name='slide'>
-      <div class="side-bar" v-if='isSideBarOpen'>
+      <div class="side-bar" v-if='$store.state.isSideBarOpen'>
         <div class="top">
           <div class="login" v-if="($store.getters.isAuthenticated === false)" @click='$router.push("/login")'>로그인</div>
           <div class="login" v-if="($store.getters.isAuthenticated === true)" @click='$router.push("/logout")'>로그아웃</div>
@@ -29,7 +29,7 @@
         </div>
         <button @click='$router.push("/influencer-my-score")'>내 영향력 테스트</button>
 
-        <div class="hamburger-menu" :class='{open: isSideBarOpen}' @click='isSideBarOpen=!isSideBarOpen'></div>
+        <div class="hamburger-menu" :class='{open: $store.state.isSideBarOpen}' @click.self='$store.commit("setSideBar", !$store.state.isSideBarOpen)'></div>
         <div class="menu-wrapper">
           <ul>
             <li v-if="($store.getters.isAuthenticated === false)"><a @click='sponsorJoinCall'>광고주 등록</a></li>
@@ -68,12 +68,12 @@ export default {
   data: function() {
     return {
       isPopupOpen: false,
-      isSideBarOpen: false
+      // isSideBarOpen: false
     };
   },
   watch: {
     "$route.path": function (n) {
-      this.isSideBarOpen = false;
+      this.$store.commit("setSideBar", false);
     }
   },
   methods:{

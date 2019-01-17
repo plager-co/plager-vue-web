@@ -640,7 +640,7 @@ h1 {
     color: #FFFFFF;
     letter-spacing: 0;
     text-align: center;
-    margin-left: 30px;
+    margin-left: 0px;
 }
 
 delete-button {

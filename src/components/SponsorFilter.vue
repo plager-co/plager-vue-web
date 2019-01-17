@@ -375,7 +375,8 @@ export default {
 
 
         this.$router.push('/my-page');
-        this.$store.commit('openAlertPopupMsg', '사용자 정보를 등록해주세요.')
+        this.$store.commit('closeSideBar');
+        this.$store.commit('openAlertPopupMsg', '사용자 정보를 등록해주세요.');
 
       }
 

@@ -144,6 +144,9 @@ export default {
       {
          title:'SIM 진행 인플루언서', url:'/sponsor-sim-running'
       },
+      {
+         title:'마이 페이지', url:'/my-page'
+      },
    ]
       }
     }

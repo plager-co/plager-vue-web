@@ -730,7 +730,7 @@ h2 {
 .input-set .select-wrap .dropdown {
   display: inline-block;
   width: 100%;
-  margin-right: 11px;
+  margin-right: 10px;
   position: relative;
 }
 
@@ -781,7 +781,7 @@ h2 {
   color: #092056;
   letter-spacing: 2.55px;
   text-align: center;
-  padding: 7px 0;
+  padding: 6px 0;
   box-sizing: border-box;
   margin-bottom: 14px;
 }

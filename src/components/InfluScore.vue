@@ -410,7 +410,7 @@ button.submit {
 .card .cols .right h1 {
   /* 내 영향력 지수: */
   font-weight: 400;
-  font-size: 40px;
+  font-size: 38px;
   color: #000000;
   margin-bottom: 20px;
 }
@@ -459,7 +459,7 @@ button.submit {
 .card.bottom h1 {
   /* 홍길동 님의 1회 예상 모델료는 약: */
   font-family: AppleSDGothicNeo-Light;
-  font-size: 40px;
+  font-size: 38px;
   color: #000000;
   text-align: center;
   line-height: 68px;

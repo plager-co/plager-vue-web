@@ -217,7 +217,7 @@
                 <div class="part p6">
                     <div class="title-wrap">
                         <div class="step">step6</div>
-                        <div class="title">예산</div>
+                        <div class="title">1회 예산</div>
                     </div>
                     <div class="title-desc">
                         <div class="msg">직접입력</div>
@@ -347,7 +347,7 @@
                                         <td>{{currentGenderBtn}}</td>
                                     </tr>
                                     <tr>
-                                        <td>예산</td>
+                                        <td>1회 예산</td>
                                         <td>{{s6Value[0]}}만원 ~ {{s6Value[1]}}만원</td>
                                     </tr>
                                 </tbody>

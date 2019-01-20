@@ -392,7 +392,7 @@ export default {
 
       if(hasRegisteredAd){
         this.$router.push('/my-page');
-        this.$store.commit('openAlertPopupMsg', '이미 등록 중인 광고가 있습니다.')
+        this.$store.commit('openAlertPopupMsg', '이미 신청한 서비스가 있습니다.')
       }
 
   },
@@ -401,7 +401,7 @@ export default {
       isMobile: false,
       s2Value: [1, 1000],
       s4Value: ['10세', "60세 이상"],
-      s6Value: [50, 5000],
+      s6Value: [1, 5000],
       currentRangeBtn: "1개월",
       currentGenderBtn: "모두",
       isSearched: false,

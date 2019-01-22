@@ -158,6 +158,18 @@ export function fetchTesterByInstagramId (userData) {
 
      return axios.get(`${API_URL}/util_country/filter/0/` + userData + '/')
  }
+ export function fetchAllTargetResultBySponsorId (userData, jwt) {
+
+  let auth_dict = { Authorization: `Bearer: ${jwt}` };
+  let auth_header = extend({}, basic_header, auth_dict);
+     return axios.post(`${API_URL}/users/filters/5/` , userData, { headers: auth_header })
+ }
+ export function fetchAllTargetResultByInfluencerId (userData, jwt) {
+
+  let auth_dict = { Authorization: `Bearer: ${jwt}` };
+  let auth_header = extend({}, basic_header, auth_dict);
+     return axios.post(`${API_URL}/users/filters/6/` , userData, { headers: auth_header })
+ }
   const actions = {
     // asynchronous operations
     loadSurveys(context) {

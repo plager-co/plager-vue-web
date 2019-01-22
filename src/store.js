@@ -9,7 +9,7 @@ import { fetchSurveys, fetchSurvey, saveSurveyResponse, postNewSurvey,
     fetchAdInfluencersByAdId, updateAdInfluencer, fetchCountAds, fetchInstagramAccount, fetchCountInfluencerAds, userfileUpdate,
     requestPassword, requestInfluPassword, registerInfluencer, deleteUser, avgInfluencerEffectRate,
     fetchTesterByInstagramId, fetchCountryName, fetchAdInfluencersBySponsorIdAndStatus,
-    fetchAdInfluencersByInfluencerIdAndStatus} from '@/api'
+    fetchAdInfluencersByInfluencerIdAndStatus, fetchAllTargetResultBySponsorId, fetchAllTargetResultByInfluencerId} from '@/api'
 import { isValidJwt, EventBus } from '@/utils'
 import Router from './router'
 Vue.use(Vuex);
@@ -114,6 +114,7 @@ export const store = new Vuex.Store({
         instagram_client_id: '',
         instagram_account: {},
         testers: [],
+        allTargetResult: {}
     },
 
     actions: {
@@ -446,6 +447,36 @@ export const store = new Vuex.Store({
                 function (response) {
                     return context.commit('isDuplicateEmail', response)}
                     )
+          },
+        fetchAllTargetResultBySponsorId: function(context, userData) {
+            const result = fetchAllTargetResultBySponsorId(userData)
+              .then(
+                  function (response) {
+                            if(response.data.result){
+                                context.commit('setAllTargetResult', response.data.result);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorPopup');
+              context.commit('setError', true);
+            });
+            return result
+
+          },
+        fetchAllTargetResultByInfluencerId: function(context, userData) {
+            const result = fetchAllTargetResultByInfluencerId(userData)
+              .then(
+                  function (response) {
+                            if(response.data.result){
+                                context.commit('setAllTargetResult', response.data.result);
+                            }
+                        }
+            ).catch(e => {
+              context.commit('errorPopup');
+              context.commit('setError', true);
+            });
+            return result
+
           },
         checkEmailNoPopup(context, userData){
             if (!userData){
@@ -1000,6 +1031,9 @@ export const store = new Vuex.Store({
         setCurrentRangeBtn: function(state, payload) {
             state.currentRangeBtn = payload;
         },
+        setAllTargetResult: function(state, payload) {
+            state.allTargetResult = payload;
+        },
     },
     getters: {
         id: function(state){
@@ -1183,6 +1217,9 @@ export const store = new Vuex.Store({
         },
         isSideBarOpen: function(state){
             return state.isSideBarOpen
+        },
+        allTargetResult: function(state){
+            return state.allTargetResult
         },
     }
 })

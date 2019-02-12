@@ -160,7 +160,7 @@ export default {
         this.$store.commit('openTesterPopup');
 
         while (loadFlag){
-            console.log('loading...')
+            console.log('loading!!!!...')
             await this.$store.dispatch("fetchTesterByInstagramId", this.instagram_id);
             var testers = this.$store.getters.testers;
             testers.forEach(function (val){

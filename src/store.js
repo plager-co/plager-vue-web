@@ -113,7 +113,7 @@ export const store = new Vuex.Store({
         instagram_code: '',
         instagram_client_id: '',
         instagram_account: {},
-        testers: [],
+        testers: '',
         allTargetResult: {}
     },
 

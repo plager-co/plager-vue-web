@@ -163,40 +163,7 @@ export default {
             console.log('loading!!!!...')
             await this.$store.dispatch("fetchTesterByInstagramId", this.instagram_id);
             var testers = this.$store.getters.testers;
-            testers.forEach(function (val){
-
-                var valid_date = false;
-
-                if(val.created_at){
-                    var t = val.created_at.split(/[- :]/);
-                    var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
-                    var diff= d - today ;
-                    console.log("diff");
-                    console.log(diff);
-                    console.log(24*60*60*1000);
-                    if ( diff < 24*60*60*1000 )
-                    {
-                        valid_date = true;
-                    }
-                }
-
-                console.log("valid_date");
-                console.log(valid_date);
-                console.log("val.status");
-                console.log(val.status);
-
-
-                if (val.status === 3 && valid_date){
-                    tester = val;
-                    loadFlag = false;
-                } else if (val.status === -1 && valid_date) {
-                    loadFlag = false;
-                    noIdPopup = true;
-                } else if (val.status === -100 && valid_date) {
-                    loadFlag = false;
-                    failPopup = true;
-                }
-            });
+            console.log(testers)
             await sleep(1000);
             tried = tried + 1;
             if (tried > 600){

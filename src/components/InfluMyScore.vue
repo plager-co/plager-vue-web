@@ -39,7 +39,7 @@
                             <tbody>
                                 <tr>
                                     <td>팔로워</td>
-                                    <td>{{numberWithCommas(tester.total_follower_count)}}명</td>
+                                    <td>{{numberWithCommas(tester.followers)}}명</td>
                                 </tr>
 
                                 <tr>
@@ -53,7 +53,7 @@
                         <div class="bottom">
                             <h2>내 영향력 지수</h2>
                             <div class="desc">전체 인플루언서 <br class="for-mobile"> 평균 영향력 지수 {{Math.round(avg_influencer_effect_rate * 100) / 100}}%</div>
-                            <button class="percent" :style="{background: button_background}">{{Math.round(tester.influencer_effect_rate * 100) / 100}}%</button>
+                            <button class="percent" :style="{background: button_background}">{{Math.round(tester.er * 100) / 100}}%</button>
                         </div>
 			<div class="top">
                             <div class="title">최근 3개월 Engagement</div>
@@ -69,19 +69,19 @@
                                             </tr>
                                             <tr>
                                                 <td>좋아요</td>
-                                                <td>{{numberWithCommas(tester.three_month_like_count)}}개</td>
+                                                <td>{{numberWithCommas(tester.total_like)}}개</td>
                                             </tr>
                                             <tr>
                                                 <td>댓글</td>
-                                                <td>{{numberWithCommas(tester.three_month_comment_count)}}개</td>
+                                                <td>{{numberWithCommas(tester.total_comment)}}개</td>
                                             </tr>
                                             <tr>
                                                 <td>동영상 수</td>
-                                                <td>{{numberWithCommas(tester.three_month_movie_count)}}개</td>
+                                                <td>{{numberWithCommas(tester.total_video_count)}}개</td>
                                             </tr>
                                             <tr>
                                                 <td>동영상 재생</td>
-                                                <td>{{numberWithCommas(tester.three_month_play_count)}}회</td>
+                                                <td>{{numberWithCommas(tester.total_video_view)}}회</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -230,6 +230,7 @@ export default {
             loadingPopup: false,
             avg_influencer_effect_rate: 0,
             loadFlag: false,
+            tester: {},
             button_background: '#88c86b',
         }
     },

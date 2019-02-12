@@ -151,7 +151,6 @@ export default {
           return new Promise(resolve => setTimeout(resolve, ms));
         }
 
-        var tester = {};
         var tried = 0;
         var failPopup = false;
         var noIdPopup = false;
@@ -163,21 +162,13 @@ export default {
             console.log('loading!!!!...')
             await this.$store.dispatch("fetchTesterByInstagramId", this.instagram_id);
             var testers = this.$store.getters.testers;
-            console.log(testers)
-            await sleep(1000);
-            tried = tried + 1;
-            if (tried > 600){
-                loadFlag = false;
-                failPopup = true;
-            }
-
-            if(this.$store.getters.error){
-                loadFlag = false;
-            }
+            console.log('tester : ' + testers)
+            loadFlag = false;
         }
 
         this.loadingPopup = false;
-        this.tester = tester;
+        this.tester = testers;
+        console.log('this.tester = ' + tester)
         if (failPopup){
             this.$store.commit('isFailedTester');
         }

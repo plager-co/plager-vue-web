@@ -152,7 +152,7 @@ export function postNewSurvey (survey, jwt) {
  }
 export function fetchTesterByInstagramId (userData) {
 
-     return axios.get(`${API_URL}/influencer/` + userData + '/')
+     return axios.get(`http://13.124.141.71:2000/influencer/` + userData)
  }
  export function fetchCountryName (userData) {
 

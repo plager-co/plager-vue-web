@@ -162,13 +162,15 @@ export default {
             console.log('loading!!!!...')
             await this.$store.dispatch("fetchTesterByInstagramId", this.instagram_id);
             var testers = this.$store.getters.testers;
-            console.log('tester : ' + testers)
+            console.log('testers')
+            console.log(testers)
             loadFlag = false;
         }
 
         this.loadingPopup = false;
         this.tester = testers;
-        console.log('this.tester = ' + tester)
+        console.log('this.tester')
+        console.log(tester)
         if (failPopup){
             this.$store.commit('isFailedTester');
         }

@@ -170,7 +170,7 @@ export default {
         this.loadingPopup = false;
         this.tester = testers;
         console.log('this.tester')
-        console.log(tester)
+        console.log(this.tester)
         if (failPopup){
             this.$store.commit('isFailedTester');
         }

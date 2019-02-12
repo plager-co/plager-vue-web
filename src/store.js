@@ -409,10 +409,10 @@ export const store = new Vuex.Store({
                   function (response) {
                             console.log('response');
                             console.log(response)
-                            if(response.data.result){
+                            if(response.data){
                                 console.log('commit')
-                                console.log(response.data.result);
-                                context.commit('setTesters', response.data.result);
+                                console.log(response.data);
+                                context.commit('setTesters', response.data);
                             }
                         }
             ).catch(e => {

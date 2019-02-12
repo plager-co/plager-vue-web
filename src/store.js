@@ -407,13 +407,16 @@ export const store = new Vuex.Store({
             const result = fetchTesterByInstagramId(userData)
               .then(
                   function (response) {
+                            console.log(response);
                             if(response.data.result){
+                                console.log(response.data.result);
                                 context.commit('setTesters', response.data.result);
                             }
                         }
             ).catch(e => {
-              context.commit('errorPopup');
-              context.commit('setError', true);
+                console.log(e);
+                context.commit('errorPopup');
+                context.commit('setError', true);
             });
             return result
 

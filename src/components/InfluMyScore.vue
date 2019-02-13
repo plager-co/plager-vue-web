@@ -33,7 +33,7 @@
                 </p> -->
                 <div class="card">
                     <div class="left">
-                        <img class="profile-img" v-bind:src="tester.picture_link">
+                        <img class="profile-img" v-bind:src="tester.profile_image_link">
                         <div class="profile-name">@{{tester.id}}</div>
                         <table>
                             <tbody>
@@ -44,7 +44,7 @@
 
                                 <tr>
                                     <td>포지션</td>
-                                    <td>{{tester.positino_level}}</td>
+                                    <td>{{tester.position_level}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -91,7 +91,7 @@
                             <div class="right2" style="text-align:  right;">
 
                                 <div class="pred">1회 노출 예상 모델료 : </div>
-                                <div class="pred" style="display: inline;">약<h2 style="display: inline;"> {{numberWithCommas(tester.cost)}}원</h2></div>
+                                <div class="pred" style="display: inline;">약<h2 style="display: inline;"> {{numberWithCommas(Math.round(tester.cost))}}원</h2></div>
                             </div>
 
 

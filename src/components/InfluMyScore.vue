@@ -34,7 +34,7 @@
                 <div class="card">
                     <div class="left">
                         <img class="profile-img" v-bind:src="tester.picture_link">
-                        <div class="profile-name">@{{tester.instagram}}</div>
+                        <div class="profile-name">@{{tester.id}}</div>
                         <table>
                             <tbody>
                                 <tr>
@@ -44,7 +44,7 @@
 
                                 <tr>
                                     <td>포지션</td>
-                                    <td>{{tester.level}}</td>
+                                    <td>{{tester.positino_level}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -65,23 +65,23 @@
                                         <tbody>
                                             <tr>
                                                <td>게시물</td>
-                                               <td>{{numberWithCommas(tester.three_month_post_count)}}개</td>
+                                               <td>{{numberWithCommas(tester.post_count)}}개</td>
                                             </tr>
                                             <tr>
                                                 <td>좋아요</td>
-                                                <td>{{numberWithCommas(tester.total_like)}}개</td>
+                                                <td>{{numberWithCommas(tester.like)}}개</td>
                                             </tr>
                                             <tr>
                                                 <td>댓글</td>
-                                                <td>{{numberWithCommas(tester.total_comment)}}개</td>
+                                                <td>{{numberWithCommas(tester.comments)}}개</td>
                                             </tr>
                                             <tr>
                                                 <td>동영상 수</td>
-                                                <td>{{numberWithCommas(tester.total_video_count)}}개</td>
+                                                <td>{{numberWithCommas(tester.video_count)}}개</td>
                                             </tr>
                                             <tr>
                                                 <td>동영상 재생</td>
-                                                <td>{{numberWithCommas(tester.total_video_view)}}회</td>
+                                                <td>{{numberWithCommas(tester.video_view)}}회</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -91,7 +91,7 @@
                             <div class="right2" style="text-align:  right;">
 
                                 <div class="pred">1회 노출 예상 모델료 : </div>
-                                <div class="pred" style="display: inline;">약<h2 style="display: inline;"> {{numberWithCommas(tester.price)}}원</h2></div>
+                                <div class="pred" style="display: inline;">약<h2 style="display: inline;"> {{numberWithCommas(tester.cost)}}원</h2></div>
                             </div>
 
 
